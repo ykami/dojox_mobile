@@ -12,9 +12,10 @@ define([
 //	"dojo/hash", // optionally prereq'ed
 	"dojo/ready",
 	"dijit/registry",	// registry.toArray
+	"./lazyLoadUtils",
 	"./sniff",
 	"./uacss"
-], function(dojo, array, config, connect, event, lang, win, domClass, domConstruct, domStyle, ready, registry, has, uacss){
+], function(dojo, array, config, connect, event, lang, win, domClass, domConstruct, domStyle, ready, registry, lazyLoadUtils, has, uacss){
 
 	var dm = lang.getObject("dojox.mobile", true);
 /*=====
@@ -341,7 +342,8 @@ define([
 		return node;
 	};
 
-	dm.instantiateLazyWidgets = function(root, requires){ /* 1.8 */
+/*
+	dm.instantiateLazyWidgets = function(root, requires){
 		var req = requires ? requires.split(/,/) : [];
 		var nodes = root.getElementsByTagName("*"); // avoid use of dojo.query
 		var len = nodes.length;
@@ -363,7 +365,9 @@ define([
 			});
 		}
 	}	
+*/
 
+/*
 	dm._lazyNodes = [];
 	if(config.parseOnLoad){
 		ready(90, function(){
@@ -384,6 +388,7 @@ define([
 			}
 		});
 	}
+*/
 	
 	ready(function(){
 		dm.detectScreenSize(true);
@@ -409,7 +414,8 @@ define([
 		connect.connect(null, win.global.onorientationchange !== undefined
 			? "onorientationchange" : "onresize", null, f);
 
-		for(var i = 0; i < dm._lazyNodes.length; i++){ /* 1.8 */
+/*
+		for(var i = 0; i < dm._lazyNodes.length; i++){
 			var n = dm._lazyNodes[i];
 			array.forEach(["dojoType", "data-dojo-type"], function(a){
 				if(n.getAttribute("__" + a)){
@@ -419,6 +425,7 @@ define([
 			});
 		}
 		delete dm._lazyNodes;
+*/
 	
 		if(dojo.hash){
 			// find widgets under root recursively

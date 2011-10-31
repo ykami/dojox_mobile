@@ -14,10 +14,11 @@ define([
 	"dojo/dom-style",
 	"dijit/registry",	// registry.byId
 	"./common",
+	"./lazyLoadUtils",
 	"./_ItemBase",
 	"./Badge", /* 1.8 */
 	"./TransitionEvent"
-], function(dojo, array, connect, declare, event, lang, has, win, domAttr, domClass, domConstruct, domGeometry, domStyle, registry, common, ItemBase, Badge, TransitionEvent){
+], function(dojo, array, connect, declare, event, lang, has, win, domAttr, domClass, domConstruct, domGeometry, domStyle, registry, common, lazyLoadUtils, ItemBase, Badge, TransitionEvent){
 
 /*=====
 	var ItemBase = dojox.mobile._ItemBase;
@@ -400,7 +401,7 @@ define([
 			this.contentNode.style.display = "";
 			this.unhighlight();
 			if(this.lazy){ /* 1.8 */
-				common.instantiateLazyWidgets(this.containerNode, this.requires);
+				lazyLoadUtils.instantiateLazyWidgets(this.containerNode, this.requires);
 				this.lazy = false;
 			}
 			this.contentNode.scrollIntoView();

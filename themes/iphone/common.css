@@ -24,3 +24,6 @@ html.mobile, .mobile body {
   background-color: #394D77;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#7c87a4), to(#263e6c), color-stop(0.5, #394d77), color-stop(0.5, #243b69));
 }
+.mblSpriteIcon {
+  position: absolute;
+}

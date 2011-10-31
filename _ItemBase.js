@@ -154,6 +154,7 @@ define([
 				if(!this.icon){ this.icon = parent.iconBase; }
 				if(!this.iconPos){ this.iconPos = parent.iconPos; }
 			}
+			return !!parent;
 		},
 	
 		select: function(){

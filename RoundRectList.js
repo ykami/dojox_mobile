@@ -56,6 +56,8 @@ define([
 		//		If true, the list can be re-ordered.
 		editable: false,
 
+		editableMixinClass: "dojox/mobile/_EditableListMixin",
+
 		buildRendering: function(){
 			this.domNode = this.containerNode = this.srcNodeRef || win.doc.createElement("ul");
 			this.domNode.className = "mblRoundRectList";
@@ -63,8 +65,7 @@ define([
 	
 		postCreate: function(){
 			if(this.editable){
-				var s = "dojox/mobile/_EditableListMixin"; // assign to a variable so as not to be picked up by the build tool
-				require([s], lang.hitch(this, function(module){
+				require([this.editableMixinClass], lang.hitch(this, function(module){
 					lang.mixin(this, new module());
 				}));
 			}
