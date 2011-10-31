@@ -1,0 +1,12 @@
+@import url("../common/domButtons/DomButtonColorButtons-compat.css");
+@import url("../common/domButtons/DomButtonBlackCircleCross-compat.css"); /* 1.8 */
+
+/* dojox.mobile.IconItem */
+.mblIconArea div {
+	*font-size: 60px; /* IE 7 quirks */
+}
+
+/* Icon Content Heading */
+.mblIconContentHeading {
+	background-image: url(compat/icon-content-heading-bg.png);
+}

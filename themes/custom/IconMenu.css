@@ -1,0 +1,66 @@
+/* dojox.mobile.IconMenu */
+.mblIconMenu {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 0;
+  background-color: #5cb0ff;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(3.3333333333333335%, rgba(255, 255, 255, 0.1)), color-stop(0.5, rgba(255, 255, 255, 0.6)), color-stop(1, rgba(255, 255, 255, 0.3)));
+  border: 1px solid #769dc0;
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 2px #000000;
+}
+/* dojox.mobile.IconMenuItem */
+.mblIconMenuItem {
+  float: left;
+  list-style-type: none;
+  -webkit-box-sizing: border-box;
+  border-left: 1px solid #769dc0;
+  border-bottom: 1px solid #769dc0;
+}
+.mblIconMenuItemIcon {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+.mblIconMenuItemIcon img {
+  border: none;
+}
+.mblIconMenuItemSpriteIcon {
+  position: absolute;
+}
+.mblIconMenuItemFirstColumn {
+  border-left: none;
+}
+.mblIconMenuItemLastRow {
+  border-bottom: none;
+}
+.mblIconMenuItemFirstRow.mblIconMenuItemFirstColumn {
+  -webkit-border-top-left-radius: 5px;
+}
+.mblIconMenuItemFirstRow.mblIconMenuItemLastColumn {
+  -webkit-border-top-right-radius: 5px;
+}
+.mblIconMenuItemLastRow.mblIconMenuItemFirstColumn {
+  -webkit-border-bottom-left-radius: 5px;
+}
+.mblIconMenuItemLastRow.mblIconMenuItemLastColumn {
+  -webkit-border-bottom-right-radius: 5px;
+}
+.mblIconMenuItemAnchor {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: Helvetica;
+  font-weight: normal;
+  color: #131313;
+}
+.mblIconMenuItemTable {
+  width: 100%;
+  height: 100%;
+}
+.mblIconMenuItemSel {
+  background-color: rgba(0, 100, 194, 0.3);
+  color: #000000;
+}

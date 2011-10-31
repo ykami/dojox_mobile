@@ -1,0 +1,16 @@
+/* dojox.mobile.SimpleDialog */
+.mblSimpleDialogDecoration {
+	-moz-border-radius: 6px;
+	-o-border-radius: 6px;
+	-ms-border-radius: 6px;
+	border-radius: 6px;
+}
+.mblSimpleDialogInput,
+.mblSimpleDialogButton,
+.mblSimpleDialogButton2l,
+.mblSimpleDialogButton2r {
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}

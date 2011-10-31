@@ -1,0 +1,94 @@
+/* dojox.mobile.Accordion */
+.mblAccordion {
+  border: 1px solid #8C8F91;
+  border-top: none;
+}
+.mblAccordionRoundRect {
+  margin: 7px 9px 16px 9px;
+  padding: 0;
+  border: 1px solid #ADAAAD;
+  border-top: none;
+  -webkit-border-radius: 8px;
+}
+.mblAccordionRoundRect .mblAccordionTitle:first-child {
+  -webkit-border-top-left-radius: 8px;
+  -webkit-border-top-right-radius: 8px;
+}
+.mblAccordionRoundRect .mblAccordionTitleLast, .mblAccordionRoundRect .mblAccordionPane:last-child {
+  border-bottom-width: 0;
+  -webkit-border-bottom-left-radius: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+}
+.mblAccordionTitle {
+  position: relative;
+  width: 100%;
+  vertical-align: middle;
+  white-space: nowrap;
+  border-top: 1px solid #8C8F91;
+  background-color: #F8F8F8;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#cecece), color-stop(0.5, #f8f8f8), color-stop(0.5, #eeeeee));
+  font-family: Helvetica;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 23px;
+  height: 23px;
+}
+.mblAccordionTitleAnchor {
+  display: block;
+  text-decoration: none;
+  white-space: nowrap;
+  color: black;
+  height: 100%;
+}
+.mblAccordionTitleAnchorNoIcon {
+  padding-left: 10px;
+}
+.mblAccordionTitleIcon {
+  position: relative;
+  float: left;
+  margin: 0 4px;
+  font-size: 1px;
+  line-height: normal;
+}
+.mblAccordionTitleIcon2 {
+  display: none;
+}
+.mblAccordionTitleSingleIcon img {
+  vertical-align: middle;
+}
+.mblAccordionTitleSpriteIcon {
+  top: 50%;
+}
+.mblAccordionTitleSpriteIcon div {
+  position: relative;
+  top: -50%;
+  line-height: normal;
+}
+.mblAccordionTitleSpriteIcon img {
+  position: absolute;
+}
+.mblAccordionTitleDomIcon {
+  top: 50%;
+}
+.mblAccordionTitleDomIcon div {
+  top: -50%;
+  line-height: normal;
+}
+.mblAccordionTitleDomIcon  > div {
+  position: relative;
+}
+.mblAccordionTitleSelected {
+  border-bottom: 1px solid #8C8F91;
+  background-color: #00BA00;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#00a200), to(#00d300), color-stop(0.2, #00ba00), color-stop(0.2, #00ba00));
+  color: white;
+}
+.mblAccordionTitleSelected .mblAccordionTitleAnchor {
+  color: white;
+}
+.mblAccordionTitleSelected .mblAccordionTitleIcon1 {
+  display: none;
+}
+.mblAccordionTitleSelected .mblAccordionTitleIcon2 {
+  display: block;
+}

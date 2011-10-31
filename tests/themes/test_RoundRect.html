@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<title>Dojo Mobile : Round Rect</title>
+		<script type="text/javascript" src="../../../../dojo/dojo.js" data-dojo-config="parseOnLoad:true, async:true"></script>
+		<script type="text/javascript">
+			require([
+				"dojox/mobile",				// This is a mobile app.
+				"dojox/mobile/compat",		// This mobile app supports running on desktop browsers
+				"dojox/mobile/parser",		// This mobile app uses declarative programming with fast mobile parser
+				"dojox/mobile/deviceTheme"	// This mobile app automatically changes it's theme to match devices
+			]);
+		</script>
+	</head>
+	<body style="visibility:hidden;">
+		<div id="foo" data-dojo-type="dojox.mobile.View" data-dojo-props='selected:"true"'>
+			<h1 data-dojo-type="dojox.mobile.Heading">Round Rectangle</h1>
+			<div data-dojo-type="dojox.mobile.RoundRect" data-dojo-props='shadow:"true"'>
+				This module provides some widgets that can be used to build web-based
+				applications for mobile devices such as iPhone or Android.
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<title>Dojo Mobile : Round Rectangle List</title>
+		<script type="text/javascript" src="../../../../dojo/dojo.js" data-dojo-config="parseOnLoad:true, async:true"></script>
+		<script type="text/javascript">
+			require([
+				"dojox/mobile",				// This is a mobile app.
+				"dojox/mobile/compat",		// This mobile app supports running on desktop browsers
+				"dojox/mobile/parser",		// This mobile app uses declarative programming with fast mobile parser
+				"dojox/mobile/deviceTheme"	// This mobile app automatically changes it's theme to match devices
+			]);
+		</script>
+	</head>
+	<body style="visibility:hidden;">
+		<div id="settings" data-dojo-type="dojox.mobile.View" data-dojo-props='selected:"true"'>
+			<h1 data-dojo-type="dojox.mobile.Heading">Round Rectangle List Test</h1>
+			<ul data-dojo-type="dojox.mobile.RoundRectList">
+				<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"../images/i-icon-1.png"'>
+					Airplane Mode
+					<div class="mblItemSwitch" data-dojo-type="dojox.mobile.Switch"></div>
+				</li>
+				<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"../images/i-icon-2.png",rightText:"mac",moveTo:"hello"'>
+					Wi-Fi
+				</li>
+				<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"../images/i-icon-3.png"'>
+					<span style="float:left;">Carrier</span>
+					<div style="float:right;">
+						<select>
+							<option selected>ON</option>
+							<option>OFF</option>
+						</select>
+					</div>
+				</li>
+				<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"../images/i-icon-4.png"'>
+					<span style="float:left;">Alarm</span>
+					<div style="float:right;">
+						<input type="radio" name="alarm" checked>ON
+						<input type="radio" name="alarm">OFF<br>
+					</div>
+				</li>
+				<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"../images/i-icon-5.png"'>
+					<span style="float:left;">Font</span>
+					<div style="float:right;">
+						<input type="checkbox" checked>Bold
+						<input type="checkbox">Italic<br>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div id="hello" data-dojo-type="dojox.mobile.View">
+			<h1 data-dojo-type="dojox.mobile.Heading">Hello</h1>
+			<ul data-dojo-type="dojox.mobile.RoundRectList">
+				<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='moveTo:"settings"'>
+					Hello
+				</li>
+				<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='moveTo:"settings"'>
+					Carrier
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

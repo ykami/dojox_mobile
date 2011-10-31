@@ -1,0 +1,94 @@
+@import "variables.less";
+
+/* dojox.mobile.ArrowButton */
+.mblArrowButton {
+	._background-image-gradient-mask-ui-widget-compat;
+	._background-image-gradient-mask-ui-widget-gecko;
+	-moz-border-radius: @theme-ui-widget-border-radius;
+	border-radius: @theme-ui-widget-border-radius;
+	overflow: visible\9; // IE7/8/9
+	_overflow: hidden; // IE6
+}
+.mblArrowButtonDisabled,
+.mblArrowButtonDisabled .mblArrowButton,
+.mblArrowButton:disabled,
+.mblArrowButton:disabled .mblArrowButton {
+	background-color: @theme-ui-widget-disabled-background-color;
+}
+.mblArrowButtonHead {
+	position: absolute;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	height: 29px;
+	background-color: transparent !important;
+	background-image: url(compat/button-arrow-head-bg.gif) !important;
+	border: none !important;
+	top: -1px;
+	width: 15px;
+}
+.dj_gecko .mblArrowButtonHead {
+	top: -2px;
+}
+.dj_ff3 .mblArrowButtonHead {
+	top: -8px;
+}
+.dj_ie .mblArrowButtonHead {
+	*top: -2px; // IE7
+	*width: 17px; // IE7
+	_display: none; // IE6
+}
+.mblArrowButtonHead.mblArrowButtonLeft {
+	left: -15px;
+}
+.dj_gecko .mblArrowButtonHead.mblArrowButtonLeft {
+	left: -28px;
+}
+.dj_ie .mblArrowButtonHead.mblArrowButtonLeft {
+	*left: -16px; // IE7
+}
+.mblArrowButtonHead.mblArrowButtonRight {
+	right: -15px;
+	background-position: 15px;
+}
+.dj_gecko .mblArrowButtonHead.mblArrowButtonRight {
+	right: -2px;
+	background-position: 15px;
+}
+.dj_ie .mblArrowButtonHead.mblArrowButtonRight {
+	*right: -16px; // IE7
+	*background-position: 17px; // IE7
+}
+.mblArrowButton.mblBlueButtonSelected .mblArrowButtonHead {
+	background-image: url(compat/button-arrow-head-bg.gif) !important;
+}
+.mblArrowButton.mblRedButtonSelected .mblArrowButtonHead {
+	background-image: url(compat/button-arrow-head-bg.gif) !important;
+}
+.mblArrowButtonDisabled .mblArrowButtonHead,
+.mblArrowButton:disabled .mblArrowButtonHead {
+	background-color: transparent !important;
+	background-image: url(compat/button-arrow-head-bg.gif) !important;
+}
+.mblArrowButtonNeck {
+	position: absolute;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 5px;
+}
+.dj_gecko .mblArrowButtonNeck {
+	top: -2px;
+}
+.dj_ff3 .mblArrowButtonNeck {
+	top: -8px;
+}
+.dj_ie .mblArrowButtonNeck {
+	*display: none; // IE6/7
+}
+.dj_gecko .mblArrowButtonNeck.mblArrowButtonLeft {
+	left: -13px;
+}
+.dj_gecko .mblArrowButtonNeck.mblArrowButtonRight {
+	right: 13px;
+}

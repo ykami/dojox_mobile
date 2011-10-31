@@ -1,0 +1,471 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+		<title>Dojo Mobile : Theme Regression Test</title>
+		<style>
+			body { margin: 0; }
+			a { text-decoration: none; }
+			table {
+				width: 100%;
+				border-spacing: 0;
+				border-collapse: collapse;
+			}
+			th {
+				background-color: #000000;
+				font-size: 12px;
+				color: white;
+			}
+			td {
+				height: 40px;
+				border: solid 1px #000000;
+				border-bottom: none;
+				text-align: center;
+				font-size: 12px;
+			}
+			td:first-child { border-left: none; }
+			td:last-child { border-right: none; }
+			.sub td { border-top-color: #dddddd; }
+			.tc {
+				display: inline-block;
+				margin: 0;
+				width: 90%;
+				height: 20px;
+				border: none;
+				background-color: #5877a2;
+			}
+			.pad { background-color: #8b919a; }
+			.and { background-color: #a4c634; }
+			.bb { background-color: #0869C6; }
+			.cst { background-color: #91caff; }
+			a:visited .tc { background-color: #eeeeee; }
+			a:hover .tc { background-color: #ee0000; }
+		</style>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<th>T/C (auto)</th>
+				<th width="15%">iPhone</th>
+				<th width="15%">iPad</th>
+				<th width="15%">Android</th>
+				<th width="15%">BlkBry</th>
+				<th width="15%">Custom</th>
+			</tr>
+			<!-- Heading -->
+			<tr>
+				<td><a href="test_Heading.html">Heading</a></td>
+				<td><a href="test_Heading.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_Heading.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_Heading.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_Heading.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_Heading.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- EdgeToEdge -->
+			<tr>
+				<td><a href="test_EdgeToEdgeCategory.html">EdgeToEdgeCategory</a></td>
+				<td><a href="test_EdgeToEdgeCategory.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_EdgeToEdgeCategory.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_EdgeToEdgeCategory.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_EdgeToEdgeCategory.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_EdgeToEdgeCategory.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="test_EdgeToEdgeList.html">EdgeToEdgeList</a></td>
+				<td><a href="test_EdgeToEdgeList.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_EdgeToEdgeList.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_EdgeToEdgeList.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_EdgeToEdgeList.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_EdgeToEdgeList.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="test_EdgeToEdgeList-check.html">EdgeToEdgeList-check</a></td>
+				<td><a href="test_EdgeToEdgeList-check.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_EdgeToEdgeList-check.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_EdgeToEdgeList-check.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_EdgeToEdgeList-check.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_EdgeToEdgeList-check.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- RoundRect -->
+			<tr>
+				<td><a href="test_RoundRectCategory.html">RoundRectCategory</a></td>
+				<td><a href="test_RoundRectCategory.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_RoundRectCategory.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_RoundRectCategory.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_RoundRectCategory.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_RoundRectCategory.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="test_RoundRectList.html">RoundRectList</a></td>
+				<td><a href="test_RoundRectList.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_RoundRectList.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_RoundRectList.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_RoundRectList.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_RoundRectList.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="test_RoundRectList-check.html">RoundRectList-check</a></td>
+				<td><a href="test_RoundRectList-check.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_RoundRectList-check.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_RoundRectList-check.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_RoundRectList-check.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_RoundRectList-check.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr>
+				<td><a href="test_RoundRect.html">RoundRect</a></td>
+				<td><a href="test_RoundRect.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_RoundRect.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_RoundRect.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_RoundRect.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_RoundRect.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- ListItem -->
+			<tr>
+				<td><a href="test_ListItem-button.html">ListItem-button</a></td>
+				<td><a href="test_ListItem-button.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_ListItem-button.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_ListItem-button.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_ListItem-button.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_ListItem-button.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="test_ListItem-domButtons.html">ListItem-domButtons</a></td>
+				<td><a href="test_ListItem-domButtons.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_ListItem-domButtons.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_ListItem-domButtons.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_ListItem-domButtons.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_ListItem-domButtons.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="test_ListItem-result.html">ListItem-result</a></td>
+				<td><a href="test_ListItem-result.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_ListItem-result.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_ListItem-result.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_ListItem-result.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_ListItem-result.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="test_ListItem-sprite.html">ListItem-sprite</a></td>
+				<td><a href="test_ListItem-sprite.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_ListItem-sprite.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_ListItem-sprite.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_ListItem-sprite.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_ListItem-sprite.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="test_ListItem-variable.html">ListItem-variable</a></td>
+				<td><a href="test_ListItem-variable.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_ListItem-variable.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_ListItem-variable.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_ListItem-variable.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_ListItem-variable.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr>
+				<th>T/C (auto)</th>
+				<th width="15%">iPhone</th>
+				<th width="15%">iPad</th>
+				<th width="15%">Android</th>
+				<th width="15%">BlkBry</th>
+				<th width="15%">Custom</th>
+			</tr>
+			<!-- IconContainer -->
+			<tr>
+				<td><a href="test_IconContainer.html">IconContainer</a></td>
+				<td><a href="test_IconContainer.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_IconContainer.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_IconContainer.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_IconContainer.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_IconContainer.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="test_IconContainer-sprite.html">IconContainer-sprite</a></td>
+				<td><a href="test_IconContainer-sprite.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_IconContainer-sprite.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_IconContainer-sprite.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_IconContainer-sprite.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_IconContainer-sprite.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- TabBar -->
+			<tr>
+				<td><a href="test_TabBar.html">TabBar</a></td>
+				<td><a href="test_TabBar.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_TabBar.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_TabBar.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_TabBar.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_TabBar.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- Overlay -->
+			<tr>
+				<td><a href="test_Overlay.html">Overlay</a></td>
+				<td><a href="test_Overlay.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_Overlay.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_Overlay.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_Overlay.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_Overlay.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- Tooltip -->
+			<tr>
+				<td><a href="test_Tooltip.html">Tooltip</a></td>
+				<td><a href="test_Tooltip.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_Tooltip.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_Tooltip.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_Tooltip.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_Tooltip.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- Opener -->
+			<tr>
+				<td><a href="test_Opener-DateSpinWheel.html">Opener-DateSpinWheel</a></td>
+				<td><a href="test_Opener-DateSpinWheel.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_Opener-DateSpinWheel.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_Opener-DateSpinWheel.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_Opener-DateSpinWheel.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_Opener-DateSpinWheel.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="test_Opener-RoundSelectList.html">Opener-RoundSelectList</a></td>
+				<td><a href="test_Opener-RoundSelectList.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_Opener-RoundSelectList.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_Opener-RoundSelectList.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_Opener-RoundSelectList.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_Opener-RoundSelectList.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="test_Opener-SearchList.html">Opener-SearchList</a></td>
+				<td><a href="test_Opener-SearchList.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_Opener-SearchList.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_Opener-SearchList.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_Opener-SearchList.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_Opener-SearchList.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- View -->
+			<tr>
+				<td><a href="test_View.html">View</a></td>
+				<td><a href="test_View.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_View.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_View.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_View.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_View.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- ScrollableView -->
+			<tr>
+				<td><a href="test_ScrollableView.html">ScrollableView</a></td>
+				<td><a href="test_ScrollableView.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_ScrollableView.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_ScrollableView.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_ScrollableView.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_ScrollableView.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="test_ScrollableView-v-vh-vf.html">ScrollableView-v-vh-vf</a></td>
+				<td><a href="test_ScrollableView-v-vh-vf.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_ScrollableView-v-vh-vf.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_ScrollableView-v-vh-vf.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_ScrollableView-v-vh-vf.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_ScrollableView-v-vh-vf.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="test_ScrollableView-v-ah-af.html">ScrollableView-v-ah-af</a></td>
+				<td><a href="test_ScrollableView-v-ah-af.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_ScrollableView-v-ah-af.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_ScrollableView-v-ah-af.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_ScrollableView-v-ah-af.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_ScrollableView-v-ah-af.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- SwapView -->
+			<tr>
+				<td><a href="test_SwapView.html">SwapView</a></td>
+				<td><a href="test_SwapView.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_SwapView.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_SwapView.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_SwapView.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_SwapView.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr>
+				<th>T/C (auto)</th>
+				<th width="15%">iPhone</th>
+				<th width="15%">iPad</th>
+				<th width="15%">Android</th>
+				<th width="15%">BlkBry</th>
+				<th width="15%">Custom</th>
+			</tr>
+			<!-- Switch -->
+			<tr>
+				<td><a href="test_Switch.html">Switch</a></td>
+				<td><a href="test_Switch.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_Switch.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_Switch.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_Switch.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_Switch.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- Button -->
+			<tr>
+				<td><a href="test_Button.html">Button</a></td>
+				<td><a href="test_Button.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_Button.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_Button.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_Button.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_Button.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- FormControls -->
+			<tr>
+				<td><a href="test_FormControls.html">FormControls</a></td>
+				<td><a href="test_FormControls.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_FormControls.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_FormControls.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_FormControls.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_FormControls.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="test_FormControls-html.html">FormControls-html</a></td>
+				<td><a href="test_FormControls-html.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="test_FormControls-html.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="test_FormControls-html.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="test_FormControls-html.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="test_FormControls-html.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+
+			<!-- ## 1.8 ## -->
+			<tr>
+				<th>T/C (auto)</th>
+				<th width="15%">iPhone</th>
+				<th width="15%">iPad</th>
+				<th width="15%">Android</th>
+				<th width="15%">BlkBry</th>
+				<th width="15%">Custom</th>
+			</tr>
+			<!-- Accordion -->
+			<tr>
+				<td><a href="../test_Accordion-demo.html">Accordion<sup>1.8</sup></a></td>
+				<td><a href="../test_Accordion-demo.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="../test_Accordion-demo.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="../test_Accordion-demo.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="../test_Accordion-demo.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="../test_Accordion-demo.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- SimpleDialog -->
+			<tr>
+				<td><a href="../test_SimpleDialogs.html">SimpleDialog<sup>1.8</sup></a></td>
+				<td><a href="../test_SimpleDialogs.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="../test_SimpleDialogs.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="../test_SimpleDialogs.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="../test_SimpleDialogs.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="../test_SimpleDialogs.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- IconMenu -->
+			<tr>
+				<td><a href="../test_IconMenu-standalone.html">IconMenu-standalone<sup>1.8</sup></a></td>
+				<td><a href="../test_IconMenu-standalone.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="../test_IconMenu-standalone.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="../test_IconMenu-standalone.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="../test_IconMenu-standalone.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="../test_IconMenu-standalone.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="../test_IconMenu-6up.html">IconMenu-6up<sup>1.8</sup></a></td>
+				<td><a href="../test_IconMenu-6up.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="../test_IconMenu-6up.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="../test_IconMenu-6up.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="../test_IconMenu-6up.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="../test_IconMenu-6up.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- ArrowButton -->
+			<tr>
+				<td><a href="../test_ArrowButton.html">ArrowButton<sup>1.8</sup></a></td>
+				<td><a href="../test_ArrowButton.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="../test_ArrowButton.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="../test_ArrowButton.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="../test_ArrowButton.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="../test_ArrowButton.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+			<!-- dijit/Calendar -->
+			<tr>
+				<td><a href="../test_Calendar.html">Calendar<sup>1.8</sup></a></td>
+				<td><a href="../test_Calendar.html?theme=iPhone"><span class="tc"></span></a></td>
+				<td><a href="../test_Calendar.html?theme=iPad"><span class="tc pad"></span></a></td>
+				<td><a href="../test_Calendar.html?theme=Android"><span class="tc and"></span></a></td>
+				<td><a href="../test_Calendar.html?theme=BlackBerry"><span class="tc bb"></span></a></td>
+				<td><a href="../test_Calendar.html?theme=Custom"><span class="tc cst"></span></a></td>
+			</tr>
+
+			<!-- ## common theme ## -->
+			<tr>
+				<th>T/C (auto)</th>
+				<th width="15%">iPhone</th>
+				<th width="15%">iPad</th>
+				<th width="15%">Android</th>
+				<th width="15%">BlkBry</th>
+				<th width="15%">Custom</th>
+			</tr>
+			<!-- Carousel -->
+			<tr>
+				<td><a href="../test_Carousel.html">Carousel</a></td>
+				<td colspan="5"><a href="../test_Carousel.html"><span class="tc"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="../test_Carousel-slideshow.html">Carousel-slideshow</a></td>
+				<td colspan="5"><a href="../test_Carousel-slideshow.html"><span class="tc"></span></a></td>
+			</tr>
+			<!-- PageIndicator -->
+			<tr>
+				<td><a href="../test_iPhone-SwapView-slideshow.html">PageIndicator-slideshow</a></td>
+				<td colspan="5"><a href="../test_iPhone-SwapView-slideshow.html"><span class="tc"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="../test_iPhone-SwapView-demo.html">PageIndicator-demo</a></td>
+				<td colspan="5"><a href="../test_iPhone-SwapView-demo.html"><span class="tc"></span></a></td>
+			</tr>
+			<!-- ProgressIndicator -->
+			<tr>
+				<td><a href="../test_progress-indicator.html">ProgressIndicator</a></td>
+				<td colspan="5"><a href="../test_progress-indicator.html"><span class="tc"></span></a></td>
+			</tr>
+			<!-- FixedSplitter -->
+			<tr>
+				<td><a href="../test_FixedSplitter-V3.html">FixedSplitter-V3</a></td>
+				<td colspan="5"><a href="../test_FixedSplitter-V3.html"><span class="tc"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="../test_FixedSplitter-V2H2.html">FixedSplitter-V2H2</a></td>
+				<td colspan="5"><a href="../test_FixedSplitter-V2H2.html"><span class="tc"></span></a></td>
+			</tr>
+			<!-- SpinWheel -->
+			<tr>
+				<td><a href="../test_SpinWheelDatePicker.html">SpinWheelDatePicker</a></td>
+				<td colspan="5"><a href="../test_SpinWheelDatePicker.html"><span class="tc"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="../test_SpinWheelTimePicker.html">SpinWheelTimePicker</a></td>
+				<td colspan="5"><a href="../test_SpinWheelTimePicker.html"><span class="tc"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="../test_SpinWheel-icons.html">SpinWheel-icons</a></td>
+				<td colspan="5"><a href="../test_SpinWheel-icons.html"><span class="tc"></span></a></td>
+			</tr>
+			<tr class="sub">
+				<td><a href="../test_SpinWheel-custom.html">SpinWheel-custom</a></td>
+				<td colspan="5"><a href="../test_SpinWheel-custom.html"><span class="tc"></span></a></td>
+			</tr>
+			<!-- domButtons -->
+			<tr>
+				<td><a href="../test_domButtons.html">domButtons</a></td>
+				<td colspan="5"><a href="../test_domButtons.html"><span class="tc"></span></a></td>
+			</tr>
+			<!-- Transition -->
+			<tr>
+				<td><a href="../test_iPhone-Animation.html">Animation</a></td>
+				<td colspan="5"><a href="../test_iPhone-Animation.html"><span class="tc"></span></a></td>
+			</tr>
+			<!-- dijit/ColorPalette -->
+			<tr>
+				<td><a href="../test_Opener-ColorPalette-async.html">ColorPalette</a></td>
+				<td colspan="5"><a href="../test_Opener-ColorPalette-async.html"><span class="tc"></span></a></td>
+			</tr>
+			<!-- dijit/ColorPicker -->
+			<tr>
+				<td><a href="../test_Opener-ColorPicker.html">ColorPicker</a></td>
+				<td colspan="5"><a href="../test_Opener-ColorPicker.html"><span class="tc"></span></a></td>
+			</tr>
+
+		</table>
+	</body>
+</html>

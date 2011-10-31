@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<title>Progress Indicator</title>
+
+	<script type="text/javascript" src="../deviceTheme.js" data-dojo-config="mblThemeFiles: ['base']"></script>
+	<script type="text/javascript" src="../../../dojo/dojo.js" data-dojo-config="async: true, parseOnLoad: true"></script>
+
+	<script type="text/javascript">
+		require([
+			"dojo/_base/window",
+			"dojo/ready",
+			"dojox/mobile/ProgressIndicator",
+			"dojox/mobile/parser",
+			"dojox/mobile",
+			"dojox/mobile/compat"
+		], function(win, ready, ProgressIndicator){
+			ready(function(){
+				var prog1 = new ProgressIndicator({size:80});
+				prog1.domNode.style.top = "50px";
+				prog1.domNode.style.left = "50px";
+				win.body().appendChild(prog1.domNode);
+				prog1.start();
+
+				var prog2 = new ProgressIndicator({size:40});
+				prog2.domNode.style.top = "50px";
+				prog2.domNode.style.left = "150px";
+				win.body().appendChild(prog2.domNode);
+				prog2.start();
+
+				var prog3 = new ProgressIndicator({size:20});
+				prog3.domNode.style.top = "50px";
+				prog3.domNode.style.left = "250px";
+				win.body().appendChild(prog3.domNode);
+				prog3.start();
+			});
+		});
+	</script>
+</head>
+<body style="visibility:hidden;">
+</body>
+</html>

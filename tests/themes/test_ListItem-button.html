@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<title>Dojo Mobile : Button List Item</title>
+		<script type="text/javascript" src="../../../../dojo/dojo.js" data-dojo-config="parseOnLoad:true, async:true"></script>
+		<script type="text/javascript">
+			require([
+				"dojo/ready",				// dojo.ready
+				"dojo/on",					// dojo.connect
+				"dojo/dom-class",			// dojo.hasClass
+				"dojo/_base/html",			// dojo.byId
+				"dijit/registry",			// dijit.byId dijit.getEnclosingWidget
+				"dojox/mobile",				// This is a mobile app.
+				"dojox/mobile/compat",		// This mobile app supports running on desktop browsers
+				"dojox/mobile/parser",		// This mobile app uses declarative programming with fast mobile parser
+				"dojox/mobile/deviceTheme"	// This mobile app automatically changes it's theme to match devices
+			], function(ready, on, cls, html, registry){
+				ready(function(){
+					var ul = html.byId("list");
+					for(var i = 0, len = ul.childNodes.length; i < len; i++){
+						var li = ul.childNodes[i];
+						if(li.nodeType != 1 || li.tagName != "LI"){ continue; }
+						var w = registry.byNode(li);
+						on(w.rightIconNode, "click", btnClicked);
+					}
+				});
+				function btnClicked(e){
+					var listItem = registry.getEnclosingWidget(e.currentTarget);
+					var btnDiv = listItem.rightIconNode.firstChild;
+					if(cls.contains(btnDiv, "mblDomButtonBluePlus")){
+						listItem.set("btnClass", "mblDomButtonRedMinus");
+					}else if(cls.contains(btnDiv, "mblDomButtonRedMinus")){
+						listItem.set("btnClass", "mblDomButtonBluePlus");
+					}
+				};
+			});
+		</script>
+	</head>
+	<body style="visibility:hidden;">
+		<div data-dojo-type="dojox.mobile.View" data-dojo-props='selected:"true"'>
+			<h1 data-dojo-type="dojox.mobile.Heading">Button List Item</h1>
+			<ul id="list" data-dojo-type="dojox.mobile.EdgeToEdgeList">
+				<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"../images/i-icon-1.png", btnClass:"mblDomButtonBluePlus"'>
+					XX Widget
+				</li>
+				<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"../images/i-icon-2.png", btnClass:"mblDomButtonRedMinus"'>
+					YY Widget
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<title>Dojo Mobile : Form Controls</title>
+		<style>
+			td.label {
+				font-weight: bold;
+			}
+			button.reset {
+				margin: 0 10px;
+			}
+		</style>
+		<script type="text/javascript" src="../../../../dojo/dojo.js" data-dojo-config="parseOnLoad:true, async:true"></script>
+		<script type="text/javascript">
+			require([
+				"dojox/mobile",				// This is a mobile app.
+				"dojox/mobile/compat",		// This mobile app supports running on desktop browsers
+				"dojox/mobile/parser",		// This mobile app uses declarative programming with fast mobile parser
+				"dojox/mobile/deviceTheme",	// This mobile app automatically changes it's theme to match devices
+				"dojox/mobile/ScrollableView",
+				// mobile form controls
+				"dojox/mobile/Button",
+				"dojox/mobile/ComboBox",
+				"dojox/mobile/RadioButton",
+				"dojox/mobile/Slider",
+				"dojox/mobile/TextBox",
+				"dojox/mobile/ExpandingTextArea",
+				"dojox/mobile/ToggleButton",
+				"dijit/form/DataList",
+				"dijit/form/Form"
+			]);
+		</script>
+	</head>
+	<body style="visibility:hidden;">
+		<datalist>
+			<select data-dojo-type="dijit.form.DataList" data-dojo-props='id:"states"'>
+				<option value="AL">Alabama</option>
+				<option value="AK">Alaska</option>
+				<option value="AS">American Samoa</option>
+				<option value="AZ">Arizona</option>
+				<option value="AR">Arkansas</option>
+				<option value="AE">Armed Forces Europe</option>
+				<option value="AP">Armed Forces Pacific</option>
+				<option value="AA">Armed Forces the Americas</option>
+				<option value="CA">California</option>
+				<option value="CO">Colorado</option>
+				<option value="CT">Connecticut</option>
+				<option value="DE">Delaware</option>
+				<option value="DC">District of Columbia</option>
+				<option value="FM">Federated States of Micronesia</option>
+				<option value="FL">Florida</option>
+				<option value="GA">Georgia</option>
+				<option value="GU">Guam</option>
+				<option value="HI">Hawaii</option>
+				<option value="ID">Idaho</option>
+				<option value="IL">Illinois</option>
+				<option value="IN">Indiana</option>
+				<option value="IA">Iowa</option>
+				<option value="KS">Kansas</option>
+				<option value="KY">Kentucky</option>
+				<option value="LA">Louisiana</option>
+				<option value="ME">Maine</option>
+				<option value="MH">Marshall Islands</option>
+				<option value="MD">Maryland</option>
+				<option value="MA">Massachusetts</option>
+				<option value="MI">Michigan</option>
+				<option value="MN">Minnesota</option>
+				<option value="MS">Mississippi</option>
+				<option value="MO">Missouri</option>
+				<option value="MT">Montana</option>
+				<option value="NE">Nebraska</option>
+				<option value="NV">Nevada</option>
+				<option value="NH">New Hampshire</option>
+				<option value="NJ">New Jersey</option>
+				<option value="NM">New Mexico</option>
+				<option value="NY">New York</option>
+				<option value="NC">North Carolina</option>
+				<option value="ND">North Dakota</option>
+				<option value="MP">Northern Mariana Islands</option>
+				<option value="OH">Ohio</option>
+				<option value="OK">Oklahoma</option>
+				<option value="OR">Oregon</option>
+				<option value="PA">Pennsylvania</option>
+				<option value="PR">Puerto Rico</option>
+				<option value="RI">Rhode Island</option>
+				<option value="SC">South Carolina</option>
+				<option value="SD">South Dakota</option>
+				<option value="TN">Tennessee</option>
+				<option value="TX">Texas</option>
+				<option value="UT">Utah</option>
+				<option value="VT">Vermont</option>
+				<option value="VI">Virgin Islands, U.S.</option>
+				<option value="VA">Virginia</option>
+				<option value="WA">Washington</option>
+				<option value="WV">West Virginia</option>
+				<option value="WI">Wisconsin</option>
+				<option value="WY">Wyoming</option>
+			</select>
+		</datalist>
+
+		<div data-dojo-type="dojox.mobile.ScrollableView">
+			<h1 data-dojo-type="dojox.mobile.Heading">Form Controls Test</h1>
+			<form data-dojo-type="dijit.form.Form" id="myForm">
+				<div data-dojo-type="dojox.mobile.RoundRect" shadow="true">			
+					<table width="100%">
+						<tr>
+							<td class="label">Button</td>
+							<td align="right">
+								<input data-dojo-type="dojox.mobile.Button" type="button" class="mblBlueButton" value="Submit">
+								<button data-dojo-type="dojox.mobile.Button" type="button" class="mblRedButton">Cancel</button>
+								<button data-dojo-type="dojox.mobile.Button" type="button">Help</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div data-dojo-type="dojox.mobile.RoundRect" shadow="true">			
+					<table width="100%">
+						<tr>
+							<td class="label">CheckBox</td>
+							<td align="right">
+								<label for="cbox">Click me</label>
+								<input data-dojo-type="dojox.mobile.CheckBox" id="cbox" type="checkbox">
+							</td>
+						</tr>
+						<tr>
+							<td class="label">ToggleButton</td>
+							<td align="right">
+								<button data-dojo-type="dojox.mobile.ToggleButton" type="button">Toggle me</button>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">Switch</td>
+							<td align="right">
+								<input data-dojo-type="dojox.mobile.Switch" type="checkbox" value="on">
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div data-dojo-type="dojox.mobile.RoundRect" shadow="true">			
+					<table width="100%">
+						<tr>
+							<td class="label">Radio Button</td>
+							<td align="right">
+								<input data-dojo-type="dojox.mobile.RadioButton" type="radio" id="rb1" name="mobileRadio" value="Large" checked><label for="rb1">1</label>
+								<input data-dojo-type="dojox.mobile.RadioButton" type="radio" id="rb2" name="mobileRadio" value="Medium"><label for="rb2">2</label>
+								<input data-dojo-type="dojox.mobile.RadioButton" type="radio" id="rb3" name="mobileRadio" value="Small"><label for="rb3">3</label>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div data-dojo-type="dojox.mobile.RoundRect" shadow="true">			
+					<table width="100%">
+						<tr>
+							<td class="label">Slider</td>
+							<td align="right">
+								<table>
+									<tr>
+										<td>0</td>
+										<td><input data-dojo-type="dojox.mobile.Slider" data-dojo-props='min:"0", max:"20", step:"0.1"' id="sh" name="sh" value="0" type="range" style="width:150px;"></td>
+										<td>20</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div data-dojo-type="dojox.mobile.RoundRect" shadow="true">			
+					<table width="100%">
+						<tr>
+							<td class="label">ComboBox</td>
+							<td align="right">
+								<input data-dojo-type="dojox.mobile.ComboBox" data-dojo-props='value:"", list:"states"' type="text">
+							</td>
+						</tr>
+						<tr>
+							<td class="label">TextArea</span></td>
+							<td align="right">
+								<textarea data-dojo-type="dojox.mobile.TextArea" rows="3" cols="20">TextArea</textarea><br>
+							</td>
+						</tr>
+						<tr>
+							<td class="label"> (Expanding)</span></td>
+							<td align="right">
+								<textarea data-dojo-type="dojox.mobile.ExpandingTextArea" rows="3" cols="20">ExpandingTextArea</textarea>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">TextBox</span></td>
+							<td align="right">
+								<input data-dojo-type="dojox.mobile.TextBox" data-dojo-props='maxLength:"9", selectOnClick:"true", placeHolder:"max 9 chars"'>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<button data-dojo-type="dojox.mobile.Button" type="reset" class="reset">Form Reset</button>
+			</form>
+		</div>
+	</body>
+</html>

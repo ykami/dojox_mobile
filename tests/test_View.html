@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<title>View Checking</title>
+
+	<script type="text/javascript" src="../deviceTheme.js" data-dojo-config="mblThemeFiles: ['base']"></script>
+	<script type="text/javascript" src="../../../dojo/dojo.js" data-dojo-config="async: true, parseOnLoad: true"></script>
+
+	<script type="text/javascript">
+		require([
+			"dojo/ready",				// dojo.ready
+			"dojo/dom-style",			// dojo.getStyle
+			"dojo/dom",					// dojo.byId
+			"dojox/mobile",				// This is a mobile app.
+			"dojox/mobile/compat",		// This mobile app supports running on desktop browsers
+			"dojox/mobile/parser",		// This mobile app uses declarative programming with fast mobile parser
+			"dojox/mobile/deviceTheme"	// This mobile app automatically changes it's theme to match devices
+		], function(ready, domStyle, dom){
+			ready(function(){
+				showStyles("bodyStyleArea", "body");
+				showStyles("viewStyleArea", "view");
+			});
+			function showStyles(area, n){
+				var span = dom.byId(area);
+				var target = dom.byId(n);
+				span.innerHTML = "&nbsp;margin: " + domStyle.get(target, "margin") + "<br>"
+								+ "&nbsp;padding: " + domStyle.get(target, "padding") + "<br>"
+								+ "&nbsp;color: " + domStyle.get(target, "color") + "<br>"
+								+ "&nbsp;background-color: " + domStyle.get(target, "background-color") + "<br>"
+								+ "&nbsp;background-image: " + domStyle.get(target, "background-image") + "<br>"
+								+ "&nbsp;font-family: " + domStyle.get(target, "font-family") + "<br>"
+								+ "&nbsp;font-size: " + domStyle.get(target, "font-size") + "<br>"
+								+ "&nbsp;font-weight: " + domStyle.get(target, "font-weight") + "<br>"
+								;
+			};
+		});
+	</script>
+</head>
+<body id="body" style="visibility:hidden;">
+	<div id="view" data-dojo-type="dojox.mobile.View" data-dojo-props='selected:"true"'>
+		This is a test case for checking Theme's CSS setting of &lt;body&gt; tag and &quot;dojox.mobile.View&quot; widget.<br>
+	</div>
+
+	<div style="margin:20px auto 0;padding:5px;width:90%;font-size:13px;border:1px solid;">
+		<script>document.write("window size: " + window.innerWidth + " x " + window.innerHeight);</script>
+		<br>
+		&lt;body&gt;
+		<div id="bodyStyleArea" style="margin-left:10px;padding-left:5px;border-left:1px solid;"></div>
+		<blockquote style="margin: 0 10px">
+			&lt;div data-dojo-type=&quot;dojox.mobile.View&quot;&gt;
+			<div id="viewStyleArea" style="margin-left:10px;padding-left:5px;border-left:1px solid;"></div>
+		</blockquote>
+	</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+/* dojox.mobile.IconMenu */
+.mblIconMenu {
+	-moz-border-radius: 6px;
+	-o-border-radius: 6px;
+	-ms-border-radius: 6px;
+	border-radius: 6px;	
+}
+
+/* dojox.mobile.IconMenuItem */
+.mblIconMenuItem {
+	-moz-box-sizing: border-box;
+	-o-box-sizing : border-box;
+	-ms-box-sizing: border-box;
+	box-sizing : border-box;
+}

@@ -1,0 +1,84 @@
+/* dojox.mobile.ArrowButton */
+.mblArrowButton {
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  padding: 0px 10px;
+  height: 29px;
+  border: #9CACC0 1px outset;
+  -webkit-border-radius: 3px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#cecece), color-stop(0.5, #f8f8f8), color-stop(0.5, #eeeeee));
+  color: black;
+  font-family: Helvetica;
+  font-size: 13px;
+  line-height: 29px;
+}
+.mblArrowButtonSelected, .mblArrowButtonSelected .mblArrowButton {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ad7500), to(#ffaa00), color-stop(0.06, #ffb200), color-stop(0.5, #ffc700));
+  color: white;
+}
+.mblArrowButton.mblBlueButton {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  border-color: #9CACC0;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#7a9de9), to(#2362dd), color-stop(0.5, #366edf), color-stop(0.5, #215fdc));
+  color: white;
+}
+.mblArrowButton.mblBlueButtonSelected, .mblArrowButton.mblBlueButtonSelected .mblArrowButton {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ad7500), to(#ffaa00), color-stop(0.06, #ffb200), color-stop(0.5, #ffc700));
+  color: white;
+}
+.mblArrowButton.mblRedButton {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  border-color: #9CACC0;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fa9d58), to(#ee4115), color-stop(0.5, #ff4d25), color-stop(0.5, #ed4d15));
+  color: white;
+}
+.mblArrowButton.mblRedButtonSelected, .mblArrowButton.mblRedButtonSelected .mblArrowButton {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ad7500), to(#ffaa00), color-stop(0.06, #ffb200), color-stop(0.5, #ffc700));
+  color: white;
+}
+.mblArrowButtonDisabled,
+.mblArrowButtonDisabled .mblArrowButton,
+.mblArrowButton:disabled,
+.mblArrowButton:disabled .mblArrowButton {
+  cursor: default;
+  border-color: grey;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#000000));
+  color: grey;
+}
+.mblArrowButtonHead {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 3px;
+  width: 19px;
+  height: 19px;
+  border: #9CACC0 1px solid;
+  -webkit-border-radius: 0;
+  -webkit-transform: rotate(45deg);
+}
+.mblArrowButtonHead.mblArrowButtonLeft {
+  left: -11px;
+}
+.mblArrowButtonHead.mblArrowButtonRight {
+  right: -11px;
+}
+.mblArrowButtonNeck {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  -webkit-border-radius: 0;
+  top: -1px;
+  width: 15px;
+  height: 29px;
+  border-width: 1px 0;
+  border-style: outset;
+  -webkit-box-sizing: border-box;
+}
+.mblArrowButtonNeck.mblArrowButtonLeft {
+  left: -1px;
+}
+.mblArrowButtonNeck.mblArrowButtonRight {
+  right: -1px;
+}

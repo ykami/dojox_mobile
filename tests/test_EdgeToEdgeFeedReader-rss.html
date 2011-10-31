@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<title>EdgeToEdgeFeedReader - rss</title>
+
+	<script type="text/javascript" src="../deviceTheme.js" data-dojo-config="mblThemeFiles: ['base']"></script>
+	<script type="text/javascript" src="../../../dojo/dojo.js" data-dojo-config="async: true, parseOnLoad: true"></script>
+
+	<script type="text/javascript">
+		require([
+			"dojox/mobile/parser",
+			"dojox/mobile",
+			"dojox/mobile/compat",
+			"dojox/mobile/ScrollableView",
+			"dojox/mobile/RssReadStore",
+			"dojox/mobile/EdgeToEdgeFeedReader"
+		]);
+	</script>
+
+	<style>
+		.mblListItemLabel {
+			font-size: 11px;
+			font-weight: normal;
+		}
+		.mblFeedReaderMixinContentTitle {
+			font-size: 14px;
+			color: #0B5199;
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<div data-dojo-type="dojox.mobile.ScrollableView">
+		<span data-dojo-id="store1" data-dojo-type="dojox.mobile.RssReadStore" data-dojo-props='url:"data/dojotoolkitblog_rss2.xml"'></span>
+		<ul data-dojo-type="dojox.mobile.EdgeToEdgeFeedReader" data-dojo-props='store:store1'></ul>
+	</div>
+</body>
+</html>
+
+

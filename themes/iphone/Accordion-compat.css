@@ -1,0 +1,27 @@
+/* dojox.mobile.Accordion */
+.mblAccordionRoundRect {
+	-moz-border-radius: 8px;
+	-o-border-radius: 8px;
+	-ms-border-radius: 8px;
+	border-radius: 8px;
+}
+.mblAccordionRoundRect .mblAccordionTitle:first-child {
+	-moz-border-radius-topleft: 8px;
+	-moz-border-radius-topright: 8px;
+	-o-border-top-left-radius: 8px;
+	-o-border-top-right-radius: 8px;
+	-ms-border-top-left-radius: 8px;
+	-ms-border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+.mblAccordionRoundRect .mblAccordionTitleLast, .mblAccordionRoundRect .mblAccordionPane:last-child {
+	-moz-border-radius-bottomleft: 8px;
+	-moz-border-radius-bottomright: 8px;
+	-o-border-bottom-left-radius: 8px;
+	-o-border-bottom-right-radius: 8px;
+	-ms-border-bottom-left-radius: 8px;
+	-ms-border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}

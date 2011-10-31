@@ -1,0 +1,58 @@
+/* dojox.mobile.Heading */
+.mblHeading {
+	position: relative;
+	margin: 0px;
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	z-index: 1;
+	.mblHeading-styles;
+}
+.mblHeading * {
+	z-index: 2;
+}
+.mblHeadingDivTitle {
+	position: absolute;
+	width: 100%;
+	display: none;
+	left: 0px;
+	z-index: 1;
+}
+.mblHeadingCenterTitle .mblHeadingDivTitle {
+	display: block;
+}
+.mblHeadingCenterTitle .mblHeadingSpanTitle {
+	display: none;
+}
+
+/* Heading Arrow Button */
+.mblBackButton { // 1.8
+	position: relative;
+	float: left;
+	.mblBackButton-styles; // 1.8
+}
+.mblBackButtonHead { // 1.8
+	position: absolute;
+	.mblBackButtonHead-styles; // 1.8
+}
+.dj_chrome .mblBackButtonHead { // 1.8
+	.mblBackButtonHeadChrome-styles; // 1.8
+}
+.mblBackButtonBody { // 1.8
+	position: absolute;
+	cursor: pointer;
+	-webkit-tap-highlight-color: rgba(255,255,255,0);
+	.mblBackButtonBody-styles; // 1.8
+}
+.mblBackButtonSelected { // 1.8
+	.mblBackButtonHead, .mblBackButtonBody { // 1.8
+		.mblBackButtonSelected-styles; // 1.8
+	}
+	.mblBackButtonHead { // 1.8
+		.mblBackButtonHeadSelected-styles; // 1.8
+	}
+	.mblBackButtonBody { // 1.8
+		.mblBackButtonBodySelected-styles; // 1.8
+	}
+}

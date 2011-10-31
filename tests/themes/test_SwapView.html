@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<title>SwapView</title>
+		<style>
+			.lnk {
+				font-size: 14px;
+				color: #0000ff;
+				text-decoration: none;
+			}
+			html,body{
+				height: 100%;
+				overflow: hidden;
+				margin: 0px;
+			}
+		</style>
+		<script type="text/javascript" src="../../../../dojo/dojo.js" data-dojo-config="parseOnLoad:true, async:true"></script>
+		<script type="text/javascript">
+			require([
+				"dojox/mobile",				// This is a mobile app.
+				"dojox/mobile/compat",		// This mobile app supports running on desktop browsers
+				"dojox/mobile/parser",		// This mobile app uses declarative programming with fast mobile parser
+				"dojox/mobile/deviceTheme",	// This mobile app automatically changes it's theme to match devices
+				"dojox/mobile/SwapView",
+				"dojox/mobile/IconContainer"
+			]);
+		</script>
+	</head>
+	<body style="visibility:hidden;">
+		<div id="foo" data-dojo-type="dojox.mobile.SwapView" data-dojo-props='selected:"true"'>
+			<h1 data-dojo-type="dojox.mobile.Heading">Page Flipping Test</h1>
+			<div data-dojo-type="dojox.mobile.RoundRect">
+				Swipe the screen left or right to flip between the views.
+				There are 4 views in this demo.
+				Vertical scrolling and page indicator are not supported.
+			</div>
+		</div>
+
+		<div id="bar" data-dojo-type="dojox.mobile.SwapView">
+			<h1 data-dojo-type="dojox.mobile.Heading">Search Result</h1>
+			<ul data-dojo-type="dojox.mobile.RoundRectList">
+				<li class="mblVariableHeight" data-dojo-type="dojox.mobile.ListItem" style="font-size:10px">
+					1. <a href="#" class="lnk">Dojo: Traditional Karate-do Spirit</a><br>
+					Sarah Connor Hardcover<br>
+					Eligible for FREE Super Saver Shipping<br>
+					<font color="red">$14.50 (50%)</font> In Stock<br>
+					# (531)
+				</li>
+				<li class="mblVariableHeight" data-dojo-type="dojox.mobile.ListItem" style="font-size:10px">
+					2. <a href="#" class="lnk">Japanese Martial Arts Dojo</a><br>
+					Martin Parker Hardcover<br>
+					<font color="red">$14.00 (60%)</font> In Stock<br>
+					# (173)
+				</li>
+			</ul>
+		</div>
+
+		<div id="icon1" data-dojo-type="dojox.mobile.SwapView">
+			<h1 data-dojo-type="dojox.mobile.Heading">Icon Container 1</h1>
+			<ul data-dojo-type="dojox.mobile.IconContainer">
+				<li data-dojo-type="dojox.mobile.IconItem" data-dojo-props='label:"app1", icon:"../images/icon-1.png", lazy:"true"'><div class="box"></div></li>
+				<li data-dojo-type="dojox.mobile.IconItem" data-dojo-props='label:"app2", icon:"../images/icon-1.png", lazy:"true"'><div class="box"></div></li>
+				<li data-dojo-type="dojox.mobile.IconItem" data-dojo-props='label:"app3", icon:"../images/icon-1.png", lazy:"true"'><div class="box"></div></li>
+				<li data-dojo-type="dojox.mobile.IconItem" data-dojo-props='label:"moveTo", icon:"../images/icon-1.png", moveTo:"about", transition:"slide"'></li>
+				<li data-dojo-type="dojox.mobile.IconItem" data-dojo-props='label:"href", icon:"../images/icon-1.png", href:"test_RoundRectList.html", transition:"slide"'></li>
+				<li data-dojo-type="dojox.mobile.IconItem" data-dojo-props='label:"url", icon:"../images/icon-1.png", url:"../view-sample.html", transition:"slide"'></li>
+			</ul>
+		</div>
+
+		<div id="icon2" data-dojo-type="dojox.mobile.SwapView">
+			<h1 data-dojo-type="dojox.mobile.Heading">Icon Container 2</h1>
+			<ul data-dojo-type="dojox.mobile.IconContainer">
+				<li data-dojo-type="dojox.mobile.IconItem" data-dojo-props='label:"test1", icon:"../images/icon-1.png", lazy:"true"'><div class="box"></div></li>
+				<li data-dojo-type="dojox.mobile.IconItem" data-dojo-props='label:"test2", icon:"../images/icon-1.png", lazy:"true"'><div class="box"></div></li>
+				<li data-dojo-type="dojox.mobile.IconItem" data-dojo-props='label:"test3", icon:"../images/icon-1.png", lazy:"true"'><div class="box"></div></li>
+			</ul>
+		</div>
+
+	</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<title>Dojo Mobile : Button</title>
+		<style>
+			html,body {
+				height: 100%;
+				overflow: hidden;
+			}
+			hr {
+				border: none;
+				margin: 0;
+			}
+			button {
+				width: 120px;
+				margin: 15px 10px 0;
+			}
+			button.customButton {
+				border-color: #cc3333;
+				background-image: url(../images/red-button-bg.png);
+				background: -webkit-gradient(linear, left top, left bottom, from(#D3656D), to(#BC1320), color-stop(0.5, #C9404B), color-stop(0.5, #BC1421));
+				color: #ffffff;
+			}
+			button.customButtonSelected {
+				background-image: url(../images/red-button-sel-bg.png);
+				background: -webkit-gradient(linear, left top, left bottom, from(#AF333C), to(#880E17), color-stop(0.5, #952B33), color-stop(0.5, #870F18));
+			}
+		</style>
+		<script type="text/javascript" src="../../../../dojo/dojo.js" data-dojo-config="parseOnLoad:true, async:true"></script>
+		<script type="text/javascript">
+			require([
+				"dojo/ready",				// dojo.ready
+				"dojo/on",					// dojo.connect
+				"dojo/_base/array",			// dojo.forEach
+				"dojo/_base/html",			// dojo.byId
+				"dijit/registry",			// dijit.byId
+				"dojox/mobile",				// This is a mobile app.
+				"dojox/mobile/compat",		// This mobile app supports running on desktop browsers
+				"dojox/mobile/parser",		// This mobile app uses declarative programming with fast mobile parser
+				"dojox/mobile/deviceTheme",	// This mobile app automatically changes it's theme to match devices
+				"dojox/mobile/Button"
+			], function(ready, on, array, html, registry){
+				ready(function(){
+					array.forEach(["btn1", "btn2", "btn3", "btn4", "btn5"], function(btnId){
+						var btnWidget = registry.byId(btnId);
+						on(btnWidget.domNode, "click", onBtnClicked);
+					});
+				});
+				function onBtnClicked(){
+					var span = html.byId("msgArea");
+					span.innerHTML = "&quot;" + html.byId(this.id).innerHTML + "&quot; button was clicked.";
+					setTimeout(function(){
+						span.innerHTML = "";
+					}, 1000);
+				};
+			});
+		</script>
+	</head>
+	<body style="visibility:hidden;">
+		<div data-dojo-type="dojox.mobile.View" data-dojo-props='selected:"true"'>
+		    <h1 data-dojo-type="dojox.mobile.Heading">Button Widget Test</h1>
+			<button data-dojo-type="dojox.mobile.Button" id="btn1">Default</button>
+			<hr>
+			<button data-dojo-type="dojox.mobile.Button" id="btn2" class="mblBlueButton">Blue</button>
+			class="mblBlueButton"
+			<hr>
+			<button data-dojo-type="dojox.mobile.Button" id="btn3" class="mblRedButton">Red</button>
+			class="mblRedButton"
+			<hr>
+			<button data-dojo-type="dojox.mobile.Button" id="btn4" disabled>Disabled</button>
+			disabled
+			<hr>
+			<button data-dojo-type="dojox.mobile.Button" id="btn5" class="customButton">Custom</button>
+			class="customButton"
+			<hr>
+			<div id="msgArea" style="margin:15px"></div>
+		</div>
+	</body>
+</html>

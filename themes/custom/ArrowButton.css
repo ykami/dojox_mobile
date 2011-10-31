@@ -1,0 +1,88 @@
+/* dojox.mobile.ArrowButton */
+.mblArrowButton {
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  padding: 0 8px;
+  height: 30px;
+  border: 1px outset #b5bcc7;
+  color: #131313;
+  font-size: 14px;
+  font-family: Helvetica;
+  font-weight: normal;
+  line-height: 30px;
+  background-color: #5cb0ff;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(3.3333333333333335%, rgba(255, 255, 255, 0.1)), color-stop(0.5, rgba(255, 255, 255, 0.6)), color-stop(1, rgba(255, 255, 255, 0.3)));
+  -webkit-border-radius: 2px;
+}
+.mblArrowButtonSelected, .mblArrowButtonSelected .mblArrowButton {
+  color: #000000;
+  border-color: #769dc0;
+  background-color: #0064c2;
+}
+.mblArrowButton.mblBlueButton {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  color: #131313;
+  background-color: #0000FF;
+}
+.mblArrowButton.mblBlueButtonSelected, .mblArrowButton.mblBlueButtonSelected .mblArrowButton {
+  color: #000000;
+  border-color: #769dc0;
+  background-color: #000066;
+}
+.mblArrowButton.mblRedButton {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  color: #131313;
+  background-color: #FF0000;
+}
+.mblArrowButton.mblRedButtonSelected, .mblArrowButton.mblRedButtonSelected .mblArrowButton {
+  color: #000000;
+  border-color: #769dc0;
+  background-color: #660000;
+}
+.mblArrowButtonDisabled,
+.mblArrowButtonDisabled .mblArrowButton,
+.mblArrowButton:disabled,
+.mblArrowButton:disabled .mblArrowButton {
+  cursor: default;
+  color: grey;
+  border-color: grey;
+  background-color: #8fc9ff;
+}
+.mblArrowButtonHead {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 3px;
+  width: 19px;
+  height: 19px;
+  border: 1px solid #b5bcc7;
+  -webkit-border-radius: 0;
+  -webkit-transform: rotate(45deg);
+  background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #ffffff), color-stop(3.3333333333333335%, rgba(255, 255, 255, 0.1)), color-stop(0.5, rgba(255, 255, 255, 0.6)), color-stop(1, rgba(255, 255, 255, 0.3)));
+}
+.mblArrowButtonHead.mblArrowButtonLeft {
+  left: -11px;
+}
+.mblArrowButtonHead.mblArrowButtonRight {
+  right: -11px;
+}
+.mblArrowButtonNeck {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  -webkit-border-radius: 0;
+  top: -1px;
+  width: 15px;
+  height: 30px;
+  border-width: 1px 0;
+  border-style: outset;
+  -webkit-box-sizing: border-box;
+}
+.mblArrowButtonNeck.mblArrowButtonLeft {
+  left: -1px;
+}
+.mblArrowButtonNeck.mblArrowButtonRight {
+  right: -1px;
+}

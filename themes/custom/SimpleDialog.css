@@ -1,0 +1,85 @@
+/* dojox.mobile.SimpleDialog */
+.mblSimpleDialog {
+  position: absolute;
+  z-index: 100;
+  margin: 0;
+  text-align: center;
+  padding: 0 0 8px;
+  width: 272px;
+}
+.mblSimpleDialogDecoration {
+  background-color: #eff1f3;
+  border: 1px solid #769dc0;
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 2px #000000;
+  color: #131313;
+}
+.mblSimpleDialogContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.mblSimpleDialogCover {
+  background-color: #000000;
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+}
+.mblSimpleDialogCloseBtn {
+  position: absolute !important;
+}
+.mblSimpleDialogTitle {
+  margin: 0;
+  padding: 8px;
+  width: 100%;
+  background-color: #5cb0ff;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(3.3333333333333335%, rgba(255, 255, 255, 0.1)), color-stop(0.5, rgba(255, 255, 255, 0.6)), color-stop(1, rgba(255, 255, 255, 0.3)));
+  border-bottom: 1px solid #769dc0;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  color: #131313;
+  font-size: 18px;
+  text-align: left;
+  -webkit-box-sizing: border-box;
+}
+.mblSimpleDialogText {
+  margin: 0;
+  padding: 8px;
+  width: 100%;
+  font-size: 18px;
+  text-align: left;
+  -webkit-box-sizing: border-box;
+}
+.mblSimpleDialogInput {
+  margin: 8px 0;
+  width: 256px;
+  font-size: 18px;
+  -webkit-box-sizing: border-box;
+}
+.mblSimpleDialogButton {
+  -webkit-box-sizing: border-box;
+  opacity: 0.95;
+  margin: 8px 8px 0;
+  width: 256px;
+  font-weight: bold;
+}
+.mblSimpleDialogButton2l {
+  -webkit-box-sizing: border-box;
+  opacity: 0.95;
+  float: left;
+  width: 124px;
+  margin: 8px 0 0 8px;
+  font-weight: bold;
+}
+.mblSimpleDialogButton2r {
+  -webkit-box-sizing: border-box;
+  opacity: 0.95;
+  float: right;
+  width: 124px;
+  margin: 8px 8px 0 0;
+  font-weight: bold;
+}

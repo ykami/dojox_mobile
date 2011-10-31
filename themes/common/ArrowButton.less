@@ -1,0 +1,60 @@
+/* dojox.mobile.ArrowButton */
+.mblArrowButton {
+	position: relative;
+	cursor: pointer;
+	outline: none;
+	-webkit-tap-highlight-color: rgba(255,255,255,0);
+	.mblButton-styles;
+}
+.mblArrowButtonSelected,
+.mblArrowButtonSelected .mblArrowButton {
+	.mblButtonSelected-styles;
+}
+.mblArrowButton {
+	&.mblBlueButton {
+		-webkit-tap-highlight-color: rgba(255,255,255,0);
+		.mblButton-mblBlueButton-styles;
+	}
+	&.mblBlueButtonSelected, &.mblBlueButtonSelected .mblArrowButton {
+		.mblButton-mblBlueButtonSelected-styles;
+	}
+	&.mblRedButton {
+		-webkit-tap-highlight-color: rgba(255,255,255,0);
+		.mblButton-mblRedButton-styles;
+	}
+	&.mblRedButtonSelected, &.mblRedButtonSelected .mblArrowButton {
+		.mblButton-mblRedButtonSelected-styles;
+	}
+}
+.mblArrowButtonDisabled,
+.mblArrowButtonDisabled .mblArrowButton,
+.mblArrowButton:disabled,
+.mblArrowButton:disabled .mblArrowButton {
+	cursor: default;
+	.mblArrowButtonDisabled-styles;
+}
+.mblArrowButtonHead {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	.mblArrowButtonHead-styles;
+}
+.mblArrowButtonHead.mblArrowButtonLeft {
+	.mblArrowButtonHeadLeft-styles;
+}
+.mblArrowButtonHead.mblArrowButtonRight {
+	.mblArrowButtonHeadRight-styles;
+}
+.mblArrowButtonNeck {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	-webkit-border-radius: 0;
+	.mblArrowButtonNeck-styles;
+}
+.mblArrowButtonNeck.mblArrowButtonLeft {
+	.mblArrowButtonNeckLeft-styles;
+}
+.mblArrowButtonNeck.mblArrowButtonRight {
+	.mblArrowButtonNeckRight-styles;
+}

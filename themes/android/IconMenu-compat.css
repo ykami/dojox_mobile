@@ -1,0 +1,39 @@
+/* dojox.mobile.IconMenu */
+.mblIconMenu {
+	-moz-border-radius: 6px;
+	-o-border-radius: 6px;
+	-ms-border-radius: 6px;
+	border-radius: 6px;	
+}
+
+/* dojox.mobile.IconMenuItem */
+.mblIconMenuItem {
+	-moz-box-sizing: border-box;
+	-o-box-sizing : border-box;
+	-ms-box-sizing: border-box;
+	box-sizing : border-box;
+}
+.mblIconMenuItemFirstRow.mblIconMenuItemFirstColumn {
+	-moz-border-radius-topleft: 6px;
+	-o-border-top-left-radius: 6px;
+	-ms-border-top-left-radius: 6px;
+	border-top-left-radius: 6px;
+}
+.mblIconMenuItemFirstRow.mblIconMenuItemLastColumn {
+	-moz-border-radius-topright: 6px;
+	-o-border-top-right-radius: 6px;
+	-ms-border-top-right-radius: 6px;
+	border-top-right-radius: 6px;
+}
+.mblIconMenuItemLastRow.mblIconMenuItemFirstColumn {
+	-moz-border-radius-bottomleft: 6px;
+	-o-border-bottom-left-radius: 6px;
+	-ms-border-bottom-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+.mblIconMenuItemLastRow.mblIconMenuItemLastColumn {
+	-moz-border-radius-bottomright: 6px;
+	-o-border-bottom-right-radius: 6px;
+	-ms-border-bottom-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}

@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<title>Dojo Mobile : Switch</title>
+		<style>
+			.color1 .mblSwitchBgLeft {
+				background: -webkit-gradient(linear, left top, left bottom, from(#28B159), to(#75FBAC), color-stop(0.5, #3FEB84), color-stop(0.5, #4CEE8E));
+			}
+			.color1 .mblSwitchBgRight {
+				background: -webkit-gradient(linear, left top, left bottom, from(#CECECE), to(#FDFDFD), color-stop(0.5, #EEEEEE), color-stop(0.5, #F8F8F8));
+			}
+			.color2 .mblSwitchBgLeft {
+				background: -webkit-gradient(linear, left top, left bottom, from(#FF9D00), to(#FFCE80), color-stop(0.5, #FFBB4D), color-stop(0.5, #FFC871));
+			}
+			.color2 .mblSwitchBgRight {
+				background: -webkit-gradient(linear, left top, left bottom, from(#CECECE), to(#FDFDFD), color-stop(0.5, #EEEEEE), color-stop(0.5, #F8F8F8));
+			}
+			.color1 .mblSwitchKnob,
+			.color2 .mblSwitchKnob {
+				background: -webkit-gradient(linear, left top, left bottom, from(#999999), to(#FAFAFA), color-stop(0.5, #BBBBBB), color-stop(0.5, #CACACA));
+			}
+		</style>
+		<script type="text/javascript" src="../../../../dojo/dojo.js" data-dojo-config="parseOnLoad:true, async:true"></script>
+		<script type="text/javascript">
+			require([
+				"dojox/mobile",				// This is a mobile app.
+				"dojox/mobile/compat",		// This mobile app supports running on desktop browsers
+				"dojox/mobile/parser",		// This mobile app uses declarative programming with fast mobile parser
+				"dojox/mobile/deviceTheme"	// This mobile app automatically changes it's theme to match devices
+			]);
+		</script>
+	</head>
+	<body style="visibility:hidden;">
+		<div data-dojo-type="dojox.mobile.View" data-dojo-props='selected:"true"'>
+			<div data-dojo-type="dojox.mobile.RoundRect" data-dojo-props='shadow:"true"'>
+				<b>Default Shape</b><br>
+				<div data-dojo-type="dojox.mobile.Switch" data-dojo-props='value:"off"' style="float:left;margin-right:10px"></div>
+				<div data-dojo-type="dojox.mobile.Switch" data-dojo-props='value:"on", leftLabel:"Start", rightLabel:"Stop"'></div>
+			</div>
+			<div data-dojo-type="dojox.mobile.RoundRect" data-dojo-props='shadow:"true"'>
+				<b>Round Shape 1</b><br>
+				<div class="mblSwRoundShape1" data-dojo-type="dojox.mobile.Switch" data-dojo-props='value:"off"' style="float:left;margin-right:10px"></div>
+				<div class="mblSwRoundShape1 color1" data-dojo-type="dojox.mobile.Switch" data-dojo-props='value:"on", leftLabel:"Start", rightLabel:"Stop"'></div>
+			</div>
+			<div data-dojo-type="dojox.mobile.RoundRect" data-dojo-props='shadow:"true"'>
+				<b>Round Shape 2</b><br>
+				<div class="mblSwRoundShape2" data-dojo-type="dojox.mobile.Switch" data-dojo-props='value:"off"' style="float:left;margin-right:10px"></div>
+				<div class="mblSwRoundShape2 color2" data-dojo-type="dojox.mobile.Switch" data-dojo-props='value:"on", leftLabel:"Start", rightLabel:"Stop"'></div>
+			</div>
+			<div data-dojo-type="dojox.mobile.RoundRect" data-dojo-props='shadow:"true"'>
+				<b>Arc Shape 1</b><br>
+				<div class="mblSwArcShape1" data-dojo-type="dojox.mobile.Switch" data-dojo-props='value:"off"' style="float:left;margin-right:10px"></div>
+				<div class="mblSwArcShape1 color1" data-dojo-type="dojox.mobile.Switch" data-dojo-props='value:"on", leftLabel:"Start", rightLabel:"Stop"'></div>
+			</div>
+			<div data-dojo-type="dojox.mobile.RoundRect" data-dojo-props='shadow:"true"'>
+				<b>Arc Shape 2</b><br>
+				<div class="mblSwArcShape2" data-dojo-type="dojox.mobile.Switch" data-dojo-props='value:"off"' style="float:left;margin-right:10px"></div>
+				<div class="mblSwArcShape2 color2" data-dojo-type="dojox.mobile.Switch" data-dojo-props='value:"on", leftLabel:"Start", rightLabel:"Stop"'></div>
+			</div>
+		</div>
+	</body>
+</html>
