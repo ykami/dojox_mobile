@@ -4,7 +4,7 @@
   padding: 0;
   width: 320px;
   border: solid 1px #b5bcc7;
-  -webkit-border-radius: 0;
+  border-radius: 0;
   background-color: #eff1f3;
   text-align: center;
 }
@@ -23,7 +23,7 @@
 }
 .dijitCalendarMonthMenu {
   background-color: #eff1f3;
-  -webkit-border-radius: 5px;
+  border-radius: 5px;
 }
 .dijitCalendarMonthMenu .dijitCalendarMonthLabel {
   text-shadow: none;

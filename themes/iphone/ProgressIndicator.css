@@ -24,7 +24,7 @@
   overflow: hidden;
   -webkit-transform-origin: 0 2px;
   background-color: #C0C0C0;
-  -webkit-border-radius: 2px;
+  border-radius: 2px;
 }
 .mblProg0 {
   -webkit-transform: translate(18px, 10px) rotate(-90.1deg);

@@ -29,7 +29,7 @@
   float: left;
 }
 .mblTabBar .mblTabBarButton.mblTabButtonSelected {
-  -webkit-border-radius: 3px;
+  border-radius: 3px;
   background-color: #404040;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#484848), to(#242424), color-stop(0.5, #353535), color-stop(0.5, #242424));
 }
@@ -90,13 +90,13 @@
   height: 29px;
 }
 .mblTabButton:first-child {
-  -webkit-border-top-left-radius: 5px;
-  -webkit-border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   border-left-width: 1px;
 }
 .mblTabButton:last-child {
-  -webkit-border-top-right-radius: 5px;
-  -webkit-border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   border-right-color: #9CACC0;
 }
 .mblTabButtonSelected .mblTabBarButtonTextBox {

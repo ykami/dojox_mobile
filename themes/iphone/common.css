@@ -27,3 +27,6 @@ html.mobile, .mobile body {
 .mblSpriteIcon {
   position: absolute;
 }
+.mblIconRoot {
+  position: relative;
+}

@@ -1,0 +1,68 @@
+/* dojox.mobile.ToolBarButton */
+.mblToolBarButton2 {
+  float: left;
+  position: relative;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  margin: 0px 6px;
+  height: 24px;
+  font-family: Helvetica;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+  line-height: 22px;
+  text-align: center;
+}
+.mblToolBarButton2LeftArrow, .mblToolBarButton2RightArrow {
+  margin-right: 17px;
+}
+.mblToolBarButton2Arrow {
+  position: absolute;
+  top: 4px;
+  top: 5px;
+  width: 19px;
+  height: 19px;
+  border: 1px solid #3A4655;
+  -webkit-transform: scale(0.7, 0.99) rotate(45deg);
+}
+.mblToolBarButton2LeftArrow .mblToolBarButton2Arrow {
+  left: 0px;
+}
+.mblToolBarButton2RightArrow .mblToolBarButton2Arrow {
+  right: -11px;
+}
+.mblToolBarButton2Body {
+  position: relative;
+  overflow: hidden;
+  border-width: 1px;
+  border-style: inset;
+  border-color: #9CACC0;
+  border: 1px solid #555555;
+  height: 22px;
+}
+.mblToolBarButton2Body table {
+  margin: 0 auto;
+}
+.mblToolBarButton2LeftArrow .mblToolBarButton2Body {
+  left: 11px;
+  border-left-width: 0;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.mblToolBarButton2RightArrow .mblToolBarButton2Body {
+  border-right-width: 0;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.mblToolBarButton2Text {
+  padding: 0 10px;
+}
+.mblToolBarButton2LeftArrow .mblToolBarButton2Text {
+  padding-left: 4px;
+}
+.mblToolBarButton2RightArrow .mblToolBarButton2Text {
+  padding-right: 4px;
+}
+.mblToolBarButton2Icon > div {
+  height: 29px;
+}

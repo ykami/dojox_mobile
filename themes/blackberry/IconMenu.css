@@ -6,7 +6,7 @@
   padding: 8px;
   background-color: #000000;
   border: none;
-  -webkit-border-radius: 6px;
+  border-radius: 6px;
 }
 /* dojox.mobile.IconMenuItem */
 .mblIconMenuItem {

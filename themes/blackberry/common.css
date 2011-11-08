@@ -30,3 +30,8 @@ html.mobile, .mobile body {
 .mblSpriteIcon {
   position: absolute;
 }
+.mblIconRoot {
+  position: relative;
+  top: 2px;
+  left: 1px;
+}

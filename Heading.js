@@ -4,6 +4,7 @@ define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
 	"dojo/_base/window",
+	"dojo/dom",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/dom-style",
@@ -12,7 +13,7 @@ define([
 	"dijit/_Container",
 	"dijit/_WidgetBase",
 	"./View"
-], function(array, connect, declare, lang, win, domClass, domConstruct, domStyle, registry, Contained, Container, WidgetBase, View){
+], function(array, connect, declare, lang, win, dom, domClass, domConstruct, domStyle, registry, Contained, Container, WidgetBase, View){
 
 	var dm = lang.getObject("dojox.mobile", true);
 
@@ -113,6 +114,8 @@ define([
 				className: "mblHeadingDivTitle",
 				innerHTML: this.labelNode.innerHTML
 			}, this.domNode);
+
+			dom.setSelectable(this.domNode, false);
 		},
 
 		startup: function(){
@@ -141,10 +144,10 @@ define([
 				for(var i = children.length - 1; i >= 0; i--){
 					var c = children[i];
 					if(c.nodeType === 1){
-						if(!rightBtn && domClass.contains(c, "mblToolBarButton") && domStyle.get(c, "float") === "right"){
+						if(!rightBtn && domStyle.get(c, "float") === "right"){
 							rightBtn = c;
 						}
-						if(!leftBtn && (domClass.contains(c, "mblToolBarButton") && domStyle.get(c, "float") === "left" || c === this._btn)){
+						if(!leftBtn && (domStyle.get(c, "float") === "left" || c === this._btn)){
 							leftBtn = c;
 						}
 					}

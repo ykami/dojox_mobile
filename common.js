@@ -466,6 +466,7 @@ define([
 	});
 
 	// To search _parentNode first.  TODO:1.8 reconsider this redefinition.
+/*
 	registry.getEnclosingWidget = function(node){
 		while(node){
 			var id = node.getAttribute && node.getAttribute("widgetId");
@@ -476,6 +477,7 @@ define([
 		}
 		return null;
 	};
+*/
 
 	return dm;
 });

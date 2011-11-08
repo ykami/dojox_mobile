@@ -14,7 +14,7 @@
   color: white;
   line-height: 29px;
   text-align: center;
-  -webkit-border-radius: 5px;
+  border-radius: 5px;
 }
 .mblToolBarButtonIcon {
   position: relative;

@@ -91,7 +91,7 @@ define([
 			}
 
 			this.iconDivNode = domConstruct.create("div", {className:"mblIconArea"}, this.domNode);
-			this.iconInnerDivNode = domConstruct.create("div", {className:"mblIconAreaInner"}, this.iconDivNode);
+			this.iconParentNode = domConstruct.create("div", {className:"mblIconAreaInner"}, this.iconDivNode);
 			this.labelNode = domConstruct.create("span", {className:"mblIconAreaTitle"}, this.iconDivNode);
 
 			this._isOnLine = this.inheritParams();
@@ -200,8 +200,8 @@ define([
 			if(this.transition === "below"){
 				if(parent.single){
 					parent.closeAll();
-					this._press();
 				}
+				this._press();
 				this._open_1();
 			}else{
 				parent._opening = this;
@@ -294,12 +294,6 @@ define([
 			}else{
 				this.iconDivNode.removeChild(this.badgeObj.domNode);
 			}
-		},
-
-		_setIconAttr: function(icon){
-			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
-			this.iconNode = iconUtils.setIcon(icon, this.iconPos, this.iconNode, this.iconInnerDivNode, this.alt);
-			this.icon = icon;
 		}
 	});
 });

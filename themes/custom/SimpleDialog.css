@@ -10,7 +10,7 @@
 .mblSimpleDialogDecoration {
   background-color: #eff1f3;
   border: 1px solid #769dc0;
-  -webkit-border-radius: 5px;
+  border-radius: 5px;
   -webkit-box-shadow: 1px 1px 2px #000000;
   color: #131313;
 }
@@ -39,8 +39,8 @@
   background-color: #5cb0ff;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(3.3333333333333335%, rgba(255, 255, 255, 0.1)), color-stop(0.5, rgba(255, 255, 255, 0.6)), color-stop(1, rgba(255, 255, 255, 0.3)));
   border-bottom: 1px solid #769dc0;
-  -webkit-border-top-left-radius: 5px;
-  -webkit-border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   color: #131313;
   font-size: 18px;
   text-align: left;

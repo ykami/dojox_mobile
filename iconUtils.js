@@ -169,9 +169,9 @@ define([
 
 		// iconNode is a DIV node that holds an icon
 		this.setIcon = function(/*String*/icon, /*String*/iconPos, /*DomNode*/iconNode, /*DomNode*/parent, /*String?*/alt){
-			if(!parent){ return; }
+			if(!parent || !icon && !iconNode){ return; }
 			if(!iconNode){
-				iconNode = domConstruct.create("div", null, parent);
+				iconNode = domConstruct.create("div", {className:"mblIconRoot"}, parent);
 			}
 			domConstruct.empty(iconNode);
 			if(icon && icon !== "none"){
