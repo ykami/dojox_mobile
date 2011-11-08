@@ -12,7 +12,7 @@
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(150, 150, 170, 0.85)), to(rgba(18, 29, 68, 0.85)), color-stop(0.15, rgba(77, 85, 119, 0.85)), color-stop(0.15, rgba(35, 50, 96, 0.85)));
   border: 2px solid #BAC1D3;
   border-top-color: #EAEAF2;
-  -webkit-border-radius: 10px;
+  border-radius: 10px;
   -webkit-box-shadow: 0 3px 2px #000000;
   color: white;
 }

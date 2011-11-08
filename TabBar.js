@@ -43,6 +43,11 @@ define([
 		//		"tabBar"(default) or "segmentedControl".
 		barType: "tabBar",
 
+		// closable: Boolean
+		//		True if user can close (destroy) a child tab by clicking the X on the tab.
+		//		This property is effective only when barType is "tabPanel".
+		closable: false,
+
 		// inHeading: Boolean
 		//		A flag that indicates whether this widget is in a Heading
 		//		widget.
@@ -52,15 +57,23 @@ define([
 		//		A name of html tag to create as domNode.
 		tag: "ul",
 
+		baseClass: "mblTabBar",
+
 		/* internal properties */	
 		_fixedButtonWidth: 76,
 		_fixedButtonMargin: 17,
 		_largeScreenWidth: 500,
 
 		buildRendering: function(){
-			this._clsName = this.barType == "segmentedControl" ? "mblTabButton" : "mblTabBarButton";
+//x			this._clsName = this.barType == "segmentedControl" ? "mblTabButton" : "mblTabBarButton";
 			this.domNode = this.containerNode = this.srcNodeRef || domConstruct.create(this.tag);
-			this.domNode.className = this.barType == "segmentedControl" ? "mblTabPanelHeader" : "mblTabBar";
+//x			this.domNode.className = this.barType == "segmentedControl" ? "mblTabPanelHeader" : "mblTabBar";
+			this.inherited(arguments);
+			var t = this.barType,
+				c = this.baseClass + t.charAt(0).toUpperCase() + t.substring(1);
+			// mblTabPanelHeader -> mblTabBar mblTabBarSegmentedControl
+			// mblTabBar -> mblTabBar mblTabBarTabBar
+			domClass.add(this.domNode, c);
 		},
 
 		startup: function(){
@@ -82,16 +95,7 @@ define([
 			}
 			var bw = this._fixedButtonWidth;
 			var bm = this._fixedButtonMargin;
-	
-			var children = this.containerNode.childNodes;
-			var arr = [];
-			for(i = 0; i < children.length; i++){
-				var c = children[i];
-				if(c.nodeType != 1){ continue; }
-				if(domClass.contains(c, this._clsName)){
-					arr.push(c);
-				}
-			}
+			var arr = dojo.map(this.getChildren(), function(w){ return w.domNode; });
 	
 			var margin;
 			if(this.barType == "segmentedControl"){
@@ -104,7 +108,7 @@ define([
 				margin = Math.floor(margin/2);
 				var parent = this.getParent();
 				var inHeading = this.inHeading || parent instanceof Heading;
-				this.containerNode.style.padding = (inHeading ? 0 : 3) + "px 0px 0px " + (inHeading ? 0 : margin) + "px";
+				this.containerNode.style.paddingLeft = (inHeading ? 0 : margin) + "px";
 				if(inHeading){
 					domStyle.set(this.domNode, {
 						background: "none",
@@ -112,8 +116,8 @@ define([
 						width: totalW + 2 + "px"
 					});
 				}
-				domClass.add(this.domNode, "mblTabBar" + (inHeading ? "Head" : "Top"));
-			}else{
+//x				domClass.add(this.domNode, "mblTabBar" + (inHeading ? "Head" : "Top"));
+			}else if (this.barType == "tabBar"){
 				margin = Math.floor((w - (bw + bm * 2) * arr.length) / 2);
 				if(w < this._largeScreenWidth || margin < 0){
 					// If # of buttons is 4, for example, assign "25%" to each button.
@@ -136,18 +140,20 @@ define([
 				}
 			}
 
-			if(!array.some(this.getChildren(), function(child){ return child.iconNode1; })){
-				domClass.add(this.domNode, "mblTabBarNoIcons");
-			}else{
-				domClass.remove(this.domNode, "mblTabBarNoIcons");
-			}
+			domClass.toggle(this.domNode, "mblTabBarNoIcons",
+							!array.some(this.getChildren(), function(w){ return w.iconNode1; }));
+			domClass.toggle(this.domNode, "mblTabBarNoText",
+							!array.some(this.getChildren(), function(w){ return w.label; }));
+		},
 
-			if(!array.some(this.getChildren(), function(child){ return child.label; })){
-				domClass.add(this.domNode, "mblTabBarNoText");
-			}else{
-				domClass.remove(this.domNode, "mblTabBarNoText");
-			}
+		getSelectedTab: function(){
+			return array.filter(this.getChildren(), function(w){ return w.selected; })[0];
+		},
+
+		onCloseButtonClick: function(/*TabBarButton*/tab){
+			// summary:
+			//		Called whenever the close button [X] of a child tab is clicked.
+			return true;
 		}
 	});
-
 });

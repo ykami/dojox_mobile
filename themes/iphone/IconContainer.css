@@ -7,6 +7,12 @@
 .mblIconContainer {
   margin: 20px 0px 0px 10px;
   padding: 0px 0px 40px 0px;
+  margin: 20px 10px;
+  /* TODO: remove the definition from variable.less */
+
+  padding: 0;
+  /* TODO: remove the definition from variable.less */
+
 }
 /* dojox.mobile.IconItem */
 .mblIconItem {
@@ -19,11 +25,20 @@
   list-style-type: none;
   clear: both;
   height: 20px;
+  height: auto;
+  /* TODO: remove the definition from variable.less */
+
 }
-.mblIconItemSub {
+.mblIconItemPaneContainer {
+  padding: 0;
+}
+.mblIconItemPane {
   list-style-type: none;
   margin-left: -10px;
   background-color: white;
+  margin-left: auto;
+  /* TODO: remove the definition from variable.less */
+
 }
 .mblIconArea {
   position: relative;
@@ -80,8 +95,8 @@ table.mblClose {
 .mblCloseContent.mblShrink3 {
   -webkit-animation-name: mblShrink3;
 }
-/* Icon Content Heading */
-.mblIconContentHeading {
+/* dojox.mobile._IconItemPane */
+.mblIconItemPaneHeading {
   position: relative;
   clear: both;
   overflow: hidden;
@@ -98,4 +113,9 @@ table.mblClose {
   color: white;
   line-height: 26px;
   text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0px;
+}
+.mblIconItemPaneIcon {
+  position: absolute;
+  top: -2px;
+  left: 1px;
 }

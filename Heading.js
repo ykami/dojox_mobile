@@ -4,6 +4,7 @@ define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
 	"dojo/_base/window",
+	"dojo/dom",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/dom-style",
@@ -11,8 +12,9 @@ define([
 	"dijit/_Contained",
 	"dijit/_Container",
 	"dijit/_WidgetBase",
+	"./ToolBarButton",
 	"./View"
-], function(array, connect, declare, lang, win, domClass, domConstruct, domStyle, registry, Contained, Container, WidgetBase, View){
+], function(array, connect, declare, lang, win, dom, domClass, domConstruct, domStyle, registry, Contained, Container, WidgetBase, ToolBarButton, View){
 
 	var dm = lang.getObject("dojox.mobile", true);
 
@@ -83,10 +85,6 @@ define([
 		//		The default icon path for child items.
 		iconBase: "",
 
-		// backProp: Object
-		//		Properties for the back button.
-		backProp: {className: "mblBackButton"}, // 1.8
-
 		// tag: String
 		//		A name of html tag to create as domNode.
 		tag: "H1",
@@ -113,6 +111,8 @@ define([
 				className: "mblHeadingDivTitle",
 				innerHTML: this.labelNode.innerHTML
 			}, this.domNode);
+
+			dom.setSelectable(this.domNode, false);
 		},
 
 		startup: function(){
@@ -128,9 +128,6 @@ define([
 		},
 	
 		resize: function(){
-			if(this._btn){
-				this._btn.style.width = this._body.offsetWidth + this._head.offsetWidth + "px";
-			}
 			if(this.labelNode){
 				// find the rightmost left button (B), and leftmost right button (C)
 				// +-----------------------------+
@@ -141,10 +138,10 @@ define([
 				for(var i = children.length - 1; i >= 0; i--){
 					var c = children[i];
 					if(c.nodeType === 1){
-						if(!rightBtn && domClass.contains(c, "mblToolBarButton") && domStyle.get(c, "float") === "right"){
+						if(!rightBtn && domStyle.get(c, "float") === "right"){
 							rightBtn = c;
 						}
-						if(!leftBtn && (domClass.contains(c, "mblToolBarButton") && domStyle.get(c, "float") === "left" || c === this._btn)){
+						if(!leftBtn && domStyle.get(c, "float") === "left"){
 							leftBtn = c;
 						}
 					}
@@ -168,28 +165,16 @@ define([
 		},
 
 		_setBackAttr: function(/*String*/back){
-			if (!back){
-				domConstruct.destroy(this._btn);
-				this._btn = null;
-				this.back = "";
+			if(!this.backButton){
+				this.backButton = new ToolBarButton({arrow:"left", label:back});
+				this.connect(this.backButton.domNode, "onclick", "_onClick");
+				this.addChild(this.backButton, 0);
 			}else{
-				if(!this._btn){
-					var btn = domConstruct.create("div", this.backProp, this.domNode, "first");
-					var head = domConstruct.create("div", {className:"mblBackButtonHead"}, btn); // 1.8
-					var body = domConstruct.create("div", {className:"mblBackButtonBody mblBackButtonText"}, btn); // 1.8
-
-					this._body = body;
-					this._head = head;
-					this._btn = btn;
-					this.backBtnNode = btn;
-					this.connect(body, "onclick", "_onClick");
-				}
-				this.back = back;
-				this._body.innerHTML = this._cv ? this._cv(this.back) : this.back;
+				this.backButton.set("label", back);
 			}
 			this.resize();
 		},
-	
+
 		_setLabelAttr: function(/*String*/label){
 			this.label = label;
 			this.labelNode.innerHTML = this.labelDivNode.innerHTML = this._cv ? this._cv(label) : label;
@@ -208,11 +193,11 @@ define([
 		},
 
 		_onClick: function(e){
-			var h1 = this.domNode;
-			domClass.add(h1, "mblBackButtonSelected"); // 1.8
+			this.backButton.select();
+			var _this = this;
 			setTimeout(function(){
-				domClass.remove(h1, "mblBackButtonSelected"); // 1.8
-			}, 1000);
+				_this.backButton.deselect();
+			}, 100);
 
 			if(this.back && !this.moveTo && !this.href && history){
 				history.back();	

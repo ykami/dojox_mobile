@@ -1,3 +1,7 @@
+
+// experimental, still work-in-progress
+// TODO: auto scroll?
+
 define([
 	"dojo/_base/array",
 	"dojo/_base/connect",

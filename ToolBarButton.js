@@ -4,9 +4,10 @@ define([
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/dom-style",
-	"./common",
+	"./iconUtils",
+	"./sniff",
 	"./_ItemBase"
-], function(declare, win, domClass, domConstruct, domStyle, common, ItemBase){
+], function(declare, win, domClass, domConstruct, domStyle, iconUtils, has, ItemBase){
 /*=====
 	var ItemBase = dojox.mobile._ItemBase;
 =====*/
@@ -30,79 +31,134 @@ define([
 		//		If true, the button is in the selected status.
 		selected: false,
 
-		// btnClass: String
-		//		Deprecated.
-		btnClass: "",
+		// arrow: String
+		//		Specifies "right" or "left" to be an arrow button.
+		arrow: "",
 
-		/* internal properties */	
-		_defaultColor: "mblColorDefault",
-		_selColor: "mblColorDefaultSel",
+		baseClass: "mblToolBarButton",
+
+		defaultColor: "mblColorDefault",
+		selColor: "mblColorDefaultSel",
 
 		buildRendering: function(){
-			this.domNode = this.containerNode = this.srcNodeRef || win.doc.createElement("div");
-			this.inheritParams();
-			domClass.add(this.domNode, "mblToolBarButton mblBackButtonText"); // 1.8
-			var color;
-			if(this.selected){
-				color = this._selColor;
-			}else if(this.domNode.className.indexOf("mblColor") == -1){
-				color = this._defaultColor;
-			}
-			domClass.add(this.domNode, color);
-	
+			this._isOnLine = this.inheritParams();
+			this.inherited(arguments);
+
 			if(!this.label){
 				this.label = this.domNode.innerHTML;
 			}
-			this.domNode.innerHTML = this._cv ? this._cv(this.label) : this.label;
+			this.domNode.innerHTML = "";
 
-			if(this.icon && this.icon != "none"){
-				this.iconNode = domConstruct.create("div", {className:"mblToolBarButtonIcon"}, this.domNode);
-				common.createIcon(this.icon, this.iconPos, null, this.alt, this.iconNode);
-				if(this.iconPos){
-					domClass.add(this.iconNode.firstChild, "mblToolBarButtonSpriteIcon");
-				}
-			}else{
-				if(common.createDomButton(this.domNode)){
-					domClass.add(this.domNode, "mblToolBarButtonDomButton");
-				}else{
-					domClass.add(this.domNode, "mblToolBarButtonText");
-				}
+			if(this.arrow === "left" || this.arrow === "right"){
+				this.arrowNode = domConstruct.create("div", {className:"mblToolBarButtonArrow"}, this.domNode);
+				domClass.add(this.domNode, "mblToolBarButton" +
+					(this.arrow === "left" ? "Left" : "Right") + "Arrow");
 			}
-			this.connect(this.domNode, "onclick", "_onClick");
+			this.bodyNode = domConstruct.create("div", {className:"mblToolBarButtonBody"}, this.domNode);
+			this.tableNode = domConstruct.create("table", {cellPadding:"0",cellSpacing:"0",border:"0"}, this.bodyNode);
+
+			var row = this.tableNode.insertRow(-1);
+			this.iconParentNode = row.insertCell(-1);
+			this.labelNode = row.insertCell(-1);
+			this.iconParentNode.className = "mblToolBarButtonIcon";
+			this.labelNode.className = "mblToolBarButtonLabel";
+
+			if(this.icon && this.icon !== "none" && this.label){
+				domClass.add(this.bodyNode, "mblToolBarButtonLabeledIcon");
+			}
+
+			domClass.add(this.bodyNode, this.defaultColor);
+			var _this = this;
+			setTimeout(function(){ // for programmatic instantiation
+				_this._updateArrowColor();
+			}, 0);
+			if(!has("webkit")){
+				setTimeout(function(){ // compat mode browsers need this
+					_this._updateArrowColor();
+				}, 1000);
+			}
+			if(this.selected){
+				this.select();
+			}
+
+			this._onClickHandle = this.connect(this.domNode, "onclick", "_onClick");
+			this._onTouchStartHandle = this.connect(this.domNode, has('touch') ? "touchstart" : "onmousedown", "_onTouchStart");
 		},
-	
+
+		startup: function(){
+			if(!this._isOnLine){
+				this.inheritParams();
+				this.set("icon", this.icon);
+			}
+		},
+
 		select: function(){
 			// summary:
 			//		Makes this widget in the selected state.
-			domClass.toggle(this.domNode, this._selColor, !arguments[0]);
+			if(arguments[0]){ // deselect
+				domClass.replace(this.bodyNode, this.defaultColor, this.selColor);
+			}else{ // select
+				domClass.replace(this.bodyNode, this.selColor, this.defaultColor);
+			}
+			this._updateArrowColor();
 			this.selected = !arguments[0];
 		},
-		
+
 		deselect: function(){
 			// summary:
 			//		Makes this widget in the deselected state.
 			this.select(true);
 		},
 	
+		_updateArrowColor: function(){
+			if(this.arrowNode && !has("ie")){
+				var s = domStyle.get(this.bodyNode, "backgroundImage");
+				domStyle.set(this.arrowNode, "backgroundImage",
+							 s.replace(/\(top,/, "(top left,") // webkit new
+							 .replace(/0% 0%, 0% 100%/, "0% 0%, 100% 100%") // webkit old
+							 .replace(/50% 0%/, "0% 0%") // moz
+							 .replace(/0\.5/, "0.45")); // adjust color-stop
+			}
+		},
+
+		_onTouchStart: function(e){
+			if(!this._onTouchEndHandle){
+				this._onTouchEndHandle = this.connect(this.domNode, has('touch') ? "touchend" : "onmouseleave", "_onTouchEnd");
+			}
+			domClass.replace(this.bodyNode, this.selColor, this.defaultColor);
+			this._updateArrowColor();
+		},
+
+		_onTouchEnd: function(e){
+			var _this = this;
+			this._timer = setTimeout(function(){
+				// webkit mobile has no onmouseleave, so we have to use touchend instead,
+				// but we don't know if onclick comes or not after touchend,
+				// therefore we need to delay deselecting the button, otherwise, the button blinks.
+				domClass.replace(_this.bodyNode, _this.defaultColor, _this.selColor);
+				_this._updateArrowColor();
+			}, this._duration / 2);
+			this.disconnect(this._onTouchEndHandle);
+			this._onTouchEndHandle = null;
+		},
+	
 		_onClick: function(e){
+			if(this._timer){
+				clearTimeout(this._timer);
+				this._timer = null;
+			}
+			if(this._onTouchEndHandle){
+				this.disconnect(this._onTouchEndHandle);
+				this._onTouchEndHandle = null;
+			}
 			this.setTransitionPos(e);
 			this.defaultClickAction();
 		},
 	
-		_setBtnClassAttr: function(/*String*/btnClass){
-			var node = this.domNode;
-			if(node.className.match(/(mblDomButton\w+)/)){
-				domClass.remove(node, RegExp.$1);
-			}
-			domClass.add(node, btnClass);
-			if(common.createDomButton(this.domNode)){
-				domClass.add(this.domNode, "mblToolBarButtonDomButton");
-			}
-		},
-
 		_setLabelAttr: function(/*String*/text){
 			this.label = text;
-			this.domNode.innerHTML = this._cv ? this._cv(text) : text;
+			this.labelNode.innerHTML = this._cv ? this._cv(text) : text;
+			domClass.toggle(this.tableNode, "mblToolBarButtonText", text);
 		}
 	});
 });

@@ -16,7 +16,7 @@
 	right: 2px;
 	color: white;
 	border: 2px solid white;
-	-webkit-border-radius: 12px;
+	border-radius: 12px;
 	text-align: center;
 	background: -webkit-gradient(linear, left top, left bottom, from(#7BE75A), to(#398C08), color-stop(0.5, #6BC642), color-stop(0.5, #4AAD21));
 	background-clip: padding-box;

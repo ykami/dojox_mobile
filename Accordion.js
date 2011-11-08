@@ -10,9 +10,9 @@ define([
 	"dijit/_Contained",
 	"dijit/_Container",
 	"dijit/_WidgetBase",
-	"./common",
+	"./lazyLoadUtils",
 	"require"
-], function(array, connect, declare, lang, has, dom, domClass, domConstruct, Contained, Container, WidgetBase, common, require){
+], function(array, connect, declare, lang, has, dom, domClass, domConstruct, Contained, Container, WidgetBase, lazyLoadUtils, require){
 	// module:
 	//		dojox/mobile/Accordion
 	// summary:
@@ -276,7 +276,7 @@ define([
 
 		expand: function(/*Widget*/pane, /*boolean*/noAnimation){
 			if(pane.lazy){
-				dojox.mobile.instantiateLazyWidgets(pane.containerNode, pane.requires);
+				lazyLoadUtils.instantiateLazyWidgets(pane.containerNode, pane.requires);
 				pane.lazy = false;
 			}
 			var children = this.getChildren();

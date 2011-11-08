@@ -14,7 +14,7 @@
 	border-width: 1px 1px 1px 0px;
 	border-style: outset;
 	color: white;
-	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
 .mblDomButtonBlueMinus > div, .mblDomButtonBluePlus > div {
 	border-color: #6D89C7;

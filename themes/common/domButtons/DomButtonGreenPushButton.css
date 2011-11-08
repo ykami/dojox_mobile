@@ -15,7 +15,7 @@
 	height: 43px;
 	color: white;
 	xborder: 2px solid white;
-	-webkit-border-radius: 8px;
+	border-radius: 8px;
 	text-align: center;
 	background: -webkit-gradient(linear, left top, left bottom, from(#B0D6B0), to(#088E09), color-stop(0.05, #79B979), color-stop(0.5, #319A32), color-stop(0.5, #129314));
 	-webkit-box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.5);

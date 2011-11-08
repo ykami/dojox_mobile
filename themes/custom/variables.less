@@ -163,14 +163,16 @@
 		background-color: @theme-ui-widget-selected-background-color;
 	}
 }
+.mblColorDefaultBar-styles () {
+}
+.mblIconRoot-styles () {
+}
 
 //----------------------------------------------------------------
 // Heading.less
 //----------------------------------------------------------------
 @_heading-inner-margin: (@theme-heading-height - @theme-ui-widget-height) * 0.5;
 .mblHeading-styles () {
-	padding: 0;
-	height: @theme-heading-height;
 	background-color: @theme-heading-background-color;
 	._background-image-gradient-mask-heading();
 	border-bottom: 1px solid @theme-heading-border-color;
@@ -182,74 +184,29 @@
 	text-align: center;
 	line-height: @theme-heading-height + 2;
 }
-.mblBackButton-styles () { // 1.8
-	height: @theme-ui-widget-height;
-	margin: 0px @theme-default-margin;
-}
-.mblBackButtonHead-styles () { // 1.8
-	top: @_heading-inner-margin;
-	left: @_heading-inner-margin + @theme-ui-widget-height * 0.4; // = 0.5 * 0.9 
-	width: @theme-ui-widget-height * 0.7;
-	height: @theme-ui-widget-height * 0.7;
-	border: 1px solid @theme-ui-widget-border-color;
-	-webkit-transform-origin: left top;
-	-webkit-transform: scale(0.9,0.99) rotate(45deg);
-	background-color: @theme-ui-widget-background-color;
-	._background-image-gradient-mask-ui-widget-r;
-}
-.mblBackButtonHeadChrome-styles () { // 1.8
-	border-style: inset;
-}
-.mblBackButtonBody-styles () { // 1.8
-	top: @_heading-inner-margin;
-	left: @_heading-inner-margin + @theme-ui-widget-height * 0.4;
-	padding: 0px 10px 0px 3px;
-	height: @theme-ui-widget-height;
-	border-width: 1px 1px 1px 0px;
-	border-style: inset;
-	border-color: @theme-ui-widget-border-color;
-	font-size: @theme-ui-widget-font-size;
-	font-family: @theme-ui-widget-font-family;
-	font-weight: @theme-ui-widget-font-weight;
-	text-shadow: @theme-ui-widget-text-shadow;
-	color: @theme-ui-widget-color;
-	line-height: @theme-ui-widget-height;
-	-webkit-border-top-right-radius: @theme-ui-widget-border-radius;
-	-webkit-border-bottom-right-radius: @theme-ui-widget-border-radius;
-	background-color: @theme-ui-widget-background-color;
-	._background-image-gradient-mask-ui-widget;
-}
-.mblBackButtonSelected-styles () { // 1.8
-	background-color: @theme-ui-widget-selected-background-color;
-}
-.mblBackButtonHeadSelected-styles () { // 1.8
-}
-.mblBackButtonBodySelected-styles () { // 1.8
-}
 
 //----------------------------------------------------------------
 // ToolBarButton.less
 //----------------------------------------------------------------
 .mblToolBarButton-styles () {
-	margin: @theme-default-margin;
-	height: @theme-ui-widget-height;
-	border: 1px inset @theme-ui-widget-border-color;
-	-webkit-border-radius: @theme-ui-widget-border-radius;
 	font-size: @theme-ui-widget-font-size;
 	font-family: @theme-ui-widget-font-family;
 	font-weight: @theme-ui-widget-font-weight;
 	text-shadow: @theme-ui-widget-text-shadow;
 	color: @theme-ui-widget-color;
-	line-height: @theme-ui-widget-height;
-	text-align: center;
 	&.mblBackButtonText { // 1.8
 		margin: ((@theme-heading-height + 2 - @theme-ui-widget-height) * 0.5) @theme-default-margin;
 	}
 }
-.mblToolBarButtonDomButton-styles () {
+.mblToolBarButtonArrow-styles () {
 }
-.mblToolBarButtonIcon-styles () {
-	top: 2px;
+.mblToolBarButtonRightArrow-styles () {
+}
+.mblToolBarButtonBody-styles () {
+	border: 1px inset @theme-ui-widget-border-color;
+	border-radius: @theme-ui-widget-border-radius;
+}
+.mblToolBarButtonIconRoot-styles () {
 }
 
 //----------------------------------------------------------------
@@ -259,7 +216,7 @@
 	margin: @theme-default-margin @theme-default-margin (@theme-default-margin * 1.5);
 	padding: @theme-default-padding;
 	border: 1px solid @theme-round-rect-border-color;
-	-webkit-border-radius: @theme-default-border-radius;
+	border-radius: @theme-default-border-radius;
 	background-color: @theme-round-rect-background-color;
 	font-size: @theme-list-item-font-size;
 	font-family: @theme-list-item-font-family;
@@ -309,22 +266,22 @@
 	margin: @theme-default-margin @theme-default-margin (@theme-default-margin * 1.5);
 	padding: 0;
 	border: 1px solid @theme-default-border-color;
-	-webkit-border-radius: @theme-default-border-radius;
+	border-radius: @theme-default-border-radius;
 	background-color: @theme-list-item-background-color;
 	-webkit-box-shadow: @theme-round-rect-box-shadow;
 }
 .mblRoundRectList-withCategory-styles () {
 }	
 .mblRoundRectList-FirstListItem-styles () {
-	-webkit-border-top-left-radius: @theme-default-border-radius;
-	-webkit-border-top-right-radius: @theme-default-border-radius;
+	border-top-left-radius: @theme-default-border-radius;
+	border-top-right-radius: @theme-default-border-radius;
 }
 .mblRoundRectList-withCategory-FirstListItem-styles () {
 }
 .mblRoundRectList-LastListItem-styles () {
 	border-bottom-width: 0px;
-	-webkit-border-bottom-left-radius: @theme-default-border-radius;
-	-webkit-border-bottom-right-radius: @theme-default-border-radius;
+	border-bottom-left-radius: @theme-default-border-radius;
+	border-bottom-right-radius: @theme-default-border-radius;
 }
 
 //----------------------------------------------------------------
@@ -410,7 +367,7 @@
 }
 .mblSwitchBg-styles () {
 	border-color: @theme-ui-widget-border-color;
-	-webkit-border-radius: @theme-ui-widget-border-radius;
+	border-radius: @theme-ui-widget-border-radius;
 	._background-image-gradient-mask-ui-widget;
 }
 .mblSwitchBgLeft-styles () {
@@ -424,7 +381,7 @@
 	border-color: darken(@theme-ui-widget-border-color, 20%);
 	background-color: @theme-ui-widget-background-color;
 	._background-image-gradient-mask-ui-widget;
-	-webkit-border-radius: @theme-ui-widget-border-radius;
+	border-radius: @theme-ui-widget-border-radius;
 }
 
 //----------------------------------------------------------------
@@ -441,7 +398,7 @@
 	line-height: @theme-ui-widget-height;
 	background-color: @theme-ui-widget-background-color;
 	._background-image-gradient-mask-ui-widget;
-	-webkit-border-radius: @theme-ui-widget-border-radius;
+	border-radius: @theme-ui-widget-border-radius;
 }
 .mblButton-mblBlueButton-styles () {
 	color: @theme-ui-widget-color;
@@ -483,7 +440,7 @@
 	border: 1px outset @theme-ui-widget-border-color;
 	background-color: @theme-ui-widget-background-color;
 	._background-image-gradient-mask-ui-widget;
-	-webkit-border-radius: @theme-ui-widget-border-radius;
+	border-radius: @theme-ui-widget-border-radius;
 	-webkit-transform: translateY(0.45em);
 }
 .mblCheckBoxSelected-styles () {
@@ -520,12 +477,12 @@
 //----------------------------------------------------------------
 .dijitPopup-styles () {
 	-webkit-box-shadow: 0px 0px 50px black;
-	-webkit-border-radius: @theme-default-border-radius;
+	border-radius: @theme-default-border-radius;
 }
 .mblComboBoxMenu-styles () {
 	border: 1px solid black;
 	background-color: @theme-default-background-color;
-	-webkit-border-radius: @theme-default-border-radius;
+	border-radius: @theme-default-border-radius;
 }
 .mblComboBoxMenuItem-styles () {
 	text-align: left;
@@ -603,7 +560,7 @@
 	border: 1px outset @theme-ui-widget-border-color;
 	background-color: @theme-ui-widget-background-color;
 	._background-image-gradient-mask-ui-widget;
-	-webkit-border-radius: 0.5em;
+	border-radius: 0.5em;
 	-webkit-transform: translateY(0.45em);
 }
 .mblRadioButtonChecked-styles () {
@@ -638,10 +595,10 @@
 	border: 1px outset @theme-ui-widget-border-color;
 	background-color: @theme-ui-widget-disabled-background-color;
 	._background-image-gradient-mask-ui-widget;
-	-webkit-border-radius: @theme-ui-widget-border-radius;
+	border-radius: @theme-ui-widget-border-radius;
 }
 .mblSliderProgressBar-styles () {
-	-webkit-border-radius: @theme-ui-widget-border-radius;
+	border-radius: @theme-ui-widget-border-radius;
 	background-color: @theme-ui-widget-selected-background-color;
 	._background-image-gradient-mask-ui-widget;
 }
@@ -652,142 +609,52 @@
 	border: 1px outset @theme-ui-widget-border-color;
 	background-color: @theme-ui-widget-background-color;
 	._background-image-gradient-mask-ui-widget;
-	-webkit-border-radius: @theme-ui-widget-border-radius;
+	border-radius: @theme-ui-widget-border-radius;
 }
 
 //----------------------------------------------------------------
 // TabBar.less
 //----------------------------------------------------------------
-.mblTabBar-styles () {
-	margin: 0;
-	padding: 0;
-	height: @theme-tabbar-height;
-	background-color: @theme-heading-background-color;
-	._background-image-gradient-mask-ui-widget;
-	border-bottom: 1px solid @theme-heading-border-color;
-	color: @theme-heading-color;
-	text-align: center;
+.mblTabBarTabBar-styles () {
 }
-.mblTabBar-TabBarButton-styles () {
-	padding: ((@theme-tabbar-height - @mbl-dom-button-size - @theme-tabbar-font-size) * 0.5) 0;
+.mblTabBarSegmentedControl-styles () {
 }
-.mblTabBar-TabBarButton-Selected-styles () {
-	border-color: @theme-ui-widget-selected-border-color;
-	background-color: @theme-ui-widget-selected-background-color;
-	._background-image-gradient-mask-ui-widget;
-	-webkit-border-radius: @theme-ui-widget-border-radius;
+.mblTabBarSegmentedControl-InHeading-styles () {
 }
-.mblTabBarButtonDiv-styles () {
-	height: @mbl-dom-button-size;
-	width: @mbl-dom-button-size;
+.mblTabBarButtonIconArea-styles () {
 }
-.mblTabBarButtonIcon-styles () {
-	left: 0;
-	top: 0;
+.mblTabBarTabBarIconArea-styles () {
 }
-.mblTabBarButtonTextBox-styles () {
-	color: @theme-tabbar-color;
-	font-family: @theme-tabbar-font-family;
-	font-size: @theme-tabbar-font-size;
-	font-weight: @theme-tabbar-font-weight;
+.mblTabBarTabBarLabel-styles () {
 }
-.mblTabBarNoIcons-TabBarButtonTextBox-styles () {
-	line-height: @theme-tabbar-height - @theme-tabbar-font-size;
-	font-size: @theme-tabbar-font-size + 6;
+.mblTabBarTabBarLabelSelected-styles () {
 }
-.mblTabButton-styles () {
-	width: @theme-ui-widget-width;
-	height: @theme-ui-widget-height;
-	border-width: 1px 1px 1px 0px;
-	border-style: inset;
-	border-color: @theme-default-border-color;
-	border-right-color: @theme-ui-widget-border-color;
-	background-color: @theme-ui-widget-background-color;
-	._background-image-gradient-mask-ui-widget;
-	font-family: @theme-default-font-family;
-	font-size: @theme-default-font-size;
-	font-weight: @theme-default-font-weight;
-	color: @theme-default-color;
-	text-align: center;
-	line-height: @theme-ui-widget-height;
+.mblTabBarTabBarSelected-styles () {
 }
-.mblTabButton-TabBarButtonAnchor-styles () {
-	height: @theme-ui-widget-height;
+.mblTabBarSegmentedControlButton-styles () {
 }
-.mblTabBarTop-TabButton-TabBarButtonDiv-styles () {
-	display: none;
+.mblTabBarSegmentedControl-FirstTabButtom-styles () {
 }
-.mblTabBarHead-TabButton-TabBarButtonDiv-styles () {
+.mblTabBarSegmentedControl-LastTabButton-styles () {
 }
-.mblTabButton-FirstTabButtom-styles () {
-	-webkit-border-top-left-radius: @theme-ui-widget-border-radius;
-	-webkit-border-bottom-left-radius: @theme-ui-widget-border-radius;
-	border-left-width: 1px;
+.mblTabBarSegmentedControl-img-styles () {
 }
-.mblTabButton-LastTabButton-styles () {
-	-webkit-border-top-right-radius: @theme-ui-widget-border-radius;
-	-webkit-border-bottom-right-radius: @theme-ui-widget-border-radius;
-	border-right-color: @theme-ui-widget-border-color;
+.mblTabBarSegmentedControlIconArea-styles () {
 }
-.mblTabButton-img-styles () {
+.mblTabBarSegmentedControlLabel-styles () {
 }
-.mblTabBarButtonTextBoxSelected-styles () {
-	color: @theme-ui-widget-selected-color;
+.mblTabBarSegmentedControlSelected-styles () {
 }
-.mblTabButtonSelected-styles () {
-	background-color: @theme-ui-widget-selected-background-color;
+.mblTabBarSegmentedControlButton-InHeading-styles () {
 }
-.mblTabButtonHighlighted-styles () {
-	background-color: @theme-ui-widget-checked-background-color;
+.mblTabBarSegmentedControlButton-InHeading-FirstTabButtom-styles () {
 }
-.mblTabButtonImgDiv-styles () {
-	display: none;
+.mblTabBarSegmentedControlButton-InHeading-LastTabButtom-styles () {
 }
-.mblTabPanelHeader-styles () {
-	margin: 0;
-	padding: 0;
-	height: @theme-heading-height;
-	background-color: @theme-heading-background-color;
-	._background-image-gradient-mask-heading();
-	border-bottom: 1px solid @theme-heading-border-color;
-	color: @theme-heading-color;
-	font-size: @theme-heading-font-size;
-	font-family: @theme-heading-font-family;
-	font-weight: @theme-heading-font-weight;
-	text-shadow: @theme-heading-text-shadow;
-	text-align: center;
-	line-height: @theme-heading-height + 2;
+.mblTabBarSegmentedControlIconArea-InHeading-styles () {
 }
-.mblTabPanelHeader-TabButton-styles () {
-	margin-top: (@theme-heading-height - @theme-ui-widget-height - 2) * 0.5;
+.mblTabBarSegmentedControlButtonSelected-InHeading-styles () {
 }
-.mblTabPanelHeader-TabButtonSelected-styles () {
-	background-color: @theme-ui-widget-selected-background-color;
-}
-.mblTabPanelHeader-TabButtonDomButton-styles () {
-	width: 43px;
-}
-.mblTabPanelHeader-TabButtonDomButtonClass-styles () {
-	left: 8px;
-}
-.mblTabPanelHeader-DomButton-styles () {
-}
-.mblTabPanelHeader-inHeading-styles () {
-}
-.mblTabPanelHeader-TabButton-inHeading-styles () {
-	margin-top: (@theme-heading-height - @theme-ui-widget-height) * 0.5;
-}
-.mblTabPanelHeader-TabButton-FirstTabButtom-inHeading-styles () {
-	-webkit-border-top-left-radius: @theme-ui-widget-border-radius;
-	-webkit-border-bottom-left-radius: @theme-ui-widget-border-radius;
-	border-left-width: 1px;
-}
-.mblTabPanelHeader-TabButton-LastTabButtom-inHeading-styles () {
-	-webkit-border-top-right-radius: @theme-ui-widget-border-radius;
-	-webkit-border-bottom-right-radius: @theme-ui-widget-border-radius;
-}
-.mblTabPanelHeader-TabButtonSelected-inHeading-styles () {
-}	
 
 //----------------------------------------------------------------
 // TextArea.less
@@ -797,7 +664,7 @@
 	border: @theme-default-border-color 1px inset;
 	font-family: @theme-default-font-family;
 	font-size: @theme-default-font-size;
-	-webkit-border-radius: @theme-default-border-radius;
+	border-radius: @theme-default-border-radius;
 }
 .mblExpandingTextArea-styles () {
 	margin: 2px;
@@ -811,7 +678,7 @@
 	border: @theme-default-border-color 1px inset;
 	font-family: @theme-default-font-family;
 	font-size: @theme-default-font-size;
-	-webkit-border-radius: @theme-default-border-radius;
+	border-radius: @theme-default-border-radius;
 }
 
 //----------------------------------------------------------------
@@ -821,7 +688,7 @@
 	padding: 0 @theme-default-padding 0 (@theme-default-padding + 15px);
 	height: @theme-ui-widget-height;
 	border: 1px outset @theme-ui-widget-border-color;
-	-webkit-border-radius: @theme-ui-widget-border-radius;
+	border-radius: @theme-ui-widget-border-radius;
 	background-color: @theme-ui-widget-background-color;
 	._background-image-gradient-mask-ui-widget;
 	font-family: @theme-ui-widget-font-family;
@@ -879,7 +746,7 @@
 	border: @theme-heading-border-color 1px solid;
 	background-color: @theme-heading-background-color;
 	._background-image-gradient-mask-ui-widget;
-	-webkit-border-radius: @theme-default-border-radius;
+	border-radius: @theme-default-border-radius;
 	opacity: .97;
 }
 .mblTooltipBubble-styles () {
@@ -955,16 +822,16 @@
 	padding: 0;
 	border: 1px solid @theme-round-rect-border-color;
 	border-top: none;
-	-webkit-border-radius: @theme-default-border-radius;
+	border-radius: @theme-default-border-radius;
 }
 .mblAccordionRoundRect-FirstTitle-styles () {
-	-webkit-border-top-left-radius: @theme-default-border-radius;
-	-webkit-border-top-right-radius: @theme-default-border-radius;
+	border-top-left-radius: @theme-default-border-radius;
+	border-top-right-radius: @theme-default-border-radius;
 }
 .mblAccordionRoundRect-LastTitle-styles () {
 	border-bottom-width: 0;
-	-webkit-border-bottom-left-radius: @theme-default-border-radius;
-	-webkit-border-bottom-right-radius: @theme-default-border-radius;
+	border-bottom-left-radius: @theme-default-border-radius;
+	border-bottom-right-radius: @theme-default-border-radius;
 }
 .mblAccordionTitle-styles () {
 	border-top: 1px outset @theme-round-rect-border-color;
@@ -1007,7 +874,7 @@
 .mblSimpleDialogDecoration-styles () {
 	background-color: @theme-default-background-color;
 	border: 1px solid @theme-highlight-border-color;
-	-webkit-border-radius: @theme-default-border-radius;
+	border-radius: @theme-default-border-radius;
 	-webkit-box-shadow: 1px 1px 2px @theme-highlight-color;
 	color: @theme-default-color;
 }
@@ -1018,8 +885,8 @@
 	background-color: @theme-highlight-background-color;
 	._background-image-gradient-mask-ui-widget;
 	border-bottom: 1px solid @theme-highlight-border-color;
-	-webkit-border-top-left-radius: @theme-default-border-radius;
-	-webkit-border-top-right-radius: @theme-default-border-radius;
+	border-top-left-radius: @theme-default-border-radius;
+	border-top-right-radius: @theme-default-border-radius;
 	color: @theme-default-color;
 	font-size: @theme-highlight-font-size;
 	text-align: left;
@@ -1065,7 +932,7 @@
 	background-color: @theme-highlight-background-color;
 	._background-image-gradient-mask-ui-widget;
 	border: 1px solid @theme-highlight-border-color;
-	-webkit-border-radius: @theme-default-border-radius;
+	border-radius: @theme-default-border-radius;
 	-webkit-box-shadow: 1px 1px 2px @theme-highlight-color;
 }
 .mblIconMenuItem-styles () {
@@ -1073,16 +940,16 @@
 	border-bottom: 1px solid @theme-highlight-border-color;
 }
 .mblIconMenuItemFirstRow-FirstColumn-styles () {
-	-webkit-border-top-left-radius: @theme-default-border-radius;
+	border-top-left-radius: @theme-default-border-radius;
 }
 .mblIconMenuItemFirstRow-LastColumn-styles () {
-	-webkit-border-top-right-radius: @theme-default-border-radius;
+	border-top-right-radius: @theme-default-border-radius;
 }
 .mblIconMenuItemLastRow-FirstColumn-styles () {
-	-webkit-border-bottom-left-radius: @theme-default-border-radius;
+	border-bottom-left-radius: @theme-default-border-radius;
 }
 .mblIconMenuItemLastRow-LastColumn-styles () {
-	-webkit-border-bottom-right-radius: @theme-default-border-radius;
+	border-bottom-right-radius: @theme-default-border-radius;
 }
 .mblIconMenuItemAnchor-styles () {
 	font-size: @theme-ui-widget-font-size;
@@ -1106,7 +973,7 @@
 	width: @theme-ui-widget-height * 0.7 - 2;
 	height: @theme-ui-widget-height * 0.7 - 2;
 	border: 1px solid @theme-ui-widget-border-color;
-	-webkit-border-radius: 0;
+	border-radius: 0;
 	-webkit-transform: rotate(45deg);
 	._background-image-gradient-mask-ui-widget-r;
 }
@@ -1137,7 +1004,7 @@
 .dijitCalendar-styles () {
 	width: 320px;
 	border: solid 1px @theme-default-border-color;
-	-webkit-border-radius: 0;
+	border-radius: 0;
 	background-color: @theme-default-background-color;
 	text-align: center;
 }
@@ -1154,7 +1021,7 @@
 }
 .dijitCalendarMonthMenu-styles () {
 	background-color: @theme-default-background-color;
-	-webkit-border-radius: @theme-default-border-radius;
+	border-radius: @theme-default-border-radius;
 }
 .dijitCalendarMonthMenu-Label-styles () {
 	text-shadow: @theme-default-text-shadow;

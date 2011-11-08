@@ -7,7 +7,7 @@
 	border-style: outset;
 	border-color: #A5A2A5;
 	color: white;
-	-webkit-border-radius: 3px;
+	border-radius: 3px;
 	background-color: #D6D3D6;
 	background: -webkit-gradient(linear, left top, left bottom, from(#EFF3EF), to(#BDBEBD));
 }
@@ -21,7 +21,7 @@
 	font-size: 1px;
 	background-color: #BDBABD;
 	border-bottom: 1px solid #8C8E8C;
-	-webkit-border-radius: 2px;
+	border-radius: 2px;
 	-webkit-transform: rotate(50deg);
 }
 .mblDomButtonCheckboxOff > div > div {
@@ -35,6 +35,6 @@
 	background-color: #BDBABD;
 	border-bottom: none;
 	border-top: 1px solid #8C8E8C;
-	-webkit-border-radius: 2px;
+	border-radius: 2px;
 	-webkit-transform: rotate(-100deg);
 }

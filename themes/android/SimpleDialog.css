@@ -10,7 +10,7 @@
 .mblSimpleDialogDecoration {
   background-color: rgba(64, 64, 64, 0.85);
   border: 2px solid #EEEEEE;
-  -webkit-border-radius: 6px;
+  border-radius: 6px;
   color: white;
 }
 .mblSimpleDialogContainer {

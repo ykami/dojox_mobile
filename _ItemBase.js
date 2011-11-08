@@ -2,13 +2,14 @@ define([
 	"dojo/_base/kernel",
 	"dojo/_base/config",
 	"dojo/_base/declare",
-	"dijit/registry",	// registry.getEnclosingWidget
+	"dijit/registry",
 	"dijit/_Contained",
 	"dijit/_Container",
 	"dijit/_WidgetBase",
+	"./iconUtils",
 	"./TransitionEvent",
 	"./View"
-], function(kernel, config, declare, registry, Contained, Container, WidgetBase, TransitionEvent, View){
+], function(kernel, config, declare, registry, Contained, Container, WidgetBase, iconUtils, TransitionEvent, View){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -23,7 +24,7 @@ define([
 	// summary:
 	//		A base class for item classes (e.g. ListItem, IconItem, etc.)
 
-	return declare("dojox.mobile._ItemBase", [WidgetBase, Container, Contained],{
+	return declare("dojox.mobile._ItemBase", [WidgetBase, /*Container,*/ Contained],{
 		// summary:
 		//		A base class for item classes (e.g. ListItem, IconItem, etc.)
 		// description:
@@ -154,6 +155,7 @@ define([
 				if(!this.icon){ this.icon = parent.iconBase; }
 				if(!this.iconPos){ this.iconPos = parent.iconPos; }
 			}
+			return !!parent;
 		},
 	
 		select: function(){
@@ -243,6 +245,12 @@ define([
 			}
 			new TransitionEvent(this.domNode, {moveTo: moveTo, href: href, url: url, scene: scene,
 						transition: this.transition, transitionDir: this.transitionDir}).dispatch();
+		},
+
+		_setIconAttr: function(icon){
+			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
+			this.iconNode = iconUtils.setIcon(icon, this.iconPos, this.iconNode, this.iconParentNode, this.alt);
+			this.icon = icon;
 		}
 	});
 });

@@ -96,7 +96,7 @@
 }
 .mblSwRoundShape1 .mblSwitchBg {
 	height: 28px;
-	-webkit-border-radius: 14px;
+	border-radius: 14px;
 }
 .mblSwRoundShape1 .mblSwitchBgLeft {
 }
@@ -107,7 +107,7 @@
 	left: 67px;
 	width: 26px;
 	height: 26px;
-	-webkit-border-radius: 13px;
+	border-radius: 13px;
 }
 .mblSwRoundShape1 .mblSwitchText {
 	width: 67px;
@@ -133,7 +133,7 @@
 }
 .mblSwRoundShape2 .mblSwitchBg {
 	height: 28px;
-	-webkit-border-radius: 14px;
+	border-radius: 14px;
 }
 .mblSwRoundShape2 .mblSwitchBgRight {
 	left: 51px;
@@ -142,7 +142,7 @@
 	left: 51px;
 	width: 42px;
 	height: 26px;
-	-webkit-border-radius: 13px;
+	border-radius: 13px;
 }
 .mblSwRoundShape2 .mblSwitchText {
 	width: 51px;
@@ -155,7 +155,7 @@
 /* Arc Shape1 */
 .mblSwArcShape1 {
 	height: 28px;
-	-webkit-border-radius: 6px/14px;
+	border-radius: 6px/14px;
 }
 .mblSwArcShape1.mblItemSwitch, .mblListItem .mblSwArcShape1 {
 	top: 8px;
@@ -168,7 +168,7 @@
 }
 .mblSwArcShape1 .mblSwitchBg {
 	height: 28px;
-	-webkit-border-radius: 6px/14px;
+	border-radius: 6px/14px;
 }
 .mblSwArcShape1 .mblSwitchBgRight {
 	left: 67px;
@@ -177,7 +177,7 @@
 	left: 67px;
 	width: 26px;
 	height: 26px;
-	-webkit-border-radius: 5px/13px;
+	border-radius: 5px/13px;
 }
 .mblSwArcShape1 .mblSwitchText {
 	width: 67px;
@@ -190,7 +190,7 @@
 /* Arc Shape2 */
 .mblSwArcShape2 {
 	height: 28px;
-	-webkit-border-radius: 6px/14px;
+	border-radius: 6px/14px;
 }
 .mblSwArcShape2.mblItemSwitch, .mblListItem .mblSwArcShape2 {
 	top: 8px;
@@ -203,7 +203,7 @@
 }
 .mblSwArcShape2 .mblSwitchBg {
 	height: 28px;
-	-webkit-border-radius: 6px/14px;
+	border-radius: 6px/14px;
 }
 .mblSwArcShape2 .mblSwitchBgRight {
 	left: 51px;
@@ -212,7 +212,7 @@
 	left: 51px;
 	width: 42px;
 	height: 26px;
-	-webkit-border-radius: 5px/13px;
+	border-radius: 5px/13px;
 }
 .mblSwArcShape2 .mblSwitchText {
 	width: 51px;

@@ -1,6 +1,8 @@
 /* dojox.mobile.IconContainer */
 .mblIconContainer {
 	.mblIconContainer-styles;
+	margin: 20px 10px; /* TODO: remove the definition from variable.less */
+	padding: 0; /* TODO: remove the definition from variable.less */
 }
 
 /* dojox.mobile.IconItem */
@@ -14,10 +16,15 @@
 	list-style-type: none;
 	clear: both;
 	.mblIconItemTerminator-styles;
+	height: auto; /* TODO: remove the definition from variable.less */
 }
-.mblIconItemSub {
+.mblIconItemPaneContainer {
+	padding: 0;
+}
+.mblIconItemPane {
 	list-style-type: none;
 	.mblIconItemSub-styles;
+	margin-left: auto; /* TODO: remove the definition from variable.less */
 }
 .mblIconArea {
 	position: relative; // 1.8
@@ -77,12 +84,17 @@ table.mblClose {
 	}
 }
 
-/* Icon Content Heading */
-.mblIconContentHeading {
+/* dojox.mobile._IconItemPane */
+.mblIconItemPaneHeading {
 	position: relative;
 	clear: both;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	.mblIconContentHeading-styles;
+}
+.mblIconItemPaneIcon {
+	position: absolute;
+	top: -2px;
+	left: 1px;
 }

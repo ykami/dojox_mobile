@@ -9,7 +9,7 @@
 
 .alertDialogBody {
 	border: 1px solid #ADAAAD;
-	-webkit-border-radius: 10px;
+	border-radius: 10px;
 	/* 1.8  removed */
 	background-color: white;
 	margin-left: 2px;
@@ -154,7 +154,7 @@
 
 .listSelector {
 	position: absolute;
-	-webkit-border-radius: 10px;
+	border-radius: 10px;
 	-moz-border-radius: 10px;
 	border: 1px solid #666;
 	background-color: #ccc;
@@ -257,7 +257,7 @@ input {
 	overflow: hidden;
 	position: absolute;
 	-webkit-background-size: 100% 100%;
-	-webkit-border-radius: 5px;
+	border-radius: 5px;
 	width: 90px;
 	height: 90px;
 	z-index: 5;

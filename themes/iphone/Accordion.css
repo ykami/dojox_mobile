@@ -8,16 +8,16 @@
   padding: 0;
   border: 1px solid #ADAAAD;
   border-top: none;
-  -webkit-border-radius: 8px;
+  border-radius: 8px;
 }
 .mblAccordionRoundRect .mblAccordionTitle:first-child {
-  -webkit-border-top-left-radius: 8px;
-  -webkit-border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 .mblAccordionRoundRect .mblAccordionTitleLast, .mblAccordionRoundRect .mblAccordionPane:last-child {
   border-bottom-width: 0;
-  -webkit-border-bottom-left-radius: 8px;
-  -webkit-border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 .mblAccordionTitle {
   position: relative;

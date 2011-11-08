@@ -1,15 +1,17 @@
 define([
+	"dojo/_base/connect",
 	"dojo/_base/declare",
+	"dojo/_base/event",
 	"dojo/_base/lang",
 	"dojo/_base/window",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/dom-style",
 	"dijit/registry",	// registry.byNode
-	"./common",
+	"./iconUtils",
 	"./_ItemBase",
 	"./Badge" /* 1.8 */
-], function(declare, lang, win, domClass, domConstruct, domStyle, registry, common, ItemBase, Badge){
+], function(connect, declare, event, lang, win, domClass, domConstruct, domStyle, registry, iconUtils, ItemBase, Badge){
 
 /*=====
 	var ItemBase = dojox.mobile._ItemBase;
@@ -67,6 +69,8 @@ define([
 		//		A name of html tag to create as domNode.
 		tag: "li",
 
+		baseClass: "mblTabBarButton",
+
 		/* internal properties */	
 		selectOne: true,
 		badge: "", /* 1.8 */
@@ -97,75 +101,56 @@ define([
 				}
 				if(!this.icon2){ this.icon2 = parent.iconBase || this.icon1; }
 				if(!this.iconPos2){ this.iconPos2 = parent.iconPos || this.iconPos1; }
-			}
-		},
-	
-		buildRendering: function(){
-			var a = this.anchorNode = domConstruct.create("a", {className:"mblTabBarButtonAnchor"});
-			this.connect(a, "onclick", "_onClick");
-	
-			this.box = domConstruct.create("div", {className:"mblTabBarButtonTextBox"}, a);
-			var box = this.box;
-			var label = "";
-			var r = this.srcNodeRef;
-			if(r){
-				for(var i = 0, len = r.childNodes.length; i < len; i++){
-					var n = r.firstChild;
-					if(n.nodeType === 3){
-						label += lang.trim(n.nodeValue);
-						n.nodeValue = this._cv ? this._cv(n.nodeValue) : n.nodeValue;
+
+				if(parent.barType === "tabPanel" && parent.closable){
+					if(!this.icon1){
+						this.icon1 = "mblDomButtonGrayCross";
 					}
-					box.appendChild(n);
+					if(!this.icon2){
+						this.icon2 = "mblDomButtonGrayCross";
+					}
+					domClass.add(this.domNode, "mblTabBarButtonClosable");
 				}
 			}
-			if(this.label){
-				box.appendChild(win.doc.createTextNode(this._cv ? this._cv(this.label) : this.label));
-			}else{
-				this.label = label;
-			}
-	
+		},
+
+		buildRendering: function(){
 			this.domNode = this.srcNodeRef || domConstruct.create(this.tag);
-			this.containerNode = this.domNode;
-			this.domNode.appendChild(a);
-			if(this.domNode.className.indexOf("mblDomButton") != -1){
-				// deprecated. TODO: remove this code in 1.8
-				var domBtn = domConstruct.create("div", null, a);
-				common.createDomButton(this.domNode, null, domBtn);
-				domClass.add(this.domNode, "mblTabButtonDomButton");
-				domClass.add(domBtn, "mblTabButtonDomButtonClass");
+
+			if(this.srcNodeRef){
+				this.label = this.srcNodeRef.innerHTML;
+				this.srcNodeRef.innerHTML = "";
 			}
-			if((this.icon1 || this.icon).indexOf("mblDomButton") != -1){
-				domClass.add(this.domNode, "mblTabButtonDomButton");
-			}
+
+			this.anchorNode = domConstruct.create("a", {className:"mblTabBarButtonAnchor"}, this.domNode);
+			this.labelNode = this.box = domConstruct.create("div", {className:"mblTabBarButtonLabel"}, this.anchorNode);
+
+			this._isOnLine = this.inheritParams();
+			this.inherited(arguments);
 		},
 	
 		startup: function(){
 			if(this._started){ return; }
-			this.inheritParams();
-			var parent = this.getParent();
-	
-			var _clsName = parent ? parent._clsName : "mblTabBarButton";
-			domClass.add(this.domNode, _clsName + (this.selected ? " mblTabButtonSelected" : ""));
-	
-			if(parent && parent.barType == "segmentedControl"){
-				// proper className may not be set when created dynamically
-				domClass.remove(this.domNode, "mblTabBarButton");
-				domClass.add(this.domNode, parent._clsName);
-				this.box.className = "";
+
+			if(!this._isOnLine){
+				this.inheritParams();
+				this.set({icon1:this.icon1, icon2:this.icon2});
 			}
-			this.set({icon1:this.icon1, icon2:this.icon2});
-			this.inherited(arguments);
+
+			this.connect(this.domNode, "ondragstart", event.stop);
+			this.connect(this.anchorNode, "onclick", "_onClick");
+			if(this.getParent().barType === "tabPanel" && this.getParent().closable){
+				this.connect(this.iconDivNode, "onclick", "_onClick");
+			}
 		},
 	
 		select: function(){
 			// summary:
 			//		Makes this widget in the selected state.
 			if(arguments[0]){ // deselect
-				this.selected = false;
-				domClass.remove(this.domNode, "mblTabButtonSelected");
+				domClass.remove(this.domNode, "mblTabBarButtonSelected");
 			}else{ // select
-				this.selected = true;
-				domClass.add(this.domNode, "mblTabButtonSelected");
+				domClass.add(this.domNode, "mblTabBarButtonSelected");
 				for(var i = 0, c = this.domNode.parentNode.childNodes; i < c.length; i++){
 					if(c[i].nodeType != 1){ continue; }
 					var w = registry.byNode(c[i]); // sibling widget
@@ -174,6 +159,7 @@ define([
 					}
 				}
 			}
+			this.selected = !arguments[0];
 			if(this.iconNode1){
 				this.iconNode1.style.visibility = this.selected ? "hidden" : "";
 			}
@@ -188,53 +174,48 @@ define([
 			this.select(true);
 		},
 	
-		_onClick: function(e){
-			this.defaultClickAction();
+		onClose: function(e){
+			connect.publish("/dojox/mobile/tabClose", [this]);
+			return this.getParent().onCloseButtonClick(this);
 		},
 	
-		_setIcon: function(icon, pos, num, sel){
-			var i = "icon" + num, n = "iconNode" + num, p = "iconPos" + num;
-			if(icon){ this[i] = icon; }
-			if(pos){
-				if(this[p] === pos){ return; }
-				this[p] = pos;
+		_onClick: function(e){
+			if(e.currentTarget === this.iconDivNode){
+				if(this.onClose()){
+					this.destroy();
+				}
+			}else{
+				this.defaultClickAction();
 			}
+		},
+
+		_setIcon: function(icon, n, sel){
+			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
+			if(icon){ this["icon" + n] = icon; }
 			if(icon && icon !== "none"){
 				if(!this.iconDivNode){
-					this.iconDivNode = domConstruct.create("div", {className:"mblTabBarButtonDiv"}, this.anchorNode, "first");
+					this.iconDivNode = domConstruct.create("div", {className:"mblTabBarButtonIconArea"}, this.anchorNode, "first");
+					// mblTabBarButtonDiv -> mblTabBarButtonIconArea
 				}
-				if(!this[n]){
-					this[n] = domConstruct.create("div", {className:"mblTabBarButtonIcon"}, this.iconDivNode);
-				}else{
-					domConstruct.empty(this[n]);
+				if(!this["iconParentNode" + n]){
+					this["iconParentNode" + n] = domConstruct.create("div", {className:"mblTabBarButtonIconParent mblTabBarButtonIconParent" + n}, this.iconDivNode);
+					// mblTabBarButtonIcon -> mblTabBarButtonIconParent
 				}
-				common.createIcon(icon, this[p], null, this.alt, this[n]);
-				if(this[p]){
-					domClass.add(this[n].firstChild, "mblTabBarButtonSpriteIcon");
-				}
-				domClass.remove(this.iconDivNode, "mblTabBarButtonNoIcon");
-				this[n].style.visibility = sel ? "hidden" : "";
-			}else if(this.iconDivNode){
-				domClass.add(this.iconDivNode, "mblTabBarButtonNoIcon");
+				this["iconNode" + n] = iconUtils.setIcon(icon, this["iconPos" + n],
+					this["iconNode" + n], this["iconParentNode" + n], this.alt);
+				this["icon" + n] = icon;
+//x				this["iconParentNode" + n].style.visibility = sel ? "hidden" : "";
 			}
 		},
 	
 		_setIcon1Attr: function(icon){
-			this._setIcon(icon, null, 1, this.selected);
+			this._setIcon(icon, 1, this.selected);
 		},
 	
 		_setIcon2Attr: function(icon){
-			this._setIcon(icon, null, 2, !this.selected);
+			this._setIcon(icon, 2, !this.selected);
 		},
 	
-		_setIconPos1Attr: function(pos){
-			this._setIcon(null, pos, 1, this.selected);
-		},
-	
-		_setIconPos2Attr: function(pos){
-			this._setIcon(null, pos, 2, !this.selected);
-		},
-
 		_getBadgeAttr: function(){ /* 1.8 */
 			return this.badgeObj ? this.badgeObj.getValue() : null;
 		},
@@ -256,9 +237,13 @@ define([
 			}
 		},
 
+		_setSelectedAttr: function(/*Boolean*/sel){
+			sel ? this.select() : this.deselect();
+		},
+
 		_setLabelAttr: function(/*String*/text){
 			this.label = text;
-			this.box.innerHTML = this._cv ? this._cv(text) : text;
+			this.labelNode.innerHTML = this._cv ? this._cv(text) : text;
 		}
 	});
 });

@@ -29,3 +29,12 @@ html.mobile, .mobile body {
 .mblColorDefaultSel.mblDomButton {
   background-color: #0064c2;
 }
+.mblSpriteIcon {
+  position: absolute;
+}
+.mblIconRoot {
+  position: relative;
+  font-size: 1px;
+  /*	.mblIconRoot-styles;*/
+
+}

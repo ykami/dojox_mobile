@@ -27,8 +27,41 @@
 			});
 		});
 	</script>
+
+<style>
+	.mblColorPink {
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#ff9DE9), to(#cc62DD), color-stop(0.5, #ff6EDF), color-stop(0.5, #ff5FDC));
+		background-image: -moz-linear-gradient(top, #ff9DE9 0%, #ff6EDF 50%, #ff5FDC 50%, #cc62DD 100%);
+		background-color: pink;
+	}
+</style>
 </head>
 <body style="visibility:hidden;">
+	<div data-dojo-type="dojox.mobile.Heading" data-dojo-props='label:"Arrow"'>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" arrow="left" defaultColor="mblColorBlue" selColor="mblColorPink">MMMM</div>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props=''>MMMM</div>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='arrow:"right"'>MMMM</div>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props=''>MMMM</div>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='icon:"mblDomButtonWhitePlus"' style="float:right;"></div>
+
+	</div><br>
+
+	<div data-dojo-type="dojox.mobile.Heading" data-dojo-props='label:"Labeled Icon"'>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='icon:"mblDomButtonWhitePlus",label:"DOM"'></div>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='icon:"images/tab-icon-33w.png",label:"Image"'></div>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='icon:"images/tab-icons.png",iconPos:"29,116,29,29",label:"Sprite"'></div>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='icon:"mblDomButtonWhitePlus"' style="float:right;"></div>
+
+	</div><br>
+
+	<div data-dojo-type="dojox.mobile.Heading" data-dojo-props='label:"Fixed Width"'>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='icon:"mblDomButtonWhitePlus",label:"DOM"' style="width:120px"></div>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='icon:"images/tab-icon-33w.png",label:"Image"' style="width:120px"></div>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='icon:"images/tab-icons.png",iconPos:"29,116,29,29",label:"Sprite"' style="width:120px"></div>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='icon:"mblDomButtonWhitePlus"' style="float:right;"></div>
+
+	</div><br>
+
 	<div id="general" data-dojo-type="dojox.mobile.View">
 		<div data-dojo-type="dojox.mobile.Heading" data-dojo-props='back:"Settings", moveTo:"settings"'>General</div>
 		<div data-dojo-type="dojox.mobile.Heading" data-dojo-props='back:"Long Button", moveTo:"settings"'>Very Very Long Title May Not Be Displayed in the Narrow Space - Very Very Long Title May Not Be Displayed in the Narrow Space</div>
@@ -37,22 +70,22 @@
 	<h3>Heading with buttons</h3>
 
 	<div data-dojo-type="dojox.mobile.Heading" data-dojo-props='label:"World Clock"'>
-		<div id="btn1" data-dojo-type="dojox.mobile.ToolBarButton" style="padding: 0px 14px;float:left">Edit</div>
+		<div id="btn1" data-dojo-type="dojox.mobile.ToolBarButton">Edit</div>
 		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='icon:"mblDomButtonWhitePlus"' style="float:right;" onclick="console.log('+ was clicked')"></div>
 
 	</div><br>
 
 
 	<div data-dojo-type="dojox.mobile.Heading">
-		<div data-dojo-type="dojox.mobile.ToolBarButton" style="padding: 0px 14px;float:left;">Edit</div>
+		<div data-dojo-type="dojox.mobile.ToolBarButton">Edit</div>
 		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='icon:"mblDomButtonWhitePlus"' style="float:right;"></div>
 		Alarm Clock
 	</div><br>
 
 
 	<div data-dojo-type="dojox.mobile.Heading" data-dojo-props='label:"Voice Memos"'>
-		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='label:"Speaker"' style="float:left"></div>
-		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='label:"Done"' class="mblColorBlue" style="width:45px;float:right;"></div>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='label:"Speaker"'></div>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='label:"Done"' defaultColor="mblColorBlue" style="float:right;"></div>
 	</div><br>
 
 
@@ -62,12 +95,12 @@
 
 
 	<div data-dojo-type="dojox.mobile.Heading" data-dojo-props='label:"News", back:"Bookmarks", moveTo:"bookmarks"'>
-		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='label:"Done"' class="mblColorBlue" style="width:45px;float:right;"></div>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='label:"Done"' defaultColor="mblColorBlue" style="float:right;"></div>
 	</div><br>
 
 
 	<div data-dojo-type="dojox.mobile.Heading">
-		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='label:"Done"' class="mblColorBlue"></div>
+		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='label:"Done"' defaultColor="mblColorBlue"></div>
 		<div data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='label:"New Folder"' style="float:right;"></div>
 	</div><br>
 
@@ -82,7 +115,7 @@
 
 
 	<div data-dojo-type="dojox.mobile.Heading">
-		<ul data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"segmentedControl"' style="float:left;margin-left:6px;">
+		<ul data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"segmentedControl"'>
 			<li data-dojo-type="dojox.mobile.TabBarButton" style="width:80px" data-dojo-props='selected:true'>Catalog</li>
 			<li data-dojo-type="dojox.mobile.TabBarButton" style="width:80px">Share</li>
 			<li data-dojo-type="dojox.mobile.TabBarButton" style="width:80px">Download</li>
@@ -104,7 +137,7 @@
 
 
 	<div data-dojo-type="dojox.mobile.Heading" data-dojo-props='back:"Inbox", label:"1 of 10"'>
-		<ul data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"segmentedControl"' style="float:right;margin-right:6px;">
+		<ul data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"segmentedControl"' style="float:right;">
 			<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='icon:"mblDomButtonWhiteUpArrow", selectOne:false'></li>
 			<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='icon:"mblDomButtonWhiteDownArrow", selectOne:false'></li>
 		</ul>
@@ -119,7 +152,7 @@
 
 
 	<div data-dojo-type="dojox.mobile.Heading" data-dojo-props='back:"Inbox", label:"1 of 10"'>
-		<ul data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"segmentedControl"' style="float:right;margin-right:6px;">
+		<ul data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"segmentedControl"' style="float:right;">
 			<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='icon:"mblDomButtonWhiteUpArrow", selectOne:false'></li>
 			<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='icon:"mblDomButtonWhiteSearch", selectOne:false'></li>
 		</ul>
