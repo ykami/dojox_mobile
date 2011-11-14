@@ -337,6 +337,10 @@
 .mblListItemChecked-styles () {
 	color: @theme-highlight-color;
 }
+.mblListItemDeleteIcon-styles () {
+	margin-top: (@theme-list-item-height - @appl-list-item-icon-size) * 0.5;
+	margin-right: 11px;
+}
 .mblListItemIcon-styles () {
 	margin-top: (@theme-list-item-height - @appl-list-item-icon-size) * 0.5;
 	margin-right: 11px;
@@ -506,8 +510,6 @@
 // IconContainer.less
 //----------------------------------------------------------------
 .mblIconContainer-styles () {
-	margin: @theme-default-margin 0 @theme-default-margin @theme-default-margin;
-	padding: @theme-default-padding 0 @theme-default-padding;
 	background-color: @theme-default-background-color;
 }
 
@@ -515,10 +517,8 @@
 // IconItem.less
 //----------------------------------------------------------------
 .mblIconItemTerminator-styles () {
-	height: @theme-default-margin;
 }
 .mblIconItemSub-styles () {
-	margin-left: -@theme-default-margin;
 	background-color: white;
 	color: @theme-default-color;
 }

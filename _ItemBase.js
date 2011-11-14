@@ -1,5 +1,6 @@
 define([
 	"dojo/_base/kernel",
+	"dojo/_base/array",
 	"dojo/_base/config",
 	"dojo/_base/declare",
 	"dijit/registry",
@@ -9,7 +10,7 @@ define([
 	"./iconUtils",
 	"./TransitionEvent",
 	"./View"
-], function(kernel, config, declare, registry, Contained, Container, WidgetBase, iconUtils, TransitionEvent, View){
+], function(kernel, array, config, declare, registry, Contained, Container, WidgetBase, iconUtils, TransitionEvent, View){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -139,25 +140,36 @@ define([
 		//		If true, the item acts like a toggle button.
 		toggle: false,
 
+		// paramsToInherit: String
+		//		Comma separated parameters to inherit from the parent.
+		paramsToInherit: "transition,icon",
+
 		// _duration: Number
 		//		Duration of selection, milliseconds.
 		_duration: 800,
 
 	
 		inheritParams: function(){
+				console.log(2);
 			var parent = this.getParent();
 			if(parent){
-				if(!this.transition){ this.transition = parent.transition; }
-				if(this.icon && parent.iconBase &&
-					parent.iconBase.charAt(parent.iconBase.length - 1) === '/'){
-					this.icon = parent.iconBase + this.icon;
-				}
-				if(!this.icon){ this.icon = parent.iconBase; }
-				if(!this.iconPos){ this.iconPos = parent.iconPos; }
+				array.forEach(this.paramsToInherit.split(/,/), function(p){
+					if(p.match(/icon/i)){
+						var base = p + "Base", pos = p + "Pos";
+						if(this[p] && parent[base] &&
+							parent[base].charAt(parent[base].length - 1) === '/'){
+							this[p] = parent[base] + this[p];
+						}
+						if(!this[p]){ this[p] = parent[base]; }
+						if(!this[pos]){ this[pos] = parent[pos]; }
+					}else{
+						if(!this[p]){ this[p] = parent[p]; }
+					}
+				}, this);
 			}
 			return !!parent;
 		},
-	
+
 		select: function(){
 			// summary:
 			//		Makes this widget in the selected state.

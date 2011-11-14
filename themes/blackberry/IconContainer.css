@@ -5,14 +5,8 @@
 @import url("../common/IconContainer_keyframes.css");
 /* dojox.mobile.IconContainer */
 .mblIconContainer {
-  margin: 0px;
-  padding: 0px;
   margin: 20px 10px;
-  /* TODO: remove the definition from variable.less */
-
   padding: 0;
-  /* TODO: remove the definition from variable.less */
-
 }
 /* dojox.mobile.IconItem */
 .mblIconItem {
@@ -24,21 +18,15 @@
 .mblIconItemTerminator {
   list-style-type: none;
   clear: both;
-  height: 0px;
-  height: auto;
-  /* TODO: remove the definition from variable.less */
-
 }
 .mblIconItemPaneContainer {
+  margin: 0;
   padding: 0;
 }
 .mblIconItemPane {
   list-style-type: none;
   background-color: white;
   color: black;
-  margin-left: auto;
-  /* TODO: remove the definition from variable.less */
-
 }
 .mblIconArea {
   position: relative;

@@ -47,18 +47,34 @@
 .mblListItemTextBoxSelected {
   background-color: #0869C6;
 }
-.mblListItemIcon {
+.mblListItemChecked .mblListItemRightIcon {
+  visibility: visible;
+}
+.mblListItemChecked .mblListItemUncheckIcon {
+  position: absolute;
+  visibility: hidden;
+}
+.mblListItemUnchecked .mblListItemRightIcon {
+  visibility: hidden;
+}
+.mblListItemUnchecked .mblListItemUncheckIcon {
+  visibility: visible;
+}
+.mblListItemDeleteIcon {
+  position: relative;
   float: left;
   line-height: normal;
   margin-top: 7px;
   margin-right: 11px;
 }
-.mblListItemSpriteIcon {
-  position: absolute;
+.mblListItemIcon {
+  position: relative;
+  float: left;
+  line-height: normal;
   margin-top: 7px;
-  margin-left: 8px;
+  margin-right: 11px;
 }
-.mblListItemRightIcon, .mblListItemRightIcon2 {
+.mblListItemRightIcon, .mblListItemRightIcon2, .mblListItemUncheckIcon {
   position: relative;
   float: right;
   line-height: normal;

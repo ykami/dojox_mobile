@@ -5,11 +5,13 @@ define([
 	"dojo/_base/lang",
 	"dojo/dom-class",
 	"dojo/dom-construct",
+	"dojo/dom-style",
 	"dojo/has",
 	"./common",
+	"./iconUtils",
 	"./_ItemBase",
 	"./TransitionEvent"
-], function(array, connect, declare, lang, domClass, domConstruct, has, common, ItemBase, TransitionEvent){
+], function(array, connect, declare, lang, domClass, domConstruct, domStyle, has, common, iconUtils, ItemBase, TransitionEvent){
 
 /*=====
 	var ItemBase = dojox.mobile._ItemBase;
@@ -44,6 +46,11 @@ define([
 		//		button.
 		rightIcon2: "",
 
+		// deleteIcon: String
+		//		A delete icon to display at the left of the item. The value can
+		//		be either a path for an image file or a class name of a DOM
+		//		button.
+		deleteIcon: "",
 
 		// anchorLabel: Boolean
 		//		If true, the label text becomes a clickable anchor text. When
@@ -67,12 +74,17 @@ define([
 		// arrowClass: String
 		//		An icon to display as an arrow. The value can be either a path
 		//		for an image file or a class name of a DOM button.
-		arrowClass: "mblDomButtonArrow",
+		arrowClass: "",
 
 		// checkClass: String
 		//		An icon to display as a check mark. The value can be either a
 		//		path for an image file or a class name of a DOM button.
-		checkClass: "mblDomButtonCheck",
+		checkClass: "",
+
+		// uncheckClass: String
+		//		An icon to display as an uncheck mark. The value can be either a
+		//		path for an image file or a class name of a DOM button.
+		uncheckClass: "",
 
 		// variableHeight: Boolean
 		//		If true, the height of the item varies according to its
@@ -90,68 +102,66 @@ define([
 		//		An alt text for the right icon2.
 		rightIcon2Title: "",
 
+		paramsToInherit: "variableHeight,transition,deleteIcon,icon,rightIcon,rightIcon2,uncheckIcon,arrowClass,checkClass,uncheckClass",
 
-		// btnClass: String
-		//		Deprecated. For backward compatibility.
-		btnClass: "",
-
-		// btnClass2: String
-		//		Deprecated. For backward compatibility.
-		btnClass2: "",
-
+		baseClass: "mblListItem",
 	
 		postMixInProperties: function(){
-			// for backward compatibility
-			if(this.btnClass){
-				this.rightIcon = this.btnClass;
-			}
-			this._setBtnClassAttr = this._setRightIconAttr;
-			this._setBtnClass2Attr = this._setRightIcon2Attr;
 		},
 
 		buildRendering: function(){
+			this._isOnLine = this.inheritParams();
 			this.inherited(arguments);
-			this.domNode.className = "mblListItem" + (this.selected ? " mblItemSelected" : "");
-
-			// label
-			var box = this.box = domConstruct.create("div");
-			box.className = "mblListItemTextBox";
-			if(this.anchorLabel){
-				box.style.cursor = "pointer";
+			if(this.selected){
+				domClass.add(this.domNode, "mblItemSelected");
 			}
-			var r = this.srcNodeRef;
-			if(r && !this.label){
-				this.label = "";
-				for(var i = 0, len = r.childNodes.length; i < len; i++){
-					var n = r.firstChild;
-					if(n.nodeType === 3 && lang.trim(n.nodeValue) !== ""){
-						n.nodeValue = this._cv ? this._cv(n.nodeValue) : n.nodeValue;
-						this.labelNode = domConstruct.create("span", {className:"mblListItemLabel"});
-						this.labelNode.appendChild(n);
-						n = this.labelNode;
+
+			// inner HTML
+			if(this.srcNodeRef){
+				// reparent
+				var label;
+				if(this.srcNodeRef.length === 1){
+					var n = this.srcNodeRef.firstChild;
+					if(n.nodeType === 3){
+						label = lang.trim(n.nodeValue) || "";
 					}
-					box.appendChild(n);
+				}
+				if(label){ // inner text label
+					this.label = label;
+				}else if(lang.trim(this.srcNodeRef.innerHTML) !== ""){ // inline content
+					this.label = "";
+					this.labelNode = domConstruct.create("div", {className:"mblListItemTextBox"});
+					for(var i = 0, len = this.srcNodeRef.childNodes.length; i < len; i++){
+						this.labelNode.appendChild(this.srcNodeRef.firstChild);
+					}
+					this.domNode.appendChild(this.labelNode);
 				}
 			}
 			if(!this.labelNode){
-				this.labelNode = domConstruct.create("span", {className:"mblListItemLabel"}, box);
-			}
-			if(this.anchorLabel){
-				box.style.display = "inline"; // to narrow the text region
+				this.labelNode = domConstruct.create("div", {className:"mblListItemTextBox"}, this.domNode);
 			}
 
-			var a = this.anchorNode = domConstruct.create("a");
-			a.className = "mblListItemAnchor";
-			this.domNode.appendChild(a);
-			a.appendChild(box);
+			if(this.anchorLabel){
+				this.labelNode.style.display = "inline"; // to narrow the text region
+			}
 		},
 
 		startup: function(){
 			if(this._started){ return; }
-			this.inheritParams();
+
+			if(!this._isOnLine){
+				this.inheritParams();
+				this.set({
+					icon: this.icon,
+					deleteIcon: this.deleteIcon,
+					rightIcon: this.rightIcon,
+					rightIcon2: this.rightIcon2
+				});
+			}
+
 			var parent = this.getParent();
 			if(this.moveTo || this.href || this.url || this.clickable || (parent && parent.select)){
-				this._onClickHandle = this.connect(this.anchorNode, "onclick", "_onClick");
+				this._onClickHandle = this.connect(this.domNode, "onclick", "_onClick");
 			}
 			this.setArrow();
 
@@ -163,10 +173,10 @@ define([
 				setTimeout(lang.hitch(this, "layoutVariableHeight"));
 			}
 
-			this.set("icon", this.icon); // _setIconAttr may be called twice but this is necessary for offline instantiation
-			if(!this.checked && this.checkClass.indexOf(',') !== -1){
+			if(parent.select){
 				this.set("checked", this.checked);
 			}
+
 			this.inherited(arguments);
 		},
 
@@ -248,22 +258,32 @@ define([
 		},
 
 		layoutVariableHeight: function(){
-			var h = this.anchorNode.offsetHeight;
-			if(h === this.anchorNodeHeight){ return; }
-			this.anchorNodeHeight = h;
+			var h = this.domNode.offsetHeight;
+			if(h === this.domNodeHeight){ return; }
+			this.domNodeHeight = h;
 			array.forEach([
 					this.rightTextNode,
 					this.rightIcon2Node,
 					this.rightIconNode,
+					this.uncheckIconNode,
 					this.iconNode,
 					this.deleteIconNode,
 					this.knobIconNode
 				], function(n){
 					if(n){
-						var t = Math.round((h - n.offsetHeight) / 2);
-						n.style.marginTop = t + "px";
+						var domNode = this.domNode;
+						var f = function(){
+							var t = Math.round((h - n.offsetHeight) / 2) -
+								domStyle.get(domNode, "paddingTop");
+							n.style.marginTop = t + "px";
+						}
+						if(n.offsetHeight === 0 && n.tagName === "IMG"){
+							n.onload = function(){ f(); };
+						}else{
+							f();
+						}
 					}
-				});
+				}, this);
 		},
 
 		setArrow: function(){
@@ -274,7 +294,7 @@ define([
 			var parent = this.getParent();
 			if(this.moveTo || this.href || this.url || this.clickable){
 				if(!this.noArrow && !(parent && parent.stateful)){
-					c = this.arrowClass;
+					c = this.arrowClass || "mblDomButtonArrow";
 				}
 			}
 			if(c){
@@ -282,62 +302,50 @@ define([
 			}
 		},
 
-		_setDeleteIconAttr: function(icon){
-			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
-			this.icon = icon;
-			var a = this.anchorNode;
-			if(!this.deleteIconNode){
-				if(icon){
-					var ref = this.iconNode || this.rightIconNode || this.rightIcon2Node || this.rightTextNode || this.box;
-					this.deleteIconNode = domConstruct.create("div", {className:"mblListItemIcon"}, ref, "before");
-				}
-			}else{
-				if(icon){
-					domConstruct.empty(this.deleteIconNode);
-				}else{
-					domConstruct.destroy(this.deleteIconNode);
-					this.deleteIconNode = null;
-				}
+		_setIcon: function(/*String*/icon, /*String*/type, /*DomNode*/ref){
+			if(!this.getParent()){ return; }
+			this._set(type, icon);
+			this[type + "Node"] = iconUtils.setIcon(icon, this[type + "Pos"],
+				this[type + "Node"], this.domNode, this[type + "Title"] || this.alt, ref, "before");
+			if(this[type + "Node"]){
+				var cap = type.charAt(0).toUpperCase() + type.substring(1);
+				domClass.add(this[type + "Node"], "mblListItem" + cap);
 			}
-			if(icon && icon !== "none"){
-				common.createIcon(icon, this.iconPos, null, this.alt, this.deleteIconNode);
-				if(this.iconPos){
-					domClass.add(this.deleteIconNode.firstChild, "mblListItemSpriteIcon");
-				}
-				domClass.remove(a, "mblListItemAnchorNoIcon");
-			}else{
-				domClass.add(a, "mblListItemAnchorNoIcon");
-			}
+		},
+
+		_setDeleteIconAttr: function(/*String*/icon){
+			this._setIcon(icon, "deleteIcon", this.iconNode || this.rightIconNode || this.rightIcon2Node || this.rightTextNode || this.labelNode);
 		},
 	
 		_setIconAttr: function(icon){
-			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
-			this.icon = icon;
-			var a = this.anchorNode;
-			if(!this.iconNode){
-				if(icon){
-					var ref = this.rightIconNode || this.rightIcon2Node || this.rightTextNode || this.box;
-					this.iconNode = domConstruct.create("div", {className:"mblListItemIcon"}, ref, "before");
-				}
-			}else{
-				if(icon){
-					domConstruct.empty(this.iconNode);
-				}else{
-					domConstruct.destroy(this.iconNode);
-					this.iconNode = null;
-				}
-			}
-			if(icon && icon !== "none"){
-				common.createIcon(icon, this.iconPos, null, this.alt, this.iconNode);
-				if(this.iconPos){
-					domClass.add(this.iconNode.firstChild, "mblListItemSpriteIcon");
-				}
-				domClass.remove(a, "mblListItemAnchorNoIcon");
-			}else{
-				domClass.add(a, "mblListItemAnchorNoIcon");
-			}
+			this._setIcon(icon, "icon", this.rightIconNode || this.rightIcon2Node || this.rightTextNode || this.labelNode);
 		},
 	
+		_setRightTextAttr: function(/*String*/text){
+			if(!this.rightTextNode){
+				this.rightTextNode = domConstruct.create("div", {className:"mblListItemRightText"}, this.labelNode, "before");
+			}
+			this.rightText = text;
+			this.rightTextNode.innerHTML = this._cv ? this._cv(text) : text;
+		},
+	
+		_setRightIconAttr: function(/*String*/icon){
+			this._setIcon(icon, "rightIcon", this.rightIcon2Node || this.rightTextNode || this.labelNode);
+		},
+	
+		_setUncheckIconAttr: function(/*String*/icon){
+			this._setIcon(icon, "uncheckIcon", this.rightIcon2Node || this.rightTextNode || this.labelNode);
+		},
+
+		_setRightIcon2Attr: function(/*String*/icon){
+			this._setIcon(icon, "rightIcon2", this.rightTextNode || this.labelNode);
+		},
+	
+		_setLabelAttr: function(/*String*/text){
+			this._set("label", text);
+			this.labelNode.innerHTML = this._cv ? this._cv(text) : text;
+		},
+
 		_setCheckedAttr: function(/*Boolean*/checked){
 			var parent = this.getParent();
 			if(parent && parent.select === "single" && checked){
@@ -345,72 +353,18 @@ define([
 					child.set("checked", false);
 				});
 			}
-			this._setRightIconAttr(this.checkClass);
-
-			var icons = this.rightIconNode.childNodes;
-			if(icons.length === 1){
-				this.rightIconNode.style.display = checked ? "" : "none";
-			}else{
-				icons[0].style.display = checked ? "" : "none";
-				icons[1].style.display = !checked ? "" : "none";
-			}
+			this._setRightIconAttr(this.checkClass || "mblDomButtonCheck");
+			this._setUncheckIconAttr(this.uncheckClass);
 
 			domClass.toggle(this.domNode, "mblListItemChecked", checked);
+			domClass.toggle(this.domNode, "mblListItemUnchecked", !checked);
+			domClass.toggle(this.domNode, "mblListItemHasUncheck", !!this.uncheckIconNode);
+			this.rightIconNode.style.position = (this.uncheckIconNode && !checked) ? "absolute" : "";
+
 			if(parent && this.checked !== checked){
 				parent.onCheckStateChanged(this, checked);
 			}
-			this.checked = checked;
-		},
-	
-		_setRightTextAttr: function(/*String*/text){
-			if(!this.rightTextNode){
-				this.rightTextNode = domConstruct.create("div", {className:"mblListItemRightText"}, this.box, "before");
-			}
-			this.rightText = text;
-			this.rightTextNode.innerHTML = this._cv ? this._cv(text) : text;
-		},
-	
-		_setRightIconAttr: function(/*String*/icon){
-			if(!this.rightIconNode){
-				var ref = this.rightIcon2Node || this.rightTextNode || this.box;
-				this.rightIconNode = domConstruct.create("div", {className:"mblListItemRightIcon"}, ref, "before");
-			}else{
-				if(icon){
-					domConstruct.empty(this.rightIconNode);
-				}else{
-					domConstruct.destroy(this.rightIconNode);
-					this.rightIconNode = null;
-				}
-			}
-			this.rightIcon = icon;
-			var arr = (icon || "").split(/,/);
-			if(arr.length === 1){
-				common.createIcon(icon, null, null, this.rightIconTitle, this.rightIconNode);
-			}else{
-				common.createIcon(arr[0], null, null, this.rightIconTitle, this.rightIconNode);
-				common.createIcon(arr[1], null, null, this.rightIconTitle, this.rightIconNode);
-			}
-		},
-	
-		_setRightIcon2Attr: function(/*String*/icon){
-			if(!this.rightIcon2Node){
-				var ref = this.rightTextNode || this.box;
-				this.rightIcon2Node = domConstruct.create("div", {className:"mblListItemRightIcon2"}, ref, "before");
-			}else{
-				if(icon){
-					domConstruct.empty(this.rightIcon2Node);
-				}else{
-					domConstruct.destroy(this.rightIcon2Node);
-					this.rightIcon2Node = null;
-				}
-			}
-			this.rightIcon2 = icon;
-			common.createIcon(icon, null, null, this.rightIcon2Title, this.rightIcon2Node);
-		},
-	
-		_setLabelAttr: function(/*String*/text){
-			this.label = text;
-			this.labelNode.innerHTML = this._cv ? this._cv(text) : text;
-		}
+			this._set("checked", checked);
+		}	
 	});
 });

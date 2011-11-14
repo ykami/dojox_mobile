@@ -41,3 +41,6 @@ html.mobile, .mobile body {
   /*	.mblIconRoot-styles;*/
 
 }
+.mblImageIcon {
+  vertical-align: top;
+}
