@@ -81,7 +81,7 @@ define([
 	};
 	dm.detectScreenSize();
 
-	dm.setupIcon = function(/*DomNode*/iconNode, /*String*/iconPos){
+	dm.XXsetupIcon = function(/*DomNode*/iconNode, /*String*/iconPos){
 		// summary:
 		//		Sets up CSS sprite for a foreground image.
 		if(iconNode && iconPos){
@@ -201,7 +201,7 @@ define([
 		win.global.open(url, target || "_blank");
 	};
 
-	dm.createDomButton = function(/*DomNode*/refNode, /*Object?*/style, /*DomNode?*/toNode){
+	dm.XXcreateDomButton = function(/*DomNode*/refNode, /*Object?*/style, /*DomNode?*/toNode){
 		// summary:
 		//		Creates a DOM button.
 		// description:
@@ -299,7 +299,7 @@ define([
 		return node;
 	};
 	
-	dm.createIcon = function(/*String*/icon, /*String*/iconPos, /*DomNode*/node, /*String?*/title, /*DomNode?*/parent){
+	dm.XXcreateIcon = function(/*String*/icon, /*String*/iconPos, /*DomNode*/node, /*String?*/title, /*DomNode?*/parent){
 		// summary:
 		//		Creates or updates an icon node
 		// description:

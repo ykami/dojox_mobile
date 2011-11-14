@@ -170,7 +170,7 @@ define([
 
 		// iconNode is a DIV node that holds an icon
 		this.iconWrapper = false;
-		this.setIcon = function(/*String*/icon, /*String*/iconPos, /*DomNode*/iconNode, /*DomNode*/parent, /*String?*/alt, /*DomNode?*/refNode, /*String?*/pos){
+		this.setIcon = function(/*String*/icon, /*String*/iconPos, /*DomNode*/iconNode, /*String?*/alt, /*DomNode*/parent, /*DomNode?*/refNode, /*String?*/pos){
 			if(!parent || !icon && !iconNode){ return; }
 			if(icon && icon !== "none"){ // create or update an icon
 				if(!this.iconWrapper && icon.indexOf("mblDomButton") !== 0 && !iconPos){ // image

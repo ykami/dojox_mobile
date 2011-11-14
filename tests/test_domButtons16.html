@@ -22,17 +22,17 @@
 		require([
 			"dojo/_base/window",
 			"dojo/ready",
-			"dojox/mobile",
+			"dojox/mobile/iconUtils",
 			"dojox/mobile/parser",
 			"dojox/mobile/compat"
-		], function(win, ready, common){
+		], function(win, ready, iconUtils){
 			ready(function(){
 				var nodes = win.doc.getElementsByTagName("div");
 				for(var i = 0; i < nodes.length; i++){
 					var div = nodes[i];
 					if(div.nodeType != 1 || div.className.indexOf("mblDomButton") == -1){ continue; }
 					div.style.border = "1px solid red";
-					common.createDomButton(div);
+					iconUtils.createDomButton(div);
 				}
 			});
 		});

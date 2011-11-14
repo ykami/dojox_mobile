@@ -10,9 +10,10 @@ define([
 	"dijit/_Contained",
 	"dijit/_Container",
 	"dijit/_WidgetBase",
+	"./iconUtils",
 	"./lazyLoadUtils",
 	"require"
-], function(array, connect, declare, lang, has, dom, domClass, domConstruct, Contained, Container, WidgetBase, lazyLoadUtils, require){
+], function(array, connect, declare, lang, has, dom, domClass, domConstruct, Contained, Container, WidgetBase, iconUtils, lazyLoadUtils, require){
 	// module:
 	//		dojox/mobile/Accordion
 	// summary:
@@ -26,9 +27,10 @@ define([
 		iconPos1: "",
 		iconPos2: "",
 
+		baseClass: "mblAccordionTitle",
+
 		buildRendering: function(){
 			this.inherited(arguments);
-			this.domNode.className = "mblAccordionTitle";
 
 			var a = this.anchorNode = domConstruct.create("a", {
 				className: "mblAccordionTitleAnchor"
@@ -82,7 +84,7 @@ define([
 		_setIcon: function(num){
 			var i = "icon" + num, n = "iconNode" + num + "Inner", p = "iconPos" + num;
 			if(this[i] && this[i] !== "none"){
-				var img = dojox.mobile.createIcon(this[i], this[p], null, this.alt, this[n]);
+				var img = iconUtils.createIcon(this[i], this[p], null, this.alt, this[n]);
 				this[n].parentNode.style.height = this[n].style.height;
 				if(has("ie")){
 					this[n].appendChild(domConstruct.create("img", {
@@ -108,8 +110,6 @@ define([
 			this.inheritParams();
 			this._setIcon(1);
 			this._setIcon(2);
-			connect.subscribe("/dojox/mobile/resizeAll", this, "layoutVariableHeight");
-			setTimeout(lang.hitch(this, "layoutVariableHeight"));
 		},
 
 		select: function(/*Widget*/pane){
@@ -118,26 +118,6 @@ define([
 
 		deselect: function(/*Widget*/pane){
 			domClass.remove(this.domNode, "mblAccordionTitleSelected");
-		},
-
-		layoutVariableHeight: function(e){
-				{
-//					this.iconNode1.style.top = "50%";
-				}
-				return;
-			var h = this.anchorNode.offsetHeight;
-			array.forEach([
-					this.iconNode1,
-					this.iconNode2
-				], function(n){
-					n.style.visibility = "hidden";
-					var disp = n.style.display;
-					n.style.display = "block";
-					var t = Math.round((h - n.offsetHeight) / 2);
-					n.style.display = disp;
-					n.style.visibility = "";
-					n.style.marginTop = t + "px";
-				});
 		},
 
 		_onClick: function(e){

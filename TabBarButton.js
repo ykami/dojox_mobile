@@ -202,7 +202,7 @@ define([
 					// mblTabBarButtonIcon -> mblTabBarButtonIconParent
 				}
 				this["iconNode" + n] = iconUtils.setIcon(icon, this["iconPos" + n],
-					this["iconNode" + n], this["iconParentNode" + n], this.alt);
+					this["iconNode" + n], this.alt, this["iconParentNode" + n]);
 				this["icon" + n] = icon;
 //x				this["iconParentNode" + n].style.visibility = sel ? "hidden" : "";
 			}

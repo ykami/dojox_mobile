@@ -150,7 +150,6 @@ define([
 
 	
 		inheritParams: function(){
-				console.log(2);
 			var parent = this.getParent();
 			if(parent){
 				array.forEach(this.paramsToInherit.split(/,/), function(p){
@@ -261,7 +260,7 @@ define([
 
 		_setIconAttr: function(icon){
 			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
-			this.iconNode = iconUtils.setIcon(icon, this.iconPos, this.iconNode, this.iconParentNode, this.alt);
+			this.iconNode = iconUtils.setIcon(icon, this.iconPos, this.iconNode, this.alt, this.iconParentNode);
 			this.icon = icon;
 		}
 	});

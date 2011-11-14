@@ -306,7 +306,7 @@ define([
 			if(!this.getParent()){ return; }
 			this._set(type, icon);
 			this[type + "Node"] = iconUtils.setIcon(icon, this[type + "Pos"],
-				this[type + "Node"], this.domNode, this[type + "Title"] || this.alt, ref, "before");
+				this[type + "Node"], this[type + "Title"] || this.alt, this.domNode, ref, "before");
 			if(this[type + "Node"]){
 				var cap = type.charAt(0).toUpperCase() + type.substring(1);
 				domClass.add(this[type + "Node"], "mblListItem" + cap);
