@@ -165,6 +165,7 @@ define([
 		},
 
 		_setBackAttr: function(/*String*/back){
+			this._set("back", back);
 			if(!this.backButton){
 				this.backButton = new ToolBarButton({arrow:"left", label:back});
 				this.connect(this.backButton.domNode, "onclick", "_onClick");
@@ -176,7 +177,7 @@ define([
 		},
 
 		_setLabelAttr: function(/*String*/label){
-			this.label = label;
+			this._set("label", label);
 			this.labelNode.innerHTML = this.labelDivNode.innerHTML = this._cv ? this._cv(label) : label;
 		},
 	
