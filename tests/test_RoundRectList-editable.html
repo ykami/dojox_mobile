@@ -27,11 +27,11 @@
 				var btn1 = registry.byId("btn1");
 				var list1 = registry.byId("list1");
 				var flag = btn1.flag = !btn1.flag; // true: editable
-				list1.set("editable", flag);
+				list1.set("editMode", flag);
 				if(flag){
-					btn1.domNode.innerHTML = "Done";
+					btn1.set("label", "Done");
 				}else{
-					btn1.domNode.innerHTML = "Edit";
+					btn1.set("label", "Edit");
 				}
 			}
 		});
