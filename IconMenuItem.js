@@ -2,8 +2,9 @@ define([
 	"dojo/_base/declare",
 	"dojo/dom-class",
 	"dojo/dom-construct",
+	"./iconUtils",
 	"./_ItemBase"
-], function(declare, domClass, domConstruct, ItemBase){
+], function(declare, domClass, domConstruct, iconUtils, ItemBase){
 	// module:
 	//		dojox/mobile/IconMenuItem
 	// summary:
@@ -79,7 +80,7 @@ define([
 			var a = this.containerNode;
 			domConstruct.empty(this.iconNode);
 			if(icon && icon !== "none"){
-				dojox.mobile.createIcon(icon, this.iconPos, null, this.alt, this.iconNode);
+				iconUtils.createIcon(icon, this.iconPos, null, this.alt, this.iconNode);
 				if(this.iconPos){
 					domClass.add(this.iconNode.firstChild, "mblIconMenuItemSpriteIcon");
 				}

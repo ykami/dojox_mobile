@@ -3,8 +3,8 @@ define([
 	"dojo/_base/lang",
 	"dojo/dom-class",
 	"dojo/dom-construct",
-	"./common"
-], function(declare, lang, domClass, domConstruct, common){
+	"./iconUtils"
+], function(declare, lang, domClass, domConstruct, iconUtils){
 	// module:
 	//		dojox/mobile/Badge
 	// summary:
@@ -27,7 +27,7 @@ define([
 			if(this.fontSize !== 16){
 				this.domNode.style.fontSize = this.fontSize + "px";
 			}
-			dojox.mobile.createDomButton(this.domNode);
+			iconUtils.createDomButton(this.domNode);
 			this.setValue(this.value);
 		},
 

@@ -4,8 +4,9 @@ define([
 	"dojo/dom-construct",
 	"dijit/_Contained",
 	"dijit/_Container",
-	"dijit/_WidgetBase"
-], function(declare, win, domConstruct, Contained, Container, WidgetBase){
+	"dijit/_WidgetBase",
+	"./iconUtils"
+], function(declare, win, domConstruct, Contained, Container, WidgetBase, iconUtils){
 	// module:
 	//		dojox/mobile/SimpleDialog
 	// summary:
@@ -35,7 +36,7 @@ define([
 				this.closeButtonNode = domConstruct.create("div", {
 					className: "mblSimpleDialogCloseBtn "+this.closeButtonClass
 				}, this.domNode);
-				dojox.mobile.createDomButton(this.closeButtonNode);
+				iconUtils.createDomButton(this.closeButtonNode);
 				this.connect(this.closeButtonNode, "onclick", "_onClick");
 			}
 		},

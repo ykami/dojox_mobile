@@ -28,6 +28,7 @@ define([
 					top: (iconNode.parentNode ? domStyle.get(iconNode, "top") : 0) - t + "px",
 					left: -l + "px"
 				});
+				domClass.add(iconNode, "mblSpriteIcon");
 			}
 		};
 
@@ -129,7 +130,7 @@ define([
 			return node;
 		};
 
-		this.createIcon = function(/*String*/icon, /*String*/iconPos, /*DomNode*/node, /*String?*/title, /*DomNode?*/parent){
+		this.createIcon = function(/*String*/icon, /*String?*/iconPos, /*DomNode?*/node, /*String?*/title, /*DomNode?*/parent, /*DomNode?*/refNode, /*String?*/pos){
 			// summary:
 			//		Creates or updates an icon node
 			// description:
@@ -141,7 +142,7 @@ define([
 				if(node && node.className.match(/(mblDomButton\w+)/)){
 					domClass.remove(node, RegExp.$1);
 				}else{
-					node = domConstruct.create("div", null, parent); /* 1.8 */
+					node = domConstruct.create("div", null, refNode || parent, pos);
 				}
 				node.title = title;
 				domClass.add(node, icon);
@@ -151,7 +152,7 @@ define([
 				if(!node || node.nodeName !== "IMG"){
 					node = domConstruct.create("img", {
 						alt: title
-					}, parent); /* 1.8 */
+					}, refNode || parent, pos); /* 1.8 */
 				}
 				node.src = (icon || "").replace("${theme}", this.currentTheme); //TODO: how do I pass currentTheme
 				this.setupSpriteIcon(node, iconPos);
@@ -168,25 +169,28 @@ define([
 		};
 
 		// iconNode is a DIV node that holds an icon
-		this.setIcon = function(/*String*/icon, /*String*/iconPos, /*DomNode*/iconNode, /*DomNode*/parent, /*String?*/alt){
+		this.iconWrapper = false;
+		this.setIcon = function(/*String*/icon, /*String*/iconPos, /*DomNode*/iconNode, /*String?*/alt, /*DomNode*/parent, /*DomNode?*/refNode, /*String?*/pos){
 			if(!parent || !icon && !iconNode){ return; }
-			if(!iconNode){
-				iconNode = domConstruct.create("div", {className:"mblIconRoot"}, parent);
-			}
-			domConstruct.empty(iconNode);
-			if(icon && icon !== "none"){
-				this.createIcon(icon, iconPos, null, alt, iconNode);
-				if(iconPos){
-					domClass.add(iconNode.firstChild, "mblSpriteIcon");
+			if(icon && icon !== "none"){ // create or update an icon
+				if(!this.iconWrapper && icon.indexOf("mblDomButton") !== 0 && !iconPos){ // image
+					iconNode = this.createIcon(icon, null, iconNode, alt, parent, refNode, pos);
+					domClass.add(iconNode, "mblImageIcon");
+				}else{ // sprite or DOM button
+					iconNode && domConstruct.empty(iconNode);
+					if(!iconNode){
+						iconNode = domConstruct.create("div", {className:"mblIconRoot"}, refNode || parent, pos);
+					}
+					this.createIcon(icon, iconPos, null, alt, iconNode);
 				}
 				domClass.remove(parent, "mblNoIcon");
 				return iconNode;
-			}else{
+			}else{ // clear the icon
 				domConstruct.destroy(iconNode);
 				domClass.add(parent, "mblNoIcon");
 				return null;
 			}
-		}
+		};
 	};
 	return iconUtils;
 });

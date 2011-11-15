@@ -38,23 +38,43 @@
 .mblListItemChecked {
 	.mblListItemChecked-styles;
 }
+
+.mblListItemChecked .mblListItemRightIcon {
+	visibility: visible;
+}
+.mblListItemChecked .mblListItemUncheckIcon {
+	position: absolute;
+	visibility: hidden;
+}
+
+.mblListItemUnchecked .mblListItemRightIcon {
+	visibility: hidden;
+}
+.mblListItemUnchecked .mblListItemUncheckIcon {
+	visibility: visible;
+}
+
+.mblListItemDeleteIcon {
+	position: relative;
+	float: left;
+	line-height: normal;
+	.mblListItemDeleteIcon-styles;
+}
 .mblListItemIcon {
+	position: relative;
 	float: left;
 	line-height: normal;
 	.mblListItemIcon-styles;
 }
-.mblListItemSpriteIcon {
-	position: absolute;
-	.mblListItemSpriteIcon-styles;
-
-}
 .mblListItemRightIcon,
-.mblListItemRightIcon2 {
+.mblListItemRightIcon2,
+.mblListItemUncheckIcon {
 	position: relative;
 	float: right;
 	line-height: normal;
 	.mblListItemRightIcon-styles;
 }
+
 .mblListItemRightText {
 	position: relative;
 	float: right;
@@ -70,7 +90,7 @@
 .mblVariableHeight .mblListItemTextBox {
 	white-space: normal;
 }
-.mblListItemAnchorNoIcon .mblListItemTextBox {
+.XXmblListItemAnchorNoIcon .mblListItemTextBox {
 	.mblListItemAnchorNoIcon-mblListItemTextBox-styles;
 }
 .mblListItemSubText {

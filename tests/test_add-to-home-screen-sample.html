@@ -19,12 +19,13 @@
 			"dojo/ready",
 			"dijit/registry",
 			"dojox/mobile",
+			"dojox/mobile/iconUtils",
 			"dojox/mobile/parser",
 			"dojox/mobile/compat",
 			"dojox/mobile/ScrollableView",
 			"dojox/mobile/Button",
 			"dojox/mobile/Tooltip"
-		], function(connect, cookie, dom, domClass, ready, registry, common){
+		], function(connect, cookie, dom, domClass, ready, registry, common, iconUtils){
 			var timerShow, timerHide;
 			var handler;
 			dlgShow = function(){
@@ -58,7 +59,7 @@
 				dom.byId('clearBtn').disabled = true;
 			}
 			ready(function(){
-				common.createDomButton(dom.byId('dlgClose'));
+				iconUtils.createDomButton(dom.byId('dlgClose'));
 				if(cookie("disable-AtHS-Notification") == undefined){
 					timerShow = setTimeout(function(){
 						timerShow = 0;

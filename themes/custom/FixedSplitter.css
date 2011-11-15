@@ -1,21 +1,19 @@
 /* dojox.mobile.FixedSplitter */
-.mblFixedSpliter {
+.mblFixedSplitter {
   width: 100%;
   height: 100%;
 }
 /* dojox.mobile.FixedSplitterPane */
-.mblFixedSplitterPane {
+.mblFixedSplitter > * {
   position: absolute;
   overflow-x: hidden;
   overflow-y: auto;
 }
-.mblFixedSplitterPaneH {
-  position: absolute;
+.mblFixedSplitterH > * {
   height: 100%;
   top: 0px;
 }
-.mblFixedSplitterPaneV {
-  position: absolute;
+.mblFixedSplitterV > * {
   width: 100%;
   left: 0px;
 }
