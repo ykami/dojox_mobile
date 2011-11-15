@@ -30,26 +30,8 @@ dojo.addOnLoad(function(){
 				fireOnClick(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0]);
 
 				setTimeout(d.getTestCallback(function(){
-					var demoWidget = dijit.byId("dojox_mobile_IconItem_0");
-					if(!dojo.isIE) {
-						doh.assertTrue(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].src.search(/icon3.png/i) != -1);
-					}
-					doh.assertEqual('app1', demoWidget.domNode.childNodes[0].childNodes[1].childNodes[0].nodeValue);
-					doh.assertEqual('', demoWidget.paneWidget.domNode.style.display);
-					doh.assertEqual('mblIconItemPaneHeading', demoWidget.paneWidget.domNode.childNodes[0].className);
-					doh.assertEqual('mblDomButtonBlueMinus mblDomButton', demoWidget.paneWidget.domNode.childNodes[0].childNodes[0].childNodes[0].className);
-					doh.assertEqual('app1', demoWidget.paneWidget.domNode.childNodes[0].childNodes[1].childNodes[0].nodeValue);
-
-					demoWidget = dijit.byId("dojox_mobile_IconItem_1");
-					if(!dojo.isIE) {
-						doh.assertTrue(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].src.search(/icon3.png/i) != -1);
-					}
-					doh.assertEqual('app2', demoWidget.domNode.childNodes[0].childNodes[1].childNodes[0].nodeValue);
-					doh.assertEqual('', demoWidget.paneWidget.domNode.style.display);
-					doh.assertEqual('mblIconItemPaneHeading', demoWidget.paneWidget.domNode.childNodes[0].className);
-					doh.assertEqual('mblDomButtonBlueMinus mblDomButton', demoWidget.paneWidget.domNode.childNodes[0].childNodes[0].childNodes[0].className);
-					doh.assertEqual('app2', demoWidget.paneWidget.domNode.childNodes[0].childNodes[1].childNodes[0].nodeValue);
-					
+					verifyIconItem("dojox_mobile_IconItem_0", 'app1', '', /icon3.png/i);
+					verifyIconItem("dojox_mobile_IconItem_1", 'app2', '', /icon3.png/i);
 				}),2000);
 				return d;
 			}

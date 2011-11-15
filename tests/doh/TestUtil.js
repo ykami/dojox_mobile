@@ -123,3 +123,19 @@ function verifyRect(node, rTop, rRight, rBottom, rLeft) {
 	doh.assertEqual(rBottom, rectArray[2]);
 	doh.assertEqual(rLeft+")", rectArray[3]);
 }
+
+function verifyIconItem(id, text, display, regExp, isSprite){
+	var demoWidget = dijit.byId(id);
+	if(!dojo.isIE && !dojo.isFF) {
+		if(isSprite){
+			doh.assertTrue(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].childNodes[0].src.search(regExp) != -1, "search " + regExp.toString());
+		}else{
+			doh.assertTrue(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].src.search(regExp) != -1, "search " + regExp.toString());
+		}
+	}
+	doh.assertEqual(text, demoWidget.domNode.childNodes[0].childNodes[1].childNodes[0].nodeValue);
+	doh.assertEqual(display, demoWidget.paneWidget.domNode.style.display);
+	doh.assertEqual('mblIconItemPaneHeading', demoWidget.paneWidget.domNode.childNodes[0].className);
+	doh.assertEqual('mblDomButtonBlueMinus mblDomButton', demoWidget.paneWidget.domNode.childNodes[0].childNodes[0].childNodes[0].className);
+	doh.assertEqual(text, demoWidget.paneWidget.domNode.childNodes[0].childNodes[1].childNodes[0].nodeValue);
+}
