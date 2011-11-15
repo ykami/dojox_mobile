@@ -1,10 +1,15 @@
-dojo.require("doh.runner");
+//dojo.require("dojo.has");
+
+require([
+	"dijit/_base/manager",  // dijit.byId
+	"doh/runner"	//doh functions
+]);
 
 function fireOnClick(obj){
 	var anchorNode;
 	if(typeof obj === "string"){
 		var demoWidget = dijit.byId(obj);
-		anchorNode = demoWidget.anchorNode;
+		anchorNode = demoWidget.domNode;
 	}else{
 		anchorNode = obj;
 	}
@@ -17,34 +22,71 @@ function fireOnClick(obj){
 	}
 }
 
+function fireTouchEvent(eventtype, node, x, y){
+	if(dojo.isIE<9){
+		var e = document.createEventObject(window.event);
+		e.button = 1;
+		e.pageX = x;
+		e.pageY = y;
+		node.fireEvent( "on" + eventtype[1], e );
+	}else{
+		var e = document.createEvent('Events');
+		e.initEvent( dojo.has('touch') ? eventtype[0] : eventtype[1], true, true);
+		e.touches = [ { pageX: x, pageY: y } ];
+		e.pageX = x;
+		e.pageY = y;
+		e.changedTouches = e.touches;
+		node.dispatchEvent(e);
+	}
+}
 
-function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIcon, hasIcon2, hasVariableHeight, regExp, hasSelected) {
-	demoWidget = dijit.byId(id);
+/*
+function fireTouchStart(node, x, y){
+	fireTouchEvent(["touchstart", "mousedown"], node, x, y);
+}
+
+function fireTouchEnd(node, x, y){
+	fireTouchEvent(["touchend", "mouseup"], node, x, y);
+}
+
+function fireTouchMove(node, x, y){
+	fireTouchEvent(["touchmove", "mousemove"], node, x, y);
+}
+*/
+
+function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIcon, hasIcon2, hasVariableHeight, regExp, hasSelected){
+	var demoWidget = dijit.byId(id);
+	doh.assertNotEqual(null, demoWidget, "ListItem: Did not instantiate. id=" + id);
 	doh.assertEqual('mblListItem' + (hasVariableHeight ?" mblVariableHeight":"") + (hasSelected ?" mblItemSelected":""), demoWidget.domNode.className);
 	var childNodes = demoWidget.domNode.childNodes;
-	doh.assertEqual('mblListItemAnchor' + (hasIcon?'':' mblListItemAnchorNoIcon'), childNodes[0].className);
+//	doh.assertEqual('mblListItemAnchor' + (hasIcon?'':' mblListItemAnchorNoIcon'), childNodes[0].className);
 	
-	doh.assertEqual('A', childNodes[0].tagName);
+//	doh.assertEqual('A', childNodes[0].tagName);
 	
-	childNodes = childNodes[0].childNodes;
+//	childNodes = childNodes[0].childNodes;
 
 	var i=0;
 	if(hasIcon){
 		if(!dojo.isIE && regExp){
 			doh.assertTrue(childNodes[i].childNodes[0].src.search(regExp) != -1, "search " + regExp.toString());
 		}
-		doh.assertEqual('mblListItemIcon', childNodes[i++].className);
+		doh.assertTrue(dojo.hasClass(childNodes[i], 'mblListItemIcon'), 'mblListItemIcon id=' + id + " got: " + childNodes[i].className);
+		i++;
 	}
 
 	if(hasRightIcon){
 		if(domButtonType){
 			doh.assertEqual(domButtonType + ' mblDomButton', childNodes[i].childNodes[0].className);
 		}
-		doh.assertEqual('mblListItemRightIcon', childNodes[i++].className);
+		doh.assertTrue(dojo.hasClass(childNodes[i], 'mblIconRoot'), 'mblIconRoot id=' + id + " got: " + childNodes[i].className);
+		doh.assertTrue(dojo.hasClass(childNodes[i], 'mblListItemRightIcon'), 'mblListItemRightIcon id=' + id + " got: " + childNodes[i].className);
+		i++;
 	}
 
 	if(hasIcon2){
-		doh.assertEqual('mblListItemRightIcon2', childNodes[i++].className);
+		doh.assertTrue(dojo.hasClass(childNodes[i], 'mblIconRoot'), 'mblIconRoot id=' + id + " got: " + childNodes[i].className);
+		doh.assertTrue(dojo.hasClass(childNodes[i], 'mblListItemRightIcon2'), 'mblListItemRightIcon2 id=' + id + " got: " + childNodes[i].className);
+		i++;
 	}
 
 	if(rightText){
@@ -55,10 +97,10 @@ function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIco
 	doh.assertEqual('DIV', childNodes[i].tagName);
 
 	try{
-		doh.assertEqual(text, dojo.trim(childNodes[i].childNodes[0].innerHTML.replace(/\r\n/g,"")));
+		doh.assertEqual(text, dojo.trim(childNodes[i].innerHTML.replace(/\r\n/g,"")));
 	} catch (e) {
 		if(dojo.isFF ==3.6){
-			doh.assertEqual(text, dojo.trim(childNodes[i].childNodes[0].childNodes[0].innerHTML.replace(/\r\n/g,"")));
+			doh.assertEqual(text, dojo.trim(childNodes[i].childNodes[0].innerHTML.replace(/\r\n/g,"")));
 		}else{
 			throw e;
 		}

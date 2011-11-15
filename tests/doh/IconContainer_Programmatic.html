@@ -26,111 +26,40 @@
 			dojo.require("dojox.mobile.IconContainer");
 			dojo.requireIf(!dojo.isWebKit, "dojox.mobile.compat");
 
-	        dojo.require("doh.runner");
+			dojo.require("doh.runner");
 
 			dojo.addOnLoad(function(){
 
 				var view = dijit.byId("foo");
 				var container = new dojox.mobile.IconContainer();
-				var demoWidget = new dojox.mobile.IconItem({label:"app1", icon:"../images/icon-1.png", lazy:"true"});
+				var demoWidget = new dojox.mobile.IconItem({label:"app1", icon:"../images/icon3.png", lazy:"true"});
 //This position works fine.
 //				view.addChild(container);
 				demoWidget.containerNode.innerHTML='<div class="box"></div>';
 				container.addChild(demoWidget);
 
-				demoWidget = new dojox.mobile.IconItem({label:"app2", icon:"../images/icon-1.png", lazy:"true"});
+				demoWidget = new dojox.mobile.IconItem({label:"app2", icon:"../images/icon3.png", lazy:"true"});
 				container.addChild(demoWidget);
 				demoWidget.containerNode.innerHTML='<div class="box"></div>';
 
-				demoWidget = new dojox.mobile.IconItem({label:"app3", icon:"../images/icon-1.png", lazy:"true"});
+				demoWidget = new dojox.mobile.IconItem({label:"app3", icon:"../images/icon3.png", lazy:"true"});
 				demoWidget.containerNode.innerHTML='<div class="box"></div>';
 				container.addChild(demoWidget);
 
-				demoWidget = new dojox.mobile.IconItem({label:"moveTo", icon:"../images/icon-1.png", moveTo:"about", transition:"slide"});
+				demoWidget = new dojox.mobile.IconItem({label:"moveTo", icon:"../images/icon3.png", moveTo:"about", transition:"slide"});
 				container.addChild(demoWidget);
 
-				demoWidget = new dojox.mobile.IconItem({label:"href", icon:"../images/icon-1.png", href:"../test_iPhone-RoundRectList.html", transition:"slide"});
+				demoWidget = new dojox.mobile.IconItem({label:"href", icon:"../images/icon3.png", href:"../test_iPhone-RoundRectList.html", transition:"slide"});
 				container.addChild(demoWidget);
 
-				demoWidget = new dojox.mobile.IconItem({label:"url", icon:"../images/icon-1.png", href:"../view-sample.html", transition:"slide"});
+				demoWidget = new dojox.mobile.IconItem({label:"url", icon:"../images/icon3.png", href:"../view-sample.html", transition:"slide"});
 				container.addChild(demoWidget);
 //This position makes error.
 				view.addChild(container);
-
-
-				doh.register("dojox.mobile.test.doh.IconContainer", [
-					{
-						name: "IconContainer Verification",
-						timeout: 4000,
-						runTest: function(){
-							var d = new doh.Deferred();
-							setTimeout(d.getTestCallback(function(){
-								var demoWidget = dijit.byId("dojox_mobile_IconContainer_0");
-								doh.assertEqual('mblIconContainer', demoWidget.domNode.className);
-								
-							}));
-							return d;
-						}
-					},
-					{
-						name: "IconItem Verification",
-						timeout: 4000,
-						runTest: function(){
-							var d = new doh.Deferred();
-							var demoWidget = dijit.byId("dojox_mobile_IconItem_0");
-							var e;
-							doh.assertEqual('none', demoWidget.contentNode.style.display);
-							if(dojo.isIE){
-								demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].fireEvent( "onclick" );
-							}else{
-								e = document.createEvent('Events');
-								e.initEvent('click', true, true);
-								demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].dispatchEvent(e);
-							}
-
-							demoWidget = dijit.byId("dojox_mobile_IconItem_1");
-							doh.assertEqual('none', demoWidget.contentNode.style.display);
-							demoWidget = dijit.byId("dojox_mobile_IconItem_0");
-							if(dojo.isIE){
-								demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].fireEvent( "onclick" );
-							}else{
-								e.initEvent('click', true, true);
-								demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].dispatchEvent(e);
-							}
-
-							var t = 500;
-							if(dojo.isIE){
-								t=2000;
-							}
-							setTimeout(d.getTestCallback(function(){
-								var demoWidget = dijit.byId("dojox_mobile_IconItem_0");
-								if(!dojo.isIE) {
-									doh.assertTrue(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].src.search(/icon-1.png/i) != -1);
-								}
-								doh.assertEqual('app1', demoWidget.domNode.childNodes[0].childNodes[1].childNodes[0].nodeValue);
-								doh.assertEqual('', demoWidget.contentNode.style.display);
-								doh.assertEqual('mblIconContentHeading', demoWidget.contentNode.childNodes[0].className);
-								doh.assertEqual('mblDomButtonBlueMinus mblDomButton', demoWidget.contentNode.childNodes[0].childNodes[0].className);
-								doh.assertEqual('app1', demoWidget.contentNode.childNodes[0].childNodes[1].childNodes[0].nodeValue);
-
-								demoWidget = dijit.byId("dojox_mobile_IconItem_1");
-								if(!dojo.isIE) {
-									doh.assertTrue(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].src.search(/icon-1.png/i) != -1);
-								}
-								doh.assertEqual('app2', demoWidget.domNode.childNodes[0].childNodes[1].childNodes[0].nodeValue);
-								doh.assertEqual('none', demoWidget.contentNode.style.display);
-								doh.assertEqual('mblIconContentHeading', demoWidget.contentNode.childNodes[0].className);
-								doh.assertEqual('mblDomButtonBlueMinus mblDomButton', demoWidget.contentNode.childNodes[0].childNodes[0].className);
-								doh.assertEqual('app2', demoWidget.contentNode.childNodes[0].childNodes[1].childNodes[0].nodeValue);
-								
-							}),t);
-							return d;
-						}
-					}
-				]);
-				doh.run();
 			});
 		</script>
+		<script type="text/javascript" src="TestUtil.js"></script>
+		<script type="text/javascript" src=IconContainer.js></script>
 	</head>
 	<body>
 		<div id="foo" dojoType="dojox.mobile.View" selected="true">

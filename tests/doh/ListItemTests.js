@@ -9,7 +9,6 @@ var WIDGET_DOMBUTTON_CHECKBOX_ON = "mblDomButtonCheckboxOn";
 
 require([
 	"dojo/_base/connect",
-	"dojo/dom-construct", // dojo.place
 	"dojo/dom-class", // dojo.hasClass
 	"dojo/ready", // dojo.ready
 	"dijit/registry",  // dijit.byId
@@ -22,7 +21,7 @@ require([
 	"dojox/mobile/View",		// This mobile app uses mobile view
 	"dojox/mobile/compat",		// This mobile app supports running on desktop browsers
 	"dojox/mobile/parser"		// This mobile app uses declarative programming with fast mobile parser
-], function(connect, domConst, domClass, ready, registry, string, runner, ListItem){
+], function(connect, domClass, ready, registry, string, runner, ListItem){
 
 
 	function _createListItemDeclaratively(widgetId) {
