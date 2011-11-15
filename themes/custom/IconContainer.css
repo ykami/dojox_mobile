@@ -47,6 +47,11 @@
   line-height: 65px;
   text-align: center;
 }
+.mblIconItemDeleteIcon {
+  position: absolute;
+  top: -5px;
+  left: -2px;
+}
 .mblIconItemSpriteIcon {
   position: absolute;
 }

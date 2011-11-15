@@ -54,10 +54,8 @@ define([
 		// timeout: String
 		//		Duration of highlight in seconds.
 		timeout: 10,
-
+		
 		// TODO:1.8 Btn -> Button
-		removeBtnClass: "mblDomButtonBlackCircleCross", /* 1.8 */
-
 		// closeBtnClass: String
 		//		A class name of a DOM button to be used as a close button.
 		closeBtnClass: "mblDomButtonBlueMinus",
@@ -67,7 +65,10 @@ define([
 		closeBtnProp: null,
 
 		badge: "", /* 1.8 */
-		removable: true, /* 1.8 */
+		badgeClass: "mblDomButtonRedBadge", /* 1.8 */
+		
+		deletable: true, /* 1.8 */
+		deleteIcon: "", /* 1.8 */
 
 		baseClass: "mblIconItem",
 		tag: "li",
@@ -283,7 +284,7 @@ define([
 
 		_setBadgeAttr: function(/*String*/value){ /* 1.8 */
 			if(!this.badgeObj){
-				this.badgeObj = new Badge({fontSize:14});
+				this.badgeObj = new Badge({fontSize:14, className:this.badgeClass});
 				domStyle.set(this.badgeObj.domNode, {
 					position: "absolute",
 					top: "-2px",
@@ -295,6 +296,37 @@ define([
 				this.iconDivNode.appendChild(this.badgeObj.domNode);
 			}else{
 				this.iconDivNode.removeChild(this.badgeObj.domNode);
+			}
+		},
+		
+		_setDeletableAttr: function(deletable){
+			if(!this.getParent()){ return; }
+			this.deletable = deletable;
+			this.set("deleteIcon", deletable ? this.deleteIcon : "");
+		},
+		
+		_setDeleteIconAttr: function(icon){
+			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
+			this.deleteIcon = icon;
+			
+			var isIconShown = icon && this.deletable;
+			if(!this.deleteIconNode){
+				if(isIconShown){
+					this.deleteIconNode = domConstruct.create("div", {className:"mblIconItemDeleteIcon"}, this.iconDivNode);
+				}
+			}else{
+				if(isIconShown){
+					domConstruct.empty(this.deleteIconNode);
+				}else{
+					domConstruct.destroy(this.deleteIconNode);
+					this.deleteIconNode = null;
+				}
+			}
+			if(isIconShown && icon !== "none"){
+				iconUtils.createIcon(icon, this.iconPos, null, this.alt, this.deleteIconNode);
+				if(this.iconPos){
+					domClass.add(this.deleteIconNode.firstChild, "mblIconItemSpriteIcon");
+				}
 			}
 		}
 	});
