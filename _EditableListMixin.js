@@ -38,7 +38,6 @@ define([
 		//		display a group of items. Each item must be
 		//		dojox.mobile.ListItem.
 
-		editMode: false,
 		rightIconForEdit: "images/tab-icon-11.png",
 		deleteIconForEdit: "mblDomButtonRedCircleMinus",
 
@@ -144,29 +143,28 @@ define([
 			this._conn = null;
 		},
 
-		_setEditModeAttr: function(/*Boolean*/flag){
-			this._set("editMode", flag);
-			domClass[flag ? "add" : "remove"](this.domNode, "mblEditableRoundRectList");
+		startEdit: function(){
+			domClass.add(this.domNode, "mblEditableRoundRectList");
+			array.forEach(this.getChildren(), function(child){
+				child.set("rightIcon", this.rightIconForEdit);
+				child.set("deleteIcon", this.deleteIconForEdit);
+			}, this);
+			if(!this._handles){
+				this._handles = [];
+				this._handles.push(this.connect(this.domNode, has('touch') ? "touchstart" : "onmousedown", "onTouchStart"));
+				this._handles.push(this.connect(this.domNode,"onclick", "_onClick"));
+			}
+		},
 
-			if(flag){
-				array.forEach(this.getChildren(), function(child){
-					child.set("rightIcon", this.rightIconForEdit);
-					child.set("deleteIcon", this.deleteIconForEdit);
-				}, this);
-				if(!this._handles){
-					this._handles = [];
-					this._handles.push(this.connect(this.domNode, has('touch') ? "touchstart" : "onmousedown", "onTouchStart"));
-					this._handles.push(this.connect(this.domNode,"onclick", "_onClick"));
-				}
-			}else{
-				array.forEach(this.getChildren(), function(child){
-					child.set("rightIcon", "");
-					child.set("deleteIcon", "");
-				});
-				if(this._handles){
-					array.forEach(this._handles, this.disconnect, this);
-					this._handles = null;
-				}
+		endEdit: function(){
+			domClass.remove(this.domNode, "mblEditableRoundRectList");
+			array.forEach(this.getChildren(), function(child){
+				child.set("rightIcon", "");
+				child.set("deleteIcon", "");
+			});
+			if(this._handles){
+				array.forEach(this._handles, this.disconnect, this);
+				this._handles = null;
 			}
 		}
 	});

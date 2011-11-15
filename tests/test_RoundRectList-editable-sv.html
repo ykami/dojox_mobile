@@ -28,10 +28,11 @@
 				var btn1 = registry.byId("btn1");
 				var list1 = registry.byId("list1");
 				var flag = btn1.flag = !btn1.flag; // true: editable
-				list1.set("editMode", flag);
 				if(flag){
+					list1.startEdit();
 					btn1.set("label", "Done");
 				}else{
+					list1.endEdit();
 					btn1.set("label", "Edit");
 				}
 			}
