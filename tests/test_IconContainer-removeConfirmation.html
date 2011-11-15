@@ -21,6 +21,7 @@
 			"dojox/mobile",
 			"dojox/mobile/compat",
 			"dojox/mobile/IconContainer",
+			"dojox/mobile/_EditableIconMixin",
 			"dojox/mobile/SimpleDialog",
 			"dojox/mobile/Button",
 			"dojox/mobile/ScrollableView"
@@ -33,27 +34,27 @@
 				registry.byId("dlg_confirm").hide();		
 			}
 			ready(function(){
-				connect.connect(registry.byId("dlg_btn1"), "onclick", null, function(e){
+				connect.connect(registry.byId("dlg_btn1"), "onClick", null, function(e){
 					hideDialog();
-					registry.byId("iconContainer").removeCurrentIcon();
+					registry.byId("iconContainer").deleteCurrentIcon();
 				});
-				connect.connect(registry.byId("dlg_btn2"), "onclick", null, function(e){
+				connect.connect(registry.byId("dlg_btn2"), "onClick", null, function(e){
 					hideDialog();
 				});
 			});
 
-			dojox.mobile.IconContainerEx = declare(
-				"dojox.mobile.IconContainerEx",
-				dojox.mobile.IconContainer,
+			dojox.mobile.EditableIconContainer = declare(
+				"dojox.mobile.EditableIconContainer",
+				[dojox.mobile.IconContainer, dojox.mobile._EditableIconMixin],
 			{
 				_currentIcon: null,
-				onRemoveIconClicked: function(e, widget){
-					this._currentIcon = widget;
-					showDialog(widget);
+				onDeleteIconClicked: function(e, item){
+					this._currentIcon = item;
+					showDialog(item);
 				},
-				removeCurrentIcon: function(){
+				deleteCurrentIcon: function(){
 					if(this._currentIcon){
-						this._currentIcon.remove();
+						this.deleteItem(this._currentIcon);
 						this._currentIcon = null;
 					}
 				}
@@ -75,9 +76,9 @@
 <body style="visibility:hidden;">
 	<div id="view1" data-dojo-type="dojox.mobile.ScrollableView">
 		<h1 data-dojo-type="dojox.mobile.Heading">Icon Container (Remove Confirmation)</h1>
-		<ul id="iconContainer" data-dojo-type="dojox.mobile.IconContainerEx" data-dojo-props='editable:true'>
+		<ul id="iconContainer" data-dojo-type="dojox.mobile.EditableIconContainer" data-dojo-props='editable:true'>
 			<li id="icon1" data-dojo-type="dojox.mobile.IconItem" data-dojo-props='label:"app1", icon:"images/icon1.png", badge:"55"'><div class="box"></div></li>
-			<li data-dojo-type="dojox.mobile.IconItem" data-dojo-props='label:"app2", icon:"images/icon2.png", removable:false'><div class="box"></div></li>
+			<li data-dojo-type="dojox.mobile.IconItem" data-dojo-props='label:"app2", icon:"images/icon2.png", deletable:false'><div class="box"></div></li>
 			<li data-dojo-type="dojox.mobile.IconItem" data-dojo-props='label:"app3", icon:"images/icon3.png"'><div class="box"></div></li>
 			<li data-dojo-type="dojox.mobile.IconItem" data-dojo-props='label:"app4", icon:"images/icon4.png"'><div class="box"></div></li>
 			<li data-dojo-type="dojox.mobile.IconItem" data-dojo-props='label:"app5", icon:"images/icon5.png"'><div class="box"></div></li>

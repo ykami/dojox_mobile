@@ -89,9 +89,10 @@ define([
 		},
 
 		postCreate: function(){
-			if(this.editable){
+			if(this.editable && !this.startEdit){ // if editable is true but editableMixinClass is not inherited
 				require([this.editableMixinClass], lang.hitch(this, function(module){
-					lang.mixin(this, new module());
+					declare.safeMixin(this, new module());
+					this.set("editable", this.editable);
 				}));
 			}
 		},
