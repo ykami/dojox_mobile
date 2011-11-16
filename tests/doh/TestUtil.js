@@ -54,7 +54,7 @@ function fireTouchMove(node, x, y){
 }
 */
 
-function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIcon, hasIcon2, hasVariableHeight, regExp, hasSelected){
+function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIcon, hasIcon2, hasVariableHeight, regExp, hasSelected, isSprite){
 	var demoWidget = dijit.byId(id);
 	doh.assertNotEqual(null, demoWidget, "ListItem: Did not instantiate. id=" + id);
 	doh.assertEqual('mblListItem' + (hasVariableHeight ?" mblVariableHeight":"") + (hasSelected ?" mblItemSelected":""), demoWidget.domNode.className);
@@ -68,7 +68,11 @@ function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIco
 	var i=0;
 	if(hasIcon){
 		if(!dojo.isIE && regExp){
-			doh.assertTrue(childNodes[i].childNodes[0].src.search(regExp) != -1, "search " + regExp.toString());
+			if(isSprite){
+				doh.assertTrue(childNodes[i].childNodes[0].src.search(regExp) != -1, "search " + regExp.toString());
+			}else{
+				doh.assertTrue(childNodes[i].src.search(regExp) != -1, "search " + regExp.toString());
+			}
 		}
 		doh.assertTrue(dojo.hasClass(childNodes[i], 'mblListItemIcon'), 'mblListItemIcon id=' + id + " got: " + childNodes[i].className);
 		i++;
@@ -97,10 +101,10 @@ function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIco
 	doh.assertEqual('DIV', childNodes[i].tagName);
 
 	try{
-		doh.assertEqual(text, dojo.trim(childNodes[i].innerHTML.replace(/\r\n/g,"")));
+		doh.assertEqual(text, dojo.trim(childNodes[i].innerHTML.replace(/\r\n|\n|\t/g,"")));
 	} catch (e) {
 		if(dojo.isFF ==3.6){
-			doh.assertEqual(text, dojo.trim(childNodes[i].childNodes[0].innerHTML.replace(/\r\n/g,"")));
+			doh.assertEqual(text, dojo.trim(childNodes[i].childNodes[0].innerHTML.replace(/\r\n|\n|\t/g,"")));
 		}else{
 			throw e;
 		}
@@ -108,12 +112,18 @@ function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIco
 
 }
 
-function verifyListItemPos(id, rTop, rRight, rBottom, rLeft, sTop, sLeft) {
+function verifyListItemPos(id, rTop, rRight, rBottom, rLeft, sTop, sLeft, isSprite) {
 	var demoWidget = dijit.byId(id);
-	verifyRect(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0], rTop, rRight, rBottom, rLeft);
+	var node;
+	if(isSprite){
+		node = demoWidget.domNode.childNodes[0].childNodes[0];
+	}else{
+		node = demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0];
+	}
+	verifyRect(node, rTop, rRight, rBottom, rLeft);
 
-	doh.assertEqual(sTop, demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].style.top);
-	doh.assertEqual(sLeft, demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].style.left);
+	doh.assertEqual(sTop, node.style.top);
+	doh.assertEqual(sLeft, node.style.left);
 }
 
 function verifyRect(node, rTop, rRight, rBottom, rLeft) {
@@ -128,14 +138,40 @@ function verifyIconItem(id, text, display, regExp, isSprite){
 	var demoWidget = dijit.byId(id);
 	if(!dojo.isIE && !dojo.isFF) {
 		if(isSprite){
-			doh.assertTrue(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].childNodes[0].src.search(regExp) != -1, "search " + regExp.toString());
+			doh.assertTrue(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].childNodes[0].src.search(regExp) != -1, "search " + regExp.toString() + " id=" +id);
 		}else{
-			doh.assertTrue(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].src.search(regExp) != -1, "search " + regExp.toString());
+			doh.assertTrue(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].src.search(regExp) != -1, "search " + regExp.toString() + " id=" +id);
 		}
 	}
-	doh.assertEqual(text, demoWidget.domNode.childNodes[0].childNodes[1].childNodes[0].nodeValue);
-	doh.assertEqual(display, demoWidget.paneWidget.domNode.style.display);
-	doh.assertEqual('mblIconItemPaneHeading', demoWidget.paneWidget.domNode.childNodes[0].className);
-	doh.assertEqual('mblDomButtonBlueMinus mblDomButton', demoWidget.paneWidget.domNode.childNodes[0].childNodes[0].childNodes[0].className);
-	doh.assertEqual(text, demoWidget.paneWidget.domNode.childNodes[0].childNodes[1].childNodes[0].nodeValue);
+	doh.assertEqual(text, demoWidget.domNode.childNodes[0].childNodes[1].childNodes[0].nodeValue, "id=" +id);
+	doh.assertEqual(display, demoWidget.paneWidget.domNode.style.display, "id=" +id);
+	doh.assertEqual('mblIconItemPaneHeading', demoWidget.paneWidget.domNode.childNodes[0].className, "id=" +id);
+	doh.assertEqual('mblDomButtonBlueMinus mblDomButton', demoWidget.paneWidget.domNode.childNodes[0].childNodes[0].childNodes[0].className, "id=" +id);
+	doh.assertEqual(text, demoWidget.paneWidget.domNode.childNodes[0].childNodes[1].childNodes[0].nodeValue, "id=" +id);
+}
+
+function verifyTabBarButton(id, text, className, visibility1, visibility2, regExp1, regExp2, isSprite){
+	var demoWidget = dijit.byId(id);
+	doh.assertEqual(className, demoWidget.domNode.className, "id=" +id);
+	doh.assertEqual('mblTabBarButtonAnchor', demoWidget.domNode.childNodes[0].className, "id=" +id);
+	doh.assertEqual('mblTabBarButtonIconArea', demoWidget.domNode.childNodes[0].childNodes[0].className, "id=" +id);
+	doh.assertTrue(demoWidget.iconNode1, "There is no iconNode1. id=" + id);
+	if(!dojo.isIE) {
+		if(isSprite){
+			doh.assertTrue(demoWidget.iconNode1.childNodes[0].src.search(regExp1) != -1, "search " + regExp1.toString() + " id=" +id);
+		}else{
+			doh.assertTrue(demoWidget.iconNode1.src.search(regExp1) != -1, "search " + regExp1.toString() + " id=" +id);
+		}
+	}
+//	doh.assertEqual(visibility1, demoWidget.iconNode1.style.visibility, "id=" +id);
+	doh.assertTrue(demoWidget.iconNode2, "There is no iconNode2. id=" + id);
+	if(!dojo.isIE) {
+		if(isSprite){
+			doh.assertTrue(demoWidget.iconNode2.childNodes[0].src.search(regExp2) != -1, "search " + regExp2.toString() + " id=" +id);
+		}else{
+			doh.assertTrue(demoWidget.iconNode2.src.search(regExp2) != -1, "search " + regExp2.toString() + " id=" +id);
+		}
+	}
+	doh.assertEqual(visibility2, demoWidget.iconNode2.style.visibility, "id=" +id);
+	doh.assertEqual(text, dojo.trim(demoWidget.domNode.childNodes[0].childNodes[1].innerHTML), "id=" +id);
 }

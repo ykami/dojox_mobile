@@ -29,20 +29,20 @@ dojo.addOnLoad(function(){
 	list.addChild(demoWidget);
 
 	list = dijit.byId("dojox_mobile_EdgeToEdgeList_0");
-	demoWidget = new dojox.mobile.ListItem({icon:"../images/i-icon-1.png", btnClass:"mblDomButtonBluePlus", label:"XX Widget"});
+	demoWidget = new dojox.mobile.ListItem({icon:"../images/i-icon-1.png", rightIcon:"mblDomButtonBluePlus", label:"XX Widget"});
 	list.addChild(demoWidget);
 
-	demoWidget = new dojox.mobile.ListItem({icon:"../images/i-icon-2.png", btnClass:"mblDomButtonRedMinus", label:"YY Widget"});
+	demoWidget = new dojox.mobile.ListItem({icon:"../images/i-icon-2.png", rightIcon:"mblDomButtonRedMinus", label:"YY Widget"});
 	list.addChild(demoWidget);
 
 	list = dijit.byId("dojox_mobile_EdgeToEdgeList_1");
-	demoWidget = new dojox.mobile.ListItem({btnClass:"mblDomButtonCheckboxOff", label:"Use wireless networks", variableHeight:"true"});
-	var child = dojo.create("DIV", {className:"mblListItemSubText"}, demoWidget.domNode.childNodes[0].childNodes[4]);
+	demoWidget = new dojox.mobile.ListItem({rightIcon:"mblDomButtonCheckboxOff", label:"Use wireless networks", variableHeight:"true"});
+	var child = dojo.create("DIV", {className:"mblListItemSubText"}, demoWidget.labelNode);
 	child.appendChild(dojo.doc.createTextNode("See location in applications (such as Maps) using wireless networks"));
 	list.addChild(demoWidget);
 
-	demoWidget = new dojox.mobile.ListItem({btnClass:"mblDomButtonCheckboxOn", label:"Use GPS satellites", variableHeight:"true"});
-	child = dojo.create("DIV", {className:"mblListItemSubText", innerHTML:"When locating, accurate to street level (uncheck to conserve battery)"}, demoWidget.domNode.childNodes[0].childNodes[4]);
+	demoWidget = new dojox.mobile.ListItem({rightIcon:"mblDomButtonCheckboxOn", label:"Use GPS satellites", variableHeight:"true"});
+	child = dojo.create("DIV", {className:"mblListItemSubText", innerHTML:"When locating, accurate to street level (uncheck to conserve battery)"}, demoWidget.labelNode);
 	list.addChild(demoWidget);
 
 	demoWidget = new dojox.mobile.ListItem({label:" Set unlock pattern"});

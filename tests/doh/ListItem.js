@@ -17,8 +17,13 @@ dojo.addOnLoad(function(){
 					verifyListItem("dojox_mobile_ListItem_8", 'Wallpaper', '', "mblDomButtonArrow", true, true, false);
 					verifyListItem("dojox_mobile_ListItem_9", 'XX Widget', '', "mblDomButtonBluePlus", true, true, false);
 					verifyListItem("dojox_mobile_ListItem_10", 'YY Widget', '', "mblDomButtonRedMinus", true, true, false);
-					verifyListItem("dojox_mobile_ListItem_11", 'Use wireless networks', '', "mblDomButtonCheckboxOff", false, true, false, true);
-					verifyListItem("dojox_mobile_ListItem_12", 'Use GPS satellites', '', "mblDomButtonCheckboxOn", false, true, false, true);
+					
+					var txt = 'Use wireless networks<div class="mblListItemSubText">See location in applications (such as Maps) using wireless networks</div>'
+					verifyListItem("dojox_mobile_ListItem_11", txt, '', "mblDomButtonCheckboxOff", false, true, false, true);
+					
+					txt = 'Use GPS satellites<div class="mblListItemSubText">When locating, accurate to street level (uncheck to conserve battery)</div>'
+					verifyListItem("dojox_mobile_ListItem_12", txt, '', "mblDomButtonCheckboxOn", false, true, false, true);
+
 					verifyListItem("dojox_mobile_ListItem_13", 'Set unlock pattern', '', "", false, false, false);
 				}));
 				return d;
@@ -70,7 +75,7 @@ dojo.addOnLoad(function(){
 				doh.assertEqual("0,116,29,29", demoWidget.get("iconPos"));
 				doh.assertEqual("fade", demoWidget.get("transition"));
 
-				verifyListItem("dojox_mobile_ListItem_6", 'Sounds', '', "mblDomButtonArrow", true, true, false, false, /i-icon-all.png/i);
+				verifyListItem("dojox_mobile_ListItem_6", 'Sounds', '', "mblDomButtonArrow", true, true, false, false, /i-icon-all.png/i, false, true);
 			}
 		},
 		{
@@ -92,9 +97,9 @@ dojo.addOnLoad(function(){
 			timeout: 1000,
 			runTest: function(){
 				var demoWidget = dijit.byId("dojox_mobile_ListItem_9");
-				demoWidget.set({btnClass:"mblDomButtonRedMinus"});
+				demoWidget.set({rightIcon:"mblDomButtonRedMinus"});
 				verifyListItem("dojox_mobile_ListItem_9", 'XX Widget', '', "mblDomButtonRedMinus", true, true, false);
-//							doh.assertEqual("mblDomButtonRedMinus", demoWidget.get("btnClass"));
+//							doh.assertEqual("mblDomButtonRedMinus", demoWidget.get("icon"));
 			}
 		},
 		{
@@ -102,10 +107,11 @@ dojo.addOnLoad(function(){
 			timeout: 1000,
 			runTest: function(){
 				var demoWidget = dijit.byId("dojox_mobile_ListItem_11");
-				demoWidget.set({btnClass:"mblDomButtonCheckboxOn"});
+				demoWidget.set({rightIcon:"mblDomButtonCheckboxOn"});
 
-				verifyListItem("dojox_mobile_ListItem_11", 'Use wireless networks', '', "mblDomButtonCheckboxOn", false, true, false, true);
-//							doh.assertEqual("mblDomButtonCheckboxOn", demoWidget.get("btnClass"));
+				var txt = 'Use wireless networks<div class="mblListItemSubText">See location in applications (such as Maps) using wireless networks</div>'
+				verifyListItem("dojox_mobile_ListItem_11", txt, '', "mblDomButtonCheckboxOn", false, true, false, true);
+//							doh.assertEqual("mblDomButtonCheckboxOn", demoWidget.get("icon"));
 			}
 		}
 	]);

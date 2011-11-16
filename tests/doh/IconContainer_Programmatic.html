@@ -34,17 +34,19 @@
 				var container = new dojox.mobile.IconContainer();
 				var demoWidget = new dojox.mobile.IconItem({label:"app1", icon:"../images/icon3.png", lazy:"true"});
 //This position works fine.
-//				view.addChild(container);
-				demoWidget.containerNode.innerHTML='<div class="box"></div>';
+				view.addChild(container);
 				container.addChild(demoWidget);
+				demoWidget.paneWidget.containerNode.innerHTML='<div class="box"></div>';
 
 				demoWidget = new dojox.mobile.IconItem({label:"app2", icon:"../images/icon3.png", lazy:"true"});
 				container.addChild(demoWidget);
 				demoWidget.containerNode.innerHTML='<div class="box"></div>';
 
 				demoWidget = new dojox.mobile.IconItem({label:"app3", icon:"../images/icon3.png", lazy:"true"});
-				demoWidget.containerNode.innerHTML='<div class="box"></div>';
 				container.addChild(demoWidget);
+				demoWidget.containerNode.innerHTML='<div class="box"></div>';
+//This position makes error.
+//				container.addChild(demoWidget);
 
 				demoWidget = new dojox.mobile.IconItem({label:"moveTo", icon:"../images/icon3.png", moveTo:"about", transition:"slide"});
 				container.addChild(demoWidget);
@@ -55,7 +57,7 @@
 				demoWidget = new dojox.mobile.IconItem({label:"url", icon:"../images/icon3.png", href:"../view-sample.html", transition:"slide"});
 				container.addChild(demoWidget);
 //This position makes error.
-				view.addChild(container);
+//				view.addChild(container);
 			});
 		</script>
 		<script type="text/javascript" src="TestUtil.js"></script>
