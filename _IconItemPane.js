@@ -54,7 +54,7 @@ define([
 		},
 
 		_setCloseIconAttr: function(icon){
-			this.closeIconNode = iconUtils.setIcon(icon, this.iconPos, this.closeIconNode, this.closeHeaderNode, this.alt);
+			this.closeIconNode = iconUtils.setIcon(icon, this.iconPos, this.closeIconNode, this.alt, this.closeHeaderNode);
 			this.closeIcon = icon;
 		}
 	});
