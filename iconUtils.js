@@ -139,10 +139,12 @@ define([
 			//		Path for an image, or DOM button class name.
 			if(icon && icon.indexOf("mblDomButton") === 0){
 				// DOM button
-				if(node && node.className.match(/(mblDomButton\w+)/)){
-					domClass.remove(node, RegExp.$1);
-				}else{
+				if(!node){
 					node = domConstruct.create("div", null, refNode || parent, pos);
+				}else{
+					if(node.className.match(/(mblDomButton\w+)/)){
+						domClass.remove(node, RegExp.$1);
+					}
 				}
 				node.title = title;
 				domClass.add(node, icon);
@@ -156,12 +158,13 @@ define([
 				}
 				node.src = (icon || "").replace("${theme}", this.currentTheme); //TODO: how do I pass currentTheme
 				this.setupSpriteIcon(node, iconPos);
-				if(parent && iconPos){
+				if(iconPos && parent){
 					var arr = iconPos.split(/[ ,]/);
 					domStyle.set(parent, {
 						width: arr[2] + "px",
 						height: arr[3] + "px"
 					});
+					domClass.add(parent, "mblSpriteIconParent");
 				}
 				connect.connect(node, "ondragstart", event, "stop"); /* 1.8 */
 			}
@@ -179,7 +182,7 @@ define([
 				}else{ // sprite or DOM button
 					iconNode && domConstruct.empty(iconNode);
 					if(!iconNode){
-						iconNode = domConstruct.create("div", {className:"mblIconRoot"}, refNode || parent, pos);
+						iconNode = domConstruct.create("div", null, refNode || parent, pos);
 					}
 					this.createIcon(icon, iconPos, null, alt, iconNode);
 				}

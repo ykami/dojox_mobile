@@ -9,13 +9,16 @@ define([
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/dom-style",
+	"dijit/registry",
 	"dijit/_Contained",
 	"dijit/_Container",
 	"dijit/_WidgetBase",
+	"./lazyLoadUtils",
+	"./_CarouselItem",
 	"./PageIndicator",
 	"./SwapView",
 	"require"
-], function(kernel, array, connect, declare, event, lang, has, domClass, domConstruct, domStyle, Contained, Container, WidgetBase, PageIndicator, SwapView, require){
+], function(kernel, array, connect, declare, event, lang, has, domClass, domConstruct, domStyle, registry, Contained, Container, WidgetBase, lazyLoadUtils, CarouselItem, PageIndicator, SwapView, require){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -54,7 +57,7 @@ define([
 		pageIndicator: true,
 
 		// navButton: Boolean
-		//		If true, navigation buttons are displyaed on the title bar.
+		//		If true, navigation buttons are displyed on the title bar.
 		navButton: false,
 
 		// height: String
@@ -76,9 +79,13 @@ define([
 		//		An optional parameter for the query.
 		queryOptions: null,
 
+		selectable: true,
+
+		baseClass: "mblCarousel",
+
 		buildRendering: function(){
 			this.inherited(arguments);
-			this.domNode.className = "mblCarousel";
+
 			var h;
 			if(this.height === "inherit"){
 				if(this.domNode.offsetParent){
@@ -125,7 +132,10 @@ define([
 			}, this.headerNode);
 
 			this.containerNode = domConstruct.create("div", {className:"mblCarouselPages"}, this.domNode);
-			connect.subscribe("/dojox/mobile/viewChanged", this, "handleViewChanged");
+			this.subscribe("/dojox/mobile/viewChanged", "handleViewChanged");
+			this.connect(this.domNode, "onclick", "_onClick");
+			this.connect(this.domNode, "onkeydown", "_onClick");
+			this.connect(this.domNode, "ondragstart", event.stop);
 		},
 
 		startup: function(){
@@ -158,6 +168,58 @@ define([
 			});
 		},
 
+		_createMarkup: function(/*String*/type, /*String*/props, /*Object*/item){
+			if(!type){ return ""; }
+			var width = item.width || (90/this.numVisible + "%");
+			var h = this.domNode.offsetHeight - (this.headerNode ? this.headerNode.offsetHeight : 0);
+			var height = item.height || h + "px";
+			var m = has("ie") ? 5/this.numVisible-1 : 5/this.numVisible;
+			var margin = item.margin || (m + "%");
+
+			var ml = '<div class="mblCarouselBox"' +
+			' style="width:' + width + ';height:' + height +
+			';margin:0 ' + margin + '"' +
+			' data-dojo-type="' + type + '"';
+			if(props){
+				ml += ' data-dojo-props=\'' + props + '\'';
+			}
+			ml += '></div>\n';
+
+			return ml;
+		},
+
+		fillPages: function(){
+			array.forEach(this.getChildren(), function(child, i){
+				var s = "";
+				for(var j = 0; j < this.numVisible; j++){
+					var type = "", props = "";
+					var idx = i * this.numVisible + j;
+					var item = {};
+					if(idx < this.items.length){
+						item = this.items[idx];
+						type = this.store.getValue(item, "type");
+						if(type){
+							props = this.store.getValue(item, "props");
+						}else{
+							type = "dojox.mobile._CarouselItem";
+							array.forEach(["src", "headerText", "footerText"], function(p){
+								var v = this.store.getValue(item, p);
+								if(v !== undefined){
+									if(props){ props += ','; }
+									props += p + ':"' + v + '"';
+								}
+							}, this);
+						}
+					}else{
+						type = "dojox.mobile._CarouselItem";
+						props = 'src:"' + require.toUrl("dojo/resources/blank.gif") + '"';
+					}
+					s += this._createMarkup(type, props, item);
+				}
+				child.containerNode.innerHTML = s;
+			}, this);
+		},
+
 		generate: function(/*Array*/items, /*Object*/ dataObject){
 			array.forEach(this.getChildren(), function(child){
 				if(child instanceof SwapView){
@@ -165,48 +227,24 @@ define([
 				}
 			});
 			this.items = items;
-			this.swapViews = [];
-			this.images = [];
-			var nPages = Math.ceil(items.length / this.numVisible);
-			var h = this.domNode.offsetHeight - this.headerNode.offsetHeight;
-			for(var i = 0; i < nPages; i++){
+			var nPages = Math.ceil(items.length / this.numVisible),
+				h = this.domNode.offsetHeight - this.headerNode.offsetHeight,
+				i;
+			for(i = 0; i < nPages; i++){
 				var w = new SwapView({height:h+"px"});
 				this.addChild(w);
-				this.swapViews.push(w);
-				w._carouselImages = [];
 				if(i === 0 && this.piw){
 					this.piw.refId = w.id;
-				}
-				for(var j = 0; j < this.numVisible; j++){
-					var idx = i * this.numVisible + j;
-					var item = idx < items.length ? items[idx] :
-						{src:require.toUrl("dojo/resources/blank.gif"), height:"1px"};
-					var disp = w.domNode.style.display;
-					w.domNode.style.display = ""; // need to be visible during the size calculation
-					var box = this.createBox(item, h);
-					w.containerNode.appendChild(box);
-					box.appendChild(this.createHeaderText(item));
-					var img = this.createContent(item, idx);
-					box.appendChild(img);
-					box.appendChild(this.createFooterText(item));
-					this.resizeContent(item, box, img);
-					w.domNode.style.display = disp;
-
-					if(item.height !== "1px"){
-						this.images.push(img);
-						w._carouselImages.push(img);
-					}
+					this.currentView = w;
 				}
 			}
-			if(this.swapViews[0]){
-				this.loadImages(this.swapViews[0]);
-			}
-			if(this.swapViews[1]){
-				this.loadImages(this.swapViews[1]); // pre-fetch the next view images
-			}
-			this.currentView = this.swapViews[0];
 			if(this.piw){
 				this.piw.reset();
+			}
+			this.fillPages();
+			var children = this.getChildren();
+			for(i = 0; i < 2 && i < nPages; i++){
+				this.instantiateView(children[i]);
 			}
 		},
 
@@ -226,44 +264,18 @@ define([
 			return box;
 		},
 
-		createHeaderText: function(item){
-			this.headerTextNode = domConstruct.create("div", {
-				className: "mblCarouselImgHeaderText",
-				innerHTML: item.headerText ? item.headerText : "&nbsp;"
-			});
-			return this.headerTextNode;
-		},
-
-		createContent: function(item, idx){
-			var props = {
-				alt: item.alt || "",
-				tabIndex: "0", // for keyboard navigation on a desktop browser
-				className: "mblCarouselImg"
-			};
-			var img = domConstruct.create("img", props);
-			img._idx = idx;
-			if(item.height !== "1px"){
-				this.connect(img, "onclick", "_onClick");
-				this.connect(img, "onkeydown", "_onClick");
-				connect.connect(img, "ondragstart", event.stop);
-			}else{
-				img.style.visibility = "hidden";
+		getIndexByItemWidget: function(/*Widget*/w){
+			var children = this.getChildren();
+			for(var i = 0; i < children.length; i++){
+				var items = children[i].getChildren();
+				for(var j = 0; j < items.length; j++){
+					var item = items[j];
+					if(w === item){
+						return i * this.numVisible + j;
+					}
+				}
 			}
-			return img;
-		},
-
-		createFooterText: function(item){
-			this.footerTextNode = domConstruct.create("div", {
-				className: "mblCarouselImgFooterText",
-				innerHTML: item.footerText ? item.footerText : "&nbsp;"
-			});
-			return this.footerTextNode;
-		},
-
-		resizeContent: function(item, box, img){
-			if(item.height !== "1px"){
-				img.style.height = (box.offsetHeight  - this.headerTextNode.offsetHeight - this.footerTextNode.offsetHeight) + "px";
-			}
+			return -1;
 		},
 
 		onError: function(errText){
@@ -283,37 +295,47 @@ define([
 
 		_onClick: function(e){
 			if(e && e.type === "keydown" && e.keyCode !== 13){ return; }
-			var img = e.currentTarget;
-			for(var i = 0; i < this.images.length; i++){
-				if(this.images[i] === img){
-					domClass.add(img, "mblCarouselImgSelected");
-				}else{
-					domClass.remove(this.images[i], "mblCarouselImgSelected");
-				}
+			var w;
+			for(w = registry.getEnclosingWidget(e.target); ; w = w.getParent()){
+				if(!w){ return; }
+				if(w.getParent() instanceof SwapView){ break; }
 			}
-			domStyle.set(img, "opacity", 0.4);
-			setTimeout(function(){
-				domStyle.set(img, "opacity", 1);
-			}, 1000);
-			connect.publish("/dojox/mobile/carouselSelect", [this, img, this.items[img._idx], img._idx]);
+			if(this.selectable){
+				if(this.selectedItem){
+					if(this.selectedItem.deselect){
+						this.selectedItem.deselect();
+					}
+					domClass.remove(this.selectedItem.domNode, "mblCarouselItemSelected");
+				}
+				if(w.select){
+					w.select();
+				}
+				domClass.add(w.domNode, "mblCarouselItemSelected");
+				this.selectedItem = w;
+			}
+			var idx = this.getIndexByItemWidget(w);
+			connect.publish("/dojox/mobile/carouselSelect", [this, w, this.items[idx], idx]);
 		},
 
-		loadImages: function(view){
-			if(!view){ return; }
-			var imgs = view._carouselImages;
-			array.forEach(imgs, function(img){
-				if(!img.src){
-					var item = this.items[img._idx];
-					img.src = item.src;
+		instantiateView: function(view){
+			if(view && !view._instantiated){
+				var isHidden = (domStyle.get(view.domNode, "display") === "none");
+				if(isHidden){
+					domStyle.set(view.domNode, {visibility:"hidden", display:""});
 				}
-			}, this);
+				lazyLoadUtils.instantiateLazyWidgets(view.containerNode, null, function(root){
+					if(isHidden){
+						domStyle.set(view.domNode, {visibility:"visible", display:"none"});
+					}
+				});
+				view._instantiated = true;
+			}
 		},
 
 		handleViewChanged: function(view){
 			if(view.getParent() !== this){ return; }
 			this.currentView = view;
-			// lazy-load images in the next view
-			this.loadImages(view.nextView(view.domNode));
+			this.instantiateView(view.nextView(view.domNode));
 		},
 
 		_setTitleAttr: function(/*String*/title){

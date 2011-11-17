@@ -35,7 +35,7 @@ html.mobile, .mobile body {
 .mblSpriteIcon {
   position: absolute;
 }
-.mblIconRoot {
+.mblSpriteIconParent {
   position: relative;
   font-size: 1px;
   /*	.mblIconRoot-styles;*/
