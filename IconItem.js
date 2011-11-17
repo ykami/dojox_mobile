@@ -64,6 +64,10 @@ define([
 		//		Properties for the close button.
 		closeBtnProp: null,
 
+		// content: String
+		//		An html fragment to embed.
+		content: "",
+
 		badge: "", /* 1.8 */
 		badgeClass: "mblDomButtonRedBadge", /* 1.8 */
 		
@@ -327,6 +331,25 @@ define([
 				if(this.iconPos){
 					domClass.add(this.deleteIconNode.firstChild, "mblIconItemSpriteIcon");
 				}
+			}
+		},
+
+		_setContentAttr: function(/*String|DomNode*/data){
+			var root;
+			if(!this.paneWidget){
+				if(!this._tmpNode){
+					this._tmpNode = domConstruct.create("div");
+				}
+				root = this._tmpNode;
+			}else{
+				root = this.paneWidget.containerNode;
+			}
+
+			if(typeof data === "object"){
+				domConstruct.empty(root);
+				root.appendChild(data);
+			}else{
+				root.innerHTML = data;
 			}
 		}
 	});

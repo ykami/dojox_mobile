@@ -95,10 +95,6 @@ define([
 					this.set("editable", this.editable);
 				}));
 			}
-		},
-	
-		startup: function(){
-			if(this._started){ return; }
 
 			require([this.iconItemPaneContainerClass], lang.hitch(this, function(module){
 				this.paneContainerWidget = new module();
@@ -114,24 +110,31 @@ define([
 					var heading = view._heading
 						= new Heading({back: this._cv ? this._cv(this.back) : this.back,
 										label: this._cv ? this._cv(this.label) : this.label,
-										moveTo: this.domNode.parentNode.id,
 										transition: this.transition == "zoomIn" ? "zoomOut" : this.transition}); /* 1.8 */
 					view.addChild(heading);
 					view.addChild(this.paneContainerWidget);
-
-					var target;
-					for(var w = this.getParent(); w; w = w.getParent()){
-						if(w instanceof View){
-							target = w.domNode.parentNode;
-							break;
-						}
-					}
-					if(!target){ target = win.body(); }
-					target.appendChild(view.domNode);
-
-					view.startup();
 				}
 			}));
+		},
+	
+		startup: function(){
+			if(this._started){ return; }
+
+			if(this.transition !== "below"){
+				this.appView._heading.moveTo = this.domNode.parentNode.id;
+
+				var target;
+				for(var w = this.getParent(); w; w = w.getParent()){
+					if(w instanceof View){
+						target = w.domNode.parentNode;
+						break;
+					}
+				}
+				if(!target){ target = win.body(); }
+				target.appendChild(view.domNode);
+
+				view.startup();
+			}
 
 			this.inherited(arguments);
 		},
