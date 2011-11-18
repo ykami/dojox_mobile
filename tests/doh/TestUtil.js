@@ -82,13 +82,11 @@ function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIco
 		if(domButtonType){
 			doh.assertEqual(domButtonType + ' mblDomButton', childNodes[i].childNodes[0].className);
 		}
-		doh.assertTrue(dojo.hasClass(childNodes[i], 'mblIconRoot'), 'mblIconRoot id=' + id + " got: " + childNodes[i].className);
 		doh.assertTrue(dojo.hasClass(childNodes[i], 'mblListItemRightIcon'), 'mblListItemRightIcon id=' + id + " got: " + childNodes[i].className);
 		i++;
 	}
 
 	if(hasIcon2){
-		doh.assertTrue(dojo.hasClass(childNodes[i], 'mblIconRoot'), 'mblIconRoot id=' + id + " got: " + childNodes[i].className);
 		doh.assertTrue(dojo.hasClass(childNodes[i], 'mblListItemRightIcon2'), 'mblListItemRightIcon2 id=' + id + " got: " + childNodes[i].className);
 		i++;
 	}

@@ -23,6 +23,7 @@
 			//dojo.require("dojo.parser"); // Use the lightweight parser.
 			dojo.require("dojox.mobile.parser");
 			dojo.require("dojox.mobile");
+			dojo.require("dojox.mobile.View");
 			dojo.require("dojox.mobile.IconContainer");
 			dojo.requireIf(!dojo.isWebKit, "dojox.mobile.compat");
 
@@ -36,17 +37,16 @@
 //This position works fine.
 				view.addChild(container);
 				container.addChild(demoWidget);
-				demoWidget.paneWidget.containerNode.innerHTML='<div class="box"></div>';
+				demoWidget.set("content", '<div class="box"></div>');
 
 				demoWidget = new dojox.mobile.IconItem({label:"app2", icon:"../images/icon3.png", lazy:"true"});
 				container.addChild(demoWidget);
-				demoWidget.containerNode.innerHTML='<div class="box"></div>';
+				demoWidget.set("content", '<div class="box"></div>');
 
 				demoWidget = new dojox.mobile.IconItem({label:"app3", icon:"../images/icon3.png", lazy:"true"});
+				demoWidget.set("content", '<div class="box"></div>');
+//This position makes error. //Fixed
 				container.addChild(demoWidget);
-				demoWidget.containerNode.innerHTML='<div class="box"></div>';
-//This position makes error.
-//				container.addChild(demoWidget);
 
 				demoWidget = new dojox.mobile.IconItem({label:"moveTo", icon:"../images/icon3.png", moveTo:"about", transition:"slide"});
 				container.addChild(demoWidget);
