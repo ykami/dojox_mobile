@@ -105,6 +105,8 @@ define([
 		paramsToInherit: "variableHeight,transition,deleteIcon,icon,rightIcon,rightIcon2,uncheckIcon,arrowClass,checkClass,uncheckClass",
 
 		baseClass: "mblListItem",
+
+		_selClass: "mblItemSelected mblColorDefaultSel",
 	
 		postMixInProperties: function(){
 		},
@@ -113,7 +115,7 @@ define([
 			this._isOnLine = this.inheritParams();
 			this.inherited(arguments);
 			if(this.selected){
-				domClass.add(this.domNode, "mblItemSelected");
+				domClass.add(this.domNode, this._selClass);
 			}
 
 			// inner HTML
@@ -143,6 +145,7 @@ define([
 
 			if(this.anchorLabel){
 				this.labelNode.style.display = "inline"; // to narrow the text region
+				this.labelNode.style.cursor = "pointer";
 			}
 		},
 
@@ -189,7 +192,7 @@ define([
 		_onClick: function(e){
 			var a = e.currentTarget;
 			var li = a.parentNode;
-			if(domClass.contains(li, "mblItemSelected")){ return; } // already selected
+			if(domClass.contains(li, this._selClass)){ return; } // already selected
 			if(this.anchorLabel){
 				for(var p = e.target; p.tagName !== "LI"; p = p.parentNode){
 					if(p.className == "mblListItemTextBox"){
@@ -243,13 +246,13 @@ define([
 					_this.deselect();
 				}, has('android') ? 300 : 1000);
 			}
-			domClass.add(this.domNode, "mblItemSelected");
+			domClass.add(this.domNode, this._selClass);
 		},
 	
 		deselect: function(){
 			// summary:
 			//		Makes this widget in the deselected state.
-			domClass.remove(this.domNode, "mblItemSelected");
+			domClass.remove(this.domNode, this._selClass);
 		},
 	
 		onAnchorLabelClicked: function(e){
