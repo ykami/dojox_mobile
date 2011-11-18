@@ -48,7 +48,7 @@ define([
 
 		});
 
-		this.instantiateLazyWidgets = function(root, requires){
+		this.instantiateLazyWidgets = function(root, requires, callback){
 			var req = requires ? requires.split(/,/) : [];
 			var nodes = root.getElementsByTagName("*"); // avoid use of dojo.query
 			var len = nodes.length;
@@ -63,10 +63,12 @@ define([
 					dojo["require"](c);
 				});
 				dojo.parser.parse(root);
+				if(callback){ callback(root); }
 			}else{
 				req = array.map(req, function(s){ return s.replace(/\./g, "/"); });
 				require(req, function(){
 					dojo.parser.parse(root);
+					if(callback){ callback(root); }
 				});
 			}
 		}	
