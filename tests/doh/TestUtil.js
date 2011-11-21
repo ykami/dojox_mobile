@@ -57,7 +57,7 @@ function fireTouchMove(node, x, y){
 function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIcon, hasIcon2, hasVariableHeight, regExp, hasSelected, isSprite){
 	var demoWidget = dijit.byId(id);
 	doh.assertNotEqual(null, demoWidget, "ListItem: Did not instantiate. id=" + id);
-	doh.assertEqual('mblListItem' + (hasVariableHeight ?" mblVariableHeight":"") + (hasSelected ?" mblItemSelected":""), demoWidget.domNode.className);
+	doh.assertEqual('mblListItem' + (hasVariableHeight ?" mblVariableHeight":"") + (hasSelected ?" mblItemSelected mblColorDefaultSel":""), demoWidget.domNode.className);
 	var childNodes = demoWidget.domNode.childNodes;
 //	doh.assertEqual('mblListItemAnchor' + (hasIcon?'':' mblListItemAnchorNoIcon'), childNodes[0].className);
 	
