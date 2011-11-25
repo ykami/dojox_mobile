@@ -59,7 +59,7 @@ define([
 		},
 
 		postCreate: function(){
-			this.connect(this.domNode, "onclick", "_onClick");
+			this._clickHandle = this.connect(this.domNode, "onclick", "_onClick");
 			dom.setSelectable(this.domNode, false);
 		},
 
@@ -169,12 +169,11 @@ define([
 			array.forEach(children, function(child){
 				child.startup();
 				child._at.startup();
-				child.domNode.style.height = "0px";
-				child.domNode.style.display = "none";
+				this.collapse(child);
 				if(child.selected){
 					sel = child;
 				}
-			});
+			}, this);
 			if(!sel && this.fixedHeight){
 				sel = children[children.length - 1];
 			}
@@ -209,6 +208,15 @@ define([
 			this.inherited(arguments);
 			if(this._started){
 				this._setupChild(widget);
+				widget._at.startup();
+				if(widget.selected){
+					this.expand(widget, true);
+					setTimeout(function(){
+						widget.domNode.style.height = "";
+					}, 0);
+				}else{
+					this.collapse(widget);
+				}
 			}
 		},
 
