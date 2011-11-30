@@ -1,21 +1,20 @@
 define([
-	"dojo/_base/kernel", // to test dojo.hash
 	"dojo/_base/array",
 	"dojo/_base/config",
 	"dojo/_base/connect",
-	"dojo/_base/event", /*1.8*/
+	"dojo/_base/event",
 	"dojo/_base/lang",
 	"dojo/_base/window",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/dom-style",
-//	"dojo/hash", // optionally prereq'ed
 	"dojo/ready",
 	"dijit/registry",	// registry.toArray
 	"./lazyLoadUtils",
 	"./sniff",
-	"./uacss"
-], function(dojo, array, config, connect, event, lang, win, domClass, domConstruct, domStyle, ready, registry, lazyLoadUtils, has, uacss){
+	"./uacss",
+	"./TransitionEvent"
+], function(array, config, connect, event, lang, win, domClass, domConstruct, domStyle, ready, registry, lazyLoadUtils, has, uacss, TransitionEvent){
 
 	var dm = lang.getObject("dojox.mobile", true);
 /*=====
@@ -80,23 +79,6 @@ define([
 		this._sz = sz;
 	};
 	dm.detectScreenSize();
-
-	dm.XXsetupIcon = function(/*DomNode*/iconNode, /*String*/iconPos){
-		// summary:
-		//		Sets up CSS sprite for a foreground image.
-		if(iconNode && iconPos){
-			var arr = array.map(iconPos.split(/[ ,]/),function(item){return item-0});
-			var t = arr[0]; // top
-			var r = arr[1] + arr[2]; // right
-			var b = arr[0] + arr[3]; // bottom
-			var l = arr[1]; // left
-			domStyle.set(iconNode, {
-				clip: "rect("+t+"px "+r+"px "+b+"px "+l+"px)",
-				top: (iconNode.parentNode ? domStyle.get(iconNode, "top") : 0) - t + "px",
-				left: -l + "px"
-			});
-		}
-	};
 
 	// dojox.mobile.hideAddressBarWait: Number
 	//		The time in milliseconds to wait before the fail-safe hiding address
@@ -201,204 +183,16 @@ define([
 		win.global.open(url, target || "_blank");
 	};
 
-	dm.XXcreateDomButton = function(/*DomNode*/refNode, /*Object?*/style, /*DomNode?*/toNode){
-		// summary:
-		//		Creates a DOM button.
-		// description:
-		//		DOM button is a simple graphical object that consists of one or
-		//		more nested DIV elements with some CSS styling. It can be used
-		//		in place of an icon image on ListItem, IconItem, and so on.
-		//		The kind of DOM button to create is given as a class name of
-		//		refNode. The number of DIVs to create is searched from the style
-		//		sheets in the page. However, if the class name has a suffix that
-		//		starts with an underscore, like mblDomButtonGoldStar_5, then the
-		//		suffixed number is used instead. A class name for DOM button
-		//		must starts with 'mblDomButton'.
-		// refNode:
-		//		A node that has a DOM button class name.
-		// style:
-		//		A hash object to set styles to the node.
-		// toNode:
-		//		A root node to create a DOM button. If omitted, refNode is used.
-
-		if(!dm._domButtons){
-			if(has("webkit")){
-				var findDomButtons = function(sheet, dic){
-					// summary:
-					//		Searches the style sheets for DOM buttons.
-					// description:
-					//		Returns a key-value pair object whose keys are DOM
-					//		button class names and values are the number of DOM
-					//		elements they need.
-					var i, j;
-					if(!sheet){
-						var dic = {};
-						var ss = dojo.doc.styleSheets;
-						for (i = 0; i < ss.length; i++){
-							ss[i] && findDomButtons(ss[i], dic);
-						}
-						return dic;
-					}
-					var rules = sheet.cssRules || [];
-					for (i = 0; i < rules.length; i++){
-						var rule = rules[i];
-						if(rule.href && rule.styleSheet){
-							findDomButtons(rule.styleSheet, dic);
-						}else if(rule.selectorText){
-							var sels = rule.selectorText.split(/,/);
-							for (j = 0; j < sels.length; j++){
-								var sel = sels[j];
-								var n = sel.split(/>/).length - 1;
-								if(sel.match(/(mblDomButton\w+)/)){
-									var cls = RegExp.$1;
-									if(!dic[cls] || n > dic[cls]){
-										dic[cls] = n;
-									}
-								}
-							}
-						}
-					}
-				}
-				dm._domButtons = findDomButtons();
-			}else{
-				dm._domButtons = {};
-			}
-		}
-
-		var s = refNode.className;
-		var node = toNode || refNode;
-		if(s.match(/(mblDomButton\w+)/) && s.indexOf("/") === -1){
-			var btnClass = RegExp.$1;
-			var nDiv = 4;
-			if(s.match(/(mblDomButton\w+_(\d+))/)){
-				nDiv = RegExp.$2 - 0;
-			}else if(dm._domButtons[btnClass] !== undefined){
-				nDiv = dm._domButtons[btnClass];
-			}
-			var props = null;
-			if(has("bb") && config["mblBBBoxShadowWorkaround"] !== false){
-				// Removes box-shadow because BlackBerry incorrectly renders it.
-				props = {style:"-webkit-box-shadow:none"};
-			}
-			for(var i = 0, p = node; i < nDiv; i++){
-				p = p.firstChild || domConstruct.create("div", props, p);
-			}
-			if(toNode){
-				setTimeout(function(){
-					domClass.remove(refNode, btnClass);
-				}, 0);
-				domClass.add(toNode, btnClass);
-			}
-		}else if(s.indexOf(".") !== -1){ // file name
-			domConstruct.create("img", {src:s}, node);
-		}else{
-			return null;
-		}
-		domClass.add(node, "mblDomButton");
-		!!style && domStyle.set(node, style);
-		return node;
-	};
-	
-	dm.XXcreateIcon = function(/*String*/icon, /*String*/iconPos, /*DomNode*/node, /*String?*/title, /*DomNode?*/parent){
-		// summary:
-		//		Creates or updates an icon node
-		// description:
-		//		If node exists, updates the existing node. Otherwise, creates a new one.
-		// icon:
-		//		Path for an image, or DOM button class name.
-		if(icon && icon.indexOf("mblDomButton") === 0){
-			// DOM button
-			if(node && node.className.match(/(mblDomButton\w+)/)){
-				domClass.remove(node, RegExp.$1);
-			}else{
-				node = domConstruct.create("div", null, parent); /* 1.8 */
-			}
-			node.title = title;
-			domClass.add(node, icon);
-			dm.createDomButton(node);
-		}else if(icon && icon !== "none"){
-			// Image
-			if(!node || node.nodeName !== "IMG"){
-				node = domConstruct.create("img", {
-					alt: title
-				}, parent); /* 1.8 */
-			}
-			node.src = (icon || "").replace("${theme}", dm.currentTheme);
-			dm.setupIcon(node, iconPos);
-			if(parent && iconPos){
-				var arr = iconPos.split(/[ ,]/);
-				domStyle.set(parent, {
-					width: arr[2] + "px",
-					height: arr[3] + "px"
-				});
-			}
-			connect.connect(node, "ondragstart", event, "stop"); /* 1.8 */
-		}
-/* Removed, 1.8
-		if(parent){
-			parent.appendChild(node);
-		}
-*/
-		return node;
-	};
-
-/*
-	dm.instantiateLazyWidgets = function(root, requires){
-		var req = requires ? requires.split(/,/) : [];
-		var nodes = root.getElementsByTagName("*"); // avoid use of dojo.query
-		var len = nodes.length;
-		for(var i = 0; i < len; i++){
-			var s = nodes[i].getAttribute("dojoType") || nodes[i].getAttribute("data-dojo-type");
-			if(s){ req.push(s); }
-		}
-		if(req.length === 0){ return; }
-
-		if(dojo.require){
-			array.forEach(req, function(c){
-				dojo["require"](c);
-			});
-			dojo.parser.parse(root);
-		}else{
-			req = array.map(req, function(s){ return s.replace(/\./g, "/"); });
-			require(req, function(){
-				dojo.parser.parse(root);
-			});
-		}
-	}	
-*/
-
-/*
-	dm._lazyNodes = [];
-	if(config.parseOnLoad){
-		ready(90, function(){
-			var lazyNodes = array.filter(win.body().getElementsByTagName("*"), // avoid use of dojo.query
-				function(n){ return n.getAttribute("lazy") === "true" || (n.getAttribute("data-dojo-props")||"").match(/lazy\s*:\s*true/); });
-			var i, j, nodes, s, n;
-			for(i = 0; i < lazyNodes.length; i++){
-				array.forEach(["dojoType", "data-dojo-type"], function(a){
-					nodes = array.filter(lazyNodes[i].getElementsByTagName("*"),
-										function(n){ return n.getAttribute(a); });
-					for(j = 0; j < nodes.length; j++){
-						n = nodes[j];
-						n.setAttribute("__" + a, n.getAttribute(a));
-						n.removeAttribute(a);
-						dm._lazyNodes.push(n);
-					}
-				});
-			}
-		});
+	if(config["mblApplyPageStyles"] !== false){
+		domClass.add(win.doc.documentElement, "mobile");
 	}
-*/
-	
+	if(has('chrome')){
+		// dojox.mobile does not load uacss (only _compat does), but we need dj_chrome.
+		domClass.add(win.doc.documentElement, "dj_chrome");
+	}
+
 	ready(function(){
 		dm.detectScreenSize(true);
-		if(config["mblApplyPageStyles"] !== false){
-			domClass.add(win.doc.documentElement, "mobile");
-		}
-		if(has('chrome')){
-			// dojox.mobile does not load uacss (only _compat does), but we need dj_chrome.
-			domClass.add(win.doc.documentElement, "dj_chrome");
-		}
 
 		//	You can disable hiding the address bar with the following djConfig.
 		//	var djConfig = { mblHideAddressBar: false };
@@ -413,71 +207,8 @@ define([
 		}
 		connect.connect(null, win.global.onorientationchange !== undefined
 			? "onorientationchange" : "onresize", null, f);
-
-/*
-		for(var i = 0; i < dm._lazyNodes.length; i++){
-			var n = dm._lazyNodes[i];
-			array.forEach(["dojoType", "data-dojo-type"], function(a){
-				if(n.getAttribute("__" + a)){
-					n.setAttribute(a, n.getAttribute("__" + a));
-					n.removeAttribute("__" + a);
-				}
-			});
-		}
-		delete dm._lazyNodes;
-*/
-	
-		if(dojo.hash){
-			// find widgets under root recursively
-			var findWidgets = function(root){
-				if(!root){ return []; }
-				var arr = registry.findWidgets(root);
-				var widgets = arr;
-				for(var i = 0; i < widgets.length; i++){
-					arr = arr.concat(findWidgets(widgets[i].containerNode));
-				}
-				return arr;
-			};
-			connect.subscribe("/dojo/hashchange", null, function(value){
-				var view = dm.currentView;
-				if(!view){ return; }
-				var params = dm._params;
-				if(!params){ // browser back/forward button was pressed
-					var moveTo = value ? value : dm._defaultView.id;
-					var widgets = findWidgets(view.domNode);
-					var dir = 1, transition = "slide";
-					for(i = 0; i < widgets.length; i++){
-						var w = widgets[i];
-						if("#"+moveTo == w.moveTo){
-							// found a widget that has the given moveTo
-							transition = w.transition;
-							dir = (w instanceof dm.Heading) ? -1 : 1;
-							break;
-						}
-					}
-					params = [ moveTo, dir, transition ];
-				}
-				view.performTransition.apply(view, params);
-				dm._params = null;
-			});
-		}
-	
 		win.body().style.visibility = "visible";
 	});
-
-	// To search _parentNode first.  TODO:1.8 reconsider this redefinition.
-/*
-	registry.getEnclosingWidget = function(node){
-		while(node){
-			var id = node.getAttribute && node.getAttribute("widgetId");
-			if(id){
-				return registry.byId(id);
-			}
-			node = node._parentNode || node.parentNode;
-		}
-		return null;
-	};
-*/
 
 	return dm;
 });

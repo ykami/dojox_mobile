@@ -52,6 +52,11 @@ define([
 		//		If true, the last selected item remains highlighted.
 		stateful: false,
 
+		// syncWithViews: Boolean
+		//		True if the TabBar listens to view transition events to be
+		//		synchronized with view's visibility.
+		syncWithViews: false,
+
 		// editable: Boolean
 		//		If true, the list can be re-ordered.
 		editable: false,
@@ -70,6 +75,15 @@ define([
 				}));
 			}
 			connect.connect(this.domNode, "onselectstart", event, "stop");
+
+			if(this.syncWithViews){
+				var f = function(view, moveTo, dir, transition, context, method){
+					var child = array.filter(this.getChildren(), function(w){ return w.moveTo === "#" + view.id; })[0];
+					if(child){ child.select(); }
+				};
+				this.subscribe("/dojox/mobile/afterTransitionIn", f);
+				this.subscribe("/dojox/mobile/startView", f);
+			}
 		},
 	
 		resize: function(){

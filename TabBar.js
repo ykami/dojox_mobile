@@ -53,6 +53,11 @@ define([
 		//		widget.
 		inHeading: false,
 
+		// syncWithViews: Boolean
+		//		True if the TabBar listens to view transition events to be
+		//		synchronized with view's visibility.
+		syncWithViews: false,
+
 		// tag: String
 		//		A name of html tag to create as domNode.
 		tag: "ul",
@@ -74,6 +79,17 @@ define([
 			// mblTabPanelHeader -> mblTabBar mblTabBarSegmentedControl
 			// mblTabBar -> mblTabBar mblTabBarTabBar
 			domClass.add(this.domNode, c);
+		},
+
+		postCreate: function(){
+			if(this.syncWithViews){
+				var f = function(view, moveTo, dir, transition, context, method){
+					var child = array.filter(this.getChildren(), function(w){ return w.moveTo === "#" + view.id; })[0];
+					if(child){ child.select(); }
+				};
+				this.subscribe("/dojox/mobile/afterTransitionIn", f);
+				this.subscribe("/dojox/mobile/startView", f);
+			}
 		},
 
 		startup: function(){

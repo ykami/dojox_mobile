@@ -200,7 +200,11 @@ define([
 				}
 				var transOpts;
 				if(this.moveTo || this.href || this.url || this.scene){
-					transOpts = {moveTo: this.moveTo, href: this.href, url: this.url, scene: this.scene, transition: this.transition, transitionDir: this.transitionDir};
+					transOpts = {
+						moveTo: this.moveTo, href: this.href, hrefTarget: this.hrefTarget,
+						url: this.url, urlTarget: this.urlTarget, scene: this.scene,
+						transition: this.transition, transitionDir: this.transitionDir
+					};
 				}else if(this.transitionOptions){
 					transOpts = this.transitionOptions;
 				}	
@@ -238,24 +242,17 @@ define([
 			}
 		},
 
-		transitionTo: function(moveTo, href, url, scene){
+		transitionTo: function(/*String|Object*/moveTo, href, url, scene){
 			// summary:
 			//		Performs a view transition.
 			// description:
 			//		Given a transition destination, this method performs a view
 			//		transition. This method is typically called when this item
 			//		is clicked.
-			if(config.isDebug){
-				var alreadyCalledHash = arguments.callee._ach || (arguments.callee._ach = {}),
-					caller = (arguments.callee.caller || "unknown caller").toString();
-				if(!alreadyCalledHash[caller]){
-					kernel.deprecated(this.declaredClass + "::transitionTo() is deprecated." +
-					caller, "", "2.0");
-					alreadyCalledHash[caller] = true;
-				}
-			}
-			new TransitionEvent(this.domNode, {moveTo: moveTo, href: href, url: url, scene: scene,
-						transition: this.transition, transitionDir: this.transitionDir}).dispatch();
+			var opts = (typeof(moveTo) === "object") ? moveTo :
+				{moveTo: moveTo, href: href, url: url, scene: scene,
+				 transition: this.transition, transitionDir: this.transitionDir};
+			new TransitionEvent(this.domNode, opts).dispatch();
 		},
 
 		_setIconAttr: function(icon){
