@@ -127,11 +127,11 @@ define([
 				}
 				p.paneContainerWidget.addChild(w, this.getIndexInParent());
 				w.set("label", this.label);
-				this.connect(w.closeIconNode, "onclick", "closeIconClicked");
+				this._clickCloseHandle = this.connect(w.closeIconNode, "onclick", "closeIconClicked");
 			}));
 
-			this.connect(this.domNode, "ondragstart", event.stop);
-			this.connect(this.iconNode, "onclick", "_onClick");
+			this._dragstartHandle = this.connect(this.domNode, "ondragstart", event.stop);
+			this._clickHandle = this.connect(this.iconNode, "onclick", "_onClick");
 		},
 
 		highlight: function(/*Number?*/timeout){ /* 1.8 */

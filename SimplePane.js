@@ -16,7 +16,7 @@ define([
 	// module:
 	//		dojox/mobile/SimplePane
 	// summary:
-	//		A pane widget that is used in a dojox.mobile.FixedSplitter.
+	//		A simple container-type pane widget.
 
 	return declare("dojox.mobile.SimplePane", [WidgetBase, Container, Contained], {
 		// summary:

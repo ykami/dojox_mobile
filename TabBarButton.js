@@ -137,11 +137,13 @@ define([
 				this.set({icon1:this.icon1, icon2:this.icon2});
 			}
 
-			this.connect(this.domNode, "ondragstart", event.stop);
-			this.connect(this.anchorNode, "onclick", "_onClick");
+			this._dragstartHandle = this.connect(this.domNode, "ondragstart", event.stop);
+			this._clickHandle = this.connect(this.anchorNode, "onclick", "_onClick");
 			if(this.getParent().barType === "tabPanel" && this.getParent().closable){
-				this.connect(this.iconDivNode, "onclick", "_onClick");
+				this._clickCloseHandler = this.connect(this.iconDivNode, "onclick", "_onClick");
 			}
+
+			this.inherited(arguments);
 		},
 	
 		select: function(){

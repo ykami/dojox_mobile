@@ -43,7 +43,7 @@ define([
 		},
 
 		postCreate: function(){
-			this.connect(this.domNode, "onclick", "_onClick");
+			this._clickHandle = this.connect(this.domNode, "onclick", "_onClick");
 		},
 
 		startup: function(){

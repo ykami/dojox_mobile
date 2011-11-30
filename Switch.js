@@ -73,8 +73,8 @@ define([
 		},
 
 		postCreate: function(){
-			this.connect(this.domNode, "onclick", "_onClick");
-			this.connect(this.domNode, has('touch') ? "touchstart" : "onmousedown", "onTouchStart");
+			this._clickHandle = this.connect(this.domNode, "onclick", "_onClick");
+			this._startHandle = this.connect(this.domNode, has('touch') ? "touchstart" : "onmousedown", "onTouchStart");
 			this._initialValue = this.value; // for reset()
 		},
 

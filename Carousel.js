@@ -114,8 +114,8 @@ define([
 					title: "Next",
 					innerHTML: "&gt;"
 				}, this.btnContainerNode);
-				this.connect(this.prevBtnNode, "onclick", "onPrevBtnClick");
-				this.connect(this.nextBtnNode, "onclick", "onNextBtnClick");
+				this._prevHandle = this.connect(this.prevBtnNode, "onclick", "onPrevBtnClick");
+				this._nextHandle = this.connect(this.nextBtnNode, "onclick", "onNextBtnClick");
 			}
 
 			if(this.pageIndicator){
@@ -133,9 +133,9 @@ define([
 
 			this.containerNode = domConstruct.create("div", {className:"mblCarouselPages"}, this.domNode);
 			this.subscribe("/dojox/mobile/viewChanged", "handleViewChanged");
-			this.connect(this.domNode, "onclick", "_onClick");
-			this.connect(this.domNode, "onkeydown", "_onClick");
-			this.connect(this.domNode, "ondragstart", event.stop);
+			this._clickHandle = this.connect(this.domNode, "onclick", "_onClick");
+			this._keydownHandle = this.connect(this.domNode, "onkeydown", "_onClick");
+			this._dragstartHandle = this.connect(this.domNode, "ondragstart", event.stop);
 		},
 
 		startup: function(){

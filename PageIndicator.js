@@ -40,7 +40,7 @@ define([
 			this.domNode.className = "mblPageIndicator";
 			this._tblNode = domConstruct.create("table", {className:"mblPageIndicatorContainer"}, this.domNode);
 			this._tblNode.insertRow(-1);
-			this.connect(this.domNode, "onclick", "_onClick");
+			this._clickHandle = this.connect(this.domNode, "onclick", "_onClick");
 			connect.subscribe("/dojox/mobile/viewChanged", this, function(view){
 				this.reset();
 			});

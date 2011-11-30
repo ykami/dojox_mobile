@@ -102,6 +102,10 @@ define([
 		//		An alt text for the right icon2.
 		rightIcon2Title: "",
 
+		// tag: String
+		//		A name of html tag to create as domNode.
+		tag: "li",
+
 		paramsToInherit: "variableHeight,transition,deleteIcon,icon,rightIcon,rightIcon2,uncheckIcon,arrowClass,checkClass,uncheckClass",
 
 		baseClass: "mblListItem",
@@ -113,6 +117,7 @@ define([
 
 		buildRendering: function(){
 			this._isOnLine = this.inheritParams();
+			this.domNode = this.srcNodeRef || domConstruct.create(this.tag);
 			this.inherited(arguments);
 			if(this.selected){
 				domClass.add(this.domNode, this._selClass);
@@ -164,7 +169,8 @@ define([
 
 			var parent = this.getParent();
 			if(this.moveTo || this.href || this.url || this.clickable || (parent && parent.select)){
-				this._onClickHandle = this.connect(this.domNode, "onclick", "_onClick");
+				this._clickHandle = this.connect(this.domNode, "onclick", "_onClick");
+				this._keydownHandle = this.connect(this.domNode, "onkeydown", "_onClick");
 			}
 			this.setArrow();
 
@@ -190,6 +196,7 @@ define([
 		},
 
 		_onClick: function(e){
+			if(e && e.type === "keydown" && e.keyCode !== 13){ return; }
 			var a = e.currentTarget;
 			var li = a.parentNode;
 			if(domClass.contains(li, this._selClass)){ return; } // already selected
@@ -223,7 +230,11 @@ define([
 			}
 			var transOpts;
 			if(this.moveTo || this.href || this.url || this.scene){
-				transOpts = {moveTo: this.moveTo, href: this.href, url: this.url, scene: this.scene, transition: this.transition, transitionDir: this.transitionDir};
+				transOpts = {
+					moveTo: this.moveTo, href: this.href, hrefTarget: this.hrefTarget,
+					url: this.url, urlTarget: this.urlTarget, scene: this.scene,
+					transition: this.transition, transitionDir: this.transitionDir
+				};
 			}else if(this.transitionOptions){
 				transOpts = this.transitionOptions;
 			}	
