@@ -140,6 +140,11 @@ define([
 				connect.publish("/dojox/mobile/app/pushScene", [evt.detail.scene]);
 				return;
 			}
+			var src = registry.getEnclosingWidget(evt.target);
+			if(src && src.callback){
+				evt.detail.context = src;
+				evt.detail.method = src.callback;
+			}
 			fromView.performTransition(evt.detail);
 		}
 	});
