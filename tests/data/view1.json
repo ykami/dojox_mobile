@@ -1,5 +1,6 @@
 {
   "dojox.mobile.View": {
+    "@id": "view1",
     "dojox.mobile.Heading": {
       "@back": "Home",
       "@moveTo": "home",

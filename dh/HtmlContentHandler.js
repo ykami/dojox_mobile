@@ -8,7 +8,7 @@ define([
 	return declare("dojox.mobile.dh.HtmlContentHandler", null, {
 
 		parse: function(/*String*/ text, /*DomNode*/ target, /*DomNode*/ refNode){
-			var container = domConstruct.create("div", {innerHTML: text});
+			var view, container = domConstruct.create("div", {innerHTML: text});
 			for(i = 0; i < container.childNodes.length; i++){
 				var n = container.childNodes[i];
 				if(n.nodeType === 1){

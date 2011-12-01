@@ -1,6 +1,6 @@
 {
   "dojox.mobile.View": {
-    "@id": "settings",
+    "@id": "view3",
     "dojox.mobile.Heading": {
       "@label": "view3.json"
     },
