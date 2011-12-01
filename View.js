@@ -1,4 +1,3 @@
-console.log("loading View");
 define([
 	"dojo/_base/kernel", // to test dojo.hash
 	"dojo/_base/array",

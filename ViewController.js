@@ -1,4 +1,3 @@
-console.log("loading ViewController");
 define([
 	"dojo/_base/kernel",
 	"dojo/_base/array",
