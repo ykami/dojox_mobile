@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<title>Bookmarkable - Split Views</title>
+
+	<script type="text/javascript" src="../deviceTheme.js" data-dojo-config="mblThemeFiles: ['base','FixedSplitter']"></script>
+	<script type="text/javascript" src="../../../dojo/dojo.js" data-dojo-config="async: true, parseOnLoad: true, mblAlwaysHideAddressBar: true"></script>
+
+	<script type="text/javascript">
+		require([
+			"dojox/mobile/parser",
+			"dojox/mobile",
+			"dojox/mobile/compat",
+			"dojox/mobile/bookmarkable",
+			"dojox/mobile/FixedSplitter"
+		]);
+	</script>
+
+	<style>
+	html, body{
+		height: 100%;
+		overflow: hidden;
+		position: relative;
+	}
+	</style>
+</head>
+<body style="visibility:hidden;">
+	<div data-dojo-type="dojox.mobile.FixedSplitter" data-dojo-props='orientation:"H"'>
+		<div data-dojo-type="dojox.mobile.FixedSplitterPane" style="width:50%;border-right:1px solid black;">
+			<div id="foo1" data-dojo-type="dojox.mobile.View">
+				<h1 data-dojo-type="dojox.mobile.Heading">Animations</h1>
+				<h2 data-dojo-type="dojox.mobile.RoundRectCategory">Transition Effects</h2>
+				<ul data-dojo-type="dojox.mobile.RoundRectList">
+					<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"images/i-icon-1.png", moveTo:"#bar1", transition:"slide"'>
+						Slide
+					</li>
+					<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"images/i-icon-2.png", moveTo:"#bar1", transition:"flip"'>
+						Flip
+					</li>
+					<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"images/i-icon-3.png", moveTo:"#bar1", transition:"fade"'>
+						Fade
+					</li>
+				</ul>
+			</div>
+
+			<div id="bar1" data-dojo-type="dojox.mobile.View">
+				<h1 data-dojo-type="dojox.mobile.Heading" data-dojo-props='back:"Home", moveTo:"#foo1"'>Search Result</h1>
+				<ul data-dojo-type="dojox.mobile.RoundRectList">
+					<li data-dojo-type="dojox.mobile.ListItem" style="font-size:10px" data-dojo-props='variableHeight:true'>
+						1. <a href="#" class="lnk">Dojo: Traditional Karate-do Spirit</a><br>
+						Sarah Connor Hardcover<br>
+						Eligible for FREE Super Saver Shipping<br>
+						<span style="color:red">$14.50 (50%)</span> In Stock<br>
+						# (531)
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div data-dojo-type="dojox.mobile.FixedSplitterPane">
+			<div id="foo2" data-dojo-type="dojox.mobile.View">
+				<h1 data-dojo-type="dojox.mobile.Heading">Animations</h1>
+				<h2 data-dojo-type="dojox.mobile.RoundRectCategory">Transition Effects</h2>
+				<ul data-dojo-type="dojox.mobile.RoundRectList">
+					<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"images/i-icon-1.png", moveTo:"#bar2", transition:"slide"'>
+						Slide
+					</li>
+					<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"images/i-icon-2.png", moveTo:"#bar2", transition:"flip"'>
+						Flip
+					</li>
+					<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"images/i-icon-3.png", moveTo:"#bar2", transition:"fade"'>
+						Fade
+					</li>
+				</ul>
+			</div>
+
+			<div id="bar2" data-dojo-type="dojox.mobile.View">
+				<h1 data-dojo-type="dojox.mobile.Heading" data-dojo-props='back:"Home", moveTo:"#foo2"'>Search Result</h1>
+				<ul data-dojo-type="dojox.mobile.RoundRectList">
+					<li data-dojo-type="dojox.mobile.ListItem" style="font-size:10px" data-dojo-props='variableHeight:true'>
+						1. <a href="#" class="lnk">Dojo: Traditional Karate-do Spirit</a><br>
+						Sarah Connor Hardcover<br>
+						Eligible for FREE Super Saver Shipping<br>
+						<span style="color:red">$14.50 (50%)</span> In Stock<br>
+						# (531)
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
