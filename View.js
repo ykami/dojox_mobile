@@ -10,6 +10,7 @@ define([
 	"dojo/_base/Deferred",
 	"dojo/dom",
 	"dojo/dom-class",
+	"dojo/dom-construct",
 	"dojo/dom-geometry",
 	"dojo/dom-style",
 	"dijit/registry",	// registry.byNode
@@ -19,7 +20,7 @@ define([
 	"./ViewController", // to load ViewController for you (no direct references)
 	"./transition",
 	"./viewRegistry"
-], function(dojo, array, config, connect, declare, lang, has, win, Deferred, dom, domClass, domGeometry, domStyle, registry, Contained, Container, WidgetBase, ViewController, transitDeferred, viewRegistry){
+], function(dojo, array, config, connect, declare, lang, has, win, Deferred, dom, domClass, domConstruct, domGeometry, domStyle, registry, Contained, Container, WidgetBase, ViewController, transitDeferred, viewRegistry){
 
 /*=====
 	var Contained = dijit._Contained;
