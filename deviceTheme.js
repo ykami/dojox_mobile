@@ -103,15 +103,12 @@ define([
 		//	|		 djConfig="mblThemeFiles:['base','Button']"></script>
 		//	|	<script src="dojo/dojo.js" djConfig="parseOnLoad: true"></script>
 		//
-		//		In this case, however, loadCompatCssFiles() will never be called
-		//		when you change the theme dynamically by explicitly calling
-		//		loadDeviceTheme().
-		//
 		//		A safer solution would be to not use deviceTheme and use <link>
 		//		or @import instead to load the theme files.
 		if(!win){
 			win = window;
 			win.doc = document;
+			win._no_dojo_dm = dm;
 		}
 		config = config || win.mblConfig || {};
 		var scripts = win.doc.getElementsByTagName("script");
@@ -144,7 +141,20 @@ define([
 		};
 
 		this.toUrl = function(/*String*/path){
+			// summary:
+			//		A wrapper for require.toUrl to support non-dojo usage.
 			return require ? require.toUrl(path) : config.baseUrl + "../" + path;
+		};
+
+		this.setDm = function(/*Object*/_dm){
+			// summary:
+			//		Replaces the dojox.mobile object.
+			// description:
+			//		When this module is loaded from a script tag, dm is a plain
+			//		local object defined at the begining of this module.
+			//		common.js will replace the local dm object with the
+			//		real dojox.mobile object through this method.
+			dm = _dm;
 		};
 
 		this.themeMap = config.themeMap || [
@@ -233,9 +243,6 @@ define([
 					}
 
 					if(userAgent && dm.loadCompatCssFiles){
-						// Never be called if you use <script> to load deviceTheme.js.
-						// Need to use require or dojo.require instead, if you want to do dynamic theme change
-						// and support the compat mode.
 						dm.loadCompatCssFiles();
 					}
 					break;
