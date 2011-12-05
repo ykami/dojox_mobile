@@ -49,6 +49,11 @@ define([
 		});
 
 		this.instantiateLazyWidgets = function(root, requires, callback){
+			// summary:
+			//		Instantiate dojo widgets under the root node.
+			// description:
+			//		Find dom nodes that have the dojoType or data-dojo-type attributes,
+			//		require the found dojo modules, and run the parser.
 			var req = requires ? requires.split(/,/) : [];
 			var nodes = root.getElementsByTagName("*"); // avoid use of dojo.query
 			var len = nodes.length;
