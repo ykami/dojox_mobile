@@ -21,11 +21,14 @@
   top: 5px;
   width: 19px;
   height: 19px;
-  border: 1px solid #3A4655;
   border-radius: 1px;
   /* anti-aliasing looks better with this */
 
   -webkit-transform: scale(0.7, 0.99) rotate(45deg);
+  border: 1px solid #9CACC0;
+}
+.mblHeading .mblToolBarButtonArrow {
+  border: 1px solid #3A4655;
 }
 .mblToolBarButtonLeftArrow .mblToolBarButtonArrow {
   left: 0px;
@@ -36,10 +39,11 @@
 .mblToolBarButtonBody {
   position: relative;
   overflow: hidden;
-  border-width: 1px;
-  border-style: inset;
-  border-color: #9CACC0;
+  border: 1px outset #9CACC0;
   border-radius: 5px;
+}
+.mblHeading .mblToolBarButtonBody {
+  border: 1px inset #9CACC0;
 }
 .mblToolBarButtonBody table {
   margin: 0 auto;
