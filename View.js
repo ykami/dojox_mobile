@@ -110,8 +110,6 @@ define([
 
 				this.onStartView();
 				connect.publish("/dojox/mobile/startView", [this]);
-			}else{
-				this.hide();
 			}
 
 			if(this.domNode.style.visibility != "visible"){ // this check is to avoid screen flickers
@@ -125,6 +123,12 @@ define([
 			var parent = this.getParent();
 			if(!parent || !parent.resize){ // top level widget
 				this.resize();
+			}
+
+			if(!this._visible){
+				// hide() should be called last so that child widgets can be
+				// initialized while they are visible.
+				this.hide();
 			}
 		},
 
