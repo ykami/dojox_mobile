@@ -257,8 +257,13 @@ define([
 
 		_setIconAttr: function(icon){
 			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
+			this._set("icon", icon);
 			this.iconNode = iconUtils.setIcon(icon, this.iconPos, this.iconNode, this.alt, this.iconParentNode);
-			this.icon = icon;
+		},
+
+		_setLabelAttr: function(/*String*/text){
+			this._set("label", text);
+			this.labelNode.innerHTML = this._cv ? this._cv(text) : text;
 		}
 	});
 });

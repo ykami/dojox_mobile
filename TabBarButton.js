@@ -118,7 +118,9 @@ define([
 			this.domNode = this.srcNodeRef || domConstruct.create(this.tag);
 
 			if(this.srcNodeRef){
-				this.label = this.srcNodeRef.innerHTML;
+				if(!this.label){
+					this.label = lang.trim(this.srcNodeRef.innerHTML);
+				}
 				this.srcNodeRef.innerHTML = "";
 			}
 
@@ -241,11 +243,6 @@ define([
 
 		_setSelectedAttr: function(/*Boolean*/sel){
 			sel ? this.select() : this.deselect();
-		},
-
-		_setLabelAttr: function(/*String*/text){
-			this.label = text;
-			this.labelNode.innerHTML = this._cv ? this._cv(text) : text;
 		}
 	});
 });

@@ -355,11 +355,6 @@ define([
 			this._setIcon(icon, "rightIcon2", this.rightTextNode || this.labelNode);
 		},
 	
-		_setLabelAttr: function(/*String*/text){
-			this._set("label", text);
-			this.labelNode.innerHTML = this._cv ? this._cv(text) : text;
-		},
-
 		_setCheckedAttr: function(/*Boolean*/checked){
 			var parent = this.getParent();
 			if(parent && parent.select === "single" && checked){

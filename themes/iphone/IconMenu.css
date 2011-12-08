@@ -26,9 +26,6 @@
 .mblIconMenuItemIcon img {
   border: none;
 }
-.mblIconMenuItemSpriteIcon {
-  position: absolute;
-}
 .mblIconMenuItemFirstColumn {
   border-left: none;
 }

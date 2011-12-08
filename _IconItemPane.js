@@ -48,14 +48,13 @@ define([
 		},
 
 		_setLabelAttr: function(/*String*/text){
-			this.label = text;
-			var s = this._cv ? this._cv(text) : text;
-			this.labelNode.innerHTML = s;
+			this._set("label", text);
+			this.labelNode.innerHTML = this._cv ? this._cv(text) : text;
 		},
 
 		_setCloseIconAttr: function(icon){
+			this._set("closeIcon", icon);
 			this.closeIconNode = iconUtils.setIcon(icon, this.iconPos, this.closeIconNode, this.alt, this.closeHeaderNode);
-			this.closeIcon = icon;
 		}
 	});
 });

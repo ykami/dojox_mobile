@@ -1,25 +1,39 @@
 define([
 	"dojo/_base/declare",
+	"dojo/_base/lang",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"./iconUtils",
 	"./_ItemBase"
-], function(declare, domClass, domConstruct, iconUtils, ItemBase){
+], function(declare, lang, domClass, domConstruct, iconUtils, ItemBase){
 	// module:
 	//		dojox/mobile/IconMenuItem
 	// summary:
-	//		TODOC
+	//		An item of IconMenu.
 
 	return declare("dojox.mobile.IconMenuItem", ItemBase, { 
 		selected: false,
 		selColor: "mblIconMenuItemSel",
 		closeOnAction: false,
 
+		// tag: String
+		//		A name of html tag to create as domNode.
+		tag: "li",
+
+		baseClass: "mblIconMenuItem",
+
 		buildRendering: function(){
-			this.domNode = this.srcNodeRef || domConstruct.create("li");
-			this.domNode.className = "mblIconMenuItem";
+			this.domNode = this.srcNodeRef || domConstruct.create(this.tag);
+			this.inherited(arguments);
 			if(this.selected){
 				domClass.add(this.domNode, this.selColor);
+			}
+
+			if(this.srcNodeRef){
+				if(!this.label){
+					this.label = lang.trim(this.srcNodeRef.innerHTML);
+				}
+				this.srcNodeRef.innerHTML = "";
 			}
 
 			var a = this.anchorNode = this.containerNode = domConstruct.create("a", {
@@ -30,15 +44,12 @@ define([
 				className: "mblIconMenuItemTable"
 			}, a);
 			var cell = tbl.insertRow(-1).insertCell(-1);
-			this.iconNode = domConstruct.create("div", {
+			this.iconNode = this.iconParentNode = domConstruct.create("div", {
 				className: "mblIconMenuItemIcon"
 			}, cell);
 			this.labelNode = domConstruct.create("div", {
 				className: "mblIconMenuItemLabel"
 			}, cell);
-//x			for(var i = 0, len = this.domNode.childNodes.length; i < len; i++){
-//x				a.appendChild(this.domNode.firstChild); // reparent
-//x			}
 			this.domNode.appendChild(a);
 		},
 
@@ -72,27 +83,6 @@ define([
 			}
 			this.setTransitionPos(e);
 			this.defaultClickAction();
-		},
-
-		_setIconAttr: function(icon){
-			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
-			this.icon = icon;
-			var a = this.containerNode;
-			domConstruct.empty(this.iconNode);
-			if(icon && icon !== "none"){
-				iconUtils.createIcon(icon, this.iconPos, null, this.alt, this.iconNode);
-				if(this.iconPos){
-					domClass.add(this.iconNode.firstChild, "mblIconMenuItemSpriteIcon");
-				}
-				domClass.remove(a, "mblIconMenuItemAnchorNoIcon");
-			}else{
-				domClass.add(a, "mblIconMenuItemAnchorNoIcon");
-			}
-		},
-	
-		_setLabelAttr: function(/*String*/text){
-			this.label = text;
-			this.labelNode.innerHTML = this._cv ? this._cv(text) : text;
 		}
 	});
 });
