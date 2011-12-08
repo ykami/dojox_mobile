@@ -57,7 +57,13 @@ define([
 		//		If -1, the last child pane fills the remaining space.
 		variablePane: -1,
 
+		// screenSizeAware: Boolean
+		//		If true, dynamically load a screen-size-aware module.
 		screenSizeAware: false,
+
+		// screenSizeAwareClass: String
+		//		A screen-size-aware module to load.
+		screenSizeAwareClass: "dojox/mobile/ScreenSizeAware",
 
 		baseClass: "mblFixedSplitter",
 
@@ -74,8 +80,7 @@ define([
 			}, 0);
 
 			if(this.screenSizeAware){
-				var s = "dojox/mobile/ScreenSizeAware"; // not to be rolled into a build
-				require([s], function(module){
+				require([this.screenSizeAwareClass], function(module){
 					module.getInstance();
 				});
 			}
