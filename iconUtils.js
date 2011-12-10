@@ -2,11 +2,14 @@ define([
 	"dojo/_base/array",
 	"dojo/_base/connect",
 	"dojo/_base/event",
+	"dojo/_base/lang",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/dom-style",
 	"./sniff"
-], function(array, connect, event, domClass, domConstruct, domStyle, has){
+], function(array, connect, event, lang, domClass, domConstruct, domStyle, has){
+
+	var dm = lang.getObject("dojox.mobile", true);
 
 	// module:
 	//		dojox/mobile/iconUtils
@@ -156,7 +159,7 @@ define([
 						alt: title
 					}, refNode || parent, pos); /* 1.8 */
 				}
-				node.src = (icon || "").replace("${theme}", this.currentTheme); //TODO: how do I pass currentTheme
+				node.src = (icon || "").replace("${theme}", dm.currentTheme);
 				this.setupSpriteIcon(node, iconPos);
 				if(iconPos && parent){
 					var arr = iconPos.split(/[ ,]/);
