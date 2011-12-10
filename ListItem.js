@@ -201,7 +201,7 @@ define([
 			var li = a.parentNode;
 			if(domClass.contains(li, this._selClass)){ return; } // already selected
 			if(this.anchorLabel){
-				for(var p = e.target; p.tagName !== "LI"; p = p.parentNode){
+				for(var p = e.target; p.tagName !== this.tag.toUpperCase(); p = p.parentNode){
 					if(p.className == "mblListItemTextBox"){
 						domClass.add(p, "mblListItemTextBoxSelected");
 						setTimeout(function(){
