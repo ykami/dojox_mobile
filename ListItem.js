@@ -201,7 +201,7 @@ define([
 			var li = a.parentNode;
 			if(domClass.contains(li, this._selClass)){ return; } // already selected
 			if(this.anchorLabel){
-				for(var p = e.target; p.tagName !== "LI"; p = p.parentNode){
+				for(var p = e.target; p.tagName !== this.tag.toUpperCase(); p = p.parentNode){
 					if(p.className == "mblListItemTextBox"){
 						domClass.add(p, "mblListItemTextBoxSelected");
 						setTimeout(function(){
@@ -355,11 +355,6 @@ define([
 			this._setIcon(icon, "rightIcon2", this.rightTextNode || this.labelNode);
 		},
 	
-		_setLabelAttr: function(/*String*/text){
-			this._set("label", text);
-			this.labelNode.innerHTML = this._cv ? this._cv(text) : text;
-		},
-
 		_setCheckedAttr: function(/*Boolean*/checked){
 			var parent = this.getParent();
 			if(parent && parent.select === "single" && checked){

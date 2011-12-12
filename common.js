@@ -9,12 +9,11 @@ define([
 	"dojo/dom-construct",
 	"dojo/dom-style",
 	"dojo/ready",
-	"dijit/registry",	// registry.toArray
-	"./lazyLoadUtils",
+	"dijit/registry",
 	"./sniff",
 	"./uacss",
 	"./TransitionEvent"
-], function(array, config, connect, event, lang, win, domClass, domConstruct, domStyle, ready, registry, lazyLoadUtils, has, uacss, TransitionEvent){
+], function(array, config, connect, event, lang, win, domClass, domConstruct, domStyle, ready, registry, has, uacss, TransitionEvent){
 
 	var dm = lang.getObject("dojox.mobile", true);
 /*=====
@@ -190,7 +189,6 @@ define([
 		// dojox.mobile does not load uacss (only _compat does), but we need dj_chrome.
 		domClass.add(win.doc.documentElement, "dj_chrome");
 	}
-
 
 	if(win.global._no_dojo_dm){
 		// deviceTheme seems to be loaded from a script tag (= non-dojo usage)

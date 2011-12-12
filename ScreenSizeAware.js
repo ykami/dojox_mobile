@@ -15,7 +15,7 @@ define([
 	// summary:
 	//		A module to make a screen size aware application.
 
-	kernel.experimental("dojox.mobile.ScreenSizeAware"); // Don't start using this, still work-in-progress.
+	kernel.experimental("dojox.mobile.ScreenSizeAware"); // Don't start using this, still experimental.
 
 	var cls = declare("dojox.mobile.ScreenSizeAware", null, {
 		// summary:
@@ -153,7 +153,12 @@ define([
 				var view = registry.byId(id);
 				if(view){
 					var heading = array.filter(view.getChildren(), function(c){ return c.declaredClass.indexOf("Heading") !== -1; })[0];
-					heading.backBtnNode.style.display = this.isPhone() ? "" : "none";
+					if(heading.backButton){
+						heading.backButton.domNode.style.display = this.isPhone() ? "" : "none";
+					}
+					if(heading.backBtnNode){ // TODO: remove this block later
+						heading.backBtnNode.style.display = this.isPhone() ? "" : "none";
+					}
 				}
 			}, this);
 		},

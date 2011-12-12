@@ -8,7 +8,7 @@ define([
 	// module:
 	//		dojox/mobile/Badge
 	// summary:
-	//		TODOC
+	//		A utility to create/update a badge node.
 
 	return declare("dojox.mobile.Badge", null, {
 		value: "0",

@@ -156,8 +156,7 @@ define([
 		},
 	
 		_setLabelAttr: function(/*String*/text){
-			this.label = text;
-			this.labelNode.innerHTML = this._cv ? this._cv(text) : text;
+			this.inherited(arguments);
 			domClass.toggle(this.tableNode, "mblToolBarButtonText", text);
 		}
 	});
