@@ -26,6 +26,28 @@ dojo.addOnLoad(function(){
 				}),500);
 				return d;
 			}
+		},
+		{
+			name: "TabBar and TabBarButton set",
+			timeout: 4000,
+			runTest: function(){
+				var d = new doh.Deferred();
+				setTimeout(d.getTestCallback(function(){
+					var demoWidget = dijit.byId("dojox_mobile_TabBar_0");
+
+
+					demoWidget = dijit.byId("dojox_mobile_TabBarButton_2");
+					demoWidget.set({label:"New Value"});
+					demoWidget.select();
+
+					verifyTabBarButton("dojox_mobile_TabBarButton_2", 'New Value', "mblTabBarButton mblTabBarButtonSelected", 'hidden', '', /tab-icon-10.png/i, /tab-icon-10h.png/);
+					demoWidget = dijit.byId("dojox_mobile_TabBarButton_5");
+					demoWidget.set({label:"New Value", icon1:"../images/tab-icon-11.png", icon2:"../images/tab-icon-11h.png"});
+					demoWidget.select();
+
+					verifyTabBarButton("dojox_mobile_TabBarButton_5", 'New Value', "mblTabBarButton mblTabBarButtonSelected", 'hidden', '', /tab-icon-11.png/i, /tab-icon-11h.png/);				}),500);
+				return d;
+			}
 		}
 	]);
 	doh.run();
