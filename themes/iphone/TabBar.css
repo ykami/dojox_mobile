@@ -150,3 +150,40 @@
 .mblTabBarTabPanel .mblTabBarButtonSelected {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#f3f4f6), to(#f2f3f7));
 }
+/* dojox.mobile.TabBarButton (slimTabBar) */
+.mblTabBarSlimTabBar {
+  height: 30px;
+  padding: 0px;
+  background-color: #000000;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#000000), color-stop(0.5, #141414), color-stop(0.5, #000000));
+  color: white;
+}
+.mblTabBarSlimTabBar .mblTabBarButton {
+  padding: 7px;
+  border-right: 1px solid #4E4E4E;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#000000), color-stop(0.5, #141414), color-stop(0.5, #000000));
+  font-family: Helvetica;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  text-shadow: rgba(100, 100, 100, 0.6) 0px -1px 0px;
+  text-align: center;
+}
+.mblTabBarSlimTabBar .mblTabBarButton:first-child {
+  border-left: 1px solid #4E4E4E;
+}
+.mblTabBarSlimTabBar .mblTabBarButtonIconArea {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.mblTabBarSlimTabBar .mblTabBarButtonClosable .mblTabBarButtonLabel {
+  margin-left: 20px;
+}
+.mblTabBarButtonHasIcon .mblTabBarButtonLabel {
+  margin-left: 20px;
+}
+.mblTabBarSlimTabBar .mblTabBarButtonSelected {
+  background-color: #404040;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#484848), to(#242424), color-stop(0.5, #353535), color-stop(0.5, #242424));
+}

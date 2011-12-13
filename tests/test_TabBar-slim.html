@@ -45,20 +45,32 @@
 		padding-top: 30px;
 		text-align: center;
 	}
+	#bar1 li {
+		width: 107px;
+	}
 	</style>
 </head>
 <body style="visibility:hidden;">
-	<div class="label">tabPanel</div>
-	<ul id="bar1" data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"tabPanel"'>
+	<div class="label">slimTabBar</div>
+	<ul id="bar1" data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"slimTabBar"'>
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view1", selected:true'>Dashboard</li>
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view2"'>Plan</li>
-		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view3"'>Today's Main Event</li>
-	</ul>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view3"'>Event</li>
+	</ul><br>
 
-	<ul id="bar2" data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"tabPanel",closable:true'>
+	<ul id="bar2" data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"slimTabBar",closable:true'>
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view1", selected:true'>Dashboard</li>
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view2"'>Plan</li>
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view3"'>Today's Main Event</li>
+	</ul><br>
+
+	<ul id="bar3" data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"slimTabBar"'>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view1", selected:true,
+			icon1:"images/tab-icon-21.png", icon2:"images/tab-icon-21h.png"'>Dashboard</li>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view2",
+			icon1:"images/tab-icon-21.png", icon2:"images/tab-icon-21h.png"'>Plan</li>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view3",
+			icon1:"images/tab-icon-21.png", icon2:"images/tab-icon-21h.png"'>Event</li>
 	</ul>
 
 	<div id="view1" data-dojo-type="dojox.mobile.View">

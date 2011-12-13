@@ -70,15 +70,17 @@ define([
 		_largeScreenWidth: 500,
 
 		buildRendering: function(){
-//x			this._clsName = this.barType == "segmentedControl" ? "mblTabButton" : "mblTabBarButton";
 			this.domNode = this.containerNode = this.srcNodeRef || domConstruct.create(this.tag);
-//x			this.domNode.className = this.barType == "segmentedControl" ? "mblTabPanelHeader" : "mblTabBar";
 			this.inherited(arguments);
 			var t = this.barType,
 				c = this.baseClass + t.charAt(0).toUpperCase() + t.substring(1);
 			// mblTabPanelHeader -> mblTabBar mblTabBarSegmentedControl
 			// mblTabBar -> mblTabBar mblTabBarTabBar
 			domClass.add(this.domNode, c);
+
+			if(this.barType !== "tabPanel" && this.barType !== "slimTabBar"){
+				this.closable = false;
+			}
 		},
 
 		postCreate: function(){
@@ -132,7 +134,6 @@ define([
 						width: totalW + 2 + "px"
 					});
 				}
-//x				domClass.add(this.domNode, "mblTabBar" + (inHeading ? "Head" : "Top"));
 			}else if (this.barType == "tabBar"){
 				margin = Math.floor((w - (bw + bm * 2) * arr.length) / 2);
 				if(w < this._largeScreenWidth || margin < 0){

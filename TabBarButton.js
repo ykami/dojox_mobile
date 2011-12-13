@@ -102,7 +102,7 @@ define([
 				if(!this.icon2){ this.icon2 = parent.iconBase || this.icon1; }
 				if(!this.iconPos2){ this.iconPos2 = parent.iconPos || this.iconPos1; }
 
-				if(parent.barType === "tabPanel" && parent.closable){
+				if(parent.closable){
 					if(!this.icon1){
 						this.icon1 = "mblDomButtonGrayCross";
 					}
@@ -141,7 +141,7 @@ define([
 
 			this._dragstartHandle = this.connect(this.domNode, "ondragstart", event.stop);
 			this._clickHandle = this.connect(this.anchorNode, "onclick", "_onClick");
-			if(this.getParent().barType === "tabPanel" && this.getParent().closable){
+			if(this.getParent().closable){
 				this._clickCloseHandler = this.connect(this.iconDivNode, "onclick", "_onClick");
 			}
 
@@ -195,21 +195,19 @@ define([
 
 		_setIcon: function(icon, n, sel){
 			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
-			if(icon){ this["icon" + n] = icon; }
-			if(icon && icon !== "none"){
-				if(!this.iconDivNode){
-					this.iconDivNode = domConstruct.create("div", {className:"mblTabBarButtonIconArea"}, this.anchorNode, "first");
-					// mblTabBarButtonDiv -> mblTabBarButtonIconArea
-				}
-				if(!this["iconParentNode" + n]){
-					this["iconParentNode" + n] = domConstruct.create("div", {className:"mblTabBarButtonIconParent mblTabBarButtonIconParent" + n}, this.iconDivNode);
-					// mblTabBarButtonIcon -> mblTabBarButtonIconParent
-				}
-				this["iconNode" + n] = iconUtils.setIcon(icon, this["iconPos" + n],
-					this["iconNode" + n], this.alt, this["iconParentNode" + n]);
-				this["icon" + n] = icon;
-//x				this["iconParentNode" + n].style.visibility = sel ? "hidden" : "";
+			if(icon){ this._set("icon" + n, icon); }
+			if(!this.iconDivNode){
+				this.iconDivNode = domConstruct.create("div", {className:"mblTabBarButtonIconArea"}, this.anchorNode, "first");
+				// mblTabBarButtonDiv -> mblTabBarButtonIconArea
 			}
+			if(!this["iconParentNode" + n]){
+				this["iconParentNode" + n] = domConstruct.create("div", {className:"mblTabBarButtonIconParent mblTabBarButtonIconParent" + n}, this.iconDivNode);
+				// mblTabBarButtonIcon -> mblTabBarButtonIconParent
+			}
+			this["iconNode" + n] = iconUtils.setIcon(icon, this["iconPos" + n],
+				this["iconNode" + n], this.alt, this["iconParentNode" + n]);
+			this["icon" + n] = icon;
+			domClass.toggle(this.domNode, "mblTabBarButtonHasIcon", icon && icon !== "none");
 		},
 	
 		_setIcon1Attr: function(icon){
