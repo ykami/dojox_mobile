@@ -184,6 +184,11 @@ define([
 		},
 	
 		_onClick: function(e){
+			// summary:
+			//		Internal handler for click events.
+			// tags:
+			//		private
+			if(this.onClick(e) === false){ return; } // user's click action
 			if(e.currentTarget === this.iconDivNode){
 				if(this.onClose()){
 					this.destroy();
@@ -191,6 +196,13 @@ define([
 			}else{
 				this.defaultClickAction();
 			}
+		},
+
+		onClick: function(/*Event*/ /*===== e =====*/){
+			// summary:
+			//		User defined function to handle clicks
+			// tags:
+			//		callback
 		},
 
 		_setIcon: function(icon, n, sel){

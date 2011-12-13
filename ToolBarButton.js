@@ -143,6 +143,11 @@ define([
 		},
 	
 		_onClick: function(e){
+			// summary:
+			//		Internal handler for click events.
+			// tags:
+			//		private
+			if(this.onClick(e) === false){ return; } // user's click action
 			if(this._timer){
 				clearTimeout(this._timer);
 				this._timer = null;
@@ -153,6 +158,13 @@ define([
 			}
 			this.setTransitionPos(e);
 			this.defaultClickAction();
+		},
+
+		onClick: function(/*Event*/ /*===== e =====*/){
+			// summary:
+			//		User defined function to handle clicks
+			// tags:
+			//		callback
 		},
 	
 		_setLabelAttr: function(/*String*/text){

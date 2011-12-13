@@ -75,6 +75,11 @@ define([
 		},
 	
 		_onClick: function(e){
+			// summary:
+			//		Internal handler for click events.
+			// tags:
+			//		private
+			if(this.onClick(e) === false){ return; } // user's click action
 			if(this.closeOnAction){
 				var p = this.getParent(); // maybe SimpleDialog
 				if(p && p.hide){
@@ -83,6 +88,13 @@ define([
 			}
 			this.setTransitionPos(e);
 			this.defaultClickAction();
+		},
+
+		onClick: function(/*Event*/ /*===== e =====*/){
+			// summary:
+			//		User defined function to handle clicks
+			// tags:
+			//		callback
 		}
 	});
 });

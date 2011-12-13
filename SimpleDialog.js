@@ -37,7 +37,7 @@ define([
 					className: "mblSimpleDialogCloseBtn "+this.closeButtonClass
 				}, this.domNode);
 				iconUtils.createDomButton(this.closeButtonNode);
-				this._clickHandle = this.connect(this.closeButtonNode, "onclick", "_onClick");
+				this._clickHandle = this.connect(this.closeButtonNode, "onclick", "_onCloseButtonClick");
 			}
 		},
 
@@ -60,7 +60,7 @@ define([
 			this._cover.style.display = "none";
 		},
 
-		_onClick: function(e){
+		_onCloseButtonClick: function(e){
 			this.hide();
 		},
 

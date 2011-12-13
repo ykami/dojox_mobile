@@ -121,12 +121,24 @@ define([
 		},
 
 		_onClick: function(e){
+			// summary:
+			//		Internal handler for click events.
+			// tags:
+			//		private
+			if(this.onClick(e) === false){ return; } // user's click action
 			var p = this.getParent();
 			if(!p.fixedHeight && this.contentWidget.domNode.style.display !== "none"){
 				p.collapse(this.contentWidget, !p.animation);
 			}else{
 				p.expand(this.contentWidget, !p.animation);
 			}
+		},
+
+		onClick: function(/*Event*/ /*===== e =====*/){
+			// summary:
+			//		User defined function to handle clicks
+			// tags:
+			//		callback
 		}
 	});
 

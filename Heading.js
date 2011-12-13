@@ -194,6 +194,11 @@ define([
 		},
 
 		_onClick: function(e){
+			// summary:
+			//		Internal handler for click events.
+			// tags:
+			//		private
+			if(this.onClick(e) === false){ return; } // user's click action
 			this.backButton.select();
 			var _this = this;
 			setTimeout(function(){
@@ -212,6 +217,13 @@ define([
 				view.clickedPosY = e.clientY;
 			}
 			this.goTo(this.moveTo, this.href);
+		},
+
+		onClick: function(/*Event*/ /*===== e =====*/){
+			// summary:
+			//		User defined function to handle clicks
+			// tags:
+			//		callback
 		},
 	
 		goTo: function(moveTo, href){

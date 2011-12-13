@@ -110,11 +110,8 @@ define([
 
 		baseClass: "mblListItem",
 
-		_selClass: "mblItemSelected mblColorDefaultSel",
+		_selClass: "mblItemSelected",
 	
-		postMixInProperties: function(){
-		},
-
 		buildRendering: function(){
 			this._isOnLine = this.inheritParams();
 			this.domNode = this.srcNodeRef || domConstruct.create(this.tag);
@@ -196,6 +193,11 @@ define([
 		},
 
 		_onClick: function(e){
+			// summary:
+			//		Internal handler for click events.
+			// tags:
+			//		private
+			if(this.onClick(e) === false){ return; } // user's click action
 			if(e && e.type === "keydown" && e.keyCode !== 13){ return; }
 			var a = e.currentTarget;
 			var li = a.parentNode;
@@ -243,6 +245,13 @@ define([
 				this.setTransitionPos(e);
 				return new TransitionEvent(this.domNode,transOpts,e).dispatch();
 			}
+		},
+
+		onClick: function(/*Event*/ /*===== e =====*/){
+			// summary:
+			//		User defined function to handle clicks
+			// tags:
+			//		callback
 		},
 	
 		select: function(){

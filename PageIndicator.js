@@ -93,12 +93,24 @@ define([
 		},
 
 		_onClick: function(e){
+			// summary:
+			//		Internal handler for click events.
+			// tags:
+			//		private
+			if(this.onClick(e) === false){ return; } // user's click action
 			if(e.target !== this.domNode){ return; }
 			if(e.layerX < this._tblNode.offsetLeft){
 				connect.publish("/dojox/mobile/prevPage", [this]);
 			}else if(e.layerX > this._tblNode.offsetLeft + this._tblNode.offsetWidth){
 				connect.publish("/dojox/mobile/nextPage", [this]);
 			}
+		},
+
+		onClick: function(/*Event*/ /*===== e =====*/){
+			// summary:
+			//		User defined function to handle clicks
+			// tags:
+			//		callback
 		}
 	});
 });

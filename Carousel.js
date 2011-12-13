@@ -294,6 +294,11 @@ define([
 		},
 
 		_onClick: function(e){
+			// summary:
+			//		Internal handler for click events.
+			// tags:
+			//		private
+			if(this.onClick(e) === false){ return; } // user's click action
 			if(e && e.type === "keydown" && e.keyCode !== 13){ return; }
 			var w;
 			for(w = registry.getEnclosingWidget(e.target); ; w = w.getParent()){
@@ -315,6 +320,13 @@ define([
 			}
 			var idx = this.getIndexByItemWidget(w);
 			connect.publish("/dojox/mobile/carouselSelect", [this, w, this.items[idx], idx]);
+		},
+
+		onClick: function(/*Event*/ /*===== e =====*/){
+			// summary:
+			//		User defined function to handle clicks
+			// tags:
+			//		callback
 		},
 
 		instantiateView: function(view){

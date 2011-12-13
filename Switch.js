@@ -124,10 +124,22 @@ define([
 		},
 	
 		_onClick: function(e){
+			// summary:
+			//		Internal handler for click events.
+			// tags:
+			//		private
+			if(this.onClick(e) === false){ return; } // user's click action
 			if(this._moved){ return; }
 			this.value = this.input.value = (this.value == "on") ? "off" : "on";
 			this._changeState(this.value, true);
 			this.onStateChanged(this.value);
+		},
+
+		onClick: function(/*Event*/ /*===== e =====*/){
+			// summary:
+			//		User defined function to handle clicks
+			// tags:
+			//		callback
 		},
 	
 		onTouchStart: function(e){

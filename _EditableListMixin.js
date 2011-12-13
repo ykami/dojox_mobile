@@ -67,6 +67,11 @@ define([
 		},
 
 		_onClick: function(e){
+			// summary:
+			//		Internal handler for click events.
+			// tags:
+			//		private
+			if(this.onClick(e) === false){ return; } // user's click action
 			var item = registry.getEnclosingWidget(e.target);
 			for(var n = e.target; n !== item.domNode; n = n.parentNode){
 				if(n === item.deleteIconNode){
@@ -74,6 +79,13 @@ define([
 					break;
 				}
 			}
+		},
+
+		onClick: function(/*Event*/ /*===== e =====*/){
+			// summary:
+			//		User defined function to handle clicks
+			// tags:
+			//		callback
 		},
 
 		onTouchStart: function(e){
@@ -152,7 +164,7 @@ define([
 			if(!this._handles){
 				this._handles = [];
 				this._handles.push(this.connect(this.domNode, has('touch') ? "touchstart" : "onmousedown", "onTouchStart"));
-				this._handles.push(this.connect(this.domNode,"onclick", "_onClick"));
+				this._handles.push(this.connect(this.domNode, "onclick", "_onClick"));
 			}
 		},
 

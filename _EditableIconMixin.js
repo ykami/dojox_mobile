@@ -271,6 +271,11 @@ define([
 		},
 		
 		_onClick: function(e){
+			// summary:
+			//		Internal handler for click events.
+			// tags:
+			//		private
+			if(this.onClick(e) === false){ return; } // user's click action
 			var item = registry.getEnclosingWidget(e.target);
 			if(item.deleteIconNode){
 				for(var n = e.target; n !== item.domNode; n = n.parentNode){
@@ -280,6 +285,13 @@ define([
 					}
 				}
 			}
+		},
+
+		onClick: function(/*Event*/ /*===== e =====*/){
+			// summary:
+			//		User defined function to handle clicks
+			// tags:
+			//		callback
 		},
 		
 		deleteItem: function(item){
