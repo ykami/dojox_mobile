@@ -123,14 +123,6 @@ define([
 		//		context.
 		callback: null,
 
-		// sync: Boolean
-		//		If true, XHR for the view content specified with the url
-		//		parameter is performed synchronously. If false, it is done
-		//		asynchronously and the progress indicator is displayed while
-		//		loading the content. This parameter is effective only when the
-		//		url parameter is used.
-		sync: true,
-
 		// label: String
 		//		A label of the item. If the label is not specified, innerHTML is
 		//		used as a label.
