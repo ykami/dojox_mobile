@@ -1,24 +1,27 @@
 define([
 	"dojo/_base/declare",
 	"dojo/_base/window",
+	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dijit/_Contained",
-	"dijit/_Container",
 	"dijit/_WidgetBase",
-	"./iconUtils"
-], function(declare, win, domConstruct, Contained, Container, WidgetBase, iconUtils){
+	"./iconUtils",
+	"./ContentPane"
+], function(declare, win, domClass, domConstruct, Contained, WidgetBase, iconUtils, ContentPane){
 	// module:
 	//		dojox/mobile/SimpleDialog
 	// summary:
 	//		TODOC
 
-	return declare("dojox.mobile.SimpleDialog", [WidgetBase, Container, Contained], {
+	return declare("dojox.mobile.SimpleDialog", [WidgetBase, Contained, ContentPane], {
 		title: "",
 		top: "auto",
 		left: "auto",
 		modal: true,
 		closeButton: false,
 		closeButtonClass: "mblDomButtonSilverCircleRedCross",
+
+		baseClass: "mblSimpleDialog",
 
 		buildRendering: function(){
 			this.containerNode = domConstruct.create("div", {className:"mblSimpleDialogContainer"});
@@ -28,8 +31,8 @@ define([
 					this.containerNode.appendChild(this.srcNodeRef.removeChild(this.srcNodeRef.firstChild));
 				}
 			}
-			this.domNode = this.srcNodeRef || domConstruct.create("div");
-			this.domNode.className = "mblSimpleDialog mblSimpleDialogDecoration";
+			this.inherited(arguments);
+			domClass.add(this.domNode, "mblSimpleDialogDecoration");
 			this.domNode.style.display = "none";
 			this.domNode.appendChild(this.containerNode);
 			if(this.closeButton){
@@ -61,7 +64,15 @@ define([
 		},
 
 		_onCloseButtonClick: function(e){
+			if(this.onCloseButtonClick(e) === false){ return; } // user's click action
 			this.hide();
+		},
+
+		onCloseButtonClick: function(/*Event*/ /*===== e =====*/){
+			// summary:
+			//		User defined function to handle clicks
+			// tags:
+			//		callback
 		},
 
 		refresh: function(){ // TODO: should we call refresh on resize?
