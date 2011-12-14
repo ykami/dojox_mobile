@@ -15,8 +15,8 @@
 			"dojo/dom",
 			"dojox/mobile/parser",
 			"dojox/mobile/ProgressIndicator",
-			"dojo/hash",
 			"dojox/mobile",
+			"dojox/mobile/bookmarkable",
 			"dojox/mobile/compat"
 		], function(declare, dom, parser, ProgressIndicator){
 			function loadPage(moveTo){
@@ -55,19 +55,19 @@
 		<h1 data-dojo-type="dojox.mobile.Heading">Progress Indicator</h1>
 		<h2 data-dojo-type="dojox.mobile.RoundRectCategory">External Documents</h2>
 		<ul data-dojo-type="dojox.mobile.RoundRectList">
-			<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"images/i-icon-1.png", moveTo:"#view2&amp;myParam=0001"'>
+			<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"images/i-icon-1.png", moveTo:"#view2?myParam=0001"'>
 				Document 0001
 			</li>
-			<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"images/i-icon-2.png", moveTo:"#view2&amp;myParam=0002"'>
+			<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"images/i-icon-2.png", moveTo:"#view2?myParam=0002"'>
 				Document 0002
 			</li>
-			<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"images/i-icon-3.png", moveTo:"#view2&amp;myParam=0003"'>
+			<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='icon:"images/i-icon-3.png", moveTo:"#view2?myParam=0003"'>
 				Document 0003
 			</li>
 		</ul>
 		<div data-dojo-type="dojox.mobile.RoundRect">
 			A progress indicator shows up about 5 seconds before a view content is displayed.
-			After you move to other views, you should also be able to navigate through the views with browser's back and forward buttons. Also, views should be bookmarkable. Note that you can pass parameters (e.g. &amp;myParam=001) to a destination view.
+			After you move to other views, you should also be able to navigate through the views with browser's back and forward buttons. Also, views should be bookmarkable. Note that you can pass parameters (e.g. ?myParam=001) to a destination view.
 		</div>
 	</div>
 

@@ -46,7 +46,11 @@ define([
 			// summary:
 			//		Searches for a starting view and a destination view.
 			if(!moveTo){ return []; }
-			var view = registry.byId(moveTo.replace(/^#/, ""));
+			// removes a leading hash mark (#) and params if exists
+			// ex. "#bar&myParam=0003" -> "bar"
+			moveTo.match(/^#?([^&?]+)(.*)/);
+			var params = RegExp.$2;
+			var view = registry.byId(RegExp.$1);
 			if(!view){ return []; }
 			for(var v = view.getParent(); v; v = v.getParent()){ // search for the topmost invisible parent node
 				if(v.isVisible && !v.isVisible()){
@@ -57,7 +61,7 @@ define([
 					view = v;
 				}
 			}
-			return [view.getShowingView(), view]; // fromView, toView
+			return [view.getShowingView(), view, params]; // fromView, toView, params
 		},
 
 		openExternalView: function(/*Object*/ transOpts, /*DomNode*/ target){
@@ -121,12 +125,13 @@ define([
 
 			var arr = this.findTransitionViews(evt.detail.moveTo),
 				fromView = arr[0],
-				toView = arr[1];
+				toView = arr[1],
+				params = arr[2];
 			if(!location.hash && !evt.detail.hashchange){
 				viewRegistry.initialView = fromView;
 			}
 			if(evt.detail.moveTo && toView){
-				evt.detail.moveTo = evt.detail.moveTo.charAt(0) === '#' ? '#' + toView.id : toView.id;
+				evt.detail.moveTo = (evt.detail.moveTo.charAt(0) === '#' ? '#' + toView.id : toView.id) + params;
 			}
 			if(!fromView || (evt.detail && evt.detail.moveTo && fromView === registry.byId(evt.detail.moveTo))){ return; }
 			if(evt.detail.href){
