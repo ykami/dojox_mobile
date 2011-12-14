@@ -154,7 +154,8 @@ define([
 		//		top level widget or not.
 		//		If omitted, search the entire page.
 		if(dm.disableResizeAll){ return; }
-		connect.publish("/dojox/mobile/resizeAll", [evt, root]);
+		connect.publish("/dojox/mobile/resizeAll", [evt, root]); // back compat
+		connect.publish("/dojox/mobile/beforeResizeAll", [evt, root]);
 		dm.updateOrient();
 		dm.detectScreenSize();
 		var isTopLevel = function(w){
@@ -174,6 +175,7 @@ define([
 			array.forEach(array.filter(registry.toArray(), isTopLevel),
 					function(w){ w.resize(); });
 		}
+		connect.publish("/dojox/mobile/afterResizeAll", [evt, root]);
 	};
 
 	dm.openWindow = function(url, target){

@@ -73,10 +73,10 @@ define([
 			if (options){
 				lang.mixin(this, options);
 			}
-			connect.subscribe("/dojox/mobile/screenSize/tablet", this, function(dim){
+			this.subscribe("/dojox/mobile/screenSize/tablet", function(dim){
 				this.transformUI("tablet");
 			});
-			connect.subscribe("/dojox/mobile/screenSize/phone", this, function(dim){
+			this.subscribe("/dojox/mobile/screenSize/phone", function(dim){
 				this.transformUI("phone");
 			});
 		},

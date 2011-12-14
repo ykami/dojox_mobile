@@ -107,8 +107,8 @@ define([
 			
 			if(!this._conn){
 				this._conn = [];
-				this._conn.push(this.connect(this.domNode, has('touch') ? "touchmove" : "onmousemove", "onTouchMove"));
-				this._conn.push(this.connect(this.domNode, has('touch') ? "touchend" : "onmouseup", "onTouchEnd"));
+				this._conn.push(this.connect(this.domNode, has('touch') ? "ontouchmove" : "onmousemove", "onTouchMove"));
+				this._conn.push(this.connect(this.domNode, has('touch') ? "ontouchend" : "onmouseup", "onTouchEnd"));
 			}
 			this._touchStartPosX = e.touches ? e.touches[0].pageX : e.pageX;
 			this._touchStartPosY = e.touches ? e.touches[0].pageY : e.pageY;
@@ -328,7 +328,7 @@ define([
 			if(editable){
 				if(!this._handles){
 					this._handles = [];
-					this._handles.push(this.connect(this.domNode, has('touch') ? "touchstart" : "onmousedown", "onTouchStart"));
+					this._handles.push(this.connect(this.domNode, has('touch') ? "ontouchstart" : "onmousedown", "onTouchStart"));
 					this._handles.push(this.connect(this.domNode, "onclick", "_onClick"));
 					this._handles.push(this.connect(this.domNode, "webkitTransitionStart", "onTransitionStart"));
 					this._handles.push(this.connect(this.domNode, "webkitTransitionEnd", "onTransitionEnd"));

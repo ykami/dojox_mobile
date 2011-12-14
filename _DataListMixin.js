@@ -131,8 +131,8 @@ define([
 			registry.byId(deletedItem._widgetId).destroyRecursive();
 		},
 
-		onStoreClose: function(/* object? */ request){
-			// summary:
+		onStoreClose: function(/*Object?*/request){
+			//	summary:
 			//		Refresh list on close.
 			if(this.store.clearOnClose){
 				this.refresh();

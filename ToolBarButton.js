@@ -82,7 +82,7 @@ define([
 			}
 
 			this._onClickHandle = this.connect(this.domNode, "onclick", "_onClick");
-			this._onTouchStartHandle = this.connect(this.domNode, has('touch') ? "touchstart" : "onmousedown", "_onTouchStart");
+			this._onTouchStartHandle = this.connect(this.domNode, has('touch') ? "ontouchstart" : "onmousedown", "_onTouchStart");
 		},
 
 		startup: function(){
@@ -123,7 +123,7 @@ define([
 
 		_onTouchStart: function(e){
 			if(!this._onTouchEndHandle){
-				this._onTouchEndHandle = this.connect(this.domNode, has('touch') ? "touchend" : "onmouseleave", "_onTouchEnd");
+				this._onTouchEndHandle = this.connect(this.domNode, has('touch') ? "ontouchend" : "onmouseleave", "_onTouchEnd");
 			}
 			domClass.replace(this.bodyNode, this.selColor, this.defaultColor);
 			this._updateArrowColor();

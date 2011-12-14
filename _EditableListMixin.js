@@ -110,8 +110,8 @@ define([
 
 			if(!this._conn){
 				this._conn = [];
-				this._conn.push(connect.connect(this.domNode, has('touch') ? "touchmove" : "onmousemove", this, "onTouchMove"));
-				this._conn.push(connect.connect(this.domNode, has('touch') ? "touchend" : "onmouseup", this, "onTouchEnd"));
+				this._conn.push(connect.connect(this.domNode, has('touch') ? "ontouchmove" : "onmousemove", this, "onTouchMove"));
+				this._conn.push(connect.connect(this.domNode, has('touch') ? "ontouchend" : "onmouseup", this, "onTouchEnd"));
 			}
 			this._pos = [];
 			array.forEach(this.getChildren(), function(c, index){
@@ -163,7 +163,7 @@ define([
 			}, this);
 			if(!this._handles){
 				this._handles = [];
-				this._handles.push(this.connect(this.domNode, has('touch') ? "touchstart" : "onmousedown", "onTouchStart"));
+				this._handles.push(this.connect(this.domNode, has('touch') ? "ontouchstart" : "onmousedown", "onTouchStart"));
 				this._handles.push(this.connect(this.domNode, "onclick", "_onClick"));
 			}
 		},
