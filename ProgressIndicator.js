@@ -46,16 +46,15 @@ define([
 		center: true,
 
 		// colors: Array
-		//		An array of indicator colors.
-		colors: [
-			"#C0C0C0", "#C0C0C0", "#C0C0C0", "#C0C0C0",
-			"#C0C0C0", "#C0C0C0", "#B8B9B8", "#AEAFAE",
-			"#A4A5A4", "#9A9A9A", "#8E8E8E", "#838383"
-		],
+		//		An array of indicator colors. 12 colors have to be given.
+		//		If colors are not specified, css styles
+		//		(mblProg0Color - mblProg11Color) are used.
+		colors: null,
 
 		baseClass: "mblProgressIndicator",
 
 		constructor: function(){
+			this.colors = [];
 			this._bars = [];
 		},
 
@@ -66,7 +65,7 @@ define([
 			}
 			this.containerNode = domConstruct.create("div", {className:"mblProgContainer"}, this.domNode);
 			this.spinnerNode = domConstruct.create("div", null, this.containerNode);
-			for(var i = 0; i < this.colors.length; i++){
+			for(var i = 0; i < 12; i++){
 				var div = domConstruct.create("div", {className:"mblProg mblProg"+i}, this.spinnerNode);
 				this._bars.push(div);
 			}
@@ -98,14 +97,20 @@ define([
 			}
 			var cntr = 0;
 			var _this = this;
-			var n = this.colors.length;
+			var n = 12;
 			this.timer = setInterval(function(){
 				cntr--;
 				cntr = cntr < 0 ? n - 1 : cntr;
 				var c = _this.colors;
 				for(var i = 0; i < n; i++){
 					var idx = (cntr + i) % n;
-					_this._bars[i].style.backgroundColor = c[idx];
+					if(c[idx]){
+						_this._bars[i].style.backgroundColor = c[idx];
+					}else{
+						domClass.replace(_this._bars[i],
+										 "mblProg" + idx + "Color",
+										 "mblProg" + (idx === n - 1 ? 0 : idx + 1) + "Color");
+					}
 				}
 			}, this.interval);
 		},
