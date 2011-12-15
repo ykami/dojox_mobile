@@ -1,17 +1,19 @@
 /* Progress Indicator */
 .mblProgressIndicator {
-	position: absolute;
-	top: 180px;
-	left: 50%;
-	width: 40px;
-	height: 40px;
+	position: relative;
 }
 .mblProgContainer {
 	position: absolute;
-	top: 0px;
-	left: -50%;
 	width: 100%;
 	height: 100%;
+}
+.mblProgressIndicatorCenter {
+	position: absolute;
+	top: 180px;
+	left: 50%;
+}
+.mblProgressIndicatorCenter .mblProgContainer {
+	left: -50%;
 	-webkit-transform-origin: 50% 0;
 }
 .mblProg {

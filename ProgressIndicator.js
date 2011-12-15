@@ -2,17 +2,21 @@ define([
 	"dojo/_base/config",
 	"dojo/_base/declare",
 	"dojo/_base/lang",
+	"dojo/dom-class",
 	"dojo/dom-construct",
+	"dojo/dom-geometry",
 	"dojo/dom-style",
-	"dojo/has"
-], function(config, declare, lang, domConstruct, domStyle, has){
+	"dojo/has",
+	"dijit/_Contained",
+	"dijit/_WidgetBase"
+], function(config, declare, lang, domClass, domConstruct, domGeometry, domStyle, has, Contained, WidgetBase){
 
 	// module:
 	//		dojox/mobile/ProgressIndicator
 	// summary:
 	//		A progress indication widget.
 
-	var cls = declare("dojox.mobile.ProgressIndicator", null, {
+	var cls = declare("dojox.mobile.ProgressIndicator", [WidgetBase, Contained], {
 		// summary:
 		//		A progress indication widget.
 		// description:
@@ -28,6 +32,19 @@ define([
 		//		The size of the indicator in pixels.
 		size: 40,
 
+		// removeOnStop: Boolean
+		//		If true, this widget is removed from the parent node
+		//		when stop() is called.
+		removeOnStop: true,
+
+		// startSpinning: Boolean
+		//		If true, call start() to run the indicator at startup.
+		startSpinning: false,
+
+		// center: Boolean
+		//		If true, the indicator is displayed as center aligned.
+		center: true,
+
 		// colors: Array
 		//		An array of indicator colors.
 		colors: [
@@ -36,12 +53,17 @@ define([
 			"#A4A5A4", "#9A9A9A", "#8E8E8E", "#838383"
 		],
 
-		constructor: function(args){
-			if(args){
-				lang.mixin(this, args);
-			}
+		baseClass: "mblProgressIndicator",
+
+		constructor: function(){
 			this._bars = [];
-			this.domNode = domConstruct.create("div", {className:"mblProgressIndicator"});
+		},
+
+		buildRendering: function(){
+			this.inherited(arguments);
+			if(this.center){
+				domClass.add(this.domNode, "mblProgressIndicatorCenter");
+			}
 			this.containerNode = domConstruct.create("div", {className:"mblProgContainer"}, this.domNode);
 			this.spinnerNode = domConstruct.create("div", null, this.containerNode);
 			for(var i = 0; i < this.colors.length; i++){
@@ -49,10 +71,19 @@ define([
 				this._bars.push(div);
 			}
 			this.scale(this.size);
+			if(this.startSpinning){
+				this.start();
+			}
 		},
 
 		scale: function(/*Number*/size){
-			this.containerNode.style.webkitTransform = "scale(" + (size / 40) + ")";
+			var scale = size / 40;
+			domStyle.set(this.containerNode, {
+				webkitTransform: "scale(" + scale + ")",
+				webkitTransformOrigin: "0 0"
+			});
+			domGeometry.setMarginBox(this.domNode, {w:size, h:size});
+			domGeometry.setMarginBox(this.containerNode, {w:size / scale, h:size / scale});
 		},
 
 		start: function(){
@@ -86,7 +117,7 @@ define([
 				clearInterval(this.timer);
 			}
 			this.timer = null;
-			if(this.domNode.parentNode){
+			if(this.removeOnStop && this.domNode.parentNode){
 				this.domNode.parentNode.removeChild(this.domNode);
 			}
 		},
