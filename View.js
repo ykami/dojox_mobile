@@ -330,8 +330,8 @@ define([
 				toWidget.movedFrom = fromNode.id;
 			}
 
-			this.onBeforeTransitionOut.apply(this, arguments);
-			connect.publish("/dojox/mobile/beforeTransitionOut", [this].concat(lang._toArray(arguments)));
+			this.onBeforeTransitionOut.apply(this, this._arguments);
+			connect.publish("/dojox/mobile/beforeTransitionOut", [this].concat(lang._toArray(this._arguments)));
 			if(toWidget){
 				// perform view transition keeping the scroll position
 				if(this.keepScrollPos && !this.getParent()){
@@ -350,8 +350,8 @@ define([
 				}else{
 					toNode.style.top = "0px";
 				}
-				toWidget.onBeforeTransitionIn.apply(toWidget, arguments);
-				connect.publish("/dojox/mobile/beforeTransitionIn", [toWidget].concat(lang._toArray(arguments)));
+				toWidget.onBeforeTransitionIn.apply(toWidget, this._arguments);
+				connect.publish("/dojox/mobile/beforeTransitionIn", [toWidget].concat(lang._toArray(this._arguments)));
 			}
 			toNode.style.display = "none";
 			toNode.style.visibility = "visible";

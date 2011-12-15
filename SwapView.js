@@ -39,8 +39,8 @@ define([
 			domClass.add(this.domNode, "mblSwapView");
 			this.setSelectable(this.domNode, false);
 			this.containerNode = this.domNode;
-			connect.subscribe("/dojox/mobile/nextPage", this, "handleNextPage");
-			connect.subscribe("/dojox/mobile/prevPage", this, "handlePrevPage");
+			this.subscribe("/dojox/mobile/nextPage", "handleNextPage");
+			this.subscribe("/dojox/mobile/prevPage", "handlePrevPage");
 			this.findAppBars();
 		},
 

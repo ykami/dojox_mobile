@@ -127,7 +127,7 @@ define([
 				}
 				p.paneContainerWidget.addChild(w, this.getIndexInParent());
 				w.set("label", this.label);
-				this._clickCloseHandle = this.connect(w.closeIconNode, "onclick", "closeIconClicked");
+				this._clickCloseHandle = this.connect(w.closeIconNode, "onclick", "_closeIconClicked");
 			}));
 
 			this._dragstartHandle = this.connect(this.domNode, "ondragstart", event.stop);
@@ -204,12 +204,24 @@ define([
 			//		callback
 		},
 
-		closeIconClicked: function(e){
+		_closeIconClicked: function(e){
+			// summary:
+			//		Internal handler for click events.
+			// tags:
+			//		private
+			if(this.closeIconClicked(e) === false){ return; } // user's click action
 			if(e){
 				setTimeout(lang.hitch(this, function(d){ this.closeIconClicked(); }), 0);
 				return;
 			}
 			this.close();
+		},
+
+		closeIconClicked: function(/*Event*/ /*===== e =====*/){
+			// summary:
+			//		User defined function to handle clicks
+			// tags:
+			//		callback
 		},
 
 		open: function(e){
