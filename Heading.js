@@ -170,6 +170,7 @@ define([
 				this.backButton = new ToolBarButton({arrow:"left", label:back});
 				this._clickHandle = this.connect(this.backButton.domNode, "onclick", "_onClick");
 				this.backButton.placeAt(this.domNode, "first");
+				this.backButton.startup();
 			}else{
 				this.backButton.set("label", back);
 			}
