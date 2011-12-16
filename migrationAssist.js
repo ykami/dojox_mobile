@@ -2,8 +2,9 @@ define([
 	"dojo/_base/window",
 	"dojo/dom-class",
 	"dojo/ready",
-	"dijit/_WidgetBase"
-], function(win, domClass, ready, WidgetBase){
+	"dijit/_WidgetBase",
+	"dojox/mobile/Heading"
+], function(win, domClass, ready, WidgetBase, Heading){
 
 	// module:
 	//		dojox/mobile/migrationAssist
@@ -49,6 +50,12 @@ define([
 		migrationAssist["check" + base] && migrationAssist["check" + base](this);
 	};
 
+	Heading.prototype.addChild = function(widget){
+		console.log('[MIG:fixed] Heading: addChild is removed. Use placeAt function.');
+		widget.placeAt(this.domNode);
+		widget.startup();
+	};
+	
 	// check css
 	ready(function(){
 		var cssFiles = [], i, j;

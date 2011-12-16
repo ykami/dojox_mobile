@@ -24,77 +24,98 @@
 				var demoWidget = new dojox.mobile.Heading({label:"World Clock"});
 				view.addChild(demoWidget);
 				var childWidget = new dojox.mobile.ToolBarButton({id:"btn1", label:"Edit", style:{padding:"0px 14px"}});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 				childWidget = new dojox.mobile.ToolBarButton({icon:"mblDomButtonWhitePlus", style:"float:right;", onclick:"console.log('+ was clicked')"});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 
 				demoWidget = new dojox.mobile.Heading({label:"Alarm Clock"});
 				view.addChild(demoWidget);
 				childWidget = new dojox.mobile.ToolBarButton({label:"Edit", style:{padding:"0px 14px"}});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 				childWidget = new dojox.mobile.ToolBarButton({icon:"mblDomButtonWhitePlus", style:{float:"right"}});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 
 				demoWidget = new dojox.mobile.Heading({label:"Voice Memos"});
 				view.addChild(demoWidget);
 				childWidget = new dojox.mobile.ToolBarButton({label:"Speaker"});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 				childWidget = new dojox.mobile.ToolBarButton({label:"Done", btnClass:"mblColorBlue", style:{float:"right"}});
 				dojo.removeClass(childWidget.domNode, "mblColorDefault ");
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 
 				demoWidget = new dojox.mobile.Heading({label:"Updatess"});
 				view.addChild(demoWidget);
 				childWidget = new dojox.mobile.ToolBarButton({label:"Update All", style:{float:"right"}});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 
 				demoWidget = new dojox.mobile.Heading({label:"News", back:"Bookmarks", moveTo:"bookmarks"});
 				view.addChild(demoWidget);
 				childWidget = new dojox.mobile.ToolBarButton({label:"Done", btnClass:"mblColorBlue", style:{float:"right"}});
 				dojo.removeClass(childWidget.domNode, "mblColorDefault ");
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 
 				demoWidget = new dojox.mobile.Heading();
 				view.addChild(demoWidget);
 				childWidget = new dojox.mobile.ToolBarButton({label:"Done", btnClass:"mblColorBlue"});
 				dojo.removeClass(childWidget.domNode, "mblColorDefault ");
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 				childWidget = new dojox.mobile.ToolBarButton({label:"New Folder", style:{float:"right"}});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 
 				demoWidget = new dojox.mobile.Heading();
 				view.addChild(demoWidget);
 				childWidget = new dojox.mobile.ToolBarButton({label:"New", toggle:"true"});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 				childWidget = new dojox.mobile.ToolBarButton({label:"Toggle", toggle:"true"});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 				childWidget = new dojox.mobile.ToolBarButton({icon:"../images/a-icon-12.png", moveTo:"view3"});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 				childWidget = new dojox.mobile.ToolBarButton({icon:"../images/tab-icons.png", iconPos:"29,0,29,29", moveTo:"view3"});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 				childWidget = new dojox.mobile.ToolBarButton({icon:"mblDomButtonWhitePlus", iconPos:"29,0,29,29", style:{float:"right"}});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 
 				demoWidget = new dojox.mobile.Heading();
 				view.addChild(demoWidget);
 				childWidget = new dojox.mobile.ToolBarButton({icon:"mblDomButtonWhiteSearch", style:{float:"right"}});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 
 				demoWidget = new dojox.mobile.Heading({align:"center"});
 				view.addChild(demoWidget);
 				childWidget = new dojox.mobile.ToolBarButton({icon:"mblDomButtonWhitePlus"});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 				childWidget = new dojox.mobile.ToolBarButton({icon:"../images/tab-icon-15h.png", style:{float:"right"}});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 
 				demoWidget = new dojox.mobile.Heading({label:"Inbox(32)", back:"Top"});
 				view.addChild(demoWidget);
 				childWidget = new dojox.mobile.ToolBarButton({icon:"mblDomButtonWhiteSearch", style:{float:"right"}});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 				childWidget = new dojox.mobile.ToolBarButton({icon:"mblDomButtonWhiteUpArrow", style:{float:"right"}});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 				childWidget = new dojox.mobile.ToolBarButton({icon:"mblDomButtonWhiteDownArrow", style:{float:"right"}});
-				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 			});
 		</script>
 		<script type="text/javascript" src="TestUtil.js"></script>
