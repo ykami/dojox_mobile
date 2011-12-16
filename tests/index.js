@@ -28,8 +28,7 @@ var categories = [
 	{ tag: "domButton", label: "domButton"},
 	{ tag: "transition", label: "transition"},
 	{ tag: "no-dojo", label: "no-dojo"},
-	{ tag: "misc", label: "misc"},
-	{ tag: "app", label: "app"},
+	{ tag: "misc", label: "misc"}
 ];
 var tests = [
 	{ url: "test_Accordion-demo.html", tags: "Accordion" },
@@ -38,6 +37,7 @@ var tests = [
 	{ url: "test_Audio.html", tags: "Media" },
 	{ url: "test_Badge.html", tags: "Badge" },
 	{ url: "test_Button.html", tags: "Button" },
+	{ url: "test_Calendar.html", tags: "misc" },
 	{ url: "test_Carousel-slideshow.html", tags: "Carousel" },
 	{ url: "test_Carousel-widgets.html", tags: "Carousel" },
 	{ url: "test_Carousel.html", tags: "Carousel" },
@@ -96,6 +96,9 @@ var tests = [
 	{ url: "test_Opener-RoundSelectList-async.html", tags: "Opener" },
 	{ url: "test_Opener-SearchList-async.html", tags: "Opener" },
 	{ url: "test_Overlay.html", tags: "Opener" },
+	{ url: "test_ProgressIndicator-color.html", tags: "ProgressIndicator" },
+	{ url: "test_ProgressIndicator-heading.html", tags: "ProgressIndicator" },
+	{ url: "test_ProgressIndicator-list.html", tags: "ProgressIndicator" },
 	{ url: "test_ProgressIndicator-size.html", tags: "ProgressIndicator" },
 	{ url: "test_ProgressIndicator.html", tags: "ProgressIndicator" },
 	{ url: "test_RoundRect.html", tags: "RoundRect" },
@@ -141,6 +144,7 @@ var tests = [
 	{ url: "test_ScrollableView-v-vh.html", tags: "ScrollableView" },
 	{ url: "test_ScrollableView-v.html", tags: "ScrollableView" },
 	{ url: "test_SimpleDialog-large.html", tags: "SimpleDialog" },
+	{ url: "test_SimpleDialog-load.html", tags: "SimpleDialog" },
 	{ url: "test_SimpleDialog.html", tags: "SimpleDialog" },
 	{ url: "test_Slider.html", tags: "FormControls" },
 	{ url: "test_SpinWheel-1slot.html", tags: "SpinWheel" },
@@ -158,11 +162,13 @@ var tests = [
 	{ url: "test_TabBar-seg-grouped-scroll.html", tags: "TabBar" },
 	{ url: "test_TabBar-seg-grouped.html", tags: "TabBar" },
 	{ url: "test_TabBar-seg.html", tags: "TabBar" },
+	{ url: "test_TabBar-slim.html", tags: "TabBar" },
 	{ url: "test_TabBar-tabPanel.html", tags: "TabBar" },
 	{ url: "test_TabBar.html", tags: "TabBar" },
 	{ url: "test_Tooltip.html", tags: "Opener" },
 	{ url: "test_Video-single-source.html", tags: "Media" },
 	{ url: "test_Video.html", tags: "Media" },
+
 	{ url: "test_transition-animations-extended1.html", tags: "transition" },
 	{ url: "test_transition-animations-extended2.html", tags: "transition" },
 	{ url: "test_transition-animations-extended3.html", tags: "transition" },
@@ -203,12 +209,5 @@ var tests = [
 	{ url: "test_orientation-transition.html", tags: "misc" },
 	{ url: "test_phone-settings.html", tags: "misc" },
 	{ url: "test_tablet-settings.html", tags: "misc" },
-	{ url: "test_theme-switch.html", tags: "misc" },
-	{ url: "simpleApp/index.html", tags: "app" },
-	{ url: "simpleListApp/index.html", tags: "app" },
-	{ url: "multiSceneApp/index.html", tags: "app" },
-	{ url: "complexListApp/index.html", tags: "app" },
-	{ url: "dialogApp/index.html", tags: "app" },
-	{ url: "inputApp/index.html", tags: "app" },
-	{ url: "imageControlsApp/index.html", tags: "app" }
+	{ url: "test_theme-switch.html", tags: "misc" }
 ];

@@ -1,14 +1,13 @@
 define([
 	"dojo/_base/connect",
 	"dojo/_base/declare",
-	"dojo/_base/window",
 	"dojo/dom",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dijit/registry",	// registry.byNode
 	"dijit/_Contained",
 	"dijit/_WidgetBase"
-], function(connect, declare, win, dom, domClass, domConstruct, registry, Contained, WidgetBase){
+], function(connect, declare, dom, domClass, domConstruct, registry, Contained, WidgetBase){
 
 /*=====
 	var Contained = dijit._Contained;
