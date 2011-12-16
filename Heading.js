@@ -29,7 +29,7 @@ define([
 	// summary:
 	//		A widget that represents a navigation bar.
 
-	return declare("dojox.mobile.Heading", [WidgetBase, Container, Contained],{
+	return declare("dojox.mobile.Heading", [WidgetBase/*, Container*/, Contained],{
 		// summary:
 		//		A widget that represents a navigation bar.
 		// description:
@@ -169,7 +169,7 @@ define([
 			if(!this.backButton){
 				this.backButton = new ToolBarButton({arrow:"left", label:back});
 				this._clickHandle = this.connect(this.backButton.domNode, "onclick", "_onClick");
-				this.addChild(this.backButton, 0);
+				this.backButton.placeAt(this.domNode, "first");
 			}else{
 				this.backButton.set("label", back);
 			}
