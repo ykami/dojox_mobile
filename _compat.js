@@ -251,9 +251,20 @@ define([
 	
 		lang.extend(ProgressIndicator, {
 			scale: function(/*Number*/size){
-				var dim = {w:size, h:size};
-				domGeometry.setMarginBox(this.domNode, dim);
-				domGeometry.setMarginBox(this.containerNode, dim);
+				if(has("ie")){
+					var dim = {w:size, h:size};
+					domGeometry.setMarginBox(this.domNode, dim);
+					domGeometry.setMarginBox(this.containerNode, dim);
+				}else if(has("ff")){
+					var scale = size / 40;
+					domStyle.set(this.containerNode, {
+						MozTransform: "scale(" + scale + ")",
+						MozTransformOrigin: "0 0"
+					});
+
+					domGeometry.setMarginBox(this.domNode, {w:size, h:size});
+					domGeometry.setMarginBox(this.containerNode, {w:size / scale, h:size / scale});
+				}
 			}
 		});	
 
