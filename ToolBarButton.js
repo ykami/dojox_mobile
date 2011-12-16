@@ -81,7 +81,8 @@ define([
 				this.select();
 			}
 
-			this._onClickHandle = this.connect(this.domNode, "onclick", "_onClick");
+			this._clickHandle = this.connect(this.domNode, "onclick", "_onClick");
+			this._keydownHandle = this.connect(this.domNode, "onkeydown", "_onClick");
 			this._onTouchStartHandle = this.connect(this.domNode, has('touch') ? "ontouchstart" : "onmousedown", "_onTouchStart");
 		},
 
@@ -148,6 +149,7 @@ define([
 			// tags:
 			//		private
 			if(this.onClick(e) === false){ return; } // user's click action
+			if(e && e.type === "keydown" && e.keyCode !== 13){ return; }
 			if(this._timer){
 				clearTimeout(this._timer);
 				this._timer = null;
