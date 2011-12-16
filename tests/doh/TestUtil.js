@@ -57,7 +57,7 @@ function fireTouchMove(node, x, y){
 function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIcon, hasIcon2, hasVariableHeight, regExp, hasSelected, isSprite){
 	var demoWidget = dijit.byId(id);
 	doh.assertNotEqual(null, demoWidget, "ListItem: Did not instantiate. id=" + id);
-	doh.assertEqual('mblListItem' + (hasVariableHeight ?" mblVariableHeight":"") + (hasSelected ?" mblItemSelected mblColorDefaultSel":""), demoWidget.domNode.className);
+	doh.assertEqual('mblListItem' + (hasVariableHeight ?" mblVariableHeight":"") + (hasSelected ?" mblItemSelected":""), demoWidget.domNode.className);
 	var childNodes = demoWidget.domNode.childNodes;
 //	doh.assertEqual('mblListItemAnchor' + (hasIcon?'':' mblListItemAnchorNoIcon'), childNodes[0].className);
 	
@@ -148,9 +148,11 @@ function verifyIconItem(id, text, display, regExp, isSprite){
 	doh.assertEqual(text, demoWidget.paneWidget.domNode.childNodes[0].childNodes[1].childNodes[0].nodeValue, "id=" +id);
 }
 
-function verifyTabBarButton(id, text, className, visibility1, visibility2, regExp1, regExp2, isSprite){
+function verifyTabBarButton(id, text, classNames, visibility1, visibility2, regExp1, regExp2, isSprite){
 	var demoWidget = dijit.byId(id);
-	doh.assertEqual(className, demoWidget.domNode.className, "id=" +id);
+	for(var i = 0; i < classNames.length;i++){
+		doh.assertTrue(dojo.hasClass(demoWidget.domNode, classNames[i]), classNames[i] + " id=" +id + " className:"+demoWidget.domNode.className);
+	}
 	doh.assertEqual('mblTabBarButtonAnchor', demoWidget.domNode.childNodes[0].className, "id=" +id);
 	doh.assertEqual('mblTabBarButtonIconArea', demoWidget.domNode.childNodes[0].childNodes[0].className, "id=" +id);
 	doh.assertTrue(demoWidget.iconNode1, "There is no iconNode1. id=" + id);
