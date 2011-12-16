@@ -28,15 +28,21 @@
 
 				demoWidget = new dojox.mobile.Heading({label:"World Clock"});
 				dojo.doc.body.appendChild(demoWidget.domNode);
+				demoWidget.startup();
 
 				demoWidget = new dojox.mobile.Heading();
 				dojo.doc.body.appendChild(demoWidget.domNode);
-				var childWidget = new dojox.mobile.ToolBarButton({lable:"Edit"});
+				demoWidget.startup();
+				var childWidget = new dojox.mobile.ToolBarButton({label:"Edit"});
 				childWidget.domNode.style.padding = "0px 14px";
-				demoWidget.addChild(childWidget);
-				childWidget = new dojox.mobile.ToolBarButton({className:"mblDomButtonWhitePlus"});
+//				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
+				childWidget = new dojox.mobile.ToolBarButton({icon:"mblDomButtonWhitePlus"});
 				childWidget.domNode.style.float = "right";
-				demoWidget.addChild(childWidget);
+//				demoWidget.addChild(childWidget);
+				childWidget.placeAt(demoWidget.domNode);
+				childWidget.startup();
 				demoWidget.domNode.appendChild(dojo.doc.createTextNode("Alarm Clock"));
 
 
