@@ -25,7 +25,7 @@
 				prog1.domNode.style.margin = "5px";
 				domClass.add(prog1.domNode, "mblProgWhite");
 				var head1 = registry.byId("head1");
-				head1.addChild(prog1);
+				prog1.placeAt(head1.domNode);
 				prog1.start();
 				setTimeout(function(){ // network latency simulation
 					prog1.stop();
@@ -38,7 +38,7 @@
 				prog2.domNode.style.right = "0px";
 				domClass.add(prog2.domNode, "mblProgWhite");
 				var head2 = registry.byId("head2");
-				head2.addChild(prog2);
+				prog2.placeAt(head2.domNode);
 				prog2.start();
 				setTimeout(function(){ // network latency simulation
 					prog2.stop();
