@@ -190,7 +190,7 @@
 .mblTabBarSlimTabBar .mblTabBarButtonClosable .mblTabBarButtonLabel {
   margin-left: 20px;
 }
-.mblTabBarButtonHasIcon .mblTabBarButtonLabel {
+.mblTabBarSlimTabBar .mblTabBarButtonHasIcon .mblTabBarButtonLabel {
   margin-left: 20px;
 }
 .mblTabBarSlimTabBar .mblTabBarButtonSelected {
