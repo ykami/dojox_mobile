@@ -15,7 +15,8 @@
 			"dojox/mobile",
 			"dojox/mobile/compat",
 			"dojox/mobile/bookmarkable",
-			"dojox/mobile/FixedSplitter"
+			"dojox/mobile/FixedSplitter",
+			"dojox/mobile/SimpleContainer"
 		]);
 	</script>
 
@@ -29,7 +30,7 @@
 </head>
 <body style="visibility:hidden;">
 	<div data-dojo-type="dojox.mobile.FixedSplitter" data-dojo-props='orientation:"H"'>
-		<div data-dojo-type="dojox.mobile.FixedSplitterPane" style="width:50%;border-right:1px solid black;">
+		<div data-dojo-type="dojox.mobile.SimpleContainer" style="width:50%;border-right:1px solid black;">
 			<div id="foo1" data-dojo-type="dojox.mobile.View">
 				<h1 data-dojo-type="dojox.mobile.Heading">Animations</h1>
 				<h2 data-dojo-type="dojox.mobile.RoundRectCategory">Transition Effects</h2>
@@ -60,7 +61,7 @@
 			</div>
 		</div>
 
-		<div data-dojo-type="dojox.mobile.FixedSplitterPane">
+		<div data-dojo-type="dojox.mobile.SimpleContainer">
 			<div id="foo2" data-dojo-type="dojox.mobile.View">
 				<h1 data-dojo-type="dojox.mobile.Heading">Animations</h1>
 				<h2 data-dojo-type="dojox.mobile.RoundRectCategory">Transition Effects</h2>
