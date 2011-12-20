@@ -181,6 +181,11 @@ define([
 				[]
 			],
 			[
+				"iPhone",
+				"iphone",
+				[]
+			],
+			[
 				"iPad",
 				"iphone",
 				[this.toUrl("dojox/mobile/themes/iphone/ipad.css")]
@@ -192,7 +197,8 @@ define([
 			],
 			[
 				".*",
-				"iphone",
+//				"iphone",
+				"android", // Temporarily changed the default theme for testing purpose. Will be restored to iphone later.
 				[]
 			]
 		];
