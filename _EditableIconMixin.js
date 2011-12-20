@@ -39,15 +39,31 @@ define([
 		deleteIconForEdit: "mblDomButtonBlackCircleCross",
 		threshold: 4, // drag threshold value in pixels
 		
+		destroy: function(){
+			if(this._blankItem){
+				this._blankItem.destroy();
+			}
+			this.inherited(arguments);
+		},
+		
 		startEdit: function(){
-			if(!this.editable){ return; }
+			if(!this.editable || this._editing){ return; }
 			
 			this._editing = true;
+			if(!this._handles){
+				this._handles = [];
+				this._handles.push(this.connect(this.domNode, "webkitTransitionStart", "onTransitionStart"));
+				this._handles.push(this.connect(this.domNode, "webkitTransitionEnd", "onTransitionEnd"));
+			}
 			
 			var count = 0;
 			array.forEach(this.getChildren(), function(w){
 				setTimeout(lang.hitch(this, function(){
+					w.disconnect(w._clickHandle); // disconnect default onclick handler not to open IconItem's content
 					w.set("deleteIcon", this.deleteIconForEdit);
+					if(w.deleteIconNode){
+						w._deleteHandle = this.connect(w.deleteIconNode, "onclick", "_deleteIconClicked");
+					}
 					w.highlight(0);
 				}), 15*count++);
 			}, this);
@@ -57,13 +73,24 @@ define([
 		},
 		
 		endEdit: function(){
+			if(!this._editing){ return; }
+			
 			array.forEach(this.getChildren(), function(w){
 				w.unhighlight();
+				if(w._deleteHandle){
+					this.disconnect(w._deleteHandle);
+					w._deleteHandle = null;
+				}
 				w.set("deleteIcon", "");
-			});
+				w._clickHandle = w.connect(w.iconNode, "onclick", "_onClick"); // reconnect onclick handler
+			}, this);
 			
 			this._editing = false;
 			this._movingItem = null;
+			if(this._handles){
+				array.forEach(this._handles, this.disconnect, this);
+				this._handles = null;
+			}
 			
 			connect.publish("/dojox/mobile/endEdit", [this]); // pubsub
 			this.onEndEdit(); // callback
@@ -84,9 +111,7 @@ define([
 			event.stop(e);
 			var w = registry.getEnclosingWidget(e.target);
 			w._moving = false;
-			domStyle.set(w.domNode, {
-				webkitTransition: ""
-			});
+			domStyle.set(w.domNode, "webkitTransition", "");
 		},
 		
 		onTouchStart: function(e){
@@ -270,24 +295,17 @@ define([
 			this._animate(index, insertIndex);
 		},
 		
-		_onClick: function(e){
+		_deleteIconClicked: function(e){
 			// summary:
 			//		Internal handler for click events.
 			// tags:
 			//		private
-			if(this.onClick(e) === false){ return; } // user's click action
+			if(this.deleteIconClicked(e) === false){ return; } // user's click action
 			var item = registry.getEnclosingWidget(e.target);
-			if(item.deleteIconNode){
-				for(var n = e.target; n !== item.domNode; n = n.parentNode){
-					if(n === item.deleteIconNode){
-						this.onDeleteIconClicked(e, item);
-						break;
-					}
-				}
-			}
+			this.deleteItem(item);
 		},
 
-		onClick: function(/*Event*/ /*===== e =====*/){
+		deleteIconClicked: function(/*Event*/ /*===== e =====*/){
 			// summary:
 			//		User defined function to handle clicks
 			// tags:
@@ -295,16 +313,15 @@ define([
 		},
 		
 		deleteItem: function(item){
+			if(item._deleteHandle){
+				this.disconnect(item._deleteHandle);
+			}
 			this.removeChildWithAnimation(item);
 			
 			connect.publish("/dojox/mobile/deleteIconItem", [this, item]); // pubsub
 			this.onDeleteItem(item); // callback
 			
 			item.destroy();
-		},
-		
-		onDeleteIconClicked: function(/*Event*/e, /*Widget*/item){
-			this.deleteItem(item);
 		},
 		
 		onDeleteItem: function(/*Widget*/item){
@@ -324,20 +341,12 @@ define([
 		},
 		
 		_setEditableAttr: function(/*Boolean*/editable){
-			this.editable = editable;
-			if(editable){
-				if(!this._handles){
-					this._handles = [];
-					this._handles.push(this.connect(this.domNode, has('touch') ? "ontouchstart" : "onmousedown", "onTouchStart"));
-					this._handles.push(this.connect(this.domNode, "onclick", "_onClick"));
-					this._handles.push(this.connect(this.domNode, "webkitTransitionStart", "onTransitionStart"));
-					this._handles.push(this.connect(this.domNode, "webkitTransitionEnd", "onTransitionEnd"));
-				}
-			}else{
-				if(this._handles){
-					array.forEach(this._handles, this.disconnect, this);
-					this._handles = null;
-				}
+			this._set("editable", editable);
+			if(editable && !this._touchStartHandle){ // Allow users to start editing by long press on IconItems
+				this._touchStartHandle = this.connect(this.domNode, has('touch') ? "ontouchstart" : "onmousedown", "onTouchStart");
+			}else if(!editable && this._touchStartHandle){
+				this.disconnect(this._touchStartHandle);
+				this._touchStartHandle = null;
 			}
 		}
 	});

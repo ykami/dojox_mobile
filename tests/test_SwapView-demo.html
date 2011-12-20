@@ -17,6 +17,8 @@
 			"dojox/mobile/compat",
 			"dojox/mobile/FixedSplitter",
 			"dojox/mobile/ScrollableView",
+			"dojox/mobile/SimplePane",
+			"dojox/mobile/SimpleContainer",
 			"dojox/mobile/SwapView",
 			"dojox/mobile/PageIndicator"
 		]);
@@ -95,7 +97,7 @@
 </head>
 <body style="visibility:hidden;">
 	<div data-dojo-type="dojox.mobile.FixedSplitter" data-dojo-props='orientation:"V"'>
-		<div data-dojo-type="dojox.mobile.FixedSplitterPane" style="height:50%;overflow:hidden;">
+		<div data-dojo-type="dojox.mobile.SimpleContainer" style="height:50%;overflow:hidden;">
 			<div id="general" data-dojo-type="dojox.mobile.ScrollableView" data-dojo-props='height:"inherit"'>
 				<ul data-dojo-type="dojox.mobile.RoundRectList" class="list1" data-dojo-props='stateful:"true"'>
 					<li data-dojo-type="dojox.mobile.ListItem" data-dojo-props='moveTo:"#"'>
@@ -142,10 +144,10 @@
 			</div>
 		</div>
 
-		<div data-dojo-type="dojox.mobile.FixedSplitterPane" style="height:10px;overflow:hidden;">
+		<div data-dojo-type="dojox.mobile.SimplePane" style="height:10px;overflow:hidden;">
 		</div>
 
-		<div data-dojo-type="dojox.mobile.FixedSplitterPane" style="overflow:hidden;">
+		<div data-dojo-type="dojox.mobile.SimpleContainer" style="overflow:hidden;">
 			<div id="swap1" data-dojo-type="dojox.mobile.SwapView">
 				<div data-dojo-type="dojox.mobile.ScrollableView" data-dojo-props='height:"100%"'>
 					<ul id="news" data-dojo-type="dojox.mobile.RoundRectList">

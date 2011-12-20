@@ -164,8 +164,8 @@ define([
 			//		Internal handler for click events.
 			// tags:
 			//		private
-			if(this.onClick(e) === false){ return; } // user's click action
 			if(e){
+				if(this.onClick(e) === false){ return; } // user's click action
 				this._press();
 				this.setTransitionPos(e);
 				setTimeout(lang.hitch(this, function(d){ this._onClick(); }), 0);
@@ -209,9 +209,9 @@ define([
 			//		Internal handler for click events.
 			// tags:
 			//		private
-			if(this.closeIconClicked(e) === false){ return; } // user's click action
 			if(e){
-				setTimeout(lang.hitch(this, function(d){ this.closeIconClicked(); }), 0);
+				if(this.closeIconClicked(e) === false){ return; } // user's click action
+				setTimeout(lang.hitch(this, function(d){ this._closeIconClicked(); }), 0);
 				return;
 			}
 			this.close();
@@ -327,37 +327,18 @@ define([
 			}
 		},
 		
-		_setDeletableAttr: function(deletable){
-			if(!this.getParent()){ return; }
-			this.deletable = deletable;
-			this.set("deleteIcon", deletable ? this.deleteIcon : "");
-		},
-		
 		_setDeleteIconAttr: function(icon){
 			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
-			this.deleteIcon = icon;
 			
-			var isIconShown = icon && this.deletable;
-			if(!this.deleteIconNode){
-				if(isIconShown){
-					this.deleteIconNode = domConstruct.create("div", {className:"mblIconItemDeleteIcon"}, this.iconDivNode);
-				}
-			}else{
-				if(isIconShown){
-					domConstruct.empty(this.deleteIconNode);
-				}else{
-					domConstruct.destroy(this.deleteIconNode);
-					this.deleteIconNode = null;
-				}
-			}
-			if(isIconShown && icon !== "none"){
-				iconUtils.createIcon(icon, this.iconPos, null, this.alt, this.deleteIconNode);
-				if(this.iconPos){
-					domClass.add(this.deleteIconNode.firstChild, "mblIconItemSpriteIcon");
-				}
+			this._set("deleteIcon", icon);			
+			icon = this.deletable ? icon : "";
+			this.deleteIconNode = iconUtils.setIcon(icon, this.deleteIconPos, this.deleteIconNode, 
+					this.deleteIconTitle || this.alt, this.iconDivNode);
+			if(this.deleteIconNode){
+				domClass.add(this.deleteIconNode, "mblIconItemDeleteIcon");
 			}
 		},
-
+		
 		_setContentAttr: function(/*String|DomNode*/data){
 			var root;
 			if(!this.paneWidget){

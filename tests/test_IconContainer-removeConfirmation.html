@@ -48,9 +48,10 @@
 				[dojox.mobile.IconContainer, dojox.mobile._EditableIconMixin],
 			{
 				_currentIcon: null,
-				onDeleteIconClicked: function(e, item){
-					this._currentIcon = item;
+				deleteIconClicked: function(e){
+					var item = this._currentIcon = registry.getEnclosingWidget(e.target);
 					showDialog(item);
+					return false;
 				},
 				deleteCurrentIcon: function(){
 					if(this._currentIcon){
