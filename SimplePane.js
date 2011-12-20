@@ -1,8 +1,9 @@
 define([
+	"dojo/_base/array",
 	"dojo/_base/declare",
 	"dijit/_Contained",
 	"dijit/_WidgetBase"
-], function(declare, Contained, WidgetBase){
+], function(array, declare, Contained, WidgetBase){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -16,11 +17,25 @@ define([
 
 	return declare("dojox.mobile.SimplePane", [WidgetBase, Contained], {
 		// summary:
-		//		A simple container-type pane widget.
+		//		A simple pane widget.
 		// description:
 		//		SimplePane is a pane widget that can be used for any purposes.
 		//		It is a widget, but can be regarded as a simple <div> element.
 
-		baseClass: "mblSimplePane"
+		baseClass: "mblSimplePane",
+
+		buildRendering: function(){
+			this.inherited(arguments);
+			if(!this.containerNode){
+				// set containerNode so that getChildren() works
+				this.containerNode = this.domNode;
+			}
+		},
+
+		resize: function(){
+			array.forEach(this.getChildren(), function(child){
+				if(child.resize){ child.resize(); }
+			});
+		}
 	});
 });
