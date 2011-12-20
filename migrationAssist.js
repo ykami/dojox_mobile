@@ -1,10 +1,13 @@
 define([
+	"dojo/_base/declare",
+	"dojo/_base/lang",
 	"dojo/_base/window",
 	"dojo/dom-class",
 	"dojo/ready",
+	"dijit/_Container",
 	"dijit/_WidgetBase",
 	"dojox/mobile/Heading"
-], function(win, domClass, ready, WidgetBase, Heading){
+], function(declare, lang, win, domClass, ready, Container, WidgetBase, Heading){
 
 	// module:
 	//		dojox/mobile/migrationAssist
@@ -50,12 +53,14 @@ define([
 		migrationAssist["check" + base] && migrationAssist["check" + base](this);
 	};
 
-	Heading.prototype.addChild = function(widget){
-		console.log('[MIG:fixed] Heading: addChild is removed. Use placeAt function.');
-		widget.placeAt(this.domNode);
-		widget.startup();
-	};
-	
+	lang.extend(Heading, {
+		addChild: Container.prototype.addChild,
+		removeChild: Container.prototype.addChild,
+		hasChildren: Container.prototype.hasChildren,
+		_getSiblingOfChild: Container.prototype._getSiblingOfChild,
+		getIndexOfChild: Container.prototype.getIndexOfChild
+	});
+
 	// check css
 	ready(function(){
 		var cssFiles = [], i, j;

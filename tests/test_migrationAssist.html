@@ -20,8 +20,22 @@
 			dojo.require("dojox.mobile.parser");	// This mobile app supports running on desktop browsers
 			dojo.require("dojox.mobile.compat");	// This mobile app uses declarative programming with fast mobile parser
 			dojo.require("dojox.mobile.TabBar");
+			dojo.require("dojox.mobile.Heading");
 			dojo.require("dojox.mobile.migrationAssist");
 			dojo.ready(function(){
+				widget = new dojox.mobile.Heading();
+				dojo.place(widget.domNode, "Heading2-placeHolder", "replace");
+				var childWidget = new dojox.mobile.ToolBarButton({label:"Edit"});
+				childWidget.domNode.style.padding = "0px 14px";
+				widget.addChild(childWidget);
+				childWidget = new dojox.mobile.ToolBarButton({icon:"mblDomButtonWhitePlus"});
+				childWidget.domNode.style.float = "right";
+				widget.addChild(childWidget);
+				widget.domNode.appendChild(dojo.doc.createTextNode("Alarm Clock"));
+				widget.startup();
+				
+				widget.getIndexOfChild(childWidget);
+				console.log('Retun value of getIndexOfChild = ' + widget.getIndexOfChild(childWidget) + " (It should be 1.)");
 			});
 		</script>
 	</head>
@@ -31,6 +45,7 @@
 			<div dojoType="dojox.mobile.ToolBarButton" label="Speaker" style="float:left"></div>
 			<div dojoType="dojox.mobile.ToolBarButton" label="Done" class="mblColorBlue" style="xwidth:45px;float:right;"></div>
 		</h1><br>
+		<div id="Heading2-placeHolder"></div>
 
 		<ul dojoType="dojox.mobile.RoundRectList">
 			<li dojoType="dojox.mobile.ListItem" icon="images/i-icon-1.png">
