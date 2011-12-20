@@ -112,12 +112,12 @@ define([
 		_setContentAttr: function(/*String|DomNode*/data){
 			this.destroyDescendants();
 			if(typeof data === "object"){
-				this.domNode.appendChild(data);
+				this.containerNode.appendChild(data);
 			}else{
-				this.domNode.innerHTML = data;
+				this.containerNode.innerHTML = data;
 			}
 			if(this.parseOnLoad){
-				dojo.parser.parse(this.domNode);
+				dojo.parser.parse(this.containerNode);
 			}
 			if(this._p){ this._p.stop(); }
 			this.onLoad();
