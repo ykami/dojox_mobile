@@ -18,7 +18,7 @@ define([
 	// summary:
 	//		A container that has the touch-scrolling capability.
 
-	return declare("dojox.mobile.ScrollablePane", [WidgetBase, Container, Contained, ScrollableMixin],{
+	return declare("dojox.mobile.ScrollablePane", [WidgetBase, /*Container, */Contained, ScrollableMixin],{
 		// summary:
 		//		A container that has the touch-scrolling capability.
 

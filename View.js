@@ -36,7 +36,7 @@ define([
 
 	var dm = lang.getObject("dojox.mobile", true);
 
-	return declare("dojox.mobile.View", [WidgetBase, Container, Contained], {
+	return declare("dojox.mobile.View", [WidgetBase/*, Container*/, Contained], {
 		// summary:
 		//		A widget that represents a view that occupies the full screen
 		// description:
