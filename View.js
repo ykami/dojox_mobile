@@ -263,7 +263,7 @@ define([
 
 			// normalize the arg
 			var detail, optArgs;
-			if(typeof(moveTo) === "object"){
+			if(moveTo && typeof(moveTo) === "object"){
 				detail = moveTo;
 				optArgs = transitionDir; // array
 			}else{
@@ -486,7 +486,7 @@ define([
 				this.setFragIds(toWidget); // setFragIds is defined in bookmarkable.js
 			}
 
-			var c = this._context, m = this._method;
+			var c = this._detail.context, m = this._detail.method;
 			if(!c && !m){ return; }
 			if(!m){
 				m = c;

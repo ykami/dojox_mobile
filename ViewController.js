@@ -109,48 +109,55 @@ define([
 			// summary:
 			//		A handler that performs view transition.
 			evt.preventDefault();
-			if(!evt.detail || (evt.detail && !evt.detail.moveTo && !evt.detail.href && !evt.detail.url && !evt.detail.scene)){ return; }
+			if(!evt.detail){ return; }
+			var detail = evt.detail;
+			if(!detail.moveTo && !detail.href && !detail.url && !detail.scene){ return; }
 
-			if(evt.detail.url && !evt.detail.moveTo){
-				var urlTarget = evt.detail.urlTarget;
+			if(detail.url){
+				var urlTarget = detail.urlTarget;
 				var w = registry.byId(urlTarget);
 				var target = w && w.containerNode || dom.byId(urlTarget);
 				if(!target){
 					w = viewRegistry.getEnclosingView(evt.target);
 					target = w && w.domNode.parentNode || win.body();
 				}
-				this.openExternalView(evt.detail, target);
+				this.openExternalView(detail, target);
+				return;
+			}else if(detail.href){
+				if(detail.hrefTarget){
+					win.global.open(detail.href, detail.hrefTarget);
+				}else{
+					var view; // find top level visible view
+					for(var v = viewRegistry.getEnclosingView(event.target); v; v = viewRegistry.getParentView(v)){
+						view = v;
+					}
+					if(view){
+						view.performTransition(null, detail.transitionDir, detail.transition, evt.target, function(){location.href = detail.href;});
+					}
+				}
+				return;
+			}else if(detail.scene){
+				connect.publish("/dojox/mobile/app/pushScene", [detail.scene]);
 				return;
 			}
-
-			var arr = this.findTransitionViews(evt.detail.moveTo),
+			
+			var arr = this.findTransitionViews(detail.moveTo),
 				fromView = arr[0],
 				toView = arr[1],
 				params = arr[2];
-			if(!location.hash && !evt.detail.hashchange){
+			if(!location.hash && !detail.hashchange){
 				viewRegistry.initialView = fromView;
 			}
-			if(evt.detail.moveTo && toView){
-				evt.detail.moveTo = (evt.detail.moveTo.charAt(0) === '#' ? '#' + toView.id : toView.id) + params;
+			if(detail.moveTo && toView){
+				detail.moveTo = (detail.moveTo.charAt(0) === '#' ? '#' + toView.id : toView.id) + params;
 			}
-			if(!fromView || (evt.detail && evt.detail.moveTo && fromView === registry.byId(evt.detail.moveTo))){ return; }
-			if(evt.detail.href){
-				if(evt.detail.hrefTarget){
-					win.global.open(evt.detail.href, evt.detail.href || "_blank");
-				}else{
-					fromView.performTransition(null, evt.detail.transitionDir, evt.detail.transition, evt.target, function(){location.href = evt.detail.href;});
-				}
-				return;
-			} else if(evt.detail.scene){
-				connect.publish("/dojox/mobile/app/pushScene", [evt.detail.scene]);
-				return;
-			}
+			if(!fromView || (detail.moveTo && fromView === registry.byId(detail.moveTo))){ return; }
 			var src = registry.getEnclosingWidget(evt.target);
 			if(src && src.callback){
-				evt.detail.context = src;
-				evt.detail.method = src.callback;
+				detail.context = src;
+				detail.method = src.callback;
 			}
-			fromView.performTransition(evt.detail);
+			fromView.performTransition(detail);
 		}
 	});
 	Controller._instance = new Controller(); // singleton
