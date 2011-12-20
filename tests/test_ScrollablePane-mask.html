@@ -28,10 +28,10 @@
 	h3 {
 		margin-bottom: 0px;
 	}
-	.mblRoundRectList, .mblRoundRect, #div1, #div2 {
+	.mblRoundRectList, .mblRoundRect, .myPane {
 		margin: 5px 9px 7px 9px;
 	}
-	#div1, #div2 {
+	.myPane {
 		background-color: white;
 		padding: 8px;
 		border-radius: 8px;
@@ -86,9 +86,30 @@
 			</div>
 		</div>
 
-		<h3 data-dojo-type="dojox.mobile.RoundRectCategory">&lt;div&gt; (ContentPane)</h3>
+		<h3 data-dojo-type="dojox.mobile.RoundRectCategory">&lt;div&gt;</h3>
 		<div data-dojo-type="dojox.mobile.ScrollablePane" data-dojo-props='height:"100px",roundCornerMask:true'>
-			<div data-dojo-type="dojox.mobile.ContentPane" id="div1">
+			<div class="myPane">
+				Hello<br>
+				Hello<br>
+				Hello<br>
+				Hello<br>
+				Hello<br>
+				Hello<br>
+				Hello<br>
+				Hello<br>
+				Hello<br>
+				Hello<br>
+				Hello<br>
+				Hello<br>
+				Hello<br>
+				Hello<br>
+				Hello<br>
+			</div>
+		</div>
+
+		<h3 data-dojo-type="dojox.mobile.RoundRectCategory">ContentPane (inline)</h3>
+		<div data-dojo-type="dojox.mobile.ScrollablePane" data-dojo-props='height:"100px",roundCornerMask:true'>
+			<div data-dojo-type="dojox.mobile.ContentPane" class="myPane">
 				Hello<br>
 				Hello<br>
 				Hello<br>
@@ -109,7 +130,7 @@
 
 		<h3 data-dojo-type="dojox.mobile.RoundRectCategory">ContentPane (href)</h3>
 		<div data-dojo-type="dojox.mobile.ScrollablePane" data-dojo-props='height:"100px",roundCornerMask:true'>
-			<div data-dojo-type="dojox.mobile.ContentPane" id="div2" data-dojo-props='href:"data/simple1.html"'>
+			<div data-dojo-type="dojox.mobile.ContentPane" class="myPane" data-dojo-props='href:"data/simple1.html"'>
 			</div>
 		</div>
 	</div>
