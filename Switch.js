@@ -99,8 +99,7 @@ define([
 
 		startup: function(){
 			if(this._swClass.indexOf("Round") != -1){
-				var r = Math.round(this.domNode.offsetHeight / 2);
-				this.createRoundMask(this._swClass, r, this.domNode.offsetWidth);
+				this.createRoundMask(this._swClass, this.domNode.offsetHeight / 2, this.domNode.offsetWidth);
 			}
 		},
 	

@@ -1,23 +1,187 @@
-@import url("../common/Switch.css");
 /* dojox.mobile.Switch */
-.mblItemSwitch, .mblListItem .mblSwitch {
+/* Switch - default */
+.mblSwitch {
+  margin: 0;
+  position: relative;
+  width: 94px;
+  height: 27px;
+  line-height: 29px;
+  overflow: hidden;
+  text-align: left;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+.mblListItem .mblSwitch {
+  position: absolute;
+  right: 12px;
   top: 12px;
 }
+.mblSwitchInner {
+  position: absolute;
+  top: 0;
+  height: 27px;
+}
+.mblSwitchAnimation .mblSwitchInner {
+  -webkit-transition-property: left;
+  -webkit-transition-duration: .1s;
+}
+.mblSwitchOn .mblSwitchInner {
+  left: 0;
+}
+.mblSwitchOff .mblSwitchInner {
+  left: -53px;
+}
 .mblSwitchBg {
+  position: absolute;
+  top: 0;
+  height: 27px;
+  font-family: Helvetica;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 29px;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: inset;
   border-color: #b5bcc7;
   border-radius: 2px;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(3.3333333333333335%, rgba(255, 255, 255, 0.1)), color-stop(0.5, rgba(255, 255, 255, 0.6)), color-stop(1, rgba(255, 255, 255, 0.3)));
 }
 .mblSwitchBgLeft {
+  left: 0;
+  width: 94px;
+  color: white;
+  background-color: #3F84EB;
   background-color: #007ef5;
   color: #131313;
 }
 .mblSwitchBgRight {
+  left: 53px;
+  width: 94px;
+  color: #7F7F7F;
   background-color: #8fc9ff;
 }
 .mblSwitchKnob {
-  border-color: #7b879b;
+  position: absolute;
+  top: 0;
+  left: 53px;
+  width: 41px;
+  height: 27px;
+  font-size: 1px;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: outset;
+  border-color: #b5bcc7;
   background-color: #5cb0ff;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(3.3333333333333335%, rgba(255, 255, 255, 0.1)), color-stop(0.5, rgba(255, 255, 255, 0.6)), color-stop(1, rgba(255, 255, 255, 0.3)));
   border-radius: 2px;
+}
+.mblSwitchText {
+  position: relative;
+  top: 0;
+  width: 53px;
+  height: 27px;
+  padding: 0;
+  line-height: 28px;
+  text-align: center;
+}
+.mblSwitchTextLeft {
+  left: 0;
+}
+.mblSwitchTextRight {
+  left: 40px;
+}
+/* Round Shape1 */
+.mblSwRoundShape1 {
+  -webkit-mask-image: -webkit-canvas(mblSwRoundShape1Mask);
+}
+.mblSwRoundShape1.mblSwitchOff .mblSwitchInner {
+  left: -67px;
+}
+.mblSwRoundShape1 .mblSwitchBg {
+  border-radius: 14px;
+}
+.mblSwRoundShape1 .mblSwitchBgRight {
+  left: 67px;
+}
+.mblSwRoundShape1 .mblSwitchKnob {
+  left: 67px;
+  width: 27px;
+  border-radius: 13px;
+}
+.mblSwRoundShape1 .mblSwitchText {
+  width: 67px;
+}
+.mblSwRoundShape1 .mblSwitchTextRight {
+  left: 26px;
+}
+/* Round Shape2 */
+.mblSwRoundShape2 {
+  -webkit-mask-image: -webkit-canvas(mblSwRoundShape2Mask);
+}
+.mblSwRoundShape2.mblSwitchOff .mblSwitchInner {
+  left: -51px;
+}
+.mblSwRoundShape2 .mblSwitchBg {
+  border-radius: 14px;
+}
+.mblSwRoundShape2 .mblSwitchBgRight {
+  left: 51px;
+}
+.mblSwRoundShape2 .mblSwitchKnob {
+  left: 51px;
+  width: 43px;
+  border-radius: 13px;
+}
+.mblSwRoundShape2 .mblSwitchText {
+  width: 51px;
+}
+.mblSwRoundShape2 .mblSwitchTextRight {
+  left: 42px;
+}
+/* Arc Shape1 */
+.mblSwArcShape1 {
+  border-radius: 5px/13px;
+}
+.mblSwArcShape1.mblSwitchOff .mblSwitchInner {
+  left: -67px;
+}
+.mblSwArcShape1 .mblSwitchBg {
+  border-radius: 5px/13px;
+}
+.mblSwArcShape1 .mblSwitchBgRight {
+  left: 67px;
+}
+.mblSwArcShape1 .mblSwitchKnob {
+  left: 67px;
+  width: 27px;
+  border-radius: 5px/13px;
+}
+.mblSwArcShape1 .mblSwitchText {
+  width: 67px;
+}
+.mblSwArcShape1 .mblSwitchTextRight {
+  left: 26px;
+}
+/* Arc Shape2 */
+.mblSwArcShape2 {
+  border-radius: 5px/13px;
+}
+.mblSwArcShape2.mblSwitchOff .mblSwitchInner {
+  left: -51px;
+}
+.mblSwArcShape2 .mblSwitchBg {
+  border-radius: 5px/13px;
+}
+.mblSwArcShape2 .mblSwitchBgRight {
+  left: 51px;
+}
+.mblSwArcShape2 .mblSwitchKnob {
+  left: 51px;
+  width: 43px;
+  border-radius: 5px/13px;
+}
+.mblSwArcShape2 .mblSwitchText {
+  width: 51px;
+}
+.mblSwArcShape2 .mblSwitchTextRight {
+  left: 42px;
 }

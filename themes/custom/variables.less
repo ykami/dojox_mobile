@@ -375,6 +375,8 @@
 	top: (@theme-list-item-height - @mbl-switch-height + 1) * 0.5;
 }
 .mblSwitchBg-styles () {
+	border-width: 1px;
+	border-style: inset;
 	border-color: @theme-ui-widget-border-color;
 	border-radius: @theme-ui-widget-border-radius;
 	._background-image-gradient-mask-ui-widget;
@@ -387,7 +389,9 @@
 	background-color: @theme-ui-widget-disabled-background-color;
 }
 .mblSwitchKnob-styles () {
-	border-color: darken(@theme-ui-widget-border-color, 20%);
+	border-width: 1px;
+	border-style: outset;
+	border-color: @theme-ui-widget-border-color;
 	background-color: @theme-ui-widget-background-color;
 	._background-image-gradient-mask-ui-widget;
 	border-radius: @theme-ui-widget-border-radius;
