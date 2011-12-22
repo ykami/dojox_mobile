@@ -6,8 +6,11 @@ define([
 	"dojo/ready",
 	"dijit/_Container",
 	"dijit/_WidgetBase",
-	"dojox/mobile/Heading"
-], function(declare, lang, win, domClass, ready, Container, WidgetBase, Heading){
+	"dojox/mobile/_ItemBase",
+	"dojox/mobile/Heading",
+	"dojox/mobile/RoundRect",
+	"dojox/mobile/View"
+], function(declare, lang, win, domClass, ready, Container, WidgetBase, _ItemBase, Heading, RoundRect, View){
 
 	// module:
 	//		dojox/mobile/migrationAssist
@@ -53,13 +56,34 @@ define([
 		migrationAssist["check" + base] && migrationAssist["check" + base](this);
 	};
 
-	lang.extend(Heading, {
-		addChild: Container.prototype.addChild,
-		removeChild: Container.prototype.addChild,
-		hasChildren: Container.prototype.hasChildren,
-		_getSiblingOfChild: Container.prototype._getSiblingOfChild,
-		getIndexOfChild: Container.prototype.getIndexOfChild
-	});
+	extendContainerFunction = function(obj) {
+		lang.extend(obj, {
+			addChild: function(){
+				console.log('[MIG:fixed] ' + this.declaredClass + '(id='+this.id+'): Use placeAt() instead of addChild(), and call startup().');
+				Container.prototype.addChild.apply(this, arguments);
+			},
+			removeChild: function(){
+				console.log('[MIG:fixed] ' + this.declaredClass + '(id='+this.id+'): Use native removeChild() instead of removeChild().');
+				Container.prototype.removeChild.apply(this, arguments);
+			},
+			hasChildren: function(){
+				console.log('[MIG:fixed] ' + this.declaredClass + '(id='+this.id+'): Use getChildren().length instead of hasChildren().');
+				return Container.prototype.hasChildren.apply(this, arguments);
+			},
+			_getSiblingOfChild: function(){
+				console.log('[MIG:fixed] ' + this.declaredClass + '(id='+this.id+'): _getSiblingOfChild() is no longer supported.');
+				return Container.prototype._getSiblingOfChild.apply(this, arguments);
+			},
+			getIndexOfChild: function(){
+				console.log('[MIG:fixed] ' + this.declaredClass + '(id='+this.id+'): getIndexOfChild() is no longer supported.');
+				return Container.prototype.getIndexOfChild.apply(this, arguments);
+			}
+		});
+	};
+	
+	extendContainerFunction(Heading);
+	extendContainerFunction(View);
+	extendContainerFunction(RoundRect);
 
 	// check css
 	ready(function(){
