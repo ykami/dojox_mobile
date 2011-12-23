@@ -103,6 +103,10 @@ define([
 		//		An alt text for the right icon2.
 		rightIcon2Title: "",
 
+		// header: Boolean
+		//		If true, this item is rendered as a header.
+		header: false,
+
 		// tag: String
 		//		A name of html tag to create as domNode.
 		tag: "li",
@@ -123,6 +127,9 @@ define([
 			this.inherited(arguments);
 			if(this.selected){
 				domClass.add(this.domNode, this._selClass);
+			}
+			if(this.header){
+				domClass.replace(this.domNode, "mblEdgeToEdgeCategory", this.baseClass);
 			}
 
 			// inner HTML
