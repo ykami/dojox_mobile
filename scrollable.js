@@ -583,7 +583,7 @@ var scrollable = function(/*Object?*/dojo, /*Object?*/dojox){
 			to.x = pos.x + speed.x;
 		}
 
-		this.adjustDestination(to, pos);
+		this.adjustDestination(to, pos, dim);
 
 		if(this.scrollDir == "v" && dim.c.h < dim.d.h){ // content is shorter than display
 			this.slideTo({y:0}, 0.3, "ease-out"); // go back to the top
@@ -660,7 +660,7 @@ var scrollable = function(/*Object?*/dojo, /*Object?*/dojox){
 		this.slideTo(to, duration, easing);
 	};
 
-	this.adjustDestination = function(to, pos){
+	this.adjustDestination = function(to, pos, dim){
 		// subclass may want to implement
 	};
 

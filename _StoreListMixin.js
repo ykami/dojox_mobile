@@ -37,6 +37,10 @@ define([
 
 		labelProperty: "label",
 
+		// append: Boolean
+		//		If true, refresh() does not clear the existing items.
+		append: false,
+
 		buildRendering: function(){
 			this.inherited(arguments);
 			if(!this.store){ return; }
@@ -50,16 +54,24 @@ define([
 			//		Sets the store to use with this widget.
 			if(store === this.store){ return; }
 			this.store = store;
+			this._setQuery(query, queryOptions);
+			return this.refresh();
+		},
+
+		setQuery: function(query, queryOptions){
+			this._setQuery(query, queryOptions);
+			return this.refresh();
+		},
+
+		_setQuery: function(query, queryOptions){
 			this.query = query;
-			this.queryOptions = queryOptions;
-			this.refresh();
+			this.queryOptions = queryOptions || this.queryOptions;
 		},
 
 		refresh: function(){
 			// summary:
 			//		Fetches the data and generates the list items.
 			if(!this.store){ return; }
-
 			var _this = this;
 			var promise = this.store.query(this.query, this.queryOptions);
 			Deferred.when(promise, function(results){
@@ -76,6 +88,7 @@ define([
 			}, function(error){
 				_this.onError(error);
 			});
+			return promise;
 		},
 
 		createListItem: function(/*Object*/item){
@@ -88,24 +101,26 @@ define([
 			return new ListItem(lang.mixin(props, item));
 		},
 
-		generateList: function(/*Array*/items, /*Object*/dataObject){
+		generateList: function(/*Array*/items){
 			// summary:
 			//		Given the data, generates a list of items.
-			array.forEach(this.getChildren(), function(child){
-				child.destroyRecursive();
-			});
+			if(!this.append){
+				array.forEach(this.getChildren(), function(child){
+					child.destroyRecursive();
+				});
+			}
 			array.forEach(items, function(item, index){
 				this.addChild(this.createListItem(item));
 			}, this);
 		},
 
-		onComplete: function(/*Array*/items, /*Object*/request){
+		onComplete: function(/*Array*/items){
 			// summary:
 			//		An handler that is called after the fetch completes.
-			this.generateList(items, request);
+			this.generateList(items);
 		},
 
-		onError: function(/*Object*/errorData, /*Object*/request){
+		onError: function(/*Object*/errorData){
 			// summary:
 			//		An error handler.
 		},
