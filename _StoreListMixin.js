@@ -35,7 +35,13 @@ define([
 		//		An optional parameter for the query.
 		queryOptions: null,
 
+		// labelProperty: String
+		//		A property name (a property in the dojo.store item) that specifies that item's label
 		labelProperty: "label",
+
+		// childrenProperty: String
+		//		A property name (a property in the dojo.store item) that specifies that item's children
+		childrenProperty: "children",
 
 		// append: Boolean
 		//		If true, refresh() does not clear the existing items.
@@ -111,6 +117,11 @@ define([
 			}
 			array.forEach(items, function(item, index){
 				this.addChild(this.createListItem(item));
+				if(item[this.childrenProperty]){
+					array.forEach(item[this.childrenProperty], function(child, index){
+						this.addChild(this.createListItem(child));
+					}, this);
+				}
 			}, this);
 		},
 
