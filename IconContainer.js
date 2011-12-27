@@ -116,8 +116,8 @@ define([
 										label: this._cv ? this._cv(this.label) : this.label,
 										moveTo: this.domNode.parentNode.id,
 										transition: this.transition == "zoomIn" ? "zoomOut" : this.transition}); /* 1.8 */
-					view.addChild(heading);
-					view.addChild(this.paneContainerWidget);
+					heading.placeAt(view.domNode);
+					this.paneContainerWidget.placeAt(view.domNode);
 
 					var target;
 					for(var w = this.getParent(); w; w = w.getParent()){

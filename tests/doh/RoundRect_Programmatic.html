@@ -19,11 +19,15 @@
 				var view = dijit.byId("foo");
 				var demoWidget = new dojox.mobile.RoundRect({shadow:"true"});
 				demoWidget.domNode.appendChild(dojo.doc.createTextNode("This module provides some widgets that can be used to build web-based applications for mobile devices such as iPhone or Android."));
-				view.addChild(demoWidget);
+//				view.addChild(demoWidget);
+				demoWidget.placeAt(view.domNode);
+				demoWidget.startup();
 
 				demoWidget = new dojox.mobile.RoundRect();
 				demoWidget.domNode.appendChild(dojo.doc.createTextNode("This module provides some widgets that can be used to build web-based applications for mobile devices such as iPhone or Android."));
-				view.addChild(demoWidget);
+//				view.addChild(demoWidget);
+				demoWidget.placeAt(view.domNode);
+				demoWidget.startup();
 
 				doh.register("dojox.mobile.test.doh.RoundRect", [
 					{
