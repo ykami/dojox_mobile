@@ -40,8 +40,9 @@ define([
 		defaultColor: "mblColorDefault",
 		selColor: "mblColorDefaultSel",
 
+		_disableTimerSelection: true, // overrides _ItemBase.js
+
 		buildRendering: function(){
-			this._isOnLine = this.inheritParams();
 			this.inherited(arguments);
 
 			if(!this.label){
@@ -126,8 +127,7 @@ define([
 			if(!this._onTouchEndHandle){
 				this._onTouchEndHandle = this.connect(this.domNode, has('touch') ? "ontouchend" : "onmouseleave", "_onTouchEnd");
 			}
-			domClass.replace(this.bodyNode, this.selColor, this.defaultColor);
-			this._updateArrowColor();
+			this.select();
 		},
 
 		_onTouchEnd: function(e){
@@ -136,8 +136,7 @@ define([
 				// webkit mobile has no onmouseleave, so we have to use touchend instead,
 				// but we don't know if onclick comes or not after touchend,
 				// therefore we need to delay deselecting the button, otherwise, the button blinks.
-				domClass.replace(_this.bodyNode, _this.defaultColor, _this.selColor);
-				_this._updateArrowColor();
+				_this.deselect();
 			}, this._duration / 2);
 			this.disconnect(this._onTouchEndHandle);
 			this._onTouchEndHandle = null;
@@ -160,6 +159,7 @@ define([
 			}
 			this.setTransitionPos(e);
 			this.defaultClickAction();
+			this.deselect();
 		},
 
 		onClick: function(/*Event*/ /*===== e =====*/){

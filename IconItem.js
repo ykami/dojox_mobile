@@ -99,7 +99,6 @@ define([
 			this.iconParentNode = domConstruct.create("div", {className:"mblIconAreaInner"}, this.iconDivNode);
 			this.labelNode = domConstruct.create("span", {className:"mblIconAreaTitle"}, this.iconDivNode);
 
-			this._isOnLine = this.inheritParams();
 			this.inherited(arguments);
 		},
 

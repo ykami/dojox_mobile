@@ -17,7 +17,7 @@
 			"dojox/mobile/bookmarkable",
 			"dojox/mobile/FixedSplitter",
 			"dojox/mobile/ScrollableView",
-			"dojox/mobile/SimpleContainer"
+			"dojox/mobile/Container"
 		]);
 	</script>
 
@@ -34,7 +34,7 @@
 </head>
 <body style="visibility:hidden;">
 	<div data-dojo-type="dojox.mobile.FixedSplitter" data-dojo-props='orientation:"H"'>
-		<div data-dojo-type="dojox.mobile.SimpleContainer" style="width:300px;border-right:1px solid black;">
+		<div data-dojo-type="dojox.mobile.Container" style="width:300px;border-right:1px solid black;">
 			<div id="settings" data-dojo-type="dojox.mobile.ScrollableView">
 				<h1 data-dojo-type="dojox.mobile.Heading" data-dojo-props='fixed:"top"'>Settings</h1>
 				<ul data-dojo-type="dojox.mobile.EdgeToEdgeList" data-dojo-props='transition:"flip", stateful:true, syncWithViews:true'>
@@ -99,7 +99,7 @@
 			</div>
 		</div>
 
-		<div data-dojo-type="dojox.mobile.SimpleContainer">
+		<div data-dojo-type="dojox.mobile.Container">
 
 			<div id="general" data-dojo-type="dojox.mobile.ScrollableView">
 				<h1 data-dojo-type="dojox.mobile.Heading" data-dojo-props='fixed:"top"'>General</h1>

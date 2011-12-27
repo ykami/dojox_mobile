@@ -1,6 +1,5 @@
 define([
 	"dojo/_base/array",
-	"dojo/_base/connect",
 	"dojo/_base/declare",
 	"dojo/_base/lang",
 	"dojo/_base/sniff",
@@ -13,11 +12,18 @@ define([
 	"./iconUtils",
 	"./lazyLoadUtils",
 	"require"
-], function(array, connect, declare, lang, has, dom, domClass, domConstruct, Contained, Container, WidgetBase, iconUtils, lazyLoadUtils, require){
+], function(array, declare, lang, has, dom, domClass, domConstruct, Contained, Container, WidgetBase, iconUtils, lazyLoadUtils, require){
+
+/*=====
+	var Contained = dijit._Contained;
+	var Container = dijit._Container;
+	var WidgetBase = dijit._WidgetBase;
+=====*/
+
 	// module:
 	//		dojox/mobile/Accordion
 	// summary:
-	//		TODOC
+	//		A layout widget that allows the user to freely navigate between panes.
 
 	// inner class
 	var _AccordionTitle = declare([WidgetBase, Contained], {
@@ -153,7 +159,7 @@ define([
 		lazy: false
 	});
 
-	return declare("dojox.mobile.Accordion", [dijit._WidgetBase, dijit._Container, dijit._Contained], {
+	return declare("dojox.mobile.Accordion", [WidgetBase, Container, Contained], {
 		iconBase: "",
 		iconPos: "",
 		fixedHeight: false,
@@ -162,12 +168,9 @@ define([
 
 		duration: .3, // [seconds]
 
-		_openSpace: 1,
+		baseClass: "mblAccordion",
 
-		buildRendering: function(){
-			this.inherited(arguments);
-			this.domNode.className = "mblAccordion";
-		},
+		_openSpace: 1,
 
 		startup: function(){
 			if(this._started){ return; }
@@ -307,9 +310,10 @@ define([
 		},
 
 		collapse: function(/*Widget*/pane, /*boolean*/noAnimation){
+			if(pane.domNode.style.display === "none"){ return; } // already collapsed
 			pane.domNode.style.webkitTransition = noAnimation ? "" : "height "+this.duration+"s linear";
 			pane.domNode.style.height = "0px";
-			if(!has("webKit") || noAnimation){
+			if(!has("webkit") || noAnimation){
 				pane.domNode.style.display = "none";
 				this._updateLast();
 			}else{
@@ -320,12 +324,17 @@ define([
 					pane.domNode.style.display = "none";
 					_this._updateLast();
 
-					// resizeAll is necessary especially when the Accordion is
+					// Need to call parent view's resize() especially when the Accordion is
 					// on a ScrollableView, the ScrollableView is scrolled to
 					// the bottom, and then expand any other pane while in the
 					// non-fixed singleOpen mode.
 					if(!_this.fixedHeight && _this.singleOpen){
-						dojox.mobile.resizeAll();
+						for(var v = _this.getParent(); v; v = v.getParent()){
+							if(domClass.contains(v.domNode, "mblView")){
+								if(v && v.resize){ v.resize(); }
+								break;
+							}
+						}
 					}
 				}, this.duration*1000);
 			}
@@ -338,10 +347,6 @@ define([
 
 		deselect: function(/*Widget*/pane){
 			pane._at.deselect();
-		},
-
-		onselectstart: function(){
-			return false;
 		}
 	});
 });

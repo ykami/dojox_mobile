@@ -4,11 +4,10 @@ define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
 	"dojo/_base/window",
-	"dijit/_Contained",
-	"dijit/_WidgetBase",
 	"dojo/_base/xhr",
+	"./Pane",
 	"./ProgressIndicator"
-], function(dojo, array, declare, lang, win, Contained, WidgetBase, xhr, ProgressIndicator){
+], function(dojo, array, declare, lang, win, xhr, Pane, ProgressIndicator){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -20,7 +19,7 @@ define([
 	// summary:
 	//		A very simple content pane to embed an HTML fragment.
 
-	return declare("dojox.mobile.ContentPane", [WidgetBase, Contained],{
+	return declare("dojox.mobile.ContentPane", Pane, {
 		// summary:
 		//		A very simple content pane to embed an HTML fragment.
 		// description:
@@ -49,13 +48,6 @@ define([
 
 		baseClass: "mblContentPane",
 
-		buildRendering: function(){
-			this.inherited(arguments);
-			if(!this.containerNode){
-				this.containerNode = this.domNode;
-			}
-		},
-
 		startup: function(){
 			if(this._started){ return; }
 			if(this.prog){
@@ -66,14 +58,6 @@ define([
 				this.resize();
 			}
 			this.inherited(arguments);
-		},
-	
-		resize: function(){
-			// summary:
-			//		Calls resize() of each child widget.
-			array.forEach(this.getChildren(), function(child){
-				if(child.resize){ child.resize(); }
-			});
 		},
 	
 		loadHandler: function(/*String*/response){
@@ -101,7 +85,7 @@ define([
 				p.start();
 			}
 			this._set("href", href);
-			xhr.get({
+			return xhr.get({
 				url: href,
 				handleAs: "text",
 				load: lang.hitch(this, "loadHandler"),

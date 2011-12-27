@@ -1,20 +1,16 @@
 define([
-	"dojo/_base/kernel",
 	"dojo/_base/array",
-	"dojo/_base/config",
 	"dojo/_base/declare",
 	"dijit/registry",
 	"dijit/_Contained",
-	"dijit/_Container",
 	"dijit/_WidgetBase",
 	"./iconUtils",
 	"./TransitionEvent",
 	"./View"
-], function(kernel, array, config, declare, registry, Contained, Container, WidgetBase, iconUtils, TransitionEvent, View){
+], function(array, declare, registry, Contained, WidgetBase, iconUtils, TransitionEvent, View){
 
 /*=====
 	var Contained = dijit._Contained;
-	var Container = dijit._Container;
 	var WidgetBase = dijit._WidgetBase;
 	var TransitionEvent = dojox.mobile.TransitionEvent;
 	var View = dojox.mobile.View;
@@ -25,7 +21,7 @@ define([
 	// summary:
 	//		A base class for item classes (e.g. ListItem, IconItem, etc.)
 
-	return declare("dojox.mobile._ItemBase", [WidgetBase, /*Container,*/ Contained],{
+	return declare("dojox.mobile._ItemBase", [WidgetBase, Contained],{
 		// summary:
 		//		A base class for item classes (e.g. ListItem, IconItem, etc.)
 		// description:
@@ -141,6 +137,11 @@ define([
 		_duration: 800,
 
 	
+		buildRendering: function(){
+			this.inherited(arguments);
+			this._isOnLine = this.inheritParams();
+		},
+
 		inheritParams: function(){
 			var parent = this.getParent();
 			if(parent){
@@ -183,12 +184,14 @@ define([
 					this.select();
 				}
 			}else if(!this.selected){
-				this.select();
-				if(!this.selectOne){
-					var _this = this;
-					setTimeout(function(){
-						_this.deselect();
-					}, this._duration);
+				if(!this._disableTimerSelection){
+					this.select();
+					if(!this.selectOne){
+						var _this = this;
+						setTimeout(function(){
+							_this.deselect();
+						}, this._duration);
+					}
 				}
 				var transOpts;
 				if(this.moveTo || this.href || this.url || this.scene){
@@ -206,17 +209,6 @@ define([
 			}
 		},
 	
-		getParent: function(){
-			// summary:
-			//		Gets the parent widget.
-			// description:
-			//		Almost equivalent to _Contained#getParent, but this method
-			//		does not cause a script error even if this widget has no
-			//		parent yet.
-			var ref = this.srcNodeRef || this.domNode;
-			return ref && ref.parentNode ? registry.getEnclosingWidget(ref.parentNode) : null;
-		},
-
 		setTransitionPos: function(e){
 			// summary:
 			//		Stores the clicked position for later use.

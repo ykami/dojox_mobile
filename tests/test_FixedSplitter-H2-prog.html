@@ -12,16 +12,16 @@
 			"dojo/dom",
 			"dojo/ready",
 			"dojox/mobile/FixedSplitter",
-			"dojox/mobile/SimplePane",
+			"dojox/mobile/Pane",
 			"dojox/mobile/parser"
-		], function(dom, ready, FixedSplitter, SimplePane){
+		], function(dom, ready, FixedSplitter, Pane){
 			ready(function(){
 				var w = new FixedSplitter({
 					orientation: "H"
 				}, dom.byId("container"));
 				w.startup();
 
-				var p0 = new SimplePane({
+				var p0 = new Pane({
 					innerHTML: "pane #1 (width=200px)"
 				});
 				p0.domNode.style.backgroundColor = "yellow";
@@ -29,7 +29,7 @@
 				p0.placeAt(w.domNode);
 				p0.startup();
 
-				var p1 = new SimplePane({
+				var p1 = new Pane({
 					innerHTML: "pane #2"
 				});
 				p1.domNode.style.backgroundColor = "pink";

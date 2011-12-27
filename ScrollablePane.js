@@ -1,24 +1,21 @@
 define([
 	"dojo/_base/array",
 	"dojo/_base/declare",
-	"dojo/_base/lang",
 	"dojo/_base/sniff",
 	"dojo/_base/window",
 	"dojo/dom",
 	"dojo/dom-construct",
 	"dojo/dom-style",
-	"dijit/_Contained",
-	"dijit/_Container",
-	"dijit/_WidgetBase",
-	"./_ScrollableMixin"
-], function(array, declare, lang, has, win, dom, domConstruct, domStyle, Contained, Container, WidgetBase, ScrollableMixin){
+	"./_ScrollableMixin",
+	"./Pane"
+], function(array, declare, has, win, dom, domConstruct, domStyle, ScrollableMixin, Pane){
 
 	// module:
 	//		dojox/mobile/ScrollablePane
 	// summary:
 	//		A container that has the touch-scrolling capability.
 
-	return declare("dojox.mobile.ScrollablePane", [WidgetBase, /*Container, */Contained, ScrollableMixin],{
+	return declare("dojox.mobile.ScrollablePane", [Pane, ScrollableMixin], {
 		// summary:
 		//		A container that has the touch-scrolling capability.
 
@@ -35,16 +32,13 @@ define([
 		baseClass: "mblScrollablePane",
 
 		buildRendering: function(){
-			this.inherited(arguments);
-
 			var c = this.containerNode = domConstruct.create("div", {
 				className: "mblScrollableViewContainer",
 				style: {
-					position: "absolute",
-					top: "0px",
 					width: this.scrollDir === "v" ? "100%" : ""
 				}
 			});
+			this.inherited(arguments);
 
 			if(this.srcNodeRef){
 				// reparent
@@ -53,17 +47,11 @@ define([
 				}
 			}
 
-			domStyle.set(this.domNode, {
-				position: "relative",
-				overflow: "hidden"
-			});
-
 			if(this.roundCornerMask && has("webkit")){
 				var node = this.containerNode;
 				var mask = this.maskNode = domConstruct.create("div", {
 					className: "mblScrollablePaneMask",
 					style: {
-						position: "relative",
 						webkitMaskImage: "-webkit-canvas(" + this.id + "_mask)"
 					}
 				});
@@ -131,11 +119,11 @@ define([
 				var ctx = win.doc.getCSSCanvasContext("2d", this.id + "_mask", pw, h);
 				ctx.fillStyle = "#000000";
 				ctx.beginPath();
-				ctx.moveTo(l+r, t);
-				ctx.arcTo(l+w, t, l+w, h-b-r, r);
-				ctx.arcTo(l+w, h-b, l+r, h-b, r);
-				ctx.arcTo(l, h-b, l, t + r, r);
-				ctx.arcTo(l, t, l+r, t, r);
+				ctx.moveTo(l + r, t);
+				ctx.arcTo(l + w, t, l + w, h - b - r, r);
+				ctx.arcTo(l + w, h - b, l + r, h - b, r);
+				ctx.arcTo(l, h - b, l, t  +  r, r);
+				ctx.arcTo(l, t, l + r, t, r);
 				ctx.closePath();
 				ctx.fill();
 			}

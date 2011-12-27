@@ -127,7 +127,6 @@ define([
 			this.anchorNode = domConstruct.create("a", {className:"mblTabBarButtonAnchor"}, this.domNode);
 			this.labelNode = this.box = domConstruct.create("div", {className:"mblTabBarButtonLabel"}, this.anchorNode);
 
-			this._isOnLine = this.inheritParams();
 			this.inherited(arguments);
 		},
 	

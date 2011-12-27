@@ -35,24 +35,24 @@ define([
 		//		specify a border of a child dom node with CSS.
 		//
 		//		FixedSplitter has no knowledge of its child widgets.
-		//		SimpleContainer (=formerly known as FixedSplitterPane),
-		//		SimplePane, or ContentPane can be used as a child widget of
+		//		Container (=formerly known as FixedSplitterPane),
+		//		Pane, or ContentPane can be used as a child widget of
 		//		FixedSplitter.
 		//
-		//		- Use SimpleContainer if your content consists of ONLY dojo
+		//		- Use Container if your content consists of ONLY dojo
 		//		  widgets.
-		//		- Use SimplePane if your content is an inline html fragment
+		//		- Use Pane if your content is an inline html fragment
 		//		  (including dojo widgets).
 		//		- Use ContentPane if your content is an external html fragment
 		//		  (including dojo widgets).
 		//
 		// example:
 		// |	<div dojoType="dojox.mobile.FixedSplitter" orientation="H">
-		// |		<div dojoType="dojox.mobile.SimplePane"
+		// |		<div dojoType="dojox.mobile.Pane"
 		// |			style="width:200px;border-right:1px solid black;">
 		// |			pane #1 (width=200px)
 		// |		</div>
-		// |		<div dojoType="dojox.mobile.SimplePane">
+		// |		<div dojoType="dojox.mobile.Pane">
 		// |			pane #2
 		// |		</div>
 		// |	</div>

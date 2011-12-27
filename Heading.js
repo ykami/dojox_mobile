@@ -12,9 +12,10 @@ define([
 	"dijit/_Contained",
 	"dijit/_Container",
 	"dijit/_WidgetBase",
+	"./ProgressIndicator",
 	"./ToolBarButton",
 	"./View"
-], function(array, connect, declare, lang, win, dom, domClass, domConstruct, domStyle, registry, Contained, Container, WidgetBase, ToolBarButton, View){
+], function(array, connect, declare, lang, win, dom, domClass, domConstruct, domStyle, registry, Contained, Container, WidgetBase, ProgressIndicator, ToolBarButton, View){
 
 	var dm = lang.getObject("dojox.mobile", true);
 
@@ -88,6 +89,14 @@ define([
 		// tag: String
 		//		A name of html tag to create as domNode.
 		tag: "H1",
+
+		// busy: Boolean
+		//		If true, a progress indicator spins.
+		busy: false,
+
+		// progStyle: String
+		//		A css class name to add to the progress indicator.
+		progStyle: "mblProgWhite",
 
 		buildRendering: function(){
 			this.domNode = this.containerNode = this.srcNodeRef || win.doc.createElement(this.tag);
@@ -168,7 +177,7 @@ define([
 			this._set("back", back);
 			if(!this.backButton){
 				this.backButton = new ToolBarButton({arrow:"left", label:back});
-				this._clickHandle = this.connect(this.backButton.domNode, "onclick", "_onClick");
+				this._clickHandle = this.connect(this.backButton.domNode, "onclick", "_onBackButtonClick");
 				this.backButton.placeAt(this.domNode, "first");
 				this.backButton.startup();
 			}else{
@@ -194,17 +203,12 @@ define([
 			return w;
 		},
 
-		_onClick: function(e){
+		_onBackButtonClick: function(e){
 			// summary:
 			//		Internal handler for click events.
 			// tags:
 			//		private
-			if(this.onClick(e) === false){ return; } // user's click action
-			this.backButton.select();
-			var _this = this;
-			setTimeout(function(){
-				_this.backButton.deselect();
-			}, 100);
+			if(this.onBackButtonClick(e) === false){ return; } // user's click action
 
 			if(this.back && !this.moveTo && !this.href && history){
 				history.back();	
@@ -220,7 +224,7 @@ define([
 			this.goTo(this.moveTo, this.href);
 		},
 
-		onClick: function(/*Event*/ /*===== e =====*/){
+		onBackButtonClick: function(/*Event*/ /*===== e =====*/){
 			// summary:
 			//		User defined function to handle clicks
 			// tags:
@@ -260,6 +264,21 @@ define([
 					}
 				}
 			}
-		}
+		},
+
+		_setBusyAttr: function(/*Boolean*/busy){
+			var prog = this._prog;
+			if(busy){
+				if(!prog){
+					prog = this._prog = new ProgressIndicator({size:30, center:false});
+					domClass.add(prog.domNode, this.progStyle);
+				}
+				domConstruct.place(prog.domNode, this.domNode, "first");
+				prog.start();
+			}else{
+				prog.stop();
+			}
+			this._set("busy", busy);
+		}	
 	});
 });

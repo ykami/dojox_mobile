@@ -1,18 +1,17 @@
 define([
 	"dojo/_base/array",
-	"dojo/_base/connect",
 	"dojo/_base/declare",
 	"dojo/_base/lang",
+	"dojo/_base/window",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/dom-style",
 	"dojo/has",
-	"./common",
 	"./iconUtils",
 	"./_ItemBase",
 	"./ProgressIndicator",
 	"./TransitionEvent"
-], function(array, connect, declare, lang, domClass, domConstruct, domStyle, has, common, iconUtils, ItemBase, ProgressIndicator, TransitionEvent){
+], function(array, declare, lang, win, domClass, domConstruct, domStyle, has, iconUtils, ItemBase, ProgressIndicator, TransitionEvent){
 
 /*=====
 	var ItemBase = dojox.mobile._ItemBase;
@@ -115,6 +114,10 @@ define([
 		//		If true, a progress indicator spins.
 		busy: false,
 
+		// progStyle: String
+		//		A css class name to add to the progress indicator.
+		progStyle: "",
+
 		paramsToInherit: "variableHeight,transition,deleteIcon,icon,rightIcon,rightIcon2,uncheckIcon,arrowClass,checkClass,uncheckClass",
 
 		baseClass: "mblListItem",
@@ -122,9 +125,9 @@ define([
 		_selClass: "mblItemSelected",
 	
 		buildRendering: function(){
-			this._isOnLine = this.inheritParams();
 			this.domNode = this.srcNodeRef || domConstruct.create(this.tag);
 			this.inherited(arguments);
+
 			if(this.selected){
 				domClass.add(this.domNode, this._selClass);
 			}
@@ -239,7 +242,7 @@ define([
 			this.select();
 
 			if (this.href && this.hrefTarget) {
-				common.openWindow(this.href, this.hrefTarget);
+				win.global.open(this.href, this.hrefTarget || "_blank");
 				return;
 			}
 			var transOpts;
@@ -398,24 +401,26 @@ define([
 		},
 
 		_setBusyAttr: function(/*Boolean*/busy){
+			var prog = this._prog;
 			if(busy){
 				if(!this.iconNode){
 					this.iconNode = domConstruct.create("div", {className:"mblListItemIcon"},
 						this.rightIconNode || this.rightIcon2Node || this.rightTextNode || this.labelNode, "before");
 				}
-				if(!this._prog){
-					this._prog = new ProgressIndicator({size:25, center:false});
+				if(!prog){
+					prog = this._prog = new ProgressIndicator({size:25, center:false});
+					domClass.add(prog.domNode, this.progStyle);
 				}
 				array.forEach(this.iconNode.childNodes, function(child){
 					child.style.display = "none";
 				});
-				this.iconNode.appendChild(this._prog.domNode);
-				this._prog.start();
+				this.iconNode.appendChild(prog.domNode);
+				prog.start();
 			}else{
 				array.forEach(this.iconNode.childNodes, function(child){
 					child.style.display = "";
 				});
-				this._prog.stop();
+				prog.stop();
 			}
 			this._set("busy", busy);
 		}	

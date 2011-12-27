@@ -19,8 +19,8 @@
 			"dijit/registry",
 			"dojox/mobile/parser",
 			"dojox/mobile/FixedSplitter",
-			"dojox/mobile/SimpleContainer",
-			"dojox/mobile/SimplePane",
+			"dojox/mobile/Container",
+			"dojox/mobile/Pane",
 			"dijit/Calendar"
 		], function(connect, win, dom, domClass, ready, registry){
 			change = function() {
@@ -62,11 +62,11 @@
 </head>
 <body class="tundra">
 	<div id="splitter1" data-dojo-type="dojox.mobile.FixedSplitter" data-dojo-props='variablePane:0'>
-		<div id="pane1" data-dojo-type="dojox.mobile.SimplePane" style="background-color:yellow;">
+		<div id="pane1" data-dojo-type="dojox.mobile.Pane" style="background-color:yellow;">
 			pane #1
 		</div>
 
-		<div id="pane2" data-dojo-type="dojox.mobile.SimpleContainer" style="background-color:pink;">
+		<div id="pane2" data-dojo-type="dojox.mobile.Container" style="background-color:pink;">
 			<div id="cal" dojoType='dijit.Calendar'></div>
 		</div>
 	</div>

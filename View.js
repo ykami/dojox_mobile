@@ -1,5 +1,4 @@
 define([
-	"dojo/_base/kernel", // to test dojo.hash
 	"dojo/_base/array",
 	"dojo/_base/config",
 	"dojo/_base/connect",
@@ -13,18 +12,17 @@ define([
 	"dojo/dom-construct",
 	"dojo/dom-geometry",
 	"dojo/dom-style",
-	"dijit/registry",	// registry.byNode
+	"dijit/registry",
 	"dijit/_Contained",
-	"dijit/_Container",
 	"dijit/_WidgetBase",
 	"./ViewController", // to load ViewController for you (no direct references)
+	"./common",
 	"./transition",
 	"./viewRegistry"
-], function(dojo, array, config, connect, declare, lang, has, win, Deferred, dom, domClass, domConstruct, domGeometry, domStyle, registry, Contained, Container, WidgetBase, ViewController, transitDeferred, viewRegistry){
+], function(array, config, connect, declare, lang, has, win, Deferred, dom, domClass, domConstruct, domGeometry, domStyle, registry, Contained, WidgetBase, ViewController, common, transitDeferred, viewRegistry){
 
 /*=====
 	var Contained = dijit._Contained;
-	var Container = dijit._Container;
 	var WidgetBase = dijit._WidgetBase;
 	var ViewController = dojox.mobile.ViewController;
 =====*/
@@ -36,7 +34,7 @@ define([
 
 	var dm = lang.getObject("dojox.mobile", true);
 
-	return declare("dojox.mobile.View", [WidgetBase/*, Container*/, Contained], {
+	return declare("dojox.mobile.View", [WidgetBase, Contained], {
 		// summary:
 		//		A widget that represents a view that occupies the full screen
 		// description:
@@ -318,7 +316,7 @@ define([
 			if(toWidget){
 				// Now that the target view became visible, it's time to run resize()
 				if(config["mblAlwaysResizeOnTransition"] || !toWidget._resized){
-					dm.resizeAll(null, toWidget);
+					common.resizeAll(null, toWidget);
 					toWidget._resized = true;
 				}
 
@@ -356,8 +354,8 @@ define([
 			toNode.style.display = "none";
 			toNode.style.visibility = "visible";
 
-			dm.fromView = this;
-			dm.toView = toWidget;
+			common.fromView = this;
+			common.toView = toWidget;
 
 			this._doTransition(fromNode, toNode, detail.transition, detail.transitionDir);
 		},
