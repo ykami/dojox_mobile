@@ -76,7 +76,7 @@
 		//dojo.require("dojo.parser"); // Use the lightweight parser.
 		dojo.require("dojox.mobile.parser");
 		dojo.require("dojox.mobile");
-		dojo.require("dojox.mobile.FlippableView");
+		dojo.require("dojox.mobile.SwapView");
 		dojo.require("dojox.mobile.IconContainer");
 		dojo.requireIf(!dojo.isWebKit, "dojox.mobile.compat");
 		dojo.requireIf(!dojo.isWebKit, "dojo.fx");
@@ -85,7 +85,7 @@
         dojo.require("doh.runner");
 		dojo.addOnLoad(function(){
 
-			var view = new dojox.mobile.FlippableView({id:"foo", selected:"true"});
+			var view = new dojox.mobile.SwapView({id:"foo", selected:"true"});
 			dojo.doc.body.appendChild(view.domNode);
 			var demoWidget = new dojox.mobile.RoundRectCategory({label:"Page flipping demo"});
 //			view.addChild(demoWidget);
@@ -110,7 +110,7 @@
 
 
 			
-			view = new dojox.mobile.FlippableView({id:"icon1"});
+			view = new dojox.mobile.SwapView({id:"icon1"});
 			demoWidget = new dojox.mobile.Heading({label:"Icon Container 1"});
 			dojo.doc.body.appendChild(view.domNode);
 //			view.addChild(demoWidget);

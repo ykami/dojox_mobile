@@ -20,10 +20,6 @@
   list-style-type: none;
   clear: both;
 }
-.mblIconItemPaneContainer {
-  margin: 0;
-  padding: 0;
-}
 .mblIconItemPane {
   list-style-type: none;
   background-color: white;

@@ -31,17 +31,18 @@
 .mblListItem .mblListItemAnchor * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0.2);
 }
-.mblItemSelected {
-  background-color: #0869C6;
+.mblListItemSelected {
+  color: white;
+  background-color: #0869c6;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#088eef), to(#0851ad), color-stop(0.5, #0869c6));
 }
-.mblItemSelected .mblListItemSubText {
+.mblListItemSelected .mblListItemSubText {
   color: white;
 }
-.mblItemSelected .mblListItemAnchor {
+.mblListItemSelected .mblListItemAnchor {
   color: white;
 }
-.mblItemSelected .mblDomButton div {
+.mblListItemSelected .mblDomButton div {
   border-color: white;
 }
 .mblListItemTextBoxSelected {

@@ -1,3 +1,19 @@
+@default-blue-button-color: white;
+@default-blue-button-background-color: #366EDF;
+@default-blue-button-background-image: -webkit-gradient(linear, left top, left bottom, from(#7A9DE9), to(#2362DD), color-stop(0.5, #366EDF), color-stop(0.5, #215FDC));
+
+@default-button-color: black;
+@default-button-background-color: #C6C6C6;
+@default-button-background-image: -webkit-gradient(linear, left top, left bottom, from(#DFDFDF), to(#A6A6A6));
+
+@default-button-selected-color: white;
+@default-button-selected-background-color: #3578B1;
+@default-button-selected-background-image: -webkit-gradient(linear, left top, left bottom, from(#306EA1), to(#266093), color-stop(0.06, #4090D3), color-stop(0.5, #306EA1));
+
+@default-selected-color: white;
+@default-selected-background-color: #3578B1;
+@default-selected-background-image: -webkit-gradient(linear, left top, left bottom, from(#306EA1), to(#266093), color-stop(0.06, #4090D3), color-stop(0.5, #306EA1));
+
 // common.less
 .mobile-body-styles () {
 	background-color: black;
@@ -11,23 +27,19 @@
 }
 
 .mblColorBlue-styles () {
-	color: white;
-	background-color: #366EDF;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#7A9DE9), to(#2362DD), color-stop(0.5, #366EDF), color-stop(0.5, #215FDC));
+	color: @default-blue-button-color;
+	background-color: @default-blue-button-background-color;
+	background-image: @default-blue-button-background-image;
 }
 .mblColorDefault-styles () {
-	color: black;
-	background-color: #C6C6C6;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#DFDFDF), to(#A6A6A6));
+	color: @default-button-color;
+	background-color: @default-button-background-color;
+	background-image: @default-button-background-image;
 }
 .mblColorDefaultSel-styles () {
-	color: white;
-	background-color: #3578B1;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#306EA1), to(#266093), color-stop(0.06, #4090D3), color-stop(0.5, #306EA1));
-}
-.mblColorDefaultBar-styles () {
-	background-color: #212421;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#181818), to(#100C10), color-stop(0.1, #313031));
+	color: @default-button-selected-color;
+	background-color: @default-button-selected-background-color;
+	background-image: @default-button-selected-background-image;
 }
 .mblIconRoot-styles () {
 	top: -2px;
@@ -156,15 +168,18 @@
 	text-decoration: none;
 	padding-right: 7px;
 }
-.mblItemSelected-styles () {
+.mblListItemSelected-styles () {
+	color: @default-selected-color;
+	background-color: @default-selected-background-color;
+	background-image: @default-selected-background-image;
 }
-.mblItemSelected-mblListItemAnchor-styles () {
+.mblListItemSelected-mblListItemAnchor-styles () {
 	color: black;
 }
-.mblItemSelected-mblDomButton-Div-styles () {
+.mblListItemSelected-mblDomButton-Div-styles () {
 	border-color: white;
 }
-.mblItemSelected-mblListItemSubText-styles () {
+.mblListItemSelected-mblListItemSubText-styles () {
 }
 .mblListItemTextBoxSelected-styles () {
 	background-color: #048BF4;
@@ -499,9 +514,9 @@
 	border-width: 1px 1px 1px 0px;
 	border-style: solid;
 	border-color: #555555;
-	color: black;
-	background-color: #C6C6C6;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#DFDFDF), to(#A6A6A6));
+	color: @default-button-color;
+	background-color: @default-button-background-color;
+	background-image: @default-button-background-image;
 }
 .mblTabBarSegmentedControlButton-InHeading-FirstTabButtom-styles () {
 	border-left-width: 1px;
@@ -511,9 +526,9 @@
 .mblTabBarSegmentedControlIconArea-InHeading-styles () {
 }
 .mblTabBarSegmentedControlButtonSelected-InHeading-styles () {
-	color: white;
-	background-color: #3578B1;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#306EA1), to(#266093), color-stop(0.06, #4090D3), color-stop(0.5, #306EA1));
+	color: @default-button-selected-color;
+	background-color: @default-button-selected-background-color;
+	background-image: @default-button-selected-background-image;
 }
 
 // TextArea.less

@@ -1,3 +1,19 @@
+@default-blue-button-color: white;
+@default-blue-button-background-color: #215fdc;
+@default-blue-button-background-image: -webkit-gradient(linear, left top, left bottom, from(#7a9de9), to(#2362dd), color-stop(0.5, #366edf), color-stop(0.5, #215fdc));
+
+@default-button-color: black;
+@default-button-background-color: #CED3CE;
+@default-button-background-image: -webkit-gradient(linear, left top, left bottom, from(#F7FBF7), to(#CECFD6), color-stop(0.5, #CED3CE));
+
+@default-button-selected-color: white;
+@default-button-selected-background-color: #0869C6;
+@default-button-selected-background-image: -webkit-gradient(linear, left top, left bottom, from(#088EEF), to(#0851AD), color-stop(0.5, #0869C6));
+
+@default-selected-color: white;
+@default-selected-background-color: #0869C6;
+@default-selected-background-image: -webkit-gradient(linear, left top, left bottom, from(#088EEF), to(#0851AD), color-stop(0.5, #0869C6));
+
 // common.less
 .mobile-body-styles () {
 	background-color: #DEDFDE;
@@ -10,23 +26,19 @@
 }
 
 .mblColorBlue-styles () {
-	color: white;
-	background-color: #215fdc;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#7a9de9), to(#2362dd), color-stop(0.5, #366edf), color-stop(0.5, #215fdc));
+	color: @default-blue-button-color;
+	background-color: @default-blue-button-background-color;
+	background-image: @default-blue-button-background-image;
 }
 .mblColorDefault-styles () {
-	color: black;
-	background-color: #CED3CE;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#F7FBF7), to(#CECFD6), color-stop(0.5, #CED3CE));
+	color: @default-button-color;
+	background-color: @default-button-background-color;
+	background-image: @default-button-background-image;
 }
 .mblColorDefaultSel-styles () {
-	color: white;
-	background-color: #0869C6;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#088EEF), to(#0851AD), color-stop(0.5, #0869C6));
-}
-.mblColorDefaultBar-styles () {
-	background-color: #212421;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#181818), to(#100C10), color-stop(0.1, #313031));
+	color: @default-button-selected-color;
+	background-color: @default-button-selected-background-color;
+	background-image: @default-button-selected-background-image;
 }
 .mblIconRoot-styles () {
 	top: 2px;
@@ -174,17 +186,18 @@
 	text-decoration: none;
 	padding-right: 7px;
 }
-.mblItemSelected-styles () {
-	background-color: #0869C6;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#088EEF), to(#0851AD), color-stop(0.5, #0869C6));
+.mblListItemSelected-styles () {
+	color: @default-selected-color;
+	background-color: @default-selected-background-color;
+	background-image: @default-selected-background-image;
 }
-.mblItemSelected-mblListItemAnchor-styles () {
+.mblListItemSelected-mblListItemAnchor-styles () {
 	color: white;
 }
-.mblItemSelected-mblDomButton-Div-styles () {
+.mblListItemSelected-mblDomButton-Div-styles () {
 	border-color: white;
 }
-.mblItemSelected-mblListItemSubText-styles () {
+.mblListItemSelected-mblListItemSubText-styles () {
 	color: white;
 }
 .mblListItemTextBoxSelected-styles () {
@@ -519,9 +532,9 @@
 	border-radius: 0px;
 	border-width: 1px 1px 1px 0px;
 	border-style: solid;
-	border-color: #555555;
-	background-color: #CED3CE;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#f7fbf7), to(#cecfd6), color-stop(0.5, #ced3ce));
+	color: @default-button-color;
+	background-color: @default-button-background-color;
+	background-image: @default-button-background-image;
 }
 .mblTabBarSegmentedControlButton-InHeading-FirstTabButtom-styles () {
 	border-left-width: 1px;
@@ -535,9 +548,9 @@
 .mblTabBarSegmentedControlIconArea-InHeading-styles () {
 }
 .mblTabBarSegmentedControlButtonSelected-InHeading-styles () {
-	background-color: #0869C6;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#088eef), to(#0851ad), color-stop(0.5, #0869c6));
-	color: white;
+	color: @default-button-selected-color;
+	background-color: @default-button-selected-background-color;
+	background-image: @default-button-selected-background-image;
 }
 
 // TextArea.less

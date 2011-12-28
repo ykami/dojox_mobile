@@ -113,7 +113,7 @@
   border-style: solid;
   border-color: #555555;
   color: black;
-  background-color: #C6C6C6;
+  background-color: #c6c6c6;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#dfdfdf), to(#a6a6a6));
 }
 .mblHeading .mblTabBarSegmentedControl .mblTabBarButton:first-child {
@@ -121,7 +121,7 @@
 }
 .mblHeading .mblTabBarSegmentedControl .mblTabBarButtonSelected {
   color: white;
-  background-color: #3578B1;
+  background-color: #3578b1;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#306ea1), to(#266093), color-stop(0.06, #4090d3), color-stop(0.5, #306ea1));
 }
 /* dojox.mobile.TabBarButton (tabPanel) */
