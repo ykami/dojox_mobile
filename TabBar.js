@@ -62,6 +62,7 @@ define([
 		//		A name of html tag to create as domNode.
 		tag: "ul",
 
+		selectOne: true,
 		baseClass: "mblTabBar",
 
 		/* internal properties */	
@@ -87,7 +88,7 @@ define([
 			if(this.syncWithViews){
 				var f = function(view, moveTo, dir, transition, context, method){
 					var child = array.filter(this.getChildren(), function(w){ return w.moveTo === "#" + view.id; })[0];
-					if(child){ child.select(); }
+					if(child){ child.set("selected", true); }
 				};
 				this.subscribe("/dojox/mobile/afterTransitionIn", f);
 				this.subscribe("/dojox/mobile/startView", f);

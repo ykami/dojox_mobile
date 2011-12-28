@@ -1,11 +1,9 @@
 define([
 	"dojo/_base/declare",
 	"dojo/dom-construct",
-	"dijit/_Contained",
-	"dijit/_Container",
-	"dijit/_WidgetBase",
+	"./Pane",
 	"./iconUtils"
-], function(declare, domConstruct, Contained, Container, WidgetBase, iconUtils){
+], function(declare, domConstruct, Pane, iconUtils){
 
 /*=====
 	var IconItemPane = dojox.mobile._IconItemPane
@@ -14,21 +12,20 @@ define([
 	// module:
 	//		dojox/mobile/_IconItemPane
 	// summary:
-	//		An internal widget used from IconItem.
+	//		An internal widget used for IconContainer.
 
-	return declare("dojox.mobile._IconItemPane", [WidgetBase, Container, Contained], {
+	return declare("dojox.mobile._IconItemPane", Pane, {
 		label: "",
 		closeIcon: "mblDomButtonBlueMinus",
 		baseClass: "mblIconItemPane",
 
 		buildRendering: function(){
-			this.domNode = this.containerNode = this.srcNodeRef || domConstruct.create("li");
+			this.inherited(arguments);
 			this.hide();
 			this.closeHeaderNode = domConstruct.create("h2", {className:"mblIconItemPaneHeading"}, this.domNode);
 			this.closeIconNode = domConstruct.create("div", {className:"mblIconItemPaneIcon"}, this.closeHeaderNode);
 			this.labelNode = domConstruct.create("span", {className:"mblIconItemPaneTitle"}, this.closeHeaderNode);
 			this.containerNode = domConstruct.create("div", {className:"mblContent"}, this.domNode);
-			this.inherited(arguments);
 		},
 
 		show: function(){

@@ -4,14 +4,16 @@ define([
 	"dojo/_base/event",
 	"dojo/_base/lang",
 	"dojo/_base/window",
+	"dojo/dom",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/dom-style",
-	"dijit/registry",	// registry.byNode
+	"dijit/registry",
 	"./iconUtils",
 	"./_ItemBase",
-	"./Badge" /* 1.8 */
-], function(connect, declare, event, lang, win, domClass, domConstruct, domStyle, registry, iconUtils, ItemBase, Badge){
+	"./Badge",
+	"./sniff"
+], function(connect, declare, event, lang, win, dom, domClass, domConstruct, domStyle, registry, iconUtils, ItemBase, Badge, has){
 
 /*=====
 	var ItemBase = dojox.mobile._ItemBase;
@@ -72,10 +74,12 @@ define([
 		baseClass: "mblTabBarButton",
 
 		/* internal properties */	
-		selectOne: true,
-		badge: "", /* 1.8 */
+		badge: "",
+
+		_selStartMethod: "none",
+		_selEndMethod: "none",
 	
-		destroy: function(){ /* 1.8 */
+		destroy: function(){
 			if(this.badgeObj){
 				delete this.badgeObj;
 			}
@@ -133,67 +137,51 @@ define([
 		startup: function(){
 			if(this._started){ return; }
 
-			if(!this._isOnLine){
-				this.inheritParams();
-				this.set({icon1:this.icon1, icon2:this.icon2});
-			}
-
 			this._dragstartHandle = this.connect(this.domNode, "ondragstart", event.stop);
-			this._clickHandle = this.connect(this.anchorNode, "onclick", "_onClick");
+			// Unlike other _ItemBase-based widgets, TabBarButton should be
+			// selected immediately after it is touched. So we use ontouchstart
+			// rather than onclick to invode the button action.
+			// Even so, we use "_onClick" as a handler name to be consistent
+			// with others.
+			this._clickHandle = this.connect(this.domNode, has('touch') ? "ontouchstart" : "onmousedown", "_onClick");
 			if(this.getParent().closable){
-				this._clickCloseHandler = this.connect(this.iconDivNode, "onclick", "_onClick");
+				this._clickCloseHandler = this.connect(this.iconDivNode, "onclick", "_onCloseButtonClick");
 			}
 
 			this.inherited(arguments);
-		},
-	
-		select: function(){
-			// summary:
-			//		Makes this widget in the selected state.
-			if(arguments[0]){ // deselect
-				domClass.remove(this.domNode, "mblTabBarButtonSelected");
-			}else{ // select
-				domClass.add(this.domNode, "mblTabBarButtonSelected");
-				for(var i = 0, c = this.domNode.parentNode.childNodes; i < c.length; i++){
-					if(c[i].nodeType != 1){ continue; }
-					var w = registry.byNode(c[i]); // sibling widget
-					if(w && w != this){
-						w.deselect();
-					}
-				}
+			if(!this._isOnLine){
+				this.set({icon1:this.icon1, icon2:this.icon2}); // retry applying the attribute
 			}
-			this.selected = !arguments[0];
-			if(this.iconNode1){
-				this.iconNode1.style.visibility = this.selected ? "hidden" : "";
-			}
-			if(this.iconNode2){
-				this.iconNode2.style.visibility = this.selected ? "" : "hidden";
-			}
+			dom.setSelectable(this.domNode, false);
 		},
-		
-		deselect: function(){
-			// summary:
-			//		Makes this widget in the deselected state.
-			this.select(true);
-		},
-	
+
 		onClose: function(e){
 			connect.publish("/dojox/mobile/tabClose", [this]);
 			return this.getParent().onCloseButtonClick(this);
 		},
 	
+		_onCloseButtonClick: function(e){
+			if(this.onCloseButtonClick(e) === false){ return; } // user's click action
+			if(this.onClose()){
+				this.destroy();
+			}
+		},
+
+		onCloseButtonClick: function(/*Event*/ /*===== e =====*/){
+			// summary:
+			//		User defined function to handle clicks
+			// tags:
+			//		callback
+		},
+
 		_onClick: function(e){
 			// summary:
 			//		Internal handler for click events.
 			// tags:
 			//		private
 			if(this.onClick(e) === false){ return; } // user's click action
-			if(e.currentTarget === this.iconDivNode){
-				if(this.onClose()){
-					this.destroy();
-				}
-			}else{
-				this.defaultClickAction();
+			if(!this.selected){
+				this.defaultClickAction(e);
 			}
 		},
 
@@ -229,11 +217,11 @@ define([
 			this._setIcon(icon, 2, !this.selected);
 		},
 	
-		_getBadgeAttr: function(){ /* 1.8 */
+		_getBadgeAttr: function(){
 			return this.badgeObj ? this.badgeObj.getValue() : null;
 		},
 
-		_setBadgeAttr: function(/*String*/value){ /* 1.8 */
+		_setBadgeAttr: function(/*String*/value){
 			if(!this.badgeObj){
 				this.badgeObj = new Badge({fontSize:11});
 				domStyle.set(this.badgeObj.domNode, {
@@ -250,8 +238,11 @@ define([
 			}
 		},
 
-		_setSelectedAttr: function(/*Boolean*/sel){
-			sel ? this.select() : this.deselect();
+		_setSelectedAttr: function(/*Boolean*/selected){
+			// summary:
+			//		Makes this widget in the selected or unselected state.
+			this.inherited(arguments);
+			domClass.toggle(this.domNode, "mblTabBarButtonSelected", selected);
 		}
 	});
 });

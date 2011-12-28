@@ -63,10 +63,6 @@ define([
 		//		If true, the right hand side arrow is not displayed.
 		noArrow: false,
 
-		// selected: Boolean
-		//		If true, the item is highlighted to indicate it is selected.
-		selected: false,
-
 		// checked: Boolean
 		//		If true, a check mark is displayed at the right of the item.
 		checked: false,
@@ -122,7 +118,10 @@ define([
 
 		baseClass: "mblListItem",
 
-		_selClass: "mblItemSelected",
+		_selStartMethod: "touch",
+		_selEndMethod: "timer",
+
+		_selClass: "mblListItemSelected",
 	
 		buildRendering: function(){
 			this.domNode = this.srcNodeRef || domConstruct.create(this.tag);
@@ -169,16 +168,6 @@ define([
 		startup: function(){
 			if(this._started){ return; }
 
-			if(!this._isOnLine){
-				this.inheritParams();
-				this.set({
-					icon: this.icon,
-					deleteIcon: this.deleteIcon,
-					rightIcon: this.rightIcon,
-					rightIcon2: this.rightIcon2
-				});
-			}
-
 			var parent = this.getParent();
 			if(this.moveTo || this.href || this.url || this.clickable || (parent && parent.select)){
 				this._clickHandle = this.connect(this.domNode, "onclick", "_onClick");
@@ -199,6 +188,14 @@ define([
 			}
 
 			this.inherited(arguments);
+			if(!this._isOnLine){
+				this.set({ // retry applying the attribute
+					icon: this.icon,
+					deleteIcon: this.deleteIcon,
+					rightIcon: this.rightIcon,
+					rightIcon2: this.rightIcon2
+				});
+			}
 		},
 
 		resize: function(){
@@ -239,27 +236,7 @@ define([
 					this.set("checked", !this.checked);
 				}
 			}
-			this.select();
-
-			if (this.href && this.hrefTarget) {
-				win.global.open(this.href, this.hrefTarget || "_blank");
-				return;
-			}
-			var transOpts;
-			if(this.moveTo || this.href || this.url || this.scene){
-				transOpts = {
-					moveTo: this.moveTo, href: this.href, hrefTarget: this.hrefTarget,
-					url: this.url, urlTarget: this.urlTarget, scene: this.scene,
-					transition: this.transition, transitionDir: this.transitionDir
-				};
-			}else if(this.transitionOptions){
-				transOpts = this.transitionOptions;
-			}	
-
-			if(transOpts){
-				this.setTransitionPos(e);
-				return new TransitionEvent(this.domNode,transOpts,e).dispatch();
-			}
+			this.defaultClickAction(e);
 		},
 
 		onClick: function(/*Event*/ /*===== e =====*/){
@@ -268,28 +245,7 @@ define([
 			// tags:
 			//		callback
 		},
-	
-		select: function(){
-			// summary:
-			//		Makes this widget in the selected state.
-			var parent = this.getParent();
-			if(parent.stateful){
-				parent.deselectAll();
-			}else{
-				var _this = this;
-				setTimeout(function(){
-					_this.deselect();
-				}, has('android') ? 300 : 1000);
-			}
-			domClass.add(this.domNode, this._selClass);
-		},
-	
-		deselect: function(){
-			// summary:
-			//		Makes this widget in the deselected state.
-			domClass.remove(this.domNode, this._selClass);
-		},
-	
+
 		onAnchorLabelClicked: function(e){
 			// summary:
 			//		Stub function to connect to from your application.
@@ -300,28 +256,28 @@ define([
 			if(h === this.domNodeHeight){ return; }
 			this.domNodeHeight = h;
 			array.forEach([
-					this.rightTextNode,
-					this.rightIcon2Node,
-					this.rightIconNode,
-					this.uncheckIconNode,
-					this.iconNode,
-					this.deleteIconNode,
-					this.knobIconNode
-				], function(n){
-					if(n){
-						var domNode = this.domNode;
-						var f = function(){
-							var t = Math.round((h - n.offsetHeight) / 2) -
-								domStyle.get(domNode, "paddingTop");
-							n.style.marginTop = t + "px";
-						}
-						if(n.offsetHeight === 0 && n.tagName === "IMG"){
-							n.onload = function(){ f(); };
-						}else{
-							f();
-						}
+				this.rightTextNode,
+				this.rightIcon2Node,
+				this.rightIconNode,
+				this.uncheckIconNode,
+				this.iconNode,
+				this.deleteIconNode,
+				this.knobIconNode
+			], function(n){
+				if(n){
+					var domNode = this.domNode;
+					var f = function(){
+						var t = Math.round((h - n.offsetHeight) / 2) -
+							domStyle.get(domNode, "paddingTop");
+						n.style.marginTop = t + "px";
 					}
-				}, this);
+					if(n.offsetHeight === 0 && n.tagName === "IMG"){
+						n.onload = function(){ f(); };
+					}else{
+						f();
+					}
+				}
+			}, this);
 		},
 
 		setArrow: function(){
@@ -331,7 +287,7 @@ define([
 			var c = "";
 			var parent = this.getParent();
 			if(this.moveTo || this.href || this.url || this.clickable){
-				if(!this.noArrow && !(parent && parent.stateful)){
+				if(!this.noArrow && !(parent && parent.selectOne)){
 					c = this.arrowClass || "mblDomButtonArrow";
 				}
 			}
@@ -423,6 +379,13 @@ define([
 				prog.stop();
 			}
 			this._set("busy", busy);
-		}	
+		},
+
+		_setSelectedAttr: function(/*Boolean*/selected){
+			// summary:
+			//		Makes this widget in the selected or unselected state.
+			this.inherited(arguments);
+			domClass.toggle(this.domNode, this._selClass, selected);
+		}
 	});
 });

@@ -12,7 +12,6 @@ define([
 	//		An item of IconMenu.
 
 	return declare("dojox.mobile.IconMenuItem", ItemBase, { 
-		selected: false,
 		selColor: "mblIconMenuItemSel",
 		closeOnAction: false,
 
@@ -21,6 +20,9 @@ define([
 		tag: "li",
 
 		baseClass: "mblIconMenuItem",
+
+		_selStartMethod: "touch",
+		_selEndMethod: "touch",
 
 		buildRendering: function(){
 			this.domNode = this.srcNodeRef || domConstruct.create(this.tag);
@@ -53,27 +55,17 @@ define([
 			this.domNode.appendChild(a);
 		},
 
-		postCreate: function(){
-			this._clickHandle = this.connect(this.domNode, "onclick", "_onClick");
-		},
-
 		startup: function(){
 			if(this._started){ return; }
-			this.inheritParams();
-			this.set("icon", this.icon);
+
+			this._clickHandle = this.connect(this.domNode, "onclick", "_onClick");
+
 			this.inherited(arguments);
+			if(!this._isOnLine){
+				this.set("icon", this.icon); // retry applying the attribute
+			}
 		},
 
-		select: function(){
-			domClass.toggle(this.domNode, this.selColor, true);
-			this.selected = true;
-		},
-	
-		deselect: function(){
-			domClass.toggle(this.domNode, this.selColor, false);
-			this.selected = false;
-		},
-	
 		_onClick: function(e){
 			// summary:
 			//		Internal handler for click events.
@@ -86,8 +78,7 @@ define([
 					p.hide();
 				}
 			}
-			this.setTransitionPos(e);
-			this.defaultClickAction();
+			this.defaultClickAction(e);
 		},
 
 		onClick: function(/*Event*/ /*===== e =====*/){
@@ -95,6 +86,13 @@ define([
 			//		User defined function to handle clicks
 			// tags:
 			//		callback
+		},
+
+		_setSelectedAttr: function(/*Boolean*/selected){
+			// summary:
+			//		Makes this widget in the selected or unselected state.
+			this.inherited(arguments);
+			domClass.toggle(this.domNode, this.selColor, selected);
 		}
 	});
 });

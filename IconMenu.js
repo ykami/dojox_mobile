@@ -20,13 +20,20 @@ define([
 		iconPos: "",
 		cols: 3,
 		childItemClass: "mblIconMenuItem",
-		className: "mblIconMenu",
-		_tags: "ul",
+
+		// tag: String
+		//		A name of html tag to create as domNode.
+		tag: "ul",
+
+		selectOne: false,
+		baseClass: "mblIconMenu",
+
 		_createTerminator: false,
 
 		buildRendering: function(){
-			this.domNode = this.containerNode = this.srcNodeRef || domConstruct.create(this._tags);
-			this.domNode.className = this.className;
+			this.domNode = this.containerNode = this.srcNodeRef || domConstruct.create(this.tag);
+			this.inherited(arguments);
+
 			if(this._createTerminator){
 				var t = this._terminator = domConstruct.create("br");
 				t.className = this.childItemClass + "Terminator";

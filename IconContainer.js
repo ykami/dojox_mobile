@@ -1,18 +1,16 @@
 define([
 	"dojo/_base/array",
 	"dojo/_base/declare",
-	"dojo/_base/lang", /* 1.8 */
+	"dojo/_base/lang",
 	"dojo/_base/window",
 	"dojo/dom-construct",
-	"dojo/dom-style",
-	"dijit/registry",	// registry.byNode
 	"dijit/_Contained",
 	"dijit/_Container",
 	"dijit/_WidgetBase",
-	"./IconItem",
+	"./IconItem", // to load IconItem for you (no direct references)
 	"./Heading",
 	"./View"
-], function(array, declare, lang, win, domConstruct, domStyle, registry, Contained, Container, WidgetBase, IconItem, Heading, View){
+], function(array, declare, lang, win, domConstruct, Contained, Container, WidgetBase, IconItem, Heading, View){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -79,12 +77,14 @@ define([
 
 		baseClass: "mblIconContainer",
 		tag: "ul",
-		iconItemPaneContainerClass: "dojox/mobile/_IconItemPaneContainer",
+		iconItemPaneContainerClass: "dojox/mobile/Container",
 		iconItemPaneClass: "dojox/mobile/_IconItemPane",
 
 		buildRendering: function(){
 			this.domNode = this.containerNode = this.srcNodeRef || domConstruct.create(this.tag);
-			this._terminator = domConstruct.create("li", {className:"mblIconItemTerminator"}, this.domNode);
+			// _terminator is used to apply the clear:both style to terminate floating icons.
+			this._terminator = domConstruct.create(this.tag === "ul" ? "li" : "div",
+				{className:"mblIconItemTerminator"}, this.domNode);
 			this.inherited(arguments);
 		},
 
@@ -115,9 +115,11 @@ define([
 						= new Heading({back: this._cv ? this._cv(this.back) : this.back,
 										label: this._cv ? this._cv(this.label) : this.label,
 										moveTo: this.domNode.parentNode.id,
-										transition: this.transition == "zoomIn" ? "zoomOut" : this.transition}); /* 1.8 */
+										transition: this.transition == "zoomIn" ? "zoomOut" : this.transition});
 					heading.placeAt(view.domNode);
+					heading.startup();
 					this.paneContainerWidget.placeAt(view.domNode);
+					this.paneContainerWidget.startup();
 
 					var target;
 					for(var w = this.getParent(); w; w = w.getParent()){

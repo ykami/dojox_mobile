@@ -1,19 +1,19 @@
 define([
 	"dojo/_base/array",
 	"dojo/_base/declare",
+	"dojo/dom-class",
 	"dijit/registry",
 	"dijit/_Contained",
 	"dijit/_WidgetBase",
-	"./iconUtils",
 	"./TransitionEvent",
-	"./View"
-], function(array, declare, registry, Contained, WidgetBase, iconUtils, TransitionEvent, View){
+	"./iconUtils",
+	"./sniff"
+], function(array, declare, domClass, registry, Contained, WidgetBase, TransitionEvent, iconUtils, has){
 
 /*=====
 	var Contained = dijit._Contained;
 	var WidgetBase = dijit._WidgetBase;
 	var TransitionEvent = dojox.mobile.TransitionEvent;
-	var View = dojox.mobile.View;
 =====*/
 
 	// module:
@@ -128,18 +128,45 @@ define([
 		//		If true, the item acts like a toggle button.
 		toggle: false,
 
+		// selected: Boolean
+		//		If true, the item is highlighted to indicate it is selected.
+		selected: false,
+
 		// paramsToInherit: String
 		//		Comma separated parameters to inherit from the parent.
 		paramsToInherit: "transition,icon",
+
+		// _selStartMethod: String
+		//		Specifies how the item enters the selected state.
+		//		"touch": Use touch events to enter the selected state.
+		//		"none": Do not change the selected state.
+		_selStartMethod: "none", // touch or none
+
+		// _selEndMethod: String
+		//		Specifies how the item leaves the selected state.
+		//		"touch": Use touch events to leave the selected state.
+		//		"timer": Use setTimeout to leave the selected state.
+		//		"none": Do not change the selected state.
+		_selEndMethod: "none", // touch, timer, or none
 
 		// _duration: Number
 		//		Duration of selection, milliseconds.
 		_duration: 800,
 
-	
 		buildRendering: function(){
 			this.inherited(arguments);
 			this._isOnLine = this.inheritParams();
+		},
+
+		startup: function(){
+			if(this._started){ return; }
+			if(!this._isOnLine){
+				this.inheritParams();
+			}
+			if(this._clickHandle && this._selStartMethod === "touch"){
+				this._onTouchStartHandle = this.connect(this.domNode, has('touch') ? "ontouchstart" : "onmousedown", "_onTouchStart");
+			}
+			this.inherited(arguments);
 		},
 
 		inheritParams: function(){
@@ -162,51 +189,99 @@ define([
 			return !!parent;
 		},
 
-		select: function(){
+		userClickAction: function(e){
 			// summary:
-			//		Makes this widget in the selected state.
-			// description:
-			//		Subclass must implement.
-		},
-	
-		deselect: function(){
-			// summary:
-			//		Makes this widget in the deselected state.
-			// description:
-			//		Subclass must implement.
+			//		User defined click action
 		},
 	
 		defaultClickAction: function(e){
+			// summary:
+			//		The default action of this item
+			this.handleSelection(e);
+			if(this.userClickAction(e) === false){ return; } // user's click action
+			this.makeTransition(e);
+		},
+
+		handleSelection: function(e){
+			// summary:
+			//		Handles this items selection state
+			if(this._timer){
+				clearTimeout(this._timer);
+				this._timer = null;
+			}
+
+			if(this._onTouchEndHandle){
+				this.disconnect(this._onTouchEndHandle);
+				this._onTouchEndHandle = null;
+			}
+
+			var p = this.getParent();
 			if(this.toggle){
-				if(this.selected){
-					this.deselect();
-				}else{
-					this.select();
-				}
-			}else if(!this.selected){
-				if(!this._disableTimerSelection){
-					this.select();
-					if(!this.selectOne){
-						var _this = this;
-						setTimeout(function(){
-							_this.deselect();
-						}, this._duration);
-					}
-				}
-				var transOpts;
-				if(this.moveTo || this.href || this.url || this.scene){
-					transOpts = {
-						moveTo: this.moveTo, href: this.href, hrefTarget: this.hrefTarget,
-						url: this.url, urlTarget: this.urlTarget, scene: this.scene,
-						transition: this.transition, transitionDir: this.transitionDir
-					};
-				}else if(this.transitionOptions){
-					transOpts = this.transitionOptions;
-				}	
-				if(transOpts){
-					return new TransitionEvent(this.domNode,transOpts,e).dispatch();
+				this.set("selected", !this.selected);
+			}else if(p && p.selectOne){
+				this.set("selected", true);
+			}else{
+				if(this._selEndMethod === "touch"){
+					this.set("selected", false);
+				}else if(this._selEndMethod === "timer"){
+					var _this = this;
+					setTimeout(function(){
+						_this.set("selected", false);
+					}, this._duration);
 				}
 			}
+		},
+
+		makeTransition: function(e){
+			if (this.href && this.hrefTarget) {
+				win.global.open(this.href, this.hrefTarget || "_blank");
+				this._onNewWindowOpened();
+				return;
+			}
+			var transOpts;
+			if(this.moveTo || this.href || this.url || this.scene){
+				transOpts = {
+					moveTo: this.moveTo, href: this.href, hrefTarget: this.hrefTarget,
+					url: this.url, urlTarget: this.urlTarget, scene: this.scene,
+					transition: this.transition, transitionDir: this.transitionDir
+				};
+			}else if(this.transitionOptions){
+				transOpts = this.transitionOptions;
+			}
+			if(this._prepareForTransition(transOpts) === false){ return; }
+			if(transOpts){
+				this.setTransitionPos(e);
+				new TransitionEvent(this.domNode, transOpts, e).dispatch();
+			}
+		},
+
+		_onNewWindowOpened: function(){
+			// subclass may want to implement
+		},
+	
+		_prepareForTransition: function(/*Object*/ transOpts){
+			// subclass may want to implement
+		},
+	
+		_onTouchStart: function(e){
+			if(!this._onTouchEndHandle && this._selStartMethod === "touch"){
+				this._onTouchEndHandle = this.connect(this.domNode, has('touch') ? "ontouchend" : "onmouseleave", "_onTouchEnd");
+			}
+			this.set("selected", true);
+		},
+
+		_onTouchEnd: function(e){
+			var _this = this;
+			this._timer = setTimeout(function(){
+				// webkit mobile has no onmouseleave, so we have to use touchend instead,
+				// but we don't know if onclick comes or not after touchend,
+				// therefore we need to delay deselecting the button, otherwise, the button blinks.
+				_this.set("selected", false);
+				_this._prevSel && _this._prevSel.set("selected", true);
+				_this.timer = null;
+			}, this._duration / 2);
+			this.disconnect(this._onTouchEndHandle);
+			this._onTouchEndHandle = null;
 		},
 	
 		setTransitionPos: function(e){
@@ -218,7 +293,7 @@ define([
 			var w = this;
 			while(true){
 				w = w.getParent();
-				if(!w || w instanceof View){ break; }
+				if(!w || domClass.contains(w.domNode, "mblView")){ break; }
 			}
 			if(w){
 				w.clickedPosX = e.clientX;
@@ -248,6 +323,23 @@ define([
 		_setLabelAttr: function(/*String*/text){
 			this._set("label", text);
 			this.labelNode.innerHTML = this._cv ? this._cv(text) : text;
+		},
+
+		_setSelectedAttr: function(/*Boolean*/selected){
+			// summary:
+			//		Makes this widget in the selected or unselected state.
+			// description:
+			//		Subclass should override.
+			if(selected){
+				var p = this.getParent();
+				if(p && p.selectOne){
+					// deselect the currently selected item
+					var _this = this;
+					array.filter(p.getChildren(), function(w){ return w.selected; })
+						.forEach(function(c){ _this._prevSel = c; c.set("selected", false); });
+				}
+			}
+			this._set("selected", selected);
 		}
 	});
 });

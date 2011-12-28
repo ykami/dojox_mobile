@@ -102,7 +102,8 @@ define([
 		},
 
 		_setStatefulAttr: function(stateful){
-			this.stateful = stateful;
+			this._set("stateful", stateful);
+			this.selectOne = stateful;
 			array.forEach(this.getChildren(), function(child){
 				child.setArrow && child.setArrow();
 			});

@@ -40,7 +40,8 @@ define([
 		defaultColor: "mblColorDefault",
 		selColor: "mblColorDefaultSel",
 
-		_disableTimerSelection: true, // overrides _ItemBase.js
+		_selStartMethod: "touch",
+		_selEndMethod: "touch",
 
 		buildRendering: function(){
 			this.inherited(arguments);
@@ -81,37 +82,20 @@ define([
 			if(this.selected){
 				this.select();
 			}
-
-			this._clickHandle = this.connect(this.domNode, "onclick", "_onClick");
-			this._keydownHandle = this.connect(this.domNode, "onkeydown", "_onClick");
-			this._onTouchStartHandle = this.connect(this.domNode, has('touch') ? "ontouchstart" : "onmousedown", "_onTouchStart");
 		},
 
 		startup: function(){
+			if(this._started){ return; }
+
+			this._clickHandle = this.connect(this.domNode, "onclick", "_onClick");
+			this._keydownHandle = this.connect(this.domNode, "onkeydown", "_onClick");
+
+			this.inherited(arguments);
 			if(!this._isOnLine){
-				this.inheritParams();
-				this.set("icon", this.icon);
+				this.set("icon", this.icon); // retry applying the attribute
 			}
 		},
 
-		select: function(){
-			// summary:
-			//		Makes this widget in the selected state.
-			if(arguments[0]){ // deselect
-				domClass.replace(this.bodyNode, this.defaultColor, this.selColor);
-			}else{ // select
-				domClass.replace(this.bodyNode, this.selColor, this.defaultColor);
-			}
-			this._updateArrowColor();
-			this.selected = !arguments[0];
-		},
-
-		deselect: function(){
-			// summary:
-			//		Makes this widget in the deselected state.
-			this.select(true);
-		},
-	
 		_updateArrowColor: function(){
 			if(this.arrowNode && !has("ie")){
 				var s = domStyle.get(this.bodyNode, "backgroundImage");
@@ -123,25 +107,6 @@ define([
 			}
 		},
 
-		_onTouchStart: function(e){
-			if(!this._onTouchEndHandle){
-				this._onTouchEndHandle = this.connect(this.domNode, has('touch') ? "ontouchend" : "onmouseleave", "_onTouchEnd");
-			}
-			this.select();
-		},
-
-		_onTouchEnd: function(e){
-			var _this = this;
-			this._timer = setTimeout(function(){
-				// webkit mobile has no onmouseleave, so we have to use touchend instead,
-				// but we don't know if onclick comes or not after touchend,
-				// therefore we need to delay deselecting the button, otherwise, the button blinks.
-				_this.deselect();
-			}, this._duration / 2);
-			this.disconnect(this._onTouchEndHandle);
-			this._onTouchEndHandle = null;
-		},
-	
 		_onClick: function(e){
 			// summary:
 			//		Internal handler for click events.
@@ -149,17 +114,7 @@ define([
 			//		private
 			if(this.onClick(e) === false){ return; } // user's click action
 			if(e && e.type === "keydown" && e.keyCode !== 13){ return; }
-			if(this._timer){
-				clearTimeout(this._timer);
-				this._timer = null;
-			}
-			if(this._onTouchEndHandle){
-				this.disconnect(this._onTouchEndHandle);
-				this._onTouchEndHandle = null;
-			}
-			this.setTransitionPos(e);
-			this.defaultClickAction();
-			this.deselect();
+			this.defaultClickAction(e);
 		},
 
 		onClick: function(/*Event*/ /*===== e =====*/){
@@ -172,6 +127,18 @@ define([
 		_setLabelAttr: function(/*String*/text){
 			this.inherited(arguments);
 			domClass.toggle(this.tableNode, "mblToolBarButtonText", text);
+		},
+
+		_setSelectedAttr: function(/*Boolean*/selected){
+			// summary:
+			//		Makes this widget in the selected or unselected state.
+			this.inherited(arguments);
+			if(selected){
+				domClass.replace(this.bodyNode, this.selColor, this.defaultColor);
+			}else{
+				domClass.replace(this.bodyNode, this.defaultColor, this.selColor);
+			}
+			this._updateArrowColor();
 		}
 	});
 });

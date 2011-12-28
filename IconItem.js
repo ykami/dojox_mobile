@@ -1,5 +1,4 @@
 define([
-	"dojo/_base/connect",
 	"dojo/_base/declare",
 	"dojo/_base/event",
 	"dojo/_base/lang",
@@ -14,7 +13,7 @@ define([
 	"./TransitionEvent",
 	"./iconUtils",
 	"./lazyLoadUtils"
-], function(connect, declare, event, lang, has, win, domClass, domConstruct, domGeometry, domStyle, ItemBase, Badge, TransitionEvent, iconUtils, lazyLoadUtils){
+], function(declare, event, lang, has, win, domClass, domConstruct, domGeometry, domStyle, ItemBase, Badge, TransitionEvent, iconUtils, lazyLoadUtils){
 
 /*=====
 	var ItemBase = dojox.mobile._ItemBase;
@@ -55,15 +54,6 @@ define([
 		//		Duration of highlight in seconds.
 		timeout: 10,
 		
-		// TODO:1.8 Btn -> Button
-		// closeBtnClass: String
-		//		A class name of a DOM button to be used as a close button.
-		closeBtnClass: "mblDomButtonBlueMinus",
-
-		// closeBtnProp: String
-		//		Properties for the close button.
-		closeBtnProp: null,
-
 		// content: String
 		//		An html fragment to embed.
 		content: "",
@@ -76,6 +66,9 @@ define([
 
 		baseClass: "mblIconItem",
 		tag: "li",
+
+		_selStartMethod: "none",
+		_selEndMethod: "none",
 
 		destroy: function(){ /* 1.8 */
 			if(this.badgeObj){
@@ -105,15 +98,7 @@ define([
 		startup: function(){
 			if(this._started){ return; }
 
-			if(!this._isOnLine){
-				this.inheritParams();
-				this.set("icon", this.icon);
-			}
 			var p = this.getParent();
-			if(!this.icon && p.defaultIcon){
-				this.set("icon", p.defaultIcon);
-			}
-
 			require([p.iconItemPaneClass], lang.hitch(this, function(module){
 				var w = this.paneWidget = new module();
 				this.containerNode = w.containerNode;
@@ -131,6 +116,14 @@ define([
 
 			this._dragstartHandle = this.connect(this.domNode, "ondragstart", event.stop);
 			this._clickHandle = this.connect(this.iconNode, "onclick", "_onClick");
+
+			this.inherited(arguments);
+			if(!this._isOnLine){
+				this.set("icon", this.icon); // retry applying the attribute
+			}
+			if(!this.icon && p.defaultIcon){
+				this.set("icon", p.defaultIcon);
+			}
 		},
 
 		highlight: function(/*Number?*/timeout){ /* 1.8 */
@@ -165,35 +158,12 @@ define([
 			//		private
 			if(e){
 				if(this.onClick(e) === false){ return; } // user's click action
-				this._press();
+				this.set("selected", true);
 				this.setTransitionPos(e);
 				setTimeout(lang.hitch(this, function(d){ this._onClick(); }), 0);
 				return;
 			}
-
-			if (this.href && this.hrefTarget) {
-				win.global.open(this.href, this.hrefTarget || "_blank");
-				this._release();
-				return;
-			}
-
-			var transOpts;
-			if(this.moveTo || this.href || this.url || this.scene){
-				transOpts = {moveTo: this.moveTo, href: this.href, url: this.url, scene: this.scene, transitionDir: this.transitionDir, transition: this.transition};
-			}else if(this.transitionOptions){
-				transOpts = this.transitionOptions;
-			}
-			if(transOpts){
-				setTimeout(lang.hitch(this, function(d){
-					this._release();
-				}), 1500);
-			}else{
-				return this.open(e);
-			}
-
-			if(transOpts){
-				return new TransitionEvent(this.domNode,transOpts,e).dispatch();
-			}
+			this.defaultClickAction(e);
 		},
 
 		onClick: function(/*Event*/ /*===== e =====*/){
@@ -201,6 +171,22 @@ define([
 			//		User defined function to handle clicks
 			// tags:
 			//		callback
+		},
+
+		_onNewWindowOpened: function(e){
+			this.set("selected", false);
+		},
+
+		_prepareForTransition: function(e, transOpts){
+			if(transOpts){
+				setTimeout(lang.hitch(this, function(d){
+					this.set("selected", false);
+				}), 1500);
+				return true;
+			}else{
+				this.open(e);
+				return false;
+			}
 		},
 
 		_closeIconClicked: function(e){
@@ -231,7 +217,7 @@ define([
 				if(parent.single){
 					parent.closeAll();
 				}
-				this._press();
+				this.set("selected", true);
 				this._open_1();
 			}else{
 				parent._opening = this;
@@ -259,7 +245,7 @@ define([
 		close: function(/*Boolean?*/noAnimation){
 			// summary:
 			//		Closes the icon content.
-			this._release();
+			this.set("selected", false);
 			if(!this.isOpen()){ return; }
 			if(has("webkit") && !noAnimation){ /* 1.8 */
 				var contentNode = this.paneWidget.domNode;
@@ -286,14 +272,6 @@ define([
 		onClose: function(){
 			// summary:
 			//		Stub method to allow the application to connect to.
-		},
-
-		_press: function(){
-			domStyle.set(this.iconNode, "opacity", this.getParent().pressedIconOpacity);
-		},
-
-		_release: function(){
-			domStyle.set(this.iconNode, "opacity", 1);
 		},
 
 		_setLabelAttr: function(/*String*/text){
@@ -355,6 +333,14 @@ define([
 			}else{
 				root.innerHTML = data;
 			}
+		},
+
+		_setSelectedAttr: function(/*Boolean*/selected){
+			// summary:
+			//		Makes this widget in the selected or unselected state.
+			this.inherited(arguments);
+			domStyle.set(this.iconNode, "opacity",
+						 selected ? this.getParent().pressedIconOpacity : 1);
 		}
 	});
 });
