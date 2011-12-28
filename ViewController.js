@@ -95,11 +95,15 @@ define([
 				var handler = new DataHandler(new DataSource(transOpts.url || transOpts.data), target, refNode);
 				var contentType = transOpts.contentType || FileTypeMap.getContentType(transOpts.url) || "html";
 				handler.processData(contentType, lang.hitch(this, function(id){
-					this.viewMap[transOpts.url] = transOpts.moveTo = id;
-					if(!transOpts.noTransition){
-						new TransitionEvent(win.body(), transOpts).dispatch();
+					if(id){
+						this.viewMap[transOpts.url] = transOpts.moveTo = id;
+						if(!transOpts.noTransition){
+							new TransitionEvent(win.body(), transOpts).dispatch();
+						}
+						d.resolve(true);
+					}else{
+						d.reject("Failed to load "+transOpts.url);
 					}
-					d.resolve(true);
 				}));
 			}));
 			return d;
@@ -113,7 +117,7 @@ define([
 			var detail = evt.detail;
 			if(!detail.moveTo && !detail.href && !detail.url && !detail.scene){ return; }
 
-			if(detail.url){
+			if(detail.url && !detail.moveTo){
 				var urlTarget = detail.urlTarget;
 				var w = registry.byId(urlTarget);
 				var target = w && w.containerNode || dom.byId(urlTarget);
