@@ -8,6 +8,7 @@
   vertical-align: bottom;
   /* To avoid IE6 LI bug */
 
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   padding: 0px 7px;
   height: 64px;
   border-bottom: solid 1px #313431;

@@ -235,7 +235,7 @@ define([
 		makeTransition: function(e){
 			if (this.href && this.hrefTarget) {
 				win.global.open(this.href, this.hrefTarget || "_blank");
-				this._onNewWindowOpened();
+				this._onNewWindowOpened(e);
 				return;
 			}
 			var transOpts;
@@ -248,18 +248,18 @@ define([
 			}else if(this.transitionOptions){
 				transOpts = this.transitionOptions;
 			}
-			if(this._prepareForTransition(transOpts) === false){ return; }
+			if(this._prepareForTransition(e, transOpts) === false){ return; }
 			if(transOpts){
 				this.setTransitionPos(e);
 				new TransitionEvent(this.domNode, transOpts, e).dispatch();
 			}
 		},
 
-		_onNewWindowOpened: function(){
+		_onNewWindowOpened: function(e){
 			// subclass may want to implement
 		},
 	
-		_prepareForTransition: function(/*Object*/ transOpts){
+		_prepareForTransition: function(e, /*Object*/ transOpts){
 			// subclass may want to implement
 		},
 	
@@ -267,6 +267,7 @@ define([
 			if(!this._onTouchEndHandle && this._selStartMethod === "touch"){
 				this._onTouchEndHandle = this.connect(this.domNode, has('touch') ? "ontouchend" : "onmouseleave", "_onTouchEnd");
 			}
+			this._currentSel = this.selected;
 			this.set("selected", true);
 		},
 

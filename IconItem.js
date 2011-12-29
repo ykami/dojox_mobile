@@ -67,7 +67,7 @@ define([
 		baseClass: "mblIconItem",
 		tag: "li",
 
-		_selStartMethod: "none",
+		_selStartMethod: "touch",
 		_selEndMethod: "none",
 
 		destroy: function(){ /* 1.8 */
@@ -156,13 +156,7 @@ define([
 			//		Internal handler for click events.
 			// tags:
 			//		private
-			if(e){
-				if(this.onClick(e) === false){ return; } // user's click action
-				this.set("selected", true);
-				this.setTransitionPos(e);
-				setTimeout(lang.hitch(this, function(d){ this._onClick(); }), 0);
-				return;
-			}
+			if(this.onClick(e) === false){ return; } // user's click action
 			this.defaultClickAction(e);
 		},
 
@@ -184,7 +178,11 @@ define([
 				}), 1500);
 				return true;
 			}else{
-				this.open(e);
+				if(!this.isOpen()){
+					this.open(e);
+				}else{
+					this.close();
+				}
 				return false;
 			}
 		},
@@ -217,7 +215,6 @@ define([
 				if(parent.single){
 					parent.closeAll();
 				}
-				this.set("selected", true);
 				this._open_1();
 			}else{
 				parent._opening = this;
