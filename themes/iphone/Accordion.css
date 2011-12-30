@@ -1,18 +1,19 @@
 /* dojox.mobile.Accordion */
 .mblAccordion {
   border: 1px solid #8C8F91;
-  border-top: none;
 }
 .mblAccordionRoundRect {
   margin: 7px 9px 16px 9px;
   padding: 0;
   border: 1px solid #ADAAAD;
-  border-top: none;
   border-radius: 8px;
 }
 .mblAccordionRoundRect .mblAccordionTitle:first-child {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+}
+.mblAccordionTitle:first-child {
+  border-top: none;
 }
 .mblAccordionRoundRect .mblAccordionTitleLast, .mblAccordionRoundRect .mblAccordionPane:last-child {
   border-bottom-width: 0;
@@ -40,41 +41,16 @@
   color: black;
   height: 100%;
 }
-.mblAccordionTitleAnchorNoIcon {
-  padding-left: 10px;
-}
-.mblAccordionTitleIcon {
-  position: relative;
+.mblAccordionIconParent {
   float: left;
-  margin: 0 4px;
-  font-size: 1px;
+  margin: 6px 4px 0px 6px;
+  line-height: normal;
 }
-.mblAccordionTitleIcon2 {
+.mblAccordionIconParent1 {
+  display: block;
+}
+.mblAccordionIconParent2 {
   display: none;
-}
-.mblAccordionTitleSingleIcon img {
-  vertical-align: middle;
-}
-.mblAccordionTitleSpriteIcon {
-  top: 50%;
-}
-.mblAccordionTitleSpriteIcon div {
-  position: relative;
-  top: -50%;
-  line-height: normal;
-}
-.mblAccordionTitleSpriteIcon img {
-  position: absolute;
-}
-.mblAccordionTitleDomIcon {
-  top: 50%;
-}
-.mblAccordionTitleDomIcon div {
-  top: -50%;
-  line-height: normal;
-}
-.mblAccordionTitleDomIcon  > div {
-  position: relative;
 }
 .mblAccordionTitleSelected {
   border-bottom: 1px solid #8C8F91;
@@ -85,9 +61,9 @@
 .mblAccordionTitleSelected .mblAccordionTitleAnchor {
   color: white;
 }
-.mblAccordionTitleSelected .mblAccordionTitleIcon1 {
+.mblAccordionTitleSelected .mblAccordionIconParent1 {
   display: none;
 }
-.mblAccordionTitleSelected .mblAccordionTitleIcon2 {
+.mblAccordionTitleSelected .mblAccordionIconParent2 {
   display: block;
 }

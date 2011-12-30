@@ -142,9 +142,8 @@ define([
 					// More precisely, 1%(left margin) + 98%(bar width) + 1%(right margin)
 					for(i = 0; i < arr.length; i++){
 						arr[i].style.width = Math.round(98/arr.length) + "%";
-						arr[i].style.margin = "0px";
+						arr[i].style.margin = (i === 0) ? "0 0 0 1%" : "0";
 					}
-					this.containerNode.style.padding = "0px 0px 0px 1%";
 				}else{
 					// Fixed width buttons. Mainly for larger screen such as iPad.
 					for(i = 0; i < arr.length; i++){
@@ -154,7 +153,6 @@ define([
 					if(arr.length > 0){
 						arr[0].style.marginLeft = margin + bm + "px";
 					}
-					this.containerNode.style.padding = "0px";
 				}
 			}
 

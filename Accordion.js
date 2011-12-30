@@ -43,25 +43,14 @@ define([
 			}, this.domNode);
 			a.href = "javascript:void(0)"; // for a11y
 
-			// icon
-			this.iconNode1 = domConstruct.create("div", {
-				className: "mblAccordionTitleIcon mblAccordionTitleIcon1",
-				innerHTML: "<div class='mblAccordionTitleIcon1Inner'></div>"
-			}, a); // unselected
-			this.iconNode1Inner = this.iconNode1.firstChild;
-
-			this.iconNode2 = domConstruct.create("div", {
-				className: "mblAccordionTitleIcon mblAccordionTitleIcon2",
-				innerHTML: "<div class='mblAccordionTitleIcon2Inner'></div>"
-			}, a); // selected
-			this.iconNode2Inner = this.iconNode2.firstChild;
-
 			// text box
 			this.textBoxNode = domConstruct.create("div", {className:"mblAccordionTitleTextBox"}, a);
 			this.labelNode = domConstruct.create("span", {
 				className: "mblAccordionTitleLabel",
 				innerHTML: this._cv ? this._cv(this.label) : this.label
 			}, this.textBoxNode);
+
+			this._isOnLine = this.inheritParams();
 		},
 
 		postCreate: function(){
@@ -85,37 +74,42 @@ define([
 				if(!this.icon2){ this.icon2 = parent.iconBase || this.icon1; }
 				if(!this.iconPos2){ this.iconPos2 = parent.iconPos || this.iconPos1; }
 			}
+			return !!parent;
 		},
 
-		_setIcon: function(num){
-			var i = "icon" + num, n = "iconNode" + num + "Inner", p = "iconPos" + num;
-			if(this[i] && this[i] !== "none"){
-				var img = iconUtils.createIcon(this[i], this[p], null, this.alt, this[n]);
-				this[n].parentNode.style.height = this[n].style.height;
-				if(has("ie")){
-					this[n].appendChild(domConstruct.create("img", {
-						src: require.toUrl("dojo", "resources/blank.gif"),
-						height: this.domNode.offsetHeight + ""
-					}));
-				}
-				var cls;
-				if(this[i] && this[i].indexOf("mblDomButton") === 0){
-					cls = "mblAccordionTitleDomIcon";
-				}else if(this[p]){
-					cls = "mblAccordionTitleSpriteIcon";
-				}else{
-					cls = "mblAccordionTitleSingleIcon";
-				}
-				domClass.add(this["iconNode" + num], cls);
-			}else{
-				domClass.add(this.anchorNode, "mblAccordionTitleAnchorNoIcon");
+		_setIcon: function(icon, n){
+			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
+			this._set("icon" + n, icon);
+			if(!this["iconParentNode" + n]){
+				this["iconParentNode" + n] = domConstruct.create("div",
+					{className:"mblAccordionIconParent mblAccordionIconParent" + n}, this.anchorNode, "first");
 			}
+			this["iconNode" + n] = iconUtils.setIcon(icon, this["iconPos" + n],
+				this["iconNode" + n], this.alt, this["iconParentNode" + n]);
+			this["icon" + n] = icon;
+			domClass.toggle(this.domNode, "mblAccordionHasIcon", icon && icon !== "none");
+		},
+
+		_setIcon1Attr: function(icon){
+			this._setIcon(icon, 1);
+		},
+
+		_setIcon2Attr: function(icon){
+			this._setIcon(icon, 2);
 		},
 
 		startup: function(){
-			this.inheritParams();
-			this._setIcon(1);
-			this._setIcon(2);
+			if(this._started){ return; }
+			if(!this._isOnLine){
+				this.inheritParams();
+			}
+			if(!this._isOnLine){
+				this.set({ // retry applying the attribute
+					icon1: this.icon1,
+					icon2: this.icon2
+				});
+			}
+			this.inherited(arguments);
 		},
 
 		select: function(/*Widget*/pane){
@@ -184,7 +178,7 @@ define([
 			array.forEach(children, function(child){
 				child.startup();
 				child._at.startup();
-				this.collapse(child);
+				this.collapse(child, true);
 				if(child.selected){
 					sel = child;
 				}

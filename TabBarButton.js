@@ -192,9 +192,9 @@ define([
 			//		callback
 		},
 
-		_setIcon: function(icon, n, sel){
+		_setIcon: function(icon, n){
 			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
-			if(icon){ this._set("icon" + n, icon); }
+			this._set("icon" + n, icon);
 			if(!this.iconDivNode){
 				this.iconDivNode = domConstruct.create("div", {className:"mblTabBarButtonIconArea"}, this.anchorNode, "first");
 				// mblTabBarButtonDiv -> mblTabBarButtonIconArea
@@ -210,11 +210,11 @@ define([
 		},
 	
 		_setIcon1Attr: function(icon){
-			this._setIcon(icon, 1, this.selected);
+			this._setIcon(icon, 1);
 		},
 	
 		_setIcon2Attr: function(icon){
-			this._setIcon(icon, 2, !this.selected);
+			this._setIcon(icon, 2);
 		},
 	
 		_getBadgeAttr: function(){
