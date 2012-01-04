@@ -55,8 +55,11 @@ define([
 					if(node){ // to call View's startup()
 						this._ws.push(widget);
 					}
-					if(parent && parent.addChild){
-						parent.addChild(widget);
+					if(parent){
+						widget.placeAt(parent.domNode);
+						if(parent._started){
+							widget.startup();
+						}
 					}
 					this._instantiate(objs[i], null, widget);
 				}

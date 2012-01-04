@@ -119,9 +119,13 @@ define([
 										moveTo: this.domNode.parentNode.id,
 										transition: this.transition == "zoomIn" ? "zoomOut" : this.transition});
 					heading.placeAt(view.domNode);
-					heading.startup();
+					if(view._started){
+						heading.startup();
+					}
 					this.paneContainerWidget.placeAt(view.domNode);
-					this.paneContainerWidget.startup();
+					if(view._started){
+						this.paneContainerWidget.startup();
+					}
 
 					var target;
 					for(var w = this.getParent(); w; w = w.getParent()){
