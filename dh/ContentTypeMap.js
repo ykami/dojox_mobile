@@ -1,23 +1,21 @@
 define([
-	"dojo/_base/kernel",
-	"dojo/_base/array",
-	"dojo/_base/declare",
-	"dojo/dom-construct"
-], function(dojo, array, declare, domConstruct){
+	"dojo/_base/lang"
+], function(lang){
 
-	var ContentTypeMap = {
-		map: {
-			"html": "dojox/mobile/dh/HtmlContentHandler",
-			"json": "dojox/mobile/dh/JsonContentHandler"
-		},
+	var o = lang.getObject("dojox.mobile.dh.ContentTypeMap", true);
 
-		add: function(/*String*/ contentType, /*String*/ handlerClass){
-			this.map[contentType] = handlerClass;
-		},
-
-		getHandlerClass: function(/*String*/ contentType){
-			return this.map[contentType];
-		}
+	o.map = {
+		"html": "dojox/mobile/dh/HtmlContentHandler",
+		"json": "dojox/mobile/dh/JsonContentHandler"
 	};
-	return ContentTypeMap;
+
+	o.add = function(/*String*/ contentType, /*String*/ handlerClass){
+		this.map[contentType] = handlerClass;
+	};
+
+	o.getHandlerClass = function(/*String*/ contentType){
+		return this.map[contentType];
+	};
+
+	return o;
 });

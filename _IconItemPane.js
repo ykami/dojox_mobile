@@ -15,6 +15,8 @@ define([
 	//		An internal widget used for IconContainer.
 
 	return declare("dojox.mobile._IconItemPane", Pane, {
+		iconPos: "",
+		alt: "",
 		label: "",
 		closeIcon: "mblDomButtonBlueMinus",
 		baseClass: "mblIconItemPane",

@@ -1,28 +1,26 @@
 define([
-	"dojo/_base/kernel",
-	"dojo/_base/array",
-	"dojo/_base/declare",
-	"dojo/dom-construct"
-], function(dojo, array, declare, domConstruct){
+	"dojo/_base/lang"
+], function(lang){
 
-	var PatternFileTypeMap = {
-		map: {
-			".*\.html": "html",
-			".*\.json": "json"
-		},
+	var o = lang.getObject("dojox.mobile.dh.PatternFileTypeMap", true);
 
-		add: function(/*String*/ key, /*String*/ contentType){
-			this.map[key] = contentType;
-		},
-
-		getContentType: function(/*String*/ fileName){
-			for(var key in this.map){
-				if((new RegExp(key)).test(fileName)){
-					return this.map[key];
-				}
-			}
-			return null;
-		}
+	o.map = {
+		".*\.html": "html",
+		".*\.json": "json"
 	};
-	return PatternFileTypeMap;
+
+	o.add = function(/*String*/ key, /*String*/ contentType){
+		this.map[key] = contentType;
+	};
+
+	o.getContentType = function(/*String*/ fileName){
+		for(var key in this.map){
+			if((new RegExp(key)).test(fileName)){
+				return this.map[key];
+			}
+		}
+		return null;
+	};
+
+	return o;
 });

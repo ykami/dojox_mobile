@@ -1,24 +1,22 @@
 define([
-	"dojo/_base/kernel",
-	"dojo/_base/array",
-	"dojo/_base/declare",
-	"dojo/dom-construct"
-], function(dojo, array, declare, domConstruct){
+	"dojo/_base/lang"
+], function(lang){
 
-	var SuffixFileTypeMap = {
-		map: {
-			"html": "html",
-			"json": "json"
-		},
+	var o = lang.getObject("dojox.mobile.dh.SuffixFileTypeMap", true);
 
-		add: function(/*String*/ key, /*String*/ contentType){
-			this.map[key] = contentType;
-		},
-
-		getContentType: function(/*String*/ fileName){
-			var fileType = (fileName || "").replace(/.*\./, "");
-			return this.map[fileType];
-		}
+	o.map = {
+		"html": "html",
+		"json": "json"
 	};
-	return SuffixFileTypeMap;
+
+	o.add = function(/*String*/ key, /*String*/ contentType){
+		this.map[key] = contentType;
+	};
+
+	o.getContentType = function(/*String*/ fileName){
+		var fileType = (fileName || "").replace(/.*\./, "");
+		return this.map[fileType];
+	};
+
+	return o;
 });

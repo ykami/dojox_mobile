@@ -238,15 +238,14 @@ define([
 				this._onNewWindowOpened(e);
 				return;
 			}
-			var transOpts;
+			var transOpts = this.transitionOptions || {};
 			if(this.moveTo || this.href || this.url || this.scene){
-				transOpts = {
-					moveTo: this.moveTo, href: this.href, hrefTarget: this.hrefTarget,
-					url: this.url, urlTarget: this.urlTarget, scene: this.scene,
-					transition: this.transition, transitionDir: this.transitionDir
-				};
-			}else if(this.transitionOptions){
-				transOpts = this.transitionOptions;
+				array.forEach(["moveTo", "href", "hrefTarget", "url",
+					"urlTarget", "scene", "transition", "transitionDir"], function(p){
+					if(this[p]){
+						transOpts[p] = this[p];
+					}
+				}, this);
 			}
 			if(this._prepareForTransition(e, transOpts) === false){ return; }
 			if(transOpts){

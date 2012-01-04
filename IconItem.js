@@ -100,7 +100,7 @@ define([
 
 			var p = this.getParent();
 			require([p.iconItemPaneClass], lang.hitch(this, function(module){
-				var w = this.paneWidget = new module();
+				var w = this.paneWidget = new module(p.iconItemPaneProps);
 				this.containerNode = w.containerNode;
 				if(this._tmpNode){
 					// reparent
@@ -178,10 +178,10 @@ define([
 				}), 1500);
 				return true;
 			}else{
-				if(!this.isOpen()){
-					this.open(e);
-				}else{
+				if(this.getParent().transition === "below" && this.isOpen()){
 					this.close();
+				}else{
+					this.open(e);
 				}
 				return false;
 			}
@@ -220,7 +220,9 @@ define([
 				parent._opening = this;
 				if(parent.single){
 					this.paneWidget.closeHeaderNode.style.display = "none";
-					parent.closeAll();
+					if(!this.isOpen()){
+						parent.closeAll();
+					}
 					parent.appView._heading.set("label", this.label);
 				}
 				var transOpts = this.transitionOptions || {transition: this.transition, transitionDir: this.transitionDir, moveTo: parent.id + "_mblApplView"};		
@@ -242,8 +244,8 @@ define([
 		close: function(/*Boolean?*/noAnimation){
 			// summary:
 			//		Closes the icon content.
-			this.set("selected", false);
 			if(!this.isOpen()){ return; }
+			this.set("selected", false);
 			if(has("webkit") && !noAnimation){ /* 1.8 */
 				var contentNode = this.paneWidget.domNode;
 				if(this.getParent().transition == "below"){

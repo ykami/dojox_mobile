@@ -78,7 +78,9 @@ define([
 		baseClass: "mblIconContainer",
 		tag: "ul",
 		iconItemPaneContainerClass: "dojox/mobile/Container",
+		iconItemPaneContainerProps: null,
 		iconItemPaneClass: "dojox/mobile/_IconItemPane",
+		iconItemPaneProps: null,
 
 		buildRendering: function(){
 			this.domNode = this.containerNode = this.srcNodeRef || domConstruct.create(this.tag);
@@ -101,7 +103,7 @@ define([
 			if(this._started){ return; }
 
 			require([this.iconItemPaneContainerClass], lang.hitch(this, function(module){
-				this.paneContainerWidget = new module();
+				this.paneContainerWidget = new module(this.iconItemPaneContainerProps);
 				if(this.transition === "below"){
 					domConstruct.place(this.paneContainerWidget.domNode, this.domNode, "after");
 				}else{

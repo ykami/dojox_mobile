@@ -8,6 +8,9 @@ define([
 	return declare("dojox.mobile.dh.HtmlContentHandler", null, {
 
 		parse: function(/*String*/ text, /*DomNode*/ target, /*DomNode*/ refNode){
+			if(this.execScript){
+				text = this.execScript(text);
+			}
 			var view, container = domConstruct.create("div", {innerHTML: text});
 			for(i = 0; i < container.childNodes.length; i++){
 				var n = container.childNodes[i];
@@ -17,7 +20,7 @@ define([
 				}
 			}
 			if(!view){
-				console.log("dojox.mobile.ViewController#_parse: invalid view content");
+				console.log("dojox.mobile.dh.HtmlContentHandler.parse: invalid view content");
 				return;
 			}
 			view.style.visibility = "hidden";
