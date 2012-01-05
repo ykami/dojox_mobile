@@ -1,12 +1,14 @@
 define([
-	"dojo/_base/kernel",
-	"dojo/_base/array",
 	"dojo/_base/declare",
 	"dojo/_base/lang",
 	"dojo/_base/Deferred",
-	"dojo/dom-construct",
 	"dojox/mobile/dh/ContentTypeMap"
-], function(dojo, array, declare, lang, Deferred, domConstruct, ContentTypeMap){
+], function(declare, lang, Deferred, ContentTypeMap){
+
+	// module:
+	//		dojox/mobile/dh/DataHandler
+	// summary:
+	//		A component that provides an interface between data and handlers.
 
 	return declare("dojox.mobile.dh.DataHandler", null, {
 		ds: null,

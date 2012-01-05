@@ -1,10 +1,9 @@
 define([
-	"dojo/_base/kernel",
 	"dojo/_base/array",
 	"dojo/_base/declare",
 	"dojo/_base/lang",
 	"dojo/dom-construct"
-], function(dojo, array, declare, lang, domConstruct){
+], function(array, declare, lang, domConstruct){
 
 	return declare("dojox.mobile.dh.JsonContentHandler", null, {
 
@@ -15,7 +14,7 @@ define([
 			view = this._instantiate(eval('('+text+')'), container);
 			view.style.visibility = "hidden";
 			array.forEach(this._ws, function(w){
-				if(w && !w._started && w.startup){
+				if(!w._started && w.startup){
 					w.startup();
 				}
 			});
@@ -32,22 +31,25 @@ define([
 				if(key.charAt(0) == "@"){ continue; }
 				var cls = lang.getObject(key);
 				if(!cls){ continue; }
-				var params = {};
-				var proto = cls.prototype;
-				var objs = lang.isArray(obj[key]) ? obj[key] : [obj[key]];
+				var params = {},
+					proto = cls.prototype,
+					objs = lang.isArray(obj[key]) ? obj[key] : [obj[key]];
 				for(var i = 0; i < objs.length; i++){
 					for(var prop in objs[i]){
 						if(prop.charAt(0) == "@"){
-							var val = objs[i][prop];
+							var v = objs[i][prop];
 							prop = prop.substring(1);
-							if(typeof proto[prop] == "string"){
-								params[prop] = val;
-							}else if(typeof proto[prop] == "number"){
-								params[prop] = val - 0;
-							}else if(typeof proto[prop] == "boolean"){
-							params[prop] = (val != "false");
-							}else if(typeof proto[prop] == "object"){
-								params[prop] = eval("(" + val + ")");
+							var t = typeof proto[prop];
+							if(t === "string"){
+								params[prop] = v;
+							}else if(t === "number"){
+								params[prop] = v - 0;
+							}else if(t === "boolean"){
+								params[prop] = (v !== "false");
+							}else if(t === "object"){
+								params[prop] = ev("(" + v + ")");
+							}else if(t === "function"){
+								params[prop] = lang.getObject(v, false) || new Function(v);
 							}
 						}
 					}

@@ -20,14 +20,14 @@ define([
 				}
 			}
 			if(!view){
-				console.log("dojox.mobile.dh.HtmlContentHandler.parse: invalid view content");
+				console.log(this.declaredClass + ".parse: invalid view content");
 				return;
 			}
 			view.style.visibility = "hidden";
 			target.insertBefore(container, refNode);
 			var ws = dojo.parser.parse(container); // [global reference]
 			array.forEach(ws, function(w){
-				if(w && !w._started && w.startup){
+				if(!w._started && w.startup){
 					w.startup();
 				}
 			});

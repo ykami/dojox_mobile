@@ -1,11 +1,8 @@
 define([
-	"dojo/_base/kernel",
-	"dojo/_base/array",
 	"dojo/_base/declare",
 	"dojo/_base/lang",
-	"dojo/_base/xhr",
-	"dojo/dom-construct"
-], function(dojo, array, declare, lang, xhr, domConstruct){
+	"dojo/_base/xhr"
+], function(declare, lang, xhr){
 
 	return declare("dojox.mobile.dh.UrlDataSource", null, {
 		text: "",
