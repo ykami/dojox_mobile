@@ -134,30 +134,22 @@ define([
 				domClass.replace(this.domNode, "mblEdgeToEdgeCategory", this.baseClass);
 			}
 
-			// inner HTML
-			if(this.srcNodeRef){
-				// reparent
-				var label;
-				if(this.srcNodeRef.length === 1){
-					var n = this.srcNodeRef.firstChild;
+			// get label from inner text, and remove the text nodes
+			var ref = this.srcNodeRef;
+			if(ref){
+				var label = "", i, n;
+				for(i = ref.childNodes.length - 1; i >= 0; i--){
+					n = ref.childNodes[i];
 					if(n.nodeType === 3){
-						label = lang.trim(n.nodeValue) || "";
+						label = (lang.trim(n.nodeValue) || "") + label;
+						ref.removeChild(n);
 					}
 				}
-				if(label){ // inner text label
+				if(!this.label){ // if both this.label and inner text exist, this.label wins.
 					this.label = label;
-				}else if(lang.trim(this.srcNodeRef.innerHTML) !== ""){ // inline content
-					this.label = "";
-					this.labelNode = domConstruct.create("div", {className:"mblListItemTextBox"});
-					for(var i = 0, len = this.srcNodeRef.childNodes.length; i < len; i++){
-						this.labelNode.appendChild(this.srcNodeRef.firstChild);
-					}
-					this.domNode.appendChild(this.labelNode);
 				}
 			}
-			if(!this.labelNode){
-				this.labelNode = domConstruct.create("div", {className:"mblListItemTextBox"}, this.domNode);
-			}
+			this.labelNode = domConstruct.create("div", {className:"mblListItemTextBox"}, this.domNode);
 
 			if(this.anchorLabel){
 				this.labelNode.style.display = "inline"; // to narrow the text region
