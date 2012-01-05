@@ -81,7 +81,9 @@ define([
 			for(var i = target.childNodes.length - 1; i >= 0; i--){
 				var c = target.childNodes[i];
 				if(c.nodeType === 1){
-					if(c.getAttribute("fixed") === "bottom"){
+					var fixed = c.getAttribute("fixed")
+						|| (registry.byNode(c) && registry.byNode(c).fixed);
+					if(fixed === "bottom"){
 						refNode = c;
 					}
 					break;
