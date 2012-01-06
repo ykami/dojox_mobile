@@ -23,7 +23,7 @@
 			"dojox/mobile/Pane",
 			"dijit/Calendar"
 		], function(connect, win, dom, domClass, ready, registry){
-			change = function() {
+			var change = function() {
 				var splitter = registry.byId("splitter1");
 				var h = win.global.innerHeight || win.doc.documentElement.clientHeight;
 				var w = win.global.innerWidth || win.doc.documentElement.clientWidth;

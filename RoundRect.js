@@ -1,23 +1,15 @@
 define([
-	"dojo/_base/array",
 	"dojo/_base/declare",
-	"dojo/_base/window",
 	"dojo/dom-class",
-	"dijit/_Contained",
-	"dijit/_WidgetBase"
-], function(array, declare, win, domClass, Contained, WidgetBase){
-
-/*=====
-	var Contained = dijit._Contained;
-	var WidgetBase = dijit._WidgetBase;
-=====*/
+	"./Pane"
+], function(declare, domClass, Pane){
 
 	// module:
 	//		dojox/mobile/RoundRect
 	// summary:
 	//		A simple round rectangle pane.
 
-	return declare("dojox.mobile.RoundRect", [WidgetBase, Contained], {
+	return declare("dojox.mobile.RoundRect", Pane, {
 		// summary:
 		//		A simple round rectangle pane.
 		// description:
@@ -38,14 +30,6 @@ define([
 			if(this.shadow){
 				domClass.add(this.domNode, "mblShadow");
 			}
-		},
-
-		resize: function(){
-			// summary:
-			//		Calls resize() of each child widget.
-			array.forEach(this.getChildren(), function(child){
-				if(child.resize){ child.resize(); }
-			});
 		}
 	});
 });

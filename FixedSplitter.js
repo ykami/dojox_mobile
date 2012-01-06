@@ -4,11 +4,10 @@ define([
 	"dojo/_base/window",
 	"dojo/dom-class",
 	"dojo/dom-geometry",
-	"dojo/dom-style",
 	"dijit/_Contained",
 	"dijit/_Container",
 	"dijit/_WidgetBase"
-], function(array, declare, win, domClass, domGeometry, domStyle, Contained, Container, WidgetBase){
+], function(array, declare, win, domClass, domGeometry, Contained, Container, WidgetBase){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -35,16 +34,16 @@ define([
 		//		specify a border of a child dom node with CSS.
 		//
 		//		FixedSplitter has no knowledge of its child widgets.
-		//		Container (=formerly known as FixedSplitterPane),
-		//		Pane, or ContentPane can be used as a child widget of
-		//		FixedSplitter.
+		//		dojox.mobile.Container (=formerly known as FixedSplitterPane),
+		//		dojox.mobile.Pane, or dojox.mobile.ContentPane can be used as a
+		//		child widget of FixedSplitter.
 		//
-		//		- Use Container if your content consists of ONLY dojo
-		//		  widgets.
-		//		- Use Pane if your content is an inline html fragment
-		//		  (including dojo widgets).
-		//		- Use ContentPane if your content is an external html fragment
-		//		  (including dojo widgets).
+		//		- Use dojox.mobile.Container if your content consists of ONLY
+		//		  dojo widgets.
+		//		- Use dojox.mobile.Pane if your content is an inline html
+		//		  fragment (may or may not include dojo widgets).
+		//		- Use dojox.mobile.ContentPane if your content is an external
+		//		  html fragment (may or may not include dojo widgets).
 		//
 		// example:
 		// |	<div dojoType="dojox.mobile.FixedSplitter" orientation="H">
