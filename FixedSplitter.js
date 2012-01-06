@@ -1,13 +1,14 @@
 define([
 	"dojo/_base/array",
 	"dojo/_base/declare",
+	"dojo/_base/lang",
 	"dojo/_base/window",
 	"dojo/dom-class",
 	"dojo/dom-geometry",
 	"dijit/_Contained",
 	"dijit/_Container",
 	"dijit/_WidgetBase"
-], function(array, declare, win, domClass, domGeometry, Contained, Container, WidgetBase){
+], function(array, declare, lang, win, domClass, domGeometry, Contained, Container, WidgetBase){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -80,23 +81,28 @@ define([
 			if(this._started){ return; }
 			domClass.add(this.domNode, this.baseClass + this.orientation);
 
-			var _this = this;
-			setTimeout(function(){
-				var parent = _this.getParent();
-				if(!parent || !parent.resize){ // top level widget
-					_this.resize();
-				}
-			}, 0);
+			var parent = this.getParent(), f;
+			if(!parent || !parent.resize){ // top level widget
+				var _this = this;
+				f = function(){
+					setTimeout(function(){
+						_this.resize();
+					}, 0);
+				};
+			}
 
 			if(this.screenSizeAware){
 				require([this.screenSizeAwareClass], function(module){
 					module.getInstance();
+					f && f();
 				});
+			}else{
+				f && f();
 			}
 
 			this.inherited(arguments);
 		},
-	
+
 		resize: function(){
 			var wh = this.orientation === "H" ? "w" : "h", // width/height
 				tl = this.orientation === "H" ? "l" : "t", // top/left
@@ -111,7 +117,7 @@ define([
 					total += a[i];
 				}
 			}
-	
+
 			if(this.orientation == "V"){
 				if(this.domNode.parentNode.tagName == "BODY"){
 					if(array.filter(win.body().childNodes, function(node){ return node.nodeType == 1; }).length == 1){

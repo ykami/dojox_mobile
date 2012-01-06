@@ -32,6 +32,7 @@ define([
 		icon2: "",
 		iconPos1: "",
 		iconPos2: "",
+		selected: false,
 
 		baseClass: "mblAccordionTitle",
 
@@ -112,14 +113,6 @@ define([
 			this.inherited(arguments);
 		},
 
-		select: function(/*Widget*/pane){
-			domClass.add(this.domNode, "mblAccordionTitleSelected");
-		},
-
-		deselect: function(/*Widget*/pane){
-			domClass.remove(this.domNode, "mblAccordionTitleSelected");
-		},
-
 		_onClick: function(e){
 			// summary:
 			//		Internal handler for click events.
@@ -139,6 +132,11 @@ define([
 			//		User defined function to handle clicks
 			// tags:
 			//		callback
+		},
+
+		_setSelectedAttr: function(/*Boolean*/selected){
+			domClass.toggle(this.domNode, "mblAccordionTitleSelected", selected);
+			this._set("selected", selected);
 		}
 	});
 
@@ -336,11 +334,11 @@ define([
 		},
 
 		select: function(/*Widget*/pane){
-			pane._at.select();
+			pane._at.set("selected", true);
 		},
 
 		deselect: function(/*Widget*/pane){
-			pane._at.deselect();
+			pane._at.set("selected", false);
 		}
 	});
 });

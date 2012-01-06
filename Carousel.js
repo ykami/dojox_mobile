@@ -307,14 +307,10 @@ define([
 			}
 			if(this.selectable){
 				if(this.selectedItem){
-					if(this.selectedItem.deselect){
-						this.selectedItem.deselect();
-					}
+					this.selectedItem.set("selected", false);
 					domClass.remove(this.selectedItem.domNode, "mblCarouselItemSelected");
 				}
-				if(w.select){
-					w.select();
-				}
+				w.set("selected", true);
 				domClass.add(w.domNode, "mblCarouselItemSelected");
 				this.selectedItem = w;
 			}

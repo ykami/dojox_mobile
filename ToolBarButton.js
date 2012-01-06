@@ -79,9 +79,6 @@ define([
 					_this._updateArrowColor();
 				}, 1000);
 			}
-			if(this.selected){
-				this.select();
-			}
 		},
 
 		startup: function(){

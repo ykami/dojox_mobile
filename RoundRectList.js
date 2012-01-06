@@ -79,7 +79,7 @@ define([
 			if(this.syncWithViews){
 				var f = function(view, moveTo, dir, transition, context, method){
 					var child = array.filter(this.getChildren(), function(w){ return w.moveTo === "#" + view.id; })[0];
-					if(child){ child.select(); }
+					if(child){ child.set("selected", true); }
 				};
 				this.subscribe("/dojox/mobile/afterTransitionIn", f);
 				this.subscribe("/dojox/mobile/startView", f);
@@ -112,21 +112,21 @@ define([
 		deselectItem: function(/*ListItem*/item){
 			// summary:
 			//		Deselects the given item.
-			item.deselect();
+			item.set("selected", false);
 		},
 
 		deselectAll: function(){
 			// summary:
 			//		Deselects all the items.
 			array.forEach(this.getChildren(), function(child){
-				child.deselect && child.deselect();
+				child.set("selected", false);
 			});
 		},
 
 		selectItem: function(/*ListItem*/item){
 			// summary:
 			//		Selects the given item.
-			item.select();
+			item.set("selected", true);
 		}
 	});
 });
