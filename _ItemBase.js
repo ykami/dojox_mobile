@@ -239,6 +239,7 @@ define([
 				return;
 			}
 			var transOpts = this.transitionOptions || {};
+			var doTransition = false;
 			if(this.moveTo || this.href || this.url || this.scene){
 				array.forEach(["moveTo", "href", "hrefTarget", "url",
 					"urlTarget", "scene", "transition", "transitionDir"], function(p){
@@ -246,9 +247,10 @@ define([
 						transOpts[p] = this[p];
 					}
 				}, this);
+				doTransition = true;
 			}
-			if(this._prepareForTransition(e, transOpts) === false){ return; }
-			if(transOpts){
+			if(this._prepareForTransition(e, doTransition ? transOpts : null) === false){ return; }
+			if(doTransition){
 				this.setTransitionPos(e);
 				new TransitionEvent(this.domNode, transOpts, e).dispatch();
 			}

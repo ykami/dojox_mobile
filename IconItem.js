@@ -114,9 +114,6 @@ define([
 				this._clickCloseHandle = this.connect(w.closeIconNode, "onclick", "_closeIconClicked");
 			}));
 
-			this._dragstartHandle = this.connect(this.domNode, "ondragstart", event.stop);
-			this._clickHandle = this.connect(this.iconNode, "onclick", "_onClick");
-
 			this.inherited(arguments);
 			if(!this._isOnLine){
 				this.set("icon", this.icon); // retry applying the attribute
@@ -124,6 +121,9 @@ define([
 			if(!this.icon && p.defaultIcon){
 				this.set("icon", p.defaultIcon);
 			}
+
+			this._dragstartHandle = this.connect(this.domNode, "ondragstart", event.stop);
+			this._clickHandle = this.connect(this.iconNode, "onclick", "_onClick");
 		},
 
 		highlight: function(/*Number?*/timeout){ /* 1.8 */
