@@ -142,7 +142,7 @@ define([
 					// More precisely, 1%(left margin) + 98%(bar width) + 1%(right margin)
 					for(i = 0; i < arr.length; i++){
 						arr[i].style.width = Math.round(98/arr.length) + "%";
-						arr[i].style.margin = (i === 0) ? "0 0 0 1%" : "0";
+						arr[i].style.margin = "0";
 					}
 				}else{
 					// Fixed width buttons. Mainly for larger screen such as iPad.
