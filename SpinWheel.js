@@ -44,7 +44,6 @@ define([
 		buildRendering: function(){
 			this.inherited(arguments);
 			domClass.add(this.domNode, "mblSpinWheel");
-			this.centerPos = Math.round(this.domNode.offsetHeight / 2);
 
 			this.slots = [];
 			for(var i = 0; i < this.slotClasses.length; i++){
@@ -55,6 +54,7 @@ define([
 		},
 
 		startup: function(){
+			this.centerPos = Math.round(this.domNode.offsetHeight / 2);
 			this.inherited(arguments);
 			this.reset();
 		},

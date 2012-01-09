@@ -11,7 +11,7 @@ define([
 	"dojo/dom-construct",
 	"dojo/on",
 	"dojo/ready",
-	"dijit/registry",	// registry.byId
+	"dijit/registry",
 	"./ProgressIndicator",
 	"./TransitionEvent",
 	"./viewRegistry"

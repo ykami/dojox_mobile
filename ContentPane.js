@@ -5,9 +5,10 @@ define([
 	"dojo/_base/lang",
 	"dojo/_base/window",
 	"dojo/_base/xhr",
+	"./_ExecScriptMixin",
 	"./Pane",
 	"./ProgressIndicator"
-], function(dojo, array, declare, lang, win, xhr, Pane, ProgressIndicator){
+], function(dojo, array, declare, lang, win, xhr, ExecScriptMixin, Pane, ProgressIndicator){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -19,7 +20,7 @@ define([
 	// summary:
 	//		A very simple content pane to embed an HTML fragment.
 
-	return declare("dojox.mobile.ContentPane", Pane, {
+	return declare("dojox.mobile.ContentPane", [Pane, ExecScriptMixin], {
 		// summary:
 		//		A very simple content pane to embed an HTML fragment.
 		// description:
@@ -45,6 +46,10 @@ define([
 		// prog: Boolean
 		//		If true, shows progress indicator.
 		prog: true,
+
+		// executeScripts: Boolean
+		//		If true, executes scripts that is found in the content
+		executeScripts: true,
 
 		baseClass: "mblContentPane",
 
@@ -98,6 +103,9 @@ define([
 			if(typeof data === "object"){
 				this.containerNode.appendChild(data);
 			}else{
+				if(this.executeScripts){
+					data = this.execScript(data);
+				}
 				this.containerNode.innerHTML = data;
 			}
 			if(this.parseOnLoad){

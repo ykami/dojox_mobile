@@ -8,20 +8,18 @@ define([
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/dom-style",
-	"dijit/registry",	// registry.byId
+	"dijit/registry",
 	"dijit/_Contained",
-	"dijit/_Container",
 	"dijit/_WidgetBase",
 	"./ProgressIndicator",
 	"./ToolBarButton",
 	"./View"
-], function(array, connect, declare, lang, win, dom, domClass, domConstruct, domStyle, registry, Contained, Container, WidgetBase, ProgressIndicator, ToolBarButton, View){
+], function(array, connect, declare, lang, win, dom, domClass, domConstruct, domStyle, registry, Contained, WidgetBase, ProgressIndicator, ToolBarButton, View){
 
 	var dm = lang.getObject("dojox.mobile", true);
 
 /*=====
 	var Contained = dijit._Contained;
-	var Container = dijit._Container;
 	var WidgetBase = dijit._WidgetBase;
 =====*/
 
@@ -30,7 +28,7 @@ define([
 	// summary:
 	//		A widget that represents a navigation bar.
 
-	return declare("dojox.mobile.Heading", [WidgetBase/*, Container*/, Contained],{
+	return declare("dojox.mobile.Heading", [WidgetBase, Contained],{
 		// summary:
 		//		A widget that represents a navigation bar.
 		// description:

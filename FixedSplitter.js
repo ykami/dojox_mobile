@@ -1,14 +1,13 @@
 define([
 	"dojo/_base/array",
 	"dojo/_base/declare",
-	"dojo/_base/lang",
 	"dojo/_base/window",
 	"dojo/dom-class",
 	"dojo/dom-geometry",
 	"dijit/_Contained",
 	"dijit/_Container",
 	"dijit/_WidgetBase"
-], function(array, declare, lang, win, domClass, domGeometry, Contained, Container, WidgetBase){
+], function(array, declare, win, domClass, domGeometry, Contained, Container, WidgetBase){
 
 /*=====
 	var Contained = dijit._Contained;
