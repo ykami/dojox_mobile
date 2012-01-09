@@ -134,22 +134,16 @@ define([
 				domClass.replace(this.domNode, "mblEdgeToEdgeCategory", this.baseClass);
 			}
 
-			// get label from inner text, and remove the text nodes
+			this.labelNode = this.containerNode =
+				domConstruct.create("div", {className:"mblListItemTextBox"});
 			var ref = this.srcNodeRef;
 			if(ref){
-				var label = "", i, n;
-				for(i = ref.childNodes.length - 1; i >= 0; i--){
-					n = ref.childNodes[i];
-					if(n.nodeType === 3){
-						label = (lang.trim(n.nodeValue) || "") + label;
-						ref.removeChild(n);
-					}
-				}
-				if(!this.label){ // if both this.label and inner text exist, this.label wins.
-					this.label = label;
+				// reparent
+				for(var i = 0, len = ref.childNodes.length; i < len; i++){
+					this.labelNode.appendChild(ref.firstChild);
 				}
 			}
-			this.labelNode = domConstruct.create("div", {className:"mblListItemTextBox"}, this.domNode);
+			this.domNode.appendChild(this.labelNode);
 
 			if(this.anchorLabel){
 				this.labelNode.style.display = "inline"; // to narrow the text region

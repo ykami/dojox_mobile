@@ -25,9 +25,9 @@
 				var listItem = registry.getEnclosingWidget(e.currentTarget);
 				var btnDiv = listItem.rightIconNode.firstChild;
 				if(domClass.contains(btnDiv, "mblDomButtonBluePlus")){
-					listItem.set("btnClass", "mblDomButtonRedMinus");
+					listItem.set("rightIcon", "mblDomButtonRedMinus");
 				}else if(domClass.contains(btnDiv, "mblDomButtonRedMinus")){
-					listItem.set("btnClass", "mblDomButtonBluePlus");
+					listItem.set("rightIcon", "mblDomButtonBluePlus");
 				}
 			}
 			ready(function(){

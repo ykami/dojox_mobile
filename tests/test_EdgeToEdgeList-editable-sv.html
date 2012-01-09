@@ -27,7 +27,7 @@
 			edit = function(){
 				var btn1 = registry.byId("btn1");
 				var list1 = registry.byId("list1");
-				var flag = btn1.flag = !btn1.flag; // true: editable
+				var flag = btn1._flag = !btn1._flag; // true: editable
 				if(flag){
 					list1.startEdit();
 					btn1.set("label", "Done");
