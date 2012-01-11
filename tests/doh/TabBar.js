@@ -39,12 +39,14 @@ dojo.addOnLoad(function(){
 
 					demoWidget = dijit.byId("dojox_mobile_TabBarButton_2");
 					demoWidget.set({label:"New Value"});
-					demoWidget.select();
+//					demoWidget.select();
+					demoWidget.set({selected:true});
 
 					verifyTabBarButton("dojox_mobile_TabBarButton_2", 'New Value', CLASSNAMES, 'hidden', '', /tab-icon-10.png/i, /tab-icon-10h.png/);
 					demoWidget = dijit.byId("dojox_mobile_TabBarButton_5");
 					demoWidget.set({label:"New Value", icon1:"../images/tab-icon-11.png", icon2:"../images/tab-icon-11h.png"});
-					demoWidget.select();
+//					demoWidget.select();
+					demoWidget.set("selected",true);
 
 					verifyTabBarButton("dojox_mobile_TabBarButton_5", 'New Value', CLASSNAMES, 'hidden', '', /tab-icon-11.png/i, /tab-icon-11h.png/)
 
