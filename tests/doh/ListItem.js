@@ -42,7 +42,7 @@ dojo.addOnLoad(function(){
 				doh.assertTrue(demoWidget.get("anchorLabel"), 'get("anchorLabel")');
 				doh.assertEqual("Value Changed", demoWidget.get("rightText"));
 
-				verifyListItem("dojox_mobile_ListItem_0", 'External View #1 (sync)', 'Value Changed', "mblDomButtonArrow", true, true, false);
+				verifyListItem("dojox_mobile_ListItem_0", 'External View #1 (sync)', 'Value Changed', "mblDomButtonArrow", true, true, false, false, null, true);
 			}
 		},
 		{

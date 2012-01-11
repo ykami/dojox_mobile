@@ -22,6 +22,23 @@ function fireOnClick(obj){
 	}
 }
 
+function fireOnMouseDown(obj){
+	var anchorNode;
+	if(typeof obj === "string"){
+		var demoWidget = dijit.byId(obj);
+		anchorNode = demoWidget.domNode;
+	}else{
+		anchorNode = obj;
+	}
+	if(dojo.isIE<9){
+		anchorNode.fireEvent( "onmousedown" );
+	}else{
+		var e = document.createEvent('Events');
+		e.initEvent('mousedown', true, true);
+		anchorNode.dispatchEvent(e);
+	}
+}
+
 function fireTouchEvent(eventtype, node, x, y){
 	if(dojo.isIE<9){
 		var e = document.createEventObject(window.event);
@@ -57,7 +74,7 @@ function fireTouchMove(node, x, y){
 function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIcon, hasIcon2, hasVariableHeight, regExp, hasSelected, isSprite){
 	var demoWidget = dijit.byId(id);
 	doh.assertNotEqual(null, demoWidget, "ListItem: Did not instantiate. id=" + id);
-	doh.assertEqual('mblListItem' + (hasVariableHeight ?" mblVariableHeight":"") + (hasSelected ?" mblItemSelected":""), demoWidget.domNode.className);
+	doh.assertEqual('mblListItem' + (hasVariableHeight ?" mblVariableHeight":"") + (hasSelected ?" mblListItemSelected":""), demoWidget.domNode.className, "id=" + id);
 	var childNodes = demoWidget.domNode.childNodes;
 //	doh.assertEqual('mblListItemAnchor' + (hasIcon?'':' mblListItemAnchorNoIcon'), childNodes[0].className);
 	
@@ -80,7 +97,7 @@ function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIco
 
 	if(hasRightIcon){
 		if(domButtonType){
-			doh.assertEqual(domButtonType + ' mblDomButton', childNodes[i].childNodes[0].className);
+			doh.assertEqual(domButtonType + ' mblDomButton', childNodes[i].childNodes[0].className, "id=" + id);
 		}
 		doh.assertTrue(dojo.hasClass(childNodes[i], 'mblListItemRightIcon'), 'mblListItemRightIcon id=' + id + " got: " + childNodes[i].className);
 		i++;
@@ -92,17 +109,17 @@ function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIco
 	}
 
 	if(rightText){
-		doh.assertEqual(rightText, dojo.isFF ==3.6 ? childNodes[i].childNodes[0].innerHTML : childNodes[i].innerHTML); //2 0r 3
-		doh.assertEqual('mblListItemRightText', childNodes[i++].className);
+		doh.assertEqual(rightText, dojo.isFF ==3.6 ? childNodes[i].childNodes[0].innerHTML : childNodes[i].innerHTML, "id=" + id); //2 0r 3
+		doh.assertEqual('mblListItemRightText', childNodes[i++].className, "id=" + id);
 	}
-	doh.assertEqual('mblListItemTextBox', childNodes[i].className);
-	doh.assertEqual('DIV', childNodes[i].tagName);
+	doh.assertEqual('mblListItemTextBox', childNodes[i].className, "id=" + id);
+	doh.assertEqual('DIV', childNodes[i].tagName, "id=" + id);
 
 	try{
-		doh.assertEqual(text, dojo.trim(childNodes[i].innerHTML.replace(/\r\n|\n|\t/g,"")));
+		doh.assertEqual(text, dojo.trim(childNodes[i].innerHTML.replace(/\r\n|\n|\t/g,"")), "id=" + id);
 	} catch (e) {
 		if(dojo.isFF ==3.6){
-			doh.assertEqual(text, dojo.trim(childNodes[i].childNodes[0].innerHTML.replace(/\r\n|\n|\t/g,"")));
+			doh.assertEqual(text, dojo.trim(childNodes[i].childNodes[0].innerHTML.replace(/\r\n|\n|\t/g,"")), "id=" + id);
 		}else{
 			throw e;
 		}
