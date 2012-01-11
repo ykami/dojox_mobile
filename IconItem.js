@@ -123,7 +123,7 @@ define([
 			}
 
 			this._dragstartHandle = this.connect(this.domNode, "ondragstart", event.stop);
-			this._clickHandle = this.connect(this.iconNode, "onclick", "_onClick");
+			this._keydownHandle = this.connect(this.domNode, "onkeydown", "_onClick"); // for desktop browsers
 		},
 
 		highlight: function(/*Number?*/timeout){ /* 1.8 */
@@ -156,6 +156,7 @@ define([
 			//		Internal handler for click events.
 			// tags:
 			//		private
+			if(e && e.type === "keydown" && e.keyCode !== 13){ return; }
 			if(this.onClick(e) === false){ return; } // user's click action
 			this.defaultClickAction(e);
 		},

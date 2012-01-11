@@ -58,7 +58,7 @@ define([
 		startup: function(){
 			if(this._started){ return; }
 
-			this._clickHandle = this.connect(this.domNode, "onclick", "_onClick");
+			this._keydownHandle = this.connect(this.domNode, "onkeydown", "_onClick"); // for desktop browsers
 
 			this.inherited(arguments);
 			if(!this._isOnLine){
@@ -71,6 +71,7 @@ define([
 			//		Internal handler for click events.
 			// tags:
 			//		private
+			if(e && e.type === "keydown" && e.keyCode !== 13){ return; }
 			if(this.onClick(e) === false){ return; } // user's click action
 			if(this.closeOnAction){
 				var p = this.getParent(); // maybe SimpleDialog

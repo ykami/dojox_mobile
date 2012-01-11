@@ -128,8 +128,7 @@ define([
 				this.srcNodeRef.innerHTML = "";
 			}
 
-			this.anchorNode = domConstruct.create("a", {className:"mblTabBarButtonAnchor"}, this.domNode);
-			this.labelNode = this.box = domConstruct.create("div", {className:"mblTabBarButtonLabel"}, this.anchorNode);
+			this.labelNode = this.box = domConstruct.create("div", {className:"mblTabBarButtonLabel"}, this.domNode);
 
 			this.inherited(arguments);
 		},
@@ -144,6 +143,7 @@ define([
 			// Even so, we use "_onClick" as a handler name to be consistent
 			// with others.
 			this._clickHandle = this.connect(this.domNode, has('touch') ? "ontouchstart" : "onmousedown", "_onClick");
+			this._keydownHandle = this.connect(this.domNode, "onkeydown", "_onClick"); // for desktop browsers
 			if(this.getParent().closable){
 				this._clickCloseHandler = this.connect(this.iconDivNode, "onclick", "_onCloseButtonClick");
 			}
@@ -179,6 +179,7 @@ define([
 			//		Internal handler for click events.
 			// tags:
 			//		private
+			if(e && e.type === "keydown" && e.keyCode !== 13){ return; }
 			if(this.onClick(e) === false){ return; } // user's click action
 			if(!this.selected){
 				this.defaultClickAction(e);
@@ -196,7 +197,7 @@ define([
 			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
 			this._set("icon" + n, icon);
 			if(!this.iconDivNode){
-				this.iconDivNode = domConstruct.create("div", {className:"mblTabBarButtonIconArea"}, this.anchorNode, "first");
+				this.iconDivNode = domConstruct.create("div", {className:"mblTabBarButtonIconArea"}, this.domNode, "first");
 				// mblTabBarButtonDiv -> mblTabBarButtonIconArea
 			}
 			if(!this["iconParentNode" + n]){

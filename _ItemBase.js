@@ -149,9 +149,18 @@ define([
 		//		"none": Do not change the selected state.
 		_selEndMethod: "none", // touch, timer, or none
 
+		// _delayedSelection: Boolean
+		//		If true, selection is delayed 100ms and canceled if dragged in
+		//		order to avoid selection when flick operation is performed.
+		_delayedSelection: false,
+
 		// _duration: Number
 		//		Duration of selection, milliseconds.
 		_duration: 800,
+
+		// _handleClick: Boolean
+		//		If true, this widget listens to touch events.
+		_handleClick: true,
 
 		buildRendering: function(){
 			this.inherited(arguments);
@@ -163,7 +172,7 @@ define([
 			if(!this._isOnLine){
 				this.inheritParams();
 			}
-			if(this._clickHandle && this._selStartMethod === "touch"){
+			if(this._handleClick && this._selStartMethod === "touch"){
 				this._onTouchStartHandle = this.connect(this.domNode, has('touch') ? "ontouchstart" : "onmousedown", "_onTouchStart");
 			}
 			this.inherited(arguments);
@@ -205,11 +214,6 @@ define([
 		handleSelection: function(e){
 			// summary:
 			//		Handles this items selection state
-			if(this._timer){
-				clearTimeout(this._timer);
-				this._timer = null;
-			}
-
 			if(this._onTouchEndHandle){
 				this.disconnect(this._onTouchEndHandle);
 				this._onTouchEndHandle = null;
@@ -266,24 +270,50 @@ define([
 	
 		_onTouchStart: function(e){
 			if(!this._onTouchEndHandle && this._selStartMethod === "touch"){
-				this._onTouchEndHandle = this.connect(this.domNode, has('touch') ? "ontouchend" : "onmouseleave", "_onTouchEnd");
+				// Connect to the entire window. Otherwise, fail to receive
+				// events if operation is performed outside this widget.
+				// Expose both connect handlers in case the user has interest.
+				this._onTouchMoveHandle = this.connect(null, has('touch') ? "ontouchmove" : "onmousemove", "_onTouchMove");
+				this._onTouchEndHandle = this.connect(null, has('touch') ? "ontouchend" : "onmouseup", "_onTouchEnd");
 			}
+			this.touchStartY = e.touches ? e.touches[0].pageY : e.clientY;
 			this._currentSel = this.selected;
-			this.set("selected", true);
+
+			if(this._delayedSelection){
+				// so as not to make selection when the user flicks on ScrollableView
+				this._selTimer = setTimeout(dojo.hitch(this, function(){ this.set("selected", true); }), 100);
+			}else{
+				this.set("selected", true);
+			}
 		},
 
-		_onTouchEnd: function(e){
-			var _this = this;
-			this._timer = setTimeout(function(){
-				// webkit mobile has no onmouseleave, so we have to use touchend instead,
-				// but we don't know if onclick comes or not after touchend,
-				// therefore we need to delay deselecting the button, otherwise, the button blinks.
-				_this.set("selected", false);
-				_this._prevSel && _this._prevSel.set("selected", true);
-				_this.timer = null;
-			}, this._duration / 2);
+		_onTouchMove: function(e){
+			var y = e.touches ? e.touches[0].pageY : e.clientY;
+			if(Math.abs(y - this.touchStartY) >= 4){ // dojox.mobile.scrollable#threshold
+				if(this._selTimer){
+					clearTimeout(this._selTimer);
+					this._selTimer = null;
+				}
+				this._disconnect();
+				this.set("selected", false);
+			}
+		},
+	
+		_disconnect: function(){
+			this.disconnect(this._onTouchMoveHandle);
 			this.disconnect(this._onTouchEndHandle);
-			this._onTouchEndHandle = null;
+			this._onTouchMoveHandle = this._onTouchEndHandle = null;
+		},
+	
+		_onTouchEnd: function(e){
+			this._disconnect();
+			if(this._selTimer){
+				clearTimeout(this._selTimer);
+				this._selTimer = null;
+			}else if (this._delayedSelection){
+				return;
+			}
+			this._onClick(e);
 		},
 	
 		setTransitionPos: function(e){

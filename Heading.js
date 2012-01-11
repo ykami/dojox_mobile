@@ -174,8 +174,14 @@ define([
 		_setBackAttr: function(/*String*/back){
 			this._set("back", back);
 			if(!this.backButton){
-				this.backButton = new ToolBarButton({arrow:"left", label:back});
-				this._clickHandle = this.connect(this.backButton.domNode, "onclick", "_onBackButtonClick");
+				this.backButton = new ToolBarButton({
+					arrow: "left",
+					label: back,
+					moveTo: this.moveTo,
+					href: this.href,
+					transition: this.transition,
+					transitionDir: -1
+				});
 				this.backButton.placeAt(this.domNode, "first");
 				if(this._started){
 					this.backButton.startup();
@@ -189,81 +195,6 @@ define([
 		_setLabelAttr: function(/*String*/label){
 			this._set("label", label);
 			this.labelNode.innerHTML = this.labelDivNode.innerHTML = this._cv ? this._cv(label) : label;
-		},
-	
-		findCurrentView: function(){
-			// summary:
-			//		Search for the view widget that contains this widget.
-			var w = this;
-			while(true){
-				w = w.getParent();
-				if(!w){ return null; }
-				if(w instanceof View){ break; }
-			}
-			return w;
-		},
-
-		_onBackButtonClick: function(e){
-			// summary:
-			//		Internal handler for click events.
-			// tags:
-			//		private
-			if(this.onBackButtonClick(e) === false){ return; } // user's click action
-
-			if(this.back && !this.moveTo && !this.href && history){
-				history.back();	
-				return;
-			}	
-	
-			// keep the clicked position for transition animations
-			var view = this.findCurrentView();
-			if(view){
-				view.clickedPosX = e.clientX;
-				view.clickedPosY = e.clientY;
-			}
-			this.goTo(this.moveTo, this.href);
-		},
-
-		onBackButtonClick: function(/*Event*/ /*===== e =====*/){
-			// summary:
-			//		User defined function to handle clicks
-			// tags:
-			//		callback
-		},
-	
-		goTo: function(moveTo, href){
-			// summary:
-			//		Given the destination, makes a view transition.
-			var view = this.findCurrentView();
-			if(!view){ return; }
-			if(href){
-				view.performTransition(null, -1, this.transition, this, function(){location.href = href;});
-			}else{
-				if(dm.app && dm.app.STAGE_CONTROLLER_ACTIVE){
-					// If in a full mobile app, then use its mechanisms to move back a scene
-					connect.publish("/dojox/mobile/app/goback");
-				}else{
-					// Basically transition should be performed between two
-					// siblings that share the same parent.
-					// However, when views are nested and transition occurs from
-					// an inner view, search for an ancestor view that is a sibling
-					// of the target view, and use it as a source view.
-					var node = registry.byId(view.convertToId(moveTo));
-					if(node){
-						var parent = node.getParent();
-						while(view){
-							var myParent = view.getParent();
-							if(parent === myParent){
-								break;
-							}
-							view = myParent;
-						}
-					}
-					if(view){
-						view.performTransition(moveTo, -1, this.transition);
-					}
-				}
-			}
 		},
 
 		_setBusyAttr: function(/*Boolean*/busy){

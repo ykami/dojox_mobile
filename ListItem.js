@@ -120,6 +120,7 @@ define([
 
 		_selStartMethod: "touch",
 		_selEndMethod: "timer",
+		_delayedSelection: true,
 
 		_selClass: "mblListItemSelected",
 	
@@ -156,8 +157,9 @@ define([
 
 			var parent = this.getParent();
 			if(this.moveTo || this.href || this.url || this.clickable || (parent && parent.select)){
-				this._clickHandle = this.connect(this.domNode, "onclick", "_onClick");
-				this._keydownHandle = this.connect(this.domNode, "onkeydown", "_onClick");
+				this._keydownHandle = this.connect(this.domNode, "onkeydown", "_onClick"); // for desktop browsers
+			}else{
+				this._handleClick = false;
 			}
 			this.setArrow();
 
@@ -195,18 +197,15 @@ define([
 			//		Internal handler for click events.
 			// tags:
 			//		private
-			if(this.onClick(e) === false){ return; } // user's click action
 			if(e && e.type === "keydown" && e.keyCode !== 13){ return; }
-			var a = e.currentTarget;
-			var li = a.parentNode;
-			if(domClass.contains(li, this._selClass)){ return; } // already selected
+			if(this.onClick(e) === false){ return; } // user's click action
 			if(this.anchorLabel){
 				for(var p = e.target; p.tagName !== this.tag.toUpperCase(); p = p.parentNode){
 					if(p.className == "mblListItemTextBox"){
 						domClass.add(p, "mblListItemTextBoxSelected");
 						setTimeout(function(){
 							domClass.remove(p, "mblListItemTextBoxSelected");
-						}, has('android') ? 300 : 1000);
+						}, this._duration);
 						this.onAnchorLabelClicked(e);
 						return;
 					}

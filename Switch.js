@@ -49,12 +49,13 @@ define([
 		_width: 53,
 
 		buildRendering: function(){
-			this.domNode = win.doc.createElement("div");
+			this.domNode = win.doc.createElement("table");
+			var cell = this.domNode.insertRow(-1).insertCell(-1);
 			var c = (this.srcNodeRef && this.srcNodeRef.className) || this.className || this["class"];
 			this._swClass = (c || "").replace(/ .*/,"");
 			this.domNode.className = "mblSwitch";
 			var nameAttr = this.name ? " name=\"" + this.name + "\"" : "";
-			this.domNode.innerHTML =
+			cell.innerHTML =
 				  '<div class="mblSwitchInner">'
 				+	'<div class="mblSwitchBg mblSwitchBgLeft">'
 				+		'<div class="mblSwitchText mblSwitchTextLeft"></div>'
@@ -65,7 +66,7 @@ define([
 				+	'<div class="mblSwitchKnob"></div>'
 				+	'<input type="hidden"'+nameAttr+'></div>'
 				+ '</div>';
-			var n = this.inner = this.domNode.firstChild;
+			var n = this.inner = cell.firstChild;
 			this.left = n.childNodes[0];
 			this.right = n.childNodes[1];
 			this.knob = n.childNodes[2];

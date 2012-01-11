@@ -3,6 +3,7 @@
 .mblSwitch {
   margin: 0;
   position: relative;
+  display: inline-table;
   width: 94px;
   height: 27px;
   line-height: 29px;
