@@ -23,11 +23,15 @@ dojo.addOnLoad(function(){
 				//lazy loading
 
 				doh.assertEqual('none', demoWidget.paneWidget.domNode.style.display);
-				fireOnClick(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0]);
+//				fireOnClick(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0]);
+				fireOnMouseDown(demoWidget.domNode);
+				fireOnMouseUp(demoWidget.domNode);
 
 				demoWidget = dijit.byId("dojox_mobile_IconItem_1");
 				doh.assertEqual('none', demoWidget.paneWidget.domNode.style.display);
-				fireOnClick(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0]);
+//				fireOnClick(demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0]);
+				fireOnMouseDown(demoWidget.domNode);
+				fireOnMouseUp(demoWidget.domNode);
 
 				setTimeout(d.getTestCallback(function(){
 					verifyIconItem("dojox_mobile_IconItem_0", 'app1', '', /icon3.png/i);

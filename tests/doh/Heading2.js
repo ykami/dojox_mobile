@@ -54,7 +54,9 @@ dojo.addOnLoad(function(){
 			runTest: function(){
 				var d = new doh.Deferred();
 				var demoWidget = dijit.byId("dojox_mobile_Heading_2");
-				fireOnClick(demoWidget.domNode.childNodes[0].childNodes[1]);
+//				fireOnClick(demoWidget.domNode.childNodes[0].childNodes[1]);
+				fireOnMouseDown(demoWidget.backButton.domNode);
+				fireOnMouseUp(demoWidget.backButton.domNode);
 				setTimeout(d.getTestCallback(function(){
 
 					var demoWidget = dijit.byId("bar");

@@ -51,25 +51,13 @@
 						runTest: function(){
 							var d = new doh.Deferred();
 							var demoWidget = dijit.byId("dojox_mobile_IconItem_0");
-							var e;
-							doh.assertEqual('none', demoWidget.paneWidget.domNode.style.display);
-							if(dojo.isIE){
-								demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].fireEvent( "onclick" );
-							}else{
-								e = document.createEvent('Events');
-								e.initEvent('click', true, true);
-								demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].dispatchEvent(e);
-							}
+							fireOnMouseDown(demoWidget.domNode);
+							fireOnMouseUp(demoWidget.domNode);
 
 							demoWidget = dijit.byId("dojox_mobile_IconItem_1");
 							doh.assertEqual('none', demoWidget.paneWidget.domNode.style.display);
-							if(dojo.isIE){
-								demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].fireEvent( "onclick" );
-							}else{
-								e = document.createEvent('Events');
-								e.initEvent('click', true, true);
-								demoWidget.domNode.childNodes[0].childNodes[0].childNodes[0].dispatchEvent(e);
-							}
+							fireOnMouseDown(demoWidget.domNode);
+							fireOnMouseUp(demoWidget.domNode);
 							var t = 1000;
 							if(dojo.isIE || dojo.isAndroid || dojo.isIPhone || dojo.isBB) {
 								t=2500;
