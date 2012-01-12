@@ -187,7 +187,6 @@ var tests = [
 	{ url: "test_ajax-json.html", tags: "misc" },
 	{ url: "test_anchor-label.html", tags: "misc" },
 	{ url: "test_bk-ScrollableView-demo.html", tags: "bookmarkable" },
-	{ url: "test_bk-ajax-html.html", tags: "bookmarkable" },
 	{ url: "test_bk-list.html", tags: "bookmarkable" },
 	{ url: "test_bk-split-views.html", tags: "bookmarkable" },
 	{ url: "test_bk-tablet-settings.html", tags: "bookmarkable" },
