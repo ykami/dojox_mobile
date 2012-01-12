@@ -38,6 +38,22 @@ function fireOnMouseDown(obj){
 		anchorNode.dispatchEvent(e);
 	}
 }
+function fireOnMouseUp(obj){
+	var anchorNode;
+	if(typeof obj === "string"){
+		var demoWidget = dijit.byId(obj);
+		anchorNode = demoWidget.domNode;
+	}else{
+		anchorNode = obj;
+	}
+	if(dojo.isIE<9){
+		anchorNode.fireEvent( "onmouseup" );
+	}else{
+		var e = document.createEvent('Events');
+		e.initEvent('mouseup', true, true);
+		anchorNode.dispatchEvent(e);
+	}
+}
 
 function fireTouchEvent(eventtype, node, x, y){
 	if(dojo.isIE<9){
