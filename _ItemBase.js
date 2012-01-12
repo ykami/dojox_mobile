@@ -221,7 +221,7 @@ define([
 
 			var p = this.getParent();
 			if(this.toggle){
-				this.set("selected", !this.selected);
+				this.set("selected", !this._currentSel);
 			}else if(p && p.selectOne){
 				this.set("selected", true);
 			}else{
