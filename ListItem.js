@@ -177,6 +177,7 @@ define([
 
 			this.inherited(arguments);
 			if(!this._isOnLine){
+				this._isOnLine = true;
 				this.set({ // retry applying the attribute
 					icon: this.icon,
 					deleteIcon: this.deleteIcon,

@@ -347,7 +347,7 @@ define([
 		},
 
 		_setIconAttr: function(icon){
-			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
+			if(!this._isOnLine){ return; } // icon may be invalid because inheritParams is not called yet
 			this._set("icon", icon);
 			this.iconNode = iconUtils.setIcon(icon, this.iconPos, this.iconNode, this.alt, this.iconParentNode);
 		},
@@ -366,9 +366,13 @@ define([
 				var p = this.getParent();
 				if(p && p.selectOne){
 					// deselect the currently selected item
-					var _this = this;
-					array.filter(p.getChildren(), function(w){ return w.selected; })
-						.forEach(function(c){ _this._prevSel = c; c.set("selected", false); });
+					var arr = array.filter(p.getChildren(), function(w){
+						return w.selected;
+					});
+					array.forEach(arr, function(c){
+						this._prevSel = c;
+						c.set("selected", false);
+					}, this);
 				}
 			}
 			this._set("selected", selected);

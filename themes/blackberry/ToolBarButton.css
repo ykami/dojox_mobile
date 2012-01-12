@@ -1,7 +1,6 @@
 /* dojox.mobile.ToolBarButton */
 .mblToolBarButton {
-  float: left;
-  position: relative;
+  display: inline-table;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   margin: 6px;
@@ -11,6 +10,11 @@
   font-family: Helvetica;
   font-size: 13px;
   font-weight: bold;
+}
+.mblToolBarButtonCell {
+  position: relative;
+  display: block;
+  padding: 0;
 }
 .mblToolBarButtonLeftArrow, .mblToolBarButtonRightArrow {
   margin-right: 17px;
@@ -74,4 +78,7 @@
 }
 .mblToolBarButtonIcon > div {
   height: 29px;
+}
+.mblHeading .mblToolBarButton {
+  float: left;
 }

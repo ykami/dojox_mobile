@@ -1,4 +1,7 @@
 /* dojox.mobile.ToolBarButton */
+.dj_ie .mblToolBarButton {
+	display: inline;
+}
 .dj_gecko .mblToolBarButtonArrow {
 	-moz-transform: scale(0.7, 0.99) rotate(45deg);
 }

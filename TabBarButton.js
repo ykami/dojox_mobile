@@ -150,6 +150,7 @@ define([
 
 			this.inherited(arguments);
 			if(!this._isOnLine){
+				this._isOnLine = true;
 				this.set({icon1:this.icon1, icon2:this.icon2}); // retry applying the attribute
 			}
 			dom.setSelectable(this.domNode, false);

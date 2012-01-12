@@ -1,4 +1,7 @@
 /* dojox.mobile.ToolBarButton */
-.mblToolBarButton {
+.dj_gecko .mblToolBarButton {
 	-moz-border-radius: 6px;
+}
+.dj_ie .mblToolBarButton {
+	display: inline;
 }

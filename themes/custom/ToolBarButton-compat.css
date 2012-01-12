@@ -3,3 +3,6 @@
   -moz-border-radius: 2px;
   border-radius: 2px;
 }
+.dj_ie .mblToolBarButton {
+  display: inline;
+}

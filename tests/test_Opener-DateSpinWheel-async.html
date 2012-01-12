@@ -50,10 +50,10 @@
 
 	<div id="datePicker" data-dojo-type="dojox.mobile.Opener" data-dojo-props="onHide:getDate, onShow:setDate">
  		<h1 dojoType="dojox.mobile.Heading" label="Date Picker">
-			<div dojoType="dojox.mobile.ToolBarButton" label="Done" class="mblColorBlue" style="position:absolute;width:45px;right:0;"
-				onclick="dijit.byId('datePicker').hide(true)"></div>
-			<div dojoType="dojox.mobile.ToolBarButton" label="Cancel" class="mblColorBlue" style="position:absolute;width:45px;left:0;"
-				onclick="dijit.byId('datePicker').hide(false)"></div>
+			<button dojoType="dojox.mobile.ToolBarButton" label="Done" class="mblColorBlue" style="position:absolute;width:45px;right:0;"
+				onclick="dijit.byId('datePicker').hide(true)"></button>
+			<button dojoType="dojox.mobile.ToolBarButton" label="Cancel" class="mblColorBlue" style="position:absolute;width:45px;left:0;"
+				onclick="dijit.byId('datePicker').hide(false)"></button>
 		</h1>
 		<div id="spin1" dojoType="dojox.mobile.SpinWheelDatePicker"></div>
 	</div>

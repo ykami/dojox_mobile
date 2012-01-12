@@ -44,19 +44,21 @@ define([
 		_selEndMethod: "touch",
 
 		buildRendering: function(){
+			this.domNode = domConstruct.create("table", {cellPadding:"0",cellSpacing:"0",border:"0"});
+			var cell = this.domNode.insertRow(-1).insertCell(-1);
+			cell.className = "mblToolBarButtonCell";
 			this.inherited(arguments);
 
-			if(!this.label){
-				this.label = this.domNode.innerHTML;
+			if(!this.label && this.srcNodeRef){
+				this.label = this.srcNodeRef.innerHTML;
 			}
-			this.domNode.innerHTML = "";
 
 			if(this.arrow === "left" || this.arrow === "right"){
-				this.arrowNode = domConstruct.create("div", {className:"mblToolBarButtonArrow"}, this.domNode);
+				this.arrowNode = domConstruct.create("div", {className:"mblToolBarButtonArrow"}, cell);
 				domClass.add(this.domNode, "mblToolBarButton" +
 					(this.arrow === "left" ? "Left" : "Right") + "Arrow");
 			}
-			this.bodyNode = domConstruct.create("div", {className:"mblToolBarButtonBody"}, this.domNode);
+			this.bodyNode = domConstruct.create("div", {className:"mblToolBarButtonBody"}, cell);
 			this.tableNode = domConstruct.create("table", {cellPadding:"0",cellSpacing:"0",border:"0"}, this.bodyNode);
 
 			var row = this.tableNode.insertRow(-1);
@@ -75,9 +77,12 @@ define([
 				_this._updateArrowColor();
 			}, 0);
 			if(!has("webkit")){
-				setTimeout(function(){ // compat mode browsers need this
-					_this._updateArrowColor();
-				}, 1000);
+				var cntr = 0;
+				this._timer = setInterval(function(){ // compat mode browsers need this
+					if(_this._updateArrowColor() || cntr++ > 3){
+						clearInterval(_this._timer);
+					}
+				}, 500);
 			}
 		},
 
@@ -88,6 +93,7 @@ define([
 
 			this.inherited(arguments);
 			if(!this._isOnLine){
+				this._isOnLine = true;
 				this.set("icon", this.icon); // retry applying the attribute
 			}
 		},
@@ -95,12 +101,14 @@ define([
 		_updateArrowColor: function(){
 			if(this.arrowNode && !has("ie")){
 				var s = domStyle.get(this.bodyNode, "backgroundImage");
+				if(s === "none"){ return false; }					
 				domStyle.set(this.arrowNode, "backgroundImage",
 							 s.replace(/\(top,/, "(top left,") // webkit new
 							 .replace(/0% 0%, 0% 100%/, "0% 0%, 100% 100%") // webkit old
 							 .replace(/50% 0%/, "0% 0%") // moz
 							 .replace(/0\.5/, "0.45")); // adjust color-stop
 			}
+			return true;
 		},
 
 		_onClick: function(e){

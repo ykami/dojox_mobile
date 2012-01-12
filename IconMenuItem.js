@@ -62,6 +62,7 @@ define([
 
 			this.inherited(arguments);
 			if(!this._isOnLine){
+				this._isOnLine = true;
 				this.set("icon", this.icon); // retry applying the attribute
 			}
 		},

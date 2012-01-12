@@ -157,7 +157,7 @@ define([
 			if(detail.moveTo && toView){
 				detail.moveTo = (detail.moveTo.charAt(0) === '#' ? '#' + toView.id : toView.id) + params;
 			}
-			if(!fromView || (detail.moveTo && fromView === registry.byId(detail.moveTo))){ return; }
+			if(!fromView || (detail.moveTo && fromView === registry.byId(detail.moveTo.replace(/^#?([^&?]+).*/, "$1")))){ return; }
 			var src = registry.getEnclosingWidget(evt.target);
 			if(src && src.callback){
 				detail.context = src;
