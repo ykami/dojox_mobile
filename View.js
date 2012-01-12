@@ -324,6 +324,8 @@ define([
 					toWidget.containerNode.style.paddingTop = fromTop + "px";
 				}
 
+				toWidget.load && toWidget.load(); // for ContentView
+
 				toWidget.movedFrom = fromNode.id;
 			}
 
@@ -562,6 +564,7 @@ define([
 					v.domNode.style.display = (v === this) ? "" : "none";
 				}, this);
 			}
+			this.load && this.load(); // for ContentView
 
 			if(!noEvent){
 				if(out){

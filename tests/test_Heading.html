@@ -21,7 +21,7 @@
 		], function(ready, registry){
 			ready(function(){
 				var btn1 = registry.byId("btn1");
-				btn1.connect(btn1.domNode, "onclick", function(){
+				btn1.connect(btn1, "onClick", function(){
 					console.log(this.label + " button was clicked");
 				});
 			});

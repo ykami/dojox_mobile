@@ -2,13 +2,15 @@ define([
 	"dojo/_base/kernel",
 	"dojo/_base/array",
 	"dojo/_base/declare",
+	"dojo/_base/Deferred",
 	"dojo/_base/lang",
 	"dojo/_base/window",
 	"dojo/_base/xhr",
 	"./_ExecScriptMixin",
 	"./Pane",
-	"./ProgressIndicator"
-], function(dojo, array, declare, lang, win, xhr, ExecScriptMixin, Pane, ProgressIndicator){
+	"./ProgressIndicator",
+	"./lazyLoadUtils"
+], function(dojo, array, declare, Deferred, lang, win, xhr, ExecScriptMixin, Pane, ProgressIndicator, lazyLoadUtils){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -34,6 +36,11 @@ define([
 		// href: String
 		//		URL of the content to embed.
 		href: "",
+
+		// lazy: String
+		//		If true, external content specified with the href property is no
+		//		loaded at startup time. It can be loaded by calling load().
+		lazy: false,
 
 		// content: String
 		//		An html fragment to embed.
@@ -77,19 +84,29 @@ define([
 			if(this._p){ this._p.stop(); }
 		},
 	
+		load: function(){
+			this.set("href", this.href);
+		},
+	
 		onLoad: function(){
 			// summary:
 			//		Stub method to allow the application to connect to.
 			//		Called when parsing is done and the content is ready.
+			return true;
 		},
 	
 		_setHrefAttr: function(/*String*/href){
+			if(this.lazy || href === this._loaded){
+				this.lazy = false;
+				return null;
+			}
 			var p = this._p;
 			if(p){
 				win.body().appendChild(p.domNode);
 				p.start();
 			}
 			this._set("href", href);
+			this._loaded = href;
 			return xhr.get({
 				url: href,
 				handleAs: "text",
@@ -109,10 +126,14 @@ define([
 				this.containerNode.innerHTML = data;
 			}
 			if(this.parseOnLoad){
-				dojo.parser.parse(this.containerNode);
+				var _this = this;
+				return Deferred.when(lazyLoadUtils.instantiateLazyWidgets(_this.containerNode), function(){
+					if(_this._p){ _this._p.stop(); }
+					return _this.onLoad();
+				});
 			}
 			if(this._p){ this._p.stop(); }
-			this.onLoad();
+			return this.onLoad();
 		}
 	});
 });
