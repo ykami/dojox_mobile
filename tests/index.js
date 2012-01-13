@@ -191,6 +191,7 @@ var tests = [
 	{ url: "test_bk-split-views.html", tags: "bookmarkable" },
 	{ url: "test_bk-tablet-settings.html", tags: "bookmarkable" },
 	{ url: "test_bk-grouped-views.html", tags: "bookmarkable" },
+	{ url: "test_bk-ContantView.html", tags: "bookmarkable" },
 	{ url: "test_domButtons.html", tags: "domButton" },
 	{ url: "test_domButtons16.html", tags: "domButton" },
 	{ url: "test_domButtonsBadge.html", tags: "domButton" },
