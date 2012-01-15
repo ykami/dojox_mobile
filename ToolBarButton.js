@@ -35,6 +35,12 @@ define([
 		//		Specifies "right" or "left" to be an arrow button.
 		arrow: "",
 
+		// light: Boolean
+		//		If true, this widget produces only a single <span> node when it
+		// 		has no icon nor arrow.  In that case, you cannot have icon or
+		// 		arrow even with setters.
+		light: true,
+
 		baseClass: "mblToolBarButton",
 
 		defaultColor: "mblColorDefault",
@@ -44,18 +50,26 @@ define([
 		_selEndMethod: "touch",
 
 		buildRendering: function(){
+			if(!this.label && this.srcNodeRef){
+				this.label = this.srcNodeRef.innerHTML;
+			}
+			if(this.light && !this.icon && !this.arrow){
+				this.domNode = this.labelNode = this.tableNode = this.bodyNode =
+					domConstruct.create("span", {className:this.defaultColor+" mblToolBarButtonBody"});
+				this.inherited(arguments);
+				return;
+			}
 			this.domNode = domConstruct.create("table", {cellPadding:"0",cellSpacing:"0",border:"0"});
 			var cell = this.domNode.insertRow(-1).insertCell(-1);
 			cell.className = "mblToolBarButtonCell";
 			this.inherited(arguments);
 
-			if(!this.label && this.srcNodeRef){
-				this.label = this.srcNodeRef.innerHTML;
-			}
-
 			if(this.arrow === "left" || this.arrow === "right"){
-				this.arrowNode = domConstruct.create("div", {className:"mblToolBarButtonArrow"}, cell);
-				domClass.add(this.domNode, "mblToolBarButton" +
+				this.arrowNode = domConstruct.create("div", {
+					className: "mblToolBarButtonArrow mblToolBarButton" +
+					(this.arrow === "left" ? "Left" : "Right") + "Arrow"
+				}, cell);
+				domClass.add(this.domNode, "mblToolBarButtonHas" +
 					(this.arrow === "left" ? "Left" : "Right") + "Arrow");
 			}
 			this.bodyNode = domConstruct.create("div", {className:"mblToolBarButtonBody"}, cell);
@@ -142,6 +156,7 @@ define([
 			}else{
 				domClass.replace(this.bodyNode, this.defaultColor, this.selColor);
 			}
+			domClass.toggle(this.domNode, "mblToolBarButtonSelected", selected);
 			this._updateArrowColor();
 		}
 	});

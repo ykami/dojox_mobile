@@ -1,6 +1,7 @@
 define([
 	"dojo/_base/array",
 	"dojo/_base/declare",
+	"dojo/_base/window",
 	"dojo/dom-class",
 	"dijit/registry",
 	"dijit/_Contained",
@@ -8,7 +9,7 @@ define([
 	"./TransitionEvent",
 	"./iconUtils",
 	"./sniff"
-], function(array, declare, domClass, registry, Contained, WidgetBase, TransitionEvent, iconUtils, has){
+], function(array, declare, win, domClass, registry, Contained, WidgetBase, TransitionEvent, iconUtils, has){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -273,8 +274,8 @@ define([
 				// Connect to the entire window. Otherwise, fail to receive
 				// events if operation is performed outside this widget.
 				// Expose both connect handlers in case the user has interest.
-				this._onTouchMoveHandle = this.connect(null, has('touch') ? "ontouchmove" : "onmousemove", "_onTouchMove");
-				this._onTouchEndHandle = this.connect(null, has('touch') ? "ontouchend" : "onmouseup", "_onTouchEnd");
+				this._onTouchMoveHandle = this.connect(win.body(), has('touch') ? "ontouchmove" : "onmousemove", "_onTouchMove");
+				this._onTouchEndHandle = this.connect(win.body(), has('touch') ? "ontouchend" : "onmouseup", "_onTouchEnd");
 			}
 			this.touchStartY = e.touches ? e.touches[0].pageY : e.clientY;
 			this._currentSel = this.selected;
