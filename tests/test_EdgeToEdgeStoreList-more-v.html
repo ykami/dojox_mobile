@@ -24,7 +24,11 @@
 			"dojox/mobile/compat",
 			"dojox/mobile/EdgeToEdgeStoreList"
 		], function(Deferred, Cache, JsonRest, Memory, Observable, ready, registry, ListItem){
-			var url = "http://localhost:8081/fake_service.php";
+			//This is a tentative JSON file for rapid test usage.
+			//This is a static JSON file. You can not use actual JSON REST function when you use it. (This file doesn't handle parameters.)
+			var url = "data/fruits.json";
+			//If you setup php on your server you can test actual JSON REST sample using this file. (It is in data folder.)
+			//var url = "http://localhost:8081/fake_service.php";
 			var memoryStore = new Memory({idProperty:"label"});
 			var restStore = new JsonRest({idProperty:"label", target: url});
 			store = new Cache(restStore, memoryStore);
