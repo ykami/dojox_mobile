@@ -64,20 +64,6 @@
 				window.store = store;
 				registry.byId("list").setStore(store);
 			};
-			// add a new item
-			add1 = function(){
-				store.add({
-					label: "New Item "+(store.__counter++),
-					icon: "images/i-icon-1.png",
-					moveTo: "dummy"
-				});
-			};
-			// delete the added item
-			delete1 = function(){
-				if(store.__counter > 1){
-					store.remove("New Item "+(--store.__counter));
-				}
-			};
 		});
 	</script>
 </head>
@@ -88,9 +74,6 @@
 		<p>show the different set:<br>
 		<input type="button" value="Set1" onclick="switchTo(store1)">
 		<input type="button" value="Set2" onclick="switchTo(store2)">
-		<p>alter the object store:<br>
-		<input type="button" value="Add" onclick="add1()">
-		<input type="button" value="Delete" onclick="delete1()">
 	</div>
 </body>
 </html>
