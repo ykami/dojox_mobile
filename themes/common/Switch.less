@@ -1,10 +1,9 @@
 /* dojox.mobile.Switch */
-/* Switch - default */
+/* Switch - common */
 .mblSwitch {
 	margin: 0;
 	position: relative;
 	display: inline-table;
-	width: 94px;
 	height: 27px;
 	line-height: 29px;
 	overflow: hidden;
@@ -28,12 +27,10 @@
 .mblSwitchOn .mblSwitchInner {
 	left: 0;
 }
-.mblSwitchOff .mblSwitchInner {
-	left: -53px;
-}
 .mblSwitchBg {
 	position: absolute;
 	top: 0;
+	width: 94px;
 	height: 27px;
 	font-family: Helvetica;
 	font-size: 16px;
@@ -44,22 +41,17 @@
 }
 .mblSwitchBgLeft {
 	left: 0;
-	width: 94px;
 	color: white;
 	background-color: #3F84EB;
 	.mblSwitchBgLeft-styles;
 }
 .mblSwitchBgRight {
-	left: 53px;
-	width: 94px;
 	color: #7F7F7F;
 	.mblSwitchBgRight-styles;
 }
 .mblSwitchKnob {
 	position: absolute;
 	top: 0;
-	left: 53px;
-	width: 41px;
 	height: 27px;
 	font-size: 1px;
 	-webkit-box-sizing: border-box;
@@ -81,34 +73,66 @@
 	left: 40px;
 }
 
-/* Round Shape1 */
-.mblSwRoundShape1 {
-	-webkit-mask-image: -webkit-canvas(mblSwRoundShape1Mask);
+/* Square Shape */
+.mblSwSquareShape-styles () {
+	width: 94px;
 	&.mblSwitchOff .mblSwitchInner {
-		left: -67px;
+		left: -53px;
 	}
 	.mblSwitchBg {
+		.mblSwitchSquareBg-styles;
+	}
+	.mblSwitchBgRight {
+		left: 53px;
+	}
+	.mblSwitchKnob {
+		left: 53px;
+		width: 41px;
+		.mblSwitchSquareKnob-styles;
+	}
+	.mblSwitchText {
+		width: 53px;
+	}
+	.mblSwitchTextRight {
+		left: 40px;
+	}
+}
+.mblSwSquareShape {
+	.mblSwSquareShape-styles;
+}
+
+/* Round Shape1 */
+.mblSwRoundShape1-styles () {
+	width: 77px;
+	&.mblSwitchOff .mblSwitchInner {
+		left: -50px;
+	}
+	.mblSwitchBg {
+		width: 77px;
 		border-radius: 14px;
 	}
 	.mblSwitchBgRight {
-		left: 67px;
+		left: 50px;
 	}
 	.mblSwitchKnob {
-		left: 67px;
+		left: 50px;
 		width: 27px;
 		border-radius: 13px;
 	}
 	.mblSwitchText {
-		width: 67px;
+		width: 50px;
 	}
 	.mblSwitchTextRight {
 		left: 26px;
 	}
+}
+.mblSwRoundShape1 {
+	.mblSwRoundShape1-styles;
 }
 
 /* Round Shape2 */
-.mblSwRoundShape2 {
-	-webkit-mask-image: -webkit-canvas(mblSwRoundShape2Mask);
+.mblSwRoundShape2-styles () {
+	width: 94px;
 	&.mblSwitchOff .mblSwitchInner {
 		left: -51px;
 	}
@@ -130,40 +154,47 @@
 		left: 42px;
 	}
 }
+.mblSwRoundShape2 {
+	.mblSwRoundShape2-styles;
+}
 
 /* Arc Shape1 */
-.mblSwArcShape1 {
-	border-radius: ~"5px/13px";
+.mblSwArcShape1-styles () {
+	width: 77px;
 	&.mblSwitchOff .mblSwitchInner {
-		left: -67px;
+		left: -50px;
 	}
 	.mblSwitchBg {
-		border-radius: ~"5px/13px";
+		width: 77px;
+		border-radius: ~"5px/14px";
 	}
 	.mblSwitchBgRight {
-		left: 67px;
+		left: 50px;
 	}
 	.mblSwitchKnob {
-		left: 67px;
+		left: 50px;
 		width: 27px;
 		border-radius: ~"5px/13px";
 	}
 	.mblSwitchText {
-		width: 67px;
+		width: 50px;
 	}
 	.mblSwitchTextRight {
 		left: 26px;
 	}
 }
+.mblSwArcShape1 {
+	.mblSwArcShape1-styles;
+}
 
 /* Arc Shape2 */
-.mblSwArcShape2 {
-	border-radius: ~"5px/13px";
+.mblSwArcShape2-styles () {
+	width: 94px;
 	&.mblSwitchOff .mblSwitchInner {
 		left: -51px;
 	}
 	.mblSwitchBg {
-		border-radius: ~"5px/13px";
+		border-radius: ~"5px/14px";
 	}
 	.mblSwitchBgRight {
 		left: 51px;
@@ -179,4 +210,7 @@
 	.mblSwitchTextRight {
 		left: 42px;
 	}
+}
+.mblSwArcShape2 {
+	.mblSwArcShape2-styles;
 }

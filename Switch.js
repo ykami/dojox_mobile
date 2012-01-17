@@ -5,10 +5,12 @@ define([
 	"dojo/_base/event",
 	"dojo/_base/window",
 	"dojo/dom-class",
+	"dojo/dom-construct",
+	"dojo/dom-style",
 	"dijit/_Contained",
 	"dijit/_WidgetBase",
 	"./sniff"
-], function(array, connect, declare, event, win, domClass, Contained, WidgetBase, has){
+], function(array, connect, declare, event, win, domClass, domConstruct, domStyle, Contained, WidgetBase, has){
 
 /*=====
 	Contained = dijit._Contained;
@@ -45,15 +47,23 @@ define([
 		//		The right-side label of the switch.
 		rightLabel: "OFF",
 
-		/* internal properties */	
+		// shape: String
+		//		The shape of the switch.
+		//		"mblSwDefaultShape", "mblSwSquareShape", "mblSwRoundShape1", "mblSwRoundShape2",
+		//		"mblSwArcShape1" or "mblSwArcShape2".
+		//		The default value is "mblSwDefaultShape".
+		shape: "mblSwDefaultShape",
+
+		/* internal properties */
 		_width: 53,
+		_createdMasks: [],
 
 		buildRendering: function(){
-			this.domNode = win.doc.createElement("table");
+			this.domNode = domConstruct.create("table", {cellPadding:"0",cellSpacing:"0",border:"0"});
 			var cell = this.domNode.insertRow(-1).insertCell(-1);
 			var c = (this.srcNodeRef && this.srcNodeRef.className) || this.className || this["class"];
-			this._swClass = (c || "").replace(/ .*/,"");
-			this.domNode.className = "mblSwitch";
+			if(c = c.match(/mblSw.*Shape\d*/)){ this.shape = c; }
+			this.domNode.className = "mblSwitch" + " " + this.shape;
 			var nameAttr = this.name ? " name=\"" + this.name + "\"" : "";
 			cell.innerHTML =
 				  '<div class="mblSwitchInner">'
@@ -98,29 +108,45 @@ define([
 			}, anim ? 300 : 0);
 		},
 
-		startup: function(){
-			if(this._swClass.indexOf("Round") != -1){
-				this.createRoundMask(this._swClass, this.domNode.offsetHeight / 2, this.domNode.offsetWidth);
+		_createMaskImage: function(){
+			if(this._hasMaskImage){ return; }
+			this._width = this.domNode.offsetWidth - this.knob.offsetWidth;
+			this._hasMaskImage = true;
+			if(!has("webkit")){ return; }
+			var rDef = domStyle.get(this.left, "borderTopLeftRadius");
+			if(rDef == "0px"){ return; }
+			var rDefs = rDef.split(" ");
+			var rx = parseFloat(rDefs[0]), ry = (rDefs.length == 1) ? rx : parseFloat(rDefs[1]);
+			var w = this.domNode.offsetWidth, h = this.domNode.offsetHeight;
+			var id = (this.shape+"Mask"+w+h+rx+ry).replace(/\./,"_");
+			if(!this._createdMasks[id]){
+				this._createdMasks[id] = 1;
+				var ctx = win.doc.getCSSCanvasContext("2d", id, w, h);
+				ctx.fillStyle = "#000000";
+				ctx.beginPath();
+				if(rx == ry){
+					// round arc
+					ctx.moveTo(rx, 0);
+					ctx.arcTo(0, 0, 0, rx, rx);
+					ctx.lineTo(0, h - rx);
+					ctx.arcTo(0, h, rx, h, rx);
+					ctx.lineTo(w - rx, h);
+					ctx.arcTo(w, h, w, rx, rx);
+					ctx.lineTo(w, rx);
+					ctx.arcTo(w, 0, w - rx, 0, rx);
+				}else{
+					// elliptical arc
+					var pi = Math.PI;
+					ctx.scale(1, ry/rx);
+					ctx.moveTo(rx, 0);
+					ctx.arc(rx, rx, rx, 1.5 * pi, 0.5 * pi, true);
+					ctx.lineTo(w - rx, 2 * rx);
+					ctx.arc(w - rx, rx, rx, 0.5 * pi, 1.5 * pi, true);
+				}
+				ctx.closePath();
+				ctx.fill();
 			}
-		},
-	
-		createRoundMask: function(className, r, w){
-			if(!has("webkit") || !className){ return; }
-			if(!this._createdMasks){ this._createdMasks = []; }
-			if(this._createdMasks[className]){ return; }
-			this._createdMasks[className] = 1;
-	
-			var ctx = win.doc.getCSSCanvasContext("2d", className+"Mask", w, 100);
-			ctx.fillStyle = "#000000";
-			ctx.beginPath();
-			ctx.moveTo(r, 0);
-			ctx.arcTo(0, 0, 0, 2*r, r);
-			ctx.arcTo(0, 2*r, r, 2*r, r);
-			ctx.lineTo(w - r, 2*r);
-			ctx.arcTo(w, 2*r, w, r, r);
-			ctx.arcTo(w, 0, w - r, 0, r);
-			ctx.closePath();
-			ctx.fill();
+			this.domNode.style.webkitMaskImage = "-webkit-canvas(" + id + ")";
 		},
 	
 		_onClick: function(e){
@@ -156,6 +182,7 @@ define([
 			this.left.style.display = "";
 			this.right.style.display = "";
 			event.stop(e);
+			this._createMaskImage();
 		},
 	
 		onTouchMove: function(e){

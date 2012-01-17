@@ -1,10 +1,9 @@
 /* dojox.mobile.Switch */
-/* Switch - default */
+/* Switch - common */
 .mblSwitch {
   margin: 0;
   position: relative;
   display: inline-table;
-  width: 94px;
   height: 27px;
   line-height: 29px;
   overflow: hidden;
@@ -28,12 +27,10 @@
 .mblSwitchOn .mblSwitchInner {
   left: 0;
 }
-.mblSwitchOff .mblSwitchInner {
-  left: -53px;
-}
 .mblSwitchBg {
   position: absolute;
   top: 0;
+  width: 94px;
   height: 27px;
   font-family: Helvetica;
   font-size: 16px;
@@ -41,32 +38,25 @@
   line-height: 29px;
   -webkit-box-sizing: border-box;
   border: rgba(176, 176, 176, 0.5) 1px inset;
-  border-radius: 6px;
 }
 .mblSwitchBgLeft {
   left: 0;
-  width: 94px;
   color: white;
   background-color: #3F84EB;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#088eef), to(#0851ad), color-stop(0.5, #0869c6));
 }
 .mblSwitchBgRight {
-  left: 53px;
-  width: 94px;
   color: #7F7F7F;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#f7f3f7), to(#cec5d6), color-stop(0.5, #ced3ce));
 }
 .mblSwitchKnob {
   position: absolute;
   top: 0;
-  left: 53px;
-  width: 41px;
   height: 27px;
   font-size: 1px;
   -webkit-box-sizing: border-box;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#999999), color-stop(0.5, #bbbbbb));
   border: rgba(156, 172, 192, 0.5) 1px outset;
-  border-radius: 6px;
 }
 .mblSwitchText {
   position: relative;
@@ -83,33 +73,58 @@
 .mblSwitchTextRight {
   left: 40px;
 }
+/* Square Shape */
+.mblSwSquareShape {
+  width: 94px;
+}
+.mblSwSquareShape.mblSwitchOff .mblSwitchInner {
+  left: -53px;
+}
+.mblSwSquareShape .mblSwitchBg {
+  border-radius: 6px;
+}
+.mblSwSquareShape .mblSwitchBgRight {
+  left: 53px;
+}
+.mblSwSquareShape .mblSwitchKnob {
+  left: 53px;
+  width: 41px;
+  border-radius: 6px;
+}
+.mblSwSquareShape .mblSwitchText {
+  width: 53px;
+}
+.mblSwSquareShape .mblSwitchTextRight {
+  left: 40px;
+}
 /* Round Shape1 */
 .mblSwRoundShape1 {
-  -webkit-mask-image: -webkit-canvas(mblSwRoundShape1Mask);
+  width: 77px;
 }
 .mblSwRoundShape1.mblSwitchOff .mblSwitchInner {
-  left: -67px;
+  left: -50px;
 }
 .mblSwRoundShape1 .mblSwitchBg {
+  width: 77px;
   border-radius: 14px;
 }
 .mblSwRoundShape1 .mblSwitchBgRight {
-  left: 67px;
+  left: 50px;
 }
 .mblSwRoundShape1 .mblSwitchKnob {
-  left: 67px;
+  left: 50px;
   width: 27px;
   border-radius: 13px;
 }
 .mblSwRoundShape1 .mblSwitchText {
-  width: 67px;
+  width: 50px;
 }
 .mblSwRoundShape1 .mblSwitchTextRight {
   left: 26px;
 }
 /* Round Shape2 */
 .mblSwRoundShape2 {
-  -webkit-mask-image: -webkit-canvas(mblSwRoundShape2Mask);
+  width: 94px;
 }
 .mblSwRoundShape2.mblSwitchOff .mblSwitchInner {
   left: -51px;
@@ -133,37 +148,38 @@
 }
 /* Arc Shape1 */
 .mblSwArcShape1 {
-  border-radius: 5px/13px;
+  width: 77px;
 }
 .mblSwArcShape1.mblSwitchOff .mblSwitchInner {
-  left: -67px;
+  left: -50px;
 }
 .mblSwArcShape1 .mblSwitchBg {
-  border-radius: 5px/13px;
+  width: 77px;
+  border-radius: 5px/14px;
 }
 .mblSwArcShape1 .mblSwitchBgRight {
-  left: 67px;
+  left: 50px;
 }
 .mblSwArcShape1 .mblSwitchKnob {
-  left: 67px;
+  left: 50px;
   width: 27px;
   border-radius: 5px/13px;
 }
 .mblSwArcShape1 .mblSwitchText {
-  width: 67px;
+  width: 50px;
 }
 .mblSwArcShape1 .mblSwitchTextRight {
   left: 26px;
 }
 /* Arc Shape2 */
 .mblSwArcShape2 {
-  border-radius: 5px/13px;
+  width: 94px;
 }
 .mblSwArcShape2.mblSwitchOff .mblSwitchInner {
   left: -51px;
 }
 .mblSwArcShape2 .mblSwitchBg {
-  border-radius: 5px/13px;
+  border-radius: 5px/14px;
 }
 .mblSwArcShape2 .mblSwitchBgRight {
   left: 51px;
@@ -178,4 +194,28 @@
 }
 .mblSwArcShape2 .mblSwitchTextRight {
   left: 42px;
+}
+/* Default Shape */
+.mblSwDefaultShape {
+  width: 94px;
+}
+.mblSwDefaultShape.mblSwitchOff .mblSwitchInner {
+  left: -53px;
+}
+.mblSwDefaultShape .mblSwitchBg {
+  border-radius: 6px;
+}
+.mblSwDefaultShape .mblSwitchBgRight {
+  left: 53px;
+}
+.mblSwDefaultShape .mblSwitchKnob {
+  left: 53px;
+  width: 41px;
+  border-radius: 6px;
+}
+.mblSwDefaultShape .mblSwitchText {
+  width: 53px;
+}
+.mblSwDefaultShape .mblSwitchTextRight {
+  left: 40px;
 }
