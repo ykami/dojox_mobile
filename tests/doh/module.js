@@ -4,6 +4,9 @@ try{
 	doh.registerUrl("dojox.mobile.tests.doh.Button", dojo.moduleUrl("dojox.mobile", "tests/doh/Button.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.Button", dojo.moduleUrl("dojox.mobile", "tests/doh/Button_Programmatic.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.EdgeToEdgeCategory", dojo.moduleUrl("dojox.mobile", "tests/doh/EdgeToEdgeCategory.html"),999999);
+	doh.registerUrl("dojox.mobile.tests.doh.EdgeToEdgeDataList", dojo.moduleUrl("dojox.mobile", "tests/doh/EdgeToEdgeDataList.html"),999999);
+	doh.registerUrl("dojox.mobile.tests.doh.EdgeToEdgeDataList", dojo.moduleUrl("dojox.mobile", "tests/doh/EdgeToEdgeDataList_Programmatic.html"),999999);
+	doh.registerUrl("dojox.mobile.tests.doh.EdgeToEdgeStoreList", dojo.moduleUrl("dojox.mobile", "tests/doh/EdgeToEdgeStoreList.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.Heading", dojo.moduleUrl("dojox.mobile", "tests/doh/Heading.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.Heading", dojo.moduleUrl("dojox.mobile", "tests/doh/Heading2.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.Heading", dojo.moduleUrl("dojox.mobile", "tests/doh/Heading_Programmatic.html"),999999);
@@ -23,6 +26,7 @@ try{
 	doh.registerUrl("dojox.mobile.tests.doh.RoundRect", dojo.moduleUrl("dojox.mobile", "tests/doh/RoundRect_Programmatic.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.RoundRectDataList", dojo.moduleUrl("dojox.mobile", "tests/doh/RoundRectDataList.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.RoundRectDataList", dojo.moduleUrl("dojox.mobile", "tests/doh/RoundRectDataList_Programmatic.html"),999999);
+	doh.registerUrl("dojox.mobile.tests.doh.RoundRectStoreList", dojo.moduleUrl("dojox.mobile", "tests/doh/RoundRectStoreList.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.RoundRectList", dojo.moduleUrl("dojox.mobile", "tests/doh/RoundRectList.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.Switch", dojo.moduleUrl("dojox.mobile", "tests/doh/Switch.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.Switch", dojo.moduleUrl("dojox.mobile", "tests/doh/Switch_Programmatic.html"),999999);
