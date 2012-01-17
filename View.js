@@ -479,10 +479,9 @@ define([
 				toWidget.onAfterTransitionIn.apply(toWidget, this._arguments);
 				connect.publish("/dojox/mobile/afterTransitionIn", [toWidget].concat(this._arguments));
 				toWidget.movedFrom = undefined;
-			}
-
-			if(this.setFragIds && !this._detail.hashchange){
-				this.setFragIds(toWidget); // setFragIds is defined in bookmarkable.js
+				if(this.setFragIds && !this._detail.hashchange){
+					this.setFragIds(toWidget); // setFragIds is defined in bookmarkable.js
+				}
 			}
 
 			var c = this._detail.context, m = this._detail.method;
