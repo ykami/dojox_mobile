@@ -214,6 +214,11 @@ define([
 			return moveTo;
 		},
 
+		_isBookmarkable: function(detail){
+			return config['mblForceBookmarkable'] ||
+				(detail.moveTo && detail.moveTo.charAt(0) === '#' && !detail.hashchange);
+		},
+
 		performTransition: function(/*String*/moveTo, /*Number*/transitionDir, /*String*/transition,
 									/*Object|null*/context, /*String|Function*/method /*optional args*/){
 			// summary:
@@ -300,7 +305,7 @@ define([
 				toNode = this._dummyNode;
 			}
 
-			if(this.addTransitionInfo && typeof(detail.moveTo) == "string" && detail.moveTo.charAt(0) == '#' && !detail.hashchange){
+			if(this.addTransitionInfo && typeof(detail.moveTo) == "string" && this._isBookmarkable(detail)){
 				this.addTransitionInfo(this.id, detail.moveTo, {transitionDir:detail.transitionDir, transition:detail.transition});
 			}
 
@@ -479,7 +484,7 @@ define([
 				toWidget.onAfterTransitionIn.apply(toWidget, this._arguments);
 				connect.publish("/dojox/mobile/afterTransitionIn", [toWidget].concat(this._arguments));
 				toWidget.movedFrom = undefined;
-				if(this.setFragIds && !this._detail.hashchange){
+				if(this.setFragIds && this._isBookmarkable(this._detail)){
 					this.setFragIds(toWidget); // setFragIds is defined in bookmarkable.js
 				}
 			}

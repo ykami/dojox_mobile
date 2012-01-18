@@ -52,19 +52,51 @@ define([
 		},
 
 		handleFragIds: function(/*String*/fragIds){
+			// summary:
+			//		Analyze the given hash (=fragment id).
+			// description:
+			//		Given a comma-separated list of view IDs, this method
+			//		searches for a transition destination, and makes all the
+			//		views in the hash visible.
+
 			var arr, moveTo;
 			if(!fragIds){
-				moveTo = "#" + viewRegistry.initialView.id;
+				moveTo = viewRegistry.initialView.id;
 				arr = this.findTransitionViews(moveTo);
 			}else{
 				var ids = fragIds.replace(/^#/, "").split(/,/);
 				for(var i = 0; i < ids.length; i++){
-					// Search for the first invisible view.
-					// Both ids are identical if the view is visible.
-					moveTo = "#" + ids[i];
-					arr = this.findTransitionViews(moveTo);
-					if(arr.length === 2 && arr[0].id !== arr[1].id){
-						break;
+					// Search for a transition destination view.
+
+					var view = registry.byId(ids[i]);
+
+					// Skip a visible view. Visible view can't be a destination candidate.
+					if(view.isVisible()){ continue; }
+
+					// Check if all the ancestors are in the fragIds.
+					// If not, obviously the view was NOT visible before the previous transition.
+					// That means the previous transition can't happen from that view,
+					// which means the view can't be a destination.
+					var success = true;
+					for(var v = viewRegistry.getParentView(view); v; v = viewRegistry.getParentView(v)){
+						if(array.indexOf(ids, v.id) === -1){
+							success = false;
+							break;
+						}
+					}
+					if(!success){
+						// Simply make the view visible without transition.
+						array.forEach(view.getSiblingViews(), function(v){
+							v.domNode.style.display = (v === view) ? "" : "none";
+						});
+						continue;
+					}
+
+					arr = this.findTransitionViews(ids[i]);
+					if(arr.length === 2){
+						moveTo = ids[i];
+						// The destination found. But continue the loop to make
+						// the other views in the fragIds visible.
 					}
 				}
 			}
@@ -77,7 +109,7 @@ define([
 			}
 
 			return {
-				moveTo: moveTo,
+				moveTo: "#" + moveTo,
 				transitionDir: args ? args.transitionDir * dir : 1,
 				transition: args ? args.transition : "none"
 			};
@@ -89,19 +121,8 @@ define([
 			// description:
 			//		The hash value consists of one or more visible view ids
 			//		separated with commas.
-			//		The first one is an id of the deepest visible view.
 
-			// Find the deepest view under target
-			var view = toView;
-			for(var v = viewRegistry.getChildViews(toView)[0]; v; v = viewRegistry.getChildViews(v)[0]){
-				v = v.getShowingView();
-				if(!v){ break; }
-				view = v;
-			}
-
-			// Append the other visible views
-			var arr = [view].concat(array.filter(viewRegistry.getViews(), function(v){ return v.isVisible() && v !== view; }));
-
+			var arr = array.filter(viewRegistry.getViews(), function(v){ return v.isVisible(); });
 			this.settingHash = true;
 			hash(array.map(arr, function(v){ return v.id; }).join(","));
 		}
