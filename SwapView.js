@@ -184,12 +184,12 @@ define([
 						}
 					}
 				}
-	
+
 				if(newView){
 					newView._beingFlipped = true;
 					newView.slideTo({x:newX}, duration, easing);
 					newView._beingFlipped = false;
-	
+
 					if(newX === 0){ // moving to another view
 						dojox.mobile.currentView = newView;
 					}
@@ -199,7 +199,7 @@ define([
 			}
 			this.inherited(arguments);
 		},
-	
+
 		onFlickAnimationEnd: function(e){
 			// summary:
 			//		Overrides dojox.mobile.scrollable.onFlickAnimationEnd().

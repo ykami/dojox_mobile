@@ -99,7 +99,7 @@ define([
 			}
 			domClass.remove(this.domNode, on ? "mblSwitchOff" : "mblSwitchOn");
 			domClass.add(this.domNode, on ? "mblSwitchOn" : "mblSwitchOff");
-	
+
 			var _this = this;
 			setTimeout(function(){
 				_this.left.style.display = on ? "" : "none";
@@ -148,7 +148,7 @@ define([
 			}
 			this.domNode.style.webkitMaskImage = "-webkit-canvas(" + id + ")";
 		},
-	
+
 		_onClick: function(e){
 			// summary:
 			//		Internal handler for click events.
@@ -167,7 +167,7 @@ define([
 			// tags:
 			//		callback
 		},
-	
+
 		onTouchStart: function(e){
 			// summary:
 			//		Internal function to handle touchStart events.
@@ -184,7 +184,7 @@ define([
 			event.stop(e);
 			this._createMaskImage();
 		},
-	
+
 		onTouchMove: function(e){
 			// summary:
 			//		Internal function to handle touchMove events.
@@ -205,7 +205,7 @@ define([
 				this._moved = true;
 			}
 		},
-	
+
 		onTouchEnd: function(e){
 			// summary:
 			//		Internal function to handle touchEnd events.
@@ -226,14 +226,14 @@ define([
 				this.onStateChanged(newState);
 			}
 		},
-	
+
 		onStateChanged: function(/*String*/newState){
 			// summary:
 			//		Stub function to connect to from your application.
 			// description:
 			//		Called when the state has been changed.
 		},
-	
+
 		_setValueAttr: function(/*String*/value){
 			this._changeState(value, false);
 			if(this.value != value){
@@ -241,12 +241,12 @@ define([
 			}
 			this.value = this.input.value = value;
 		},
-	
+
 		_setLeftLabelAttr: function(/*String*/label){
 			this.leftLabel = label;
 			this.left.firstChild.innerHTML = this._cv ? this._cv(label) : label;
 		},
-	
+
 		_setRightLabelAttr: function(/*String*/label){
 			this.rightLabel = label;
 			this.right.firstChild.innerHTML = this._cv ? this._cv(label) : label;

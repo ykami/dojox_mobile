@@ -146,7 +146,7 @@ define([
 				connect.publish("/dojox/mobile/app/pushScene", [detail.scene]);
 				return;
 			}
-			
+
 			var arr = this.findTransitionViews(detail.moveTo),
 				fromView = arr[0],
 				toView = arr[1],

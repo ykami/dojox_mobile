@@ -103,7 +103,7 @@ define([
 			}
 		}
 	};
-	
+
 	dm.hideAddressBar = function(/*Event?*/evt){
 		// summary:
 		//		Hides the address bar.
@@ -118,11 +118,11 @@ define([
 		win.body().style.minHeight = minH + "px"; // to ensure enough height for scrollTo to work
 		setTimeout(dm.hide_1, dm._hidingTimer);
 	};
-	
+
 	dm.isAddressBarHidden = function(){
 		return pageYOffset === 1;
 	};
-	
+
 	dm.resizeAll = function(/*Event?*/evt, /*Widget?*/root){
 		// summary:
 		//		Call the resize() method of all the top level resizable widgets.

@@ -98,7 +98,7 @@ define([
 				}));
 			}
 		},
-	
+
 		startup: function(){
 			if(this._started){ return; }
 

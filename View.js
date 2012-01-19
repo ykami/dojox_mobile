@@ -187,7 +187,7 @@ define([
 			}, this);
 			node.className = classes.join(' ');
 		},
-		
+
 		_fixViewState: function(/*DomNode*/toNode){
 			// summary:
 			//		Sanity check for view transition states.
@@ -466,7 +466,7 @@ define([
 
 			// clear the clicked position
 			this.clickedPosX = this.clickedPosY = undefined;
-			
+
 			/* 1.8 */
 			if(name.indexOf("Cube") !== -1 &&
 				name.indexOf("In") !== -1 && has('iphone')){

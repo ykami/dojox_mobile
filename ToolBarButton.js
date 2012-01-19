@@ -141,7 +141,7 @@ define([
 			// tags:
 			//		callback
 		},
-	
+
 		_setLabelAttr: function(/*String*/text){
 			this.inherited(arguments);
 			domClass.toggle(this.tableNode, "mblToolBarButtonText", text);

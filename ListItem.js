@@ -123,7 +123,7 @@ define([
 		_delayedSelection: true,
 
 		_selClass: "mblListItemSelected",
-	
+
 		buildRendering: function(){
 			this.domNode = this.srcNodeRef || domConstruct.create(this.tag);
 			this.inherited(arguments);
@@ -296,11 +296,11 @@ define([
 		_setDeleteIconAttr: function(/*String*/icon){
 			this._setIcon(icon, "deleteIcon", this.iconNode || this.rightIconNode || this.rightIcon2Node || this.rightTextNode || this.labelNode);
 		},
-	
+
 		_setIconAttr: function(icon){
 			this._setIcon(icon, "icon", this.rightIconNode || this.rightIcon2Node || this.rightTextNode || this.labelNode);
 		},
-	
+
 		_setRightTextAttr: function(/*String*/text){
 			if(!this.rightTextNode){
 				this.rightTextNode = domConstruct.create("div", {className:"mblListItemRightText"}, this.labelNode, "before");
@@ -308,11 +308,11 @@ define([
 			this.rightText = text;
 			this.rightTextNode.innerHTML = this._cv ? this._cv(text) : text;
 		},
-	
+
 		_setRightIconAttr: function(/*String*/icon){
 			this._setIcon(icon, "rightIcon", this.rightIcon2Node || this.rightTextNode || this.labelNode);
 		},
-	
+
 		_setUncheckIconAttr: function(/*String*/icon){
 			this._setIcon(icon, "uncheckIcon", this.rightIcon2Node || this.rightTextNode || this.labelNode);
 		},
@@ -320,7 +320,7 @@ define([
 		_setRightIcon2Attr: function(/*String*/icon){
 			this._setIcon(icon, "rightIcon2", this.rightTextNode || this.labelNode);
 		},
-	
+
 		_setCheckedAttr: function(/*Boolean*/checked){
 			var parent = this.getParent();
 			if(parent && parent.select === "single" && checked){
