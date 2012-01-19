@@ -52,14 +52,26 @@ define([
 			this._editing = true;
 			if(!this._handles){
 				this._handles = [];
-				this._handles.push(this.connect(this.domNode, "webkitTransitionStart", "onTransitionStart"));
-				this._handles.push(this.connect(this.domNode, "webkitTransitionEnd", "onTransitionEnd"));
+				this._handles.push(this.connect(this.domNode, "webkitTransitionStart", "_onTransitionStart"));
+				this._handles.push(this.connect(this.domNode, "webkitTransitionEnd", "_onTransitionEnd"));
 			}
 			
 			var count = 0;
 			array.forEach(this.getChildren(), function(w){
 				setTimeout(lang.hitch(this, function(){
-					w.disconnect(w._clickHandle); // disconnect default onclick handler not to open IconItem's content
+					// disconnect default ontouchstart/ontouchmove/ontouchend, onkeydown event handler
+					// so as not to open IconItem's content
+					if(w._onTouchStartHandle){ 
+						w.disconnect(w._onTouchStartHandle);
+						w._onTouchStartHandle = null;
+					}
+					if(w._onTouchEndHandle){
+						w.disconnect(w._onTouchMoveHandle);
+						w.disconnect(w._onTouchEndHandle);
+						w._onTouchMoveHandle = w._onTouchEndHandle = null;
+					}
+					w.disconnect(w._keydownHandle);
+					
 					w.set("deleteIcon", this.deleteIconForEdit);
 					if(w.deleteIconNode){
 						w._deleteHandle = this.connect(w.deleteIconNode, "onclick", "_deleteIconClicked");
@@ -82,7 +94,10 @@ define([
 					w._deleteHandle = null;
 				}
 				w.set("deleteIcon", "");
-				w._clickHandle = w.connect(w.iconNode, "onclick", "_onClick"); // reconnect onclick handler
+				if(w._handleClick && w._selStartMethod === "touch"){ // reconnect ontouchstart handler
+					w._onTouchStartHandle = w.connect(w.domNode, has('touch') ? "ontouchstart" : "onmousedown", "_onTouchStart");
+				}
+				w._keydownHandle = w.connect(w.domNode, "onkeydown", "_onClick"); // reconnect onkeydown handler
 			}, this);
 			
 			this._editing = false;
@@ -103,18 +118,18 @@ define([
 			});			
 		},
 		
-		onTransitionStart: function(e){
+		_onTransitionStart: function(e){
 			event.stop(e);
 		},
 		
-		onTransitionEnd: function(e){
+		_onTransitionEnd: function(e){
 			event.stop(e);
 			var w = registry.getEnclosingWidget(e.target);
 			w._moving = false;
 			domStyle.set(w.domNode, "webkitTransition", "");
 		},
 		
-		onTouchStart: function(e){
+		_onTouchStart: function(e){
 			if(!this._blankItem){
 				this._blankItem = new IconItem();
 				this._blankItem.domNode.style.visibility = "hidden";
@@ -132,26 +147,29 @@ define([
 			
 			if(!this._conn){
 				this._conn = [];
-				this._conn.push(this.connect(this.domNode, has('touch') ? "ontouchmove" : "onmousemove", "onTouchMove"));
-				this._conn.push(this.connect(this.domNode, has('touch') ? "ontouchend" : "onmouseup", "onTouchEnd"));
+				this._conn.push(this.connect(this.domNode, has('touch') ? "ontouchmove" : "onmousemove", "_onTouchMove"));
+				this._conn.push(this.connect(this.domNode, has('touch') ? "ontouchend" : "onmouseup", "_onTouchEnd"));
 			}
 			this._touchStartPosX = e.touches ? e.touches[0].pageX : e.pageX;
 			this._touchStartPosY = e.touches ? e.touches[0].pageY : e.pageY;
 			if(this._editing){
-				this.onDragStart(e);
+				this._onDragStart(e);
 			}else{
 				// set timer to detect long press
 				this._pressTimer = setTimeout(lang.hitch(this, function(){
 					this.startEdit();
-					this.onDragStart(e);
+					this._onDragStart(e);
 				}), 1000);
 			}
 		},
 		
-		onDragStart: function(e){
+		_onDragStart: function(e){
 			this._dragging = true;
 			
 			var movingItem = this._movingItem;
+			if(movingItem.get("selected")){
+				movingItem.set("selected", false);
+			}
 			this.scaleItem(movingItem, 1.1);
 			
 			var x = e.touches ? e.touches[0].pageX : e.pageX;
@@ -173,7 +191,7 @@ define([
 			});
 		},
 		
-		onTouchMove: function(e){
+		_onTouchMove: function(e){
 			var x = e.touches ? e.touches[0].pageX : e.pageX;
 			var y = e.touches ? e.touches[0].pageY : e.pageY;
 			if(this._dragging){
@@ -192,7 +210,7 @@ define([
 			}
 		},
 		
-		onTouchEnd: function(e){
+		_onTouchEnd: function(e){
 			this._clearPressTimer();
 			if(this._conn){
 				array.forEach(this._conn, this.disconnect, this);
@@ -227,21 +245,33 @@ define([
 		},
 		
 		_detectOverlap: function(/*Object*/point){
-			var children = this.getChildren();
-			for(var i=0; i<children.length-1; i++){ // TODO should make smarter algorithm
+			var children = this.getChildren(),
+				blankItem = this._blankItem,
+				blankPos = domGeometry.position(blankItem.domNode, true),
+				blankIndex = this.getIndexOfChild(blankItem),
+				dir = 1;
+			if(this._contains(point, blankPos)){
+				return;
+			}else if(point.y < blankPos.y || (point.y <= blankPos.y + blankPos.h && point.x < blankPos.x)){
+				dir = -1;
+			}
+			for(var i = blankIndex + dir; i>=0 && i<children.length-1; i += dir){
 				var w = children[i];
 				if(w._moving){ continue; }
 				var pos = domGeometry.position(w.domNode, true);
-				if(pos.x < point.x && point.x < pos.x + pos.w && pos.y < point.y && point.y < pos.y + pos.h){
-					if(this._blankItem !== w){
-						var moveIndex = this.getIndexOfChild(this._blankItem) < i ? i+1 : i;
-						this.moveChildWithAnimation(this._blankItem, moveIndex);
-					}
+				if(this._contains(point, pos)){
+					setTimeout(lang.hitch(this, function(){
+						this.moveChildWithAnimation(blankItem, dir == 1 ? i+1 : i);
+					}),0);
 					break;
-				}else if(pos.y > point.y){
+				}else if((dir == 1 && pos.y > point.y) || (dir == -1 && pos.y + pos.h < point.y)){
 					break;
 				}
 			}
+		},
+		
+		_contains: function(point, pos){
+			return pos.x < point.x && point.x < pos.x + pos.w && pos.y < point.y && point.y < pos.y + pos.h;
 		},
 		
 		_animate: function(/*Integer*/from, /*Integer*/to){
@@ -343,7 +373,7 @@ define([
 		_setEditableAttr: function(/*Boolean*/editable){
 			this._set("editable", editable);
 			if(editable && !this._touchStartHandle){ // Allow users to start editing by long press on IconItems
-				this._touchStartHandle = this.connect(this.domNode, has('touch') ? "ontouchstart" : "onmousedown", "onTouchStart");
+				this._touchStartHandle = this.connect(this.domNode, has('touch') ? "ontouchstart" : "onmousedown", "_onTouchStart");
 			}else if(!editable && this._touchStartHandle){
 				this.disconnect(this._touchStartHandle);
 				this._touchStartHandle = null;
