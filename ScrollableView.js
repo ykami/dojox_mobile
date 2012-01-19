@@ -118,7 +118,7 @@ define([
 		onAfterTransitionIn: function(moveTo, dir, transition, context, method){
 			this.flashScrollBar();
 		},
-	
+
 		getChildren: function(){
 			// summary:
 			//		Overrides _WidgetBase#getChildren to add local fixed bars,

@@ -80,7 +80,7 @@ define([
 			}
 		});
 	};
-	
+
 	extendContainerFunction(Heading);
 	extendContainerFunction(View);
 	extendContainerFunction(RoundRect);

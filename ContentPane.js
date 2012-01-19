@@ -71,30 +71,30 @@ define([
 			}
 			this.inherited(arguments);
 		},
-	
+
 		loadHandler: function(/*String*/response){
 			// summary:
 			//		A handler called when load completes.
 			this.set("content", response);
 		},
-	
+
 		errorHandler: function(err){
 			// summary:
 			//		An error handler called when load fails.
 			if(this._p){ this._p.stop(); }
 		},
-	
+
 		load: function(){
 			this.set("href", this.href);
 		},
-	
+
 		onLoad: function(){
 			// summary:
 			//		Stub method to allow the application to connect to.
 			//		Called when parsing is done and the content is ready.
 			return true;
 		},
-	
+
 		_setHrefAttr: function(/*String*/href){
 			if(this.lazy || href === this._loaded){
 				this.lazy = false;

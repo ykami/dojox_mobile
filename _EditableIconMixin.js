@@ -35,27 +35,27 @@ define([
 		//		A mixin for IconContainer so it can be editable.
 		// description:
 		//		
-		
+
 		deleteIconForEdit: "mblDomButtonBlackCircleCross",
 		threshold: 4, // drag threshold value in pixels
-		
+
 		destroy: function(){
 			if(this._blankItem){
 				this._blankItem.destroy();
 			}
 			this.inherited(arguments);
 		},
-		
+
 		startEdit: function(){
 			if(!this.editable || this._editing){ return; }
-			
+
 			this._editing = true;
 			if(!this._handles){
 				this._handles = [];
 				this._handles.push(this.connect(this.domNode, "webkitTransitionStart", "_onTransitionStart"));
 				this._handles.push(this.connect(this.domNode, "webkitTransitionEnd", "_onTransitionEnd"));
 			}
-			
+
 			var count = 0;
 			array.forEach(this.getChildren(), function(w){
 				setTimeout(lang.hitch(this, function(){
@@ -71,7 +71,7 @@ define([
 						w._onTouchMoveHandle = w._onTouchEndHandle = null;
 					}
 					w.disconnect(w._keydownHandle);
-					
+
 					w.set("deleteIcon", this.deleteIconForEdit);
 					if(w.deleteIconNode){
 						w._deleteHandle = this.connect(w.deleteIconNode, "onclick", "_deleteIconClicked");
@@ -79,14 +79,14 @@ define([
 					w.highlight(0);
 				}), 15*count++);
 			}, this);
-			
+
 			connect.publish("/dojox/mobile/startEdit", [this]); // pubsub
 			this.onStartEdit(); // callback
 		},
-		
+
 		endEdit: function(){
 			if(!this._editing){ return; }
-			
+
 			array.forEach(this.getChildren(), function(w){
 				w.unhighlight();
 				if(w._deleteHandle){
@@ -99,36 +99,36 @@ define([
 				}
 				w._keydownHandle = w.connect(w.domNode, "onkeydown", "_onClick"); // reconnect onkeydown handler
 			}, this);
-			
+
 			this._editing = false;
 			this._movingItem = null;
 			if(this._handles){
 				array.forEach(this._handles, this.disconnect, this);
 				this._handles = null;
 			}
-			
+
 			connect.publish("/dojox/mobile/endEdit", [this]); // pubsub
 			this.onEndEdit(); // callback
 		},
-		
+
 		scaleItem: function(/*Widget*/widget, /*Number*/ratio){
 			domStyle.set(widget.domNode, {
 				webkitTransition: has("android") ? "" : "-webkit-transform .1s ease-in-out",
 				webkitTransform: ratio == 1 ? "" : "scale(" + ratio + ")"
 			});			
 		},
-		
+
 		_onTransitionStart: function(e){
 			event.stop(e);
 		},
-		
+
 		_onTransitionEnd: function(e){
 			event.stop(e);
 			var w = registry.getEnclosingWidget(e.target);
 			w._moving = false;
 			domStyle.set(w.domNode, "webkitTransition", "");
 		},
-		
+
 		_onTouchStart: function(e){
 			if(!this._blankItem){
 				this._blankItem = new IconItem();
@@ -144,7 +144,7 @@ define([
 				}
 			}
 			if(!iconPressed){ return; }
-			
+
 			if(!this._conn){
 				this._conn = [];
 				this._conn.push(this.connect(this.domNode, has('touch') ? "ontouchmove" : "onmousemove", "_onTouchMove"));
@@ -162,16 +162,16 @@ define([
 				}), 1000);
 			}
 		},
-		
+
 		_onDragStart: function(e){
 			this._dragging = true;
-			
+
 			var movingItem = this._movingItem;
 			if(movingItem.get("selected")){
 				movingItem.set("selected", false);
 			}
 			this.scaleItem(movingItem, 1.1);
-			
+
 			var x = e.touches ? e.touches[0].pageX : e.pageX;
 			var y = e.touches ? e.touches[0].pageY : e.pageY;
 			var startPos = this._startPos = domGeometry.position(movingItem.domNode, true);
@@ -179,7 +179,7 @@ define([
 				x: startPos.x - x,
 				y: startPos.y - y
 			};
-			
+
 			this._startIndex = this.getIndexOfChild(movingItem);
 			this.addChild(this._blankItem, this._startIndex);
 			this.moveChild(movingItem, this.getChildren().length);
@@ -190,7 +190,7 @@ define([
 				zIndex: 100
 			});
 		},
-		
+
 		_onTouchMove: function(e){
 			var x = e.touches ? e.touches[0].pageX : e.pageX;
 			var y = e.touches ? e.touches[0].pageY : e.pageY;
@@ -209,17 +209,17 @@ define([
 				}
 			}
 		},
-		
+
 		_onTouchEnd: function(e){
 			this._clearPressTimer();
 			if(this._conn){
 				array.forEach(this._conn, this.disconnect, this);
 				this._conn = null;				
 			}
-			
+
 			if(this._dragging){
 				this._dragging = false;
-				
+
 				var movingItem = this._movingItem;
 				this.scaleItem(movingItem, 1.0);
 				domStyle.set(movingItem.domNode, {
@@ -236,14 +236,14 @@ define([
 				this.onMoveItem(movingItem, startIndex, endIndex); // callback
 			}
 		},
-		
+
 		_clearPressTimer: function(){
 			if(this._pressTimer){
 				clearTimeout(this._pressTimer);
 				this._pressTimer = null;
 			}
 		},
-		
+
 		_detectOverlap: function(/*Object*/point){
 			var children = this.getChildren(),
 				blankItem = this._blankItem,
@@ -269,11 +269,11 @@ define([
 				}
 			}
 		},
-		
+
 		_contains: function(point, pos){
 			return pos.x < point.x && point.x < pos.x + pos.w && pos.y < point.y && point.y < pos.y + pos.h;
 		},
-		
+
 		_animate: function(/*Integer*/from, /*Integer*/to){
 			if(from == to) { return; }
 			var dir = from < to ? 1 : -1;
@@ -301,30 +301,30 @@ define([
 				}), j*10);
 			}
 		},
-		
+
 		removeChildWithAnimation: function(/*Widget|Number*/widget){
 			var index = (typeof widget === "number") ? widget : this.getIndexOfChild(widget);
 			this.removeChild(widget);
-			
+
 			// Show remove animation
 			this.addChild(this._blankItem);
 			this._animate(index, this.getChildren().length - 1);
 			this.removeChild(this._blankItem);
 		},
-		
+
 		moveChild: function(/*Widget|Number*/widget, /*Number?*/insertIndex){
 			this.addChild(widget, insertIndex);
 			this.paneContainerWidget.addChild(widget.paneWidget, insertIndex);
 		},
-		
+
 		moveChildWithAnimation: function(/*Widget|Number*/widget, /*Number?*/insertIndex){
 			var index = this.getIndexOfChild(this._blankItem);
 			this.moveChild(widget, insertIndex);
-			
+
 			// Show move animation
 			this._animate(index, insertIndex);
 		},
-		
+
 		_deleteIconClicked: function(e){
 			// summary:
 			//		Internal handler for click events.
@@ -341,35 +341,35 @@ define([
 			// tags:
 			//		callback
 		},
-		
+
 		deleteItem: function(item){
 			if(item._deleteHandle){
 				this.disconnect(item._deleteHandle);
 			}
 			this.removeChildWithAnimation(item);
-			
+
 			connect.publish("/dojox/mobile/deleteIconItem", [this, item]); // pubsub
 			this.onDeleteItem(item); // callback
-			
+
 			item.destroy();
 		},
-		
+
 		onDeleteItem: function(/*Widget*/item){
 			// Stub function to connect to from your application.
 		},
-		
+
 		onMoveItem: function(/*Widget*/item, /*Integer*/from, /*Ingeter*/to){
 			// Stub function to connect to from your application.
 		},
-		
+
 		onStartEdit: function(){
 			// Stub function to connect to from your application.
 		},
-		
+
 		onEndEdit: function(){
 			// Stub function to connect to from your application.
 		},
-		
+
 		_setEditableAttr: function(/*Boolean*/editable){
 			this._set("editable", editable);
 			if(editable && !this._touchStartHandle){ // Allow users to start editing by long press on IconItems

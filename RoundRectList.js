@@ -67,7 +67,7 @@ define([
 			this.domNode = this.containerNode = this.srcNodeRef || win.doc.createElement("ul");
 			this.domNode.className = "mblRoundRectList";
 		},
-	
+
 		postCreate: function(){
 			if(this.editable){
 				require([this.editableMixinClass], lang.hitch(this, function(module){
@@ -85,7 +85,7 @@ define([
 				this.subscribe("/dojox/mobile/startView", f);
 			}
 		},
-	
+
 		resize: function(){
 			// summary:
 			//		Calls resize() of each child widget.

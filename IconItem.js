@@ -53,14 +53,14 @@ define([
 		// timeout: String
 		//		Duration of highlight in seconds.
 		timeout: 10,
-		
+
 		// content: String
 		//		An html fragment to embed.
 		content: "",
 
 		badge: "", /* 1.8 */
 		badgeClass: "mblDomButtonRedBadge", /* 1.8 */
-		
+
 		deletable: true, /* 1.8 */
 		deleteIcon: "", /* 1.8 */
 
@@ -304,10 +304,10 @@ define([
 				this.iconDivNode.removeChild(this.badgeObj.domNode);
 			}
 		},
-		
+
 		_setDeleteIconAttr: function(icon){
 			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
-			
+
 			this._set("deleteIcon", icon);			
 			icon = this.deletable ? icon : "";
 			this.deleteIconNode = iconUtils.setIcon(icon, this.deleteIconPos, this.deleteIconNode, 
@@ -316,7 +316,7 @@ define([
 				domClass.add(this.deleteIconNode, "mblIconItemDeleteIcon");
 			}
 		},
-		
+
 		_setContentAttr: function(/*String|DomNode*/data){
 			var root;
 			if(!this.paneWidget){

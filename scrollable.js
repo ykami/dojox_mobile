@@ -258,7 +258,7 @@ var scrollable = function(/*Object?*/dojo, /*Object?*/dojox){
 		if(has('iphone')){
 			domStyle.set(this.containerNode, "webkitTransform", "translate3d(0,0,0)");
 		}
-		
+
 		this._speed = {x:0, y:0};
 		this._appFooterHeight = 0;
 		if(this.isTopLevel() && !this.noResize){
@@ -441,7 +441,7 @@ var scrollable = function(/*Object?*/dojo, /*Object?*/dojox){
 		this._posX = [this.touchStartX];
 		this._posY = [this.touchStartY];
 		this._locked = false;
-		
+
 		if(!this.isFormElement(e.target)){
 			this.propagatable ? e.preventDefault() : event.stop(e);
 		}
@@ -542,7 +542,7 @@ var scrollable = function(/*Object?*/dojo, /*Object?*/dojox){
 				connect.disconnect(this._conn[i]);
 			}
 			this._conn = null;
-	
+
 			var n = this._time.length; // # of samples
 			var clicked = false;
 			if(!this._aborted){

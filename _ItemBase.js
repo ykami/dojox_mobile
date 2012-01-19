@@ -203,7 +203,7 @@ define([
 			// summary:
 			//		User defined click action
 		},
-	
+
 		defaultClickAction: function(e){
 			// summary:
 			//		The default action of this item
@@ -264,11 +264,11 @@ define([
 		_onNewWindowOpened: function(e){
 			// subclass may want to implement
 		},
-	
+
 		_prepareForTransition: function(e, /*Object*/ transOpts){
 			// subclass may want to implement
 		},
-	
+
 		_onTouchStart: function(e){
 			if(!this._onTouchEndHandle && this._selStartMethod === "touch"){
 				// Connect to the entire window. Otherwise, fail to receive
@@ -299,13 +299,13 @@ define([
 				this.set("selected", false);
 			}
 		},
-	
+
 		_disconnect: function(){
 			this.disconnect(this._onTouchMoveHandle);
 			this.disconnect(this._onTouchEndHandle);
 			this._onTouchMoveHandle = this._onTouchEndHandle = null;
 		},
-	
+
 		_onTouchEnd: function(e){
 			this._disconnect();
 			if(this._selTimer){
@@ -316,7 +316,7 @@ define([
 			}
 			this._onClick(e);
 		},
-	
+
 		setTransitionPos: function(e){
 			// summary:
 			//		Stores the clicked position for later use.

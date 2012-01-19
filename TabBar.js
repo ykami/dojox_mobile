@@ -115,7 +115,7 @@ define([
 			var bw = this._fixedButtonWidth;
 			var bm = this._fixedButtonMargin;
 			var arr = dojo.map(this.getChildren(), function(w){ return w.domNode; });
-	
+
 			var margin;
 			if(this.barType == "segmentedControl"){
 				margin = w;

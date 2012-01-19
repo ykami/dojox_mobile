@@ -96,9 +96,11 @@ define([
 		//		A css class name to add to the progress indicator.
 		progStyle: "mblProgWhite",
 
+		baseClass: "mblHeading",
+
 		buildRendering: function(){
 			this.domNode = this.containerNode = this.srcNodeRef || win.doc.createElement(this.tag);
-			this.domNode.className = "mblHeading";
+			this.inherited(arguments);
 			if(!this.label){
 				array.forEach(this.domNode.childNodes, function(n){
 					if(n.nodeType == 3){
@@ -133,7 +135,7 @@ define([
 			}
 			this.inherited(arguments);
 		},
-	
+
 		resize: function(){
 			if(this.labelNode){
 				// find the rightmost left button (B), and leftmost right button (C)

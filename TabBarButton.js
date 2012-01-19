@@ -78,7 +78,7 @@ define([
 
 		_selStartMethod: "none",
 		_selEndMethod: "none",
-	
+
 		destroy: function(){
 			if(this.badgeObj){
 				delete this.badgeObj;
@@ -132,7 +132,7 @@ define([
 
 			this.inherited(arguments);
 		},
-	
+
 		startup: function(){
 			if(this._started){ return; }
 
@@ -160,7 +160,7 @@ define([
 			connect.publish("/dojox/mobile/tabClose", [this]);
 			return this.getParent().onCloseButtonClick(this);
 		},
-	
+
 		_onCloseButtonClick: function(e){
 			if(this.onCloseButtonClick(e) === false){ return; } // user's click action
 			if(this.onClose()){
@@ -210,15 +210,15 @@ define([
 			this["icon" + n] = icon;
 			domClass.toggle(this.domNode, "mblTabBarButtonHasIcon", icon && icon !== "none");
 		},
-	
+
 		_setIcon1Attr: function(icon){
 			this._setIcon(icon, 1);
 		},
-	
+
 		_setIcon2Attr: function(icon){
 			this._setIcon(icon, 2);
 		},
-	
+
 		_getBadgeAttr: function(){
 			return this.badgeObj ? this.badgeObj.getValue() : null;
 		},
