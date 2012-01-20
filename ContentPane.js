@@ -1,6 +1,4 @@
 define([
-	"dojo/_base/kernel",
-	"dojo/_base/array",
 	"dojo/_base/declare",
 	"dojo/_base/Deferred",
 	"dojo/_base/lang",
@@ -10,12 +8,7 @@ define([
 	"./Pane",
 	"./ProgressIndicator",
 	"./lazyLoadUtils"
-], function(dojo, array, declare, Deferred, lang, win, xhr, ExecScriptMixin, Pane, ProgressIndicator, lazyLoadUtils){
-
-/*=====
-	var Contained = dijit._Contained;
-	var WidgetBase = dijit._WidgetBase;
-=====*/
+], function(declare, Deferred, lang, win, xhr, ExecScriptMixin, Pane, ProgressIndicator, lazyLoadUtils){
 
 	// module:
 	//		dojox/mobile/ContentPane
@@ -26,12 +19,12 @@ define([
 		// summary:
 		//		A very simple content pane to embed an HTML fragment.
 		// description:
-		//		This widget embeds an HTML fragment and run the parser. onLoad()
-		//		is called when parsing is done and the content is ready.
-		//		"dojo/_base/xhr" is in the dependency list. Usually this is not
-		//		necessary, but there is a case where dojox.mobile custom build
-		//		does not contain xhr. Note that this widget does not inherit
-		//		from dijit._Container.
+		//		This widget embeds an HTML fragment and run the parser. It has
+		//		ability to load external content using dojo/_base/xhr. onLoad()
+		//		is called when parsing is done and the content is
+		//		ready. Compared with dijit.layout.ContentPane, this widget
+		//		provides only basic fuctionality, but it is much smaller than
+		//		dijit.layout.ContentPane.
 
 		// href: String
 		//		URL of the content to embed.

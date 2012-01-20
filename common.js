@@ -2,18 +2,14 @@ define([
 	"dojo/_base/array",
 	"dojo/_base/config",
 	"dojo/_base/connect",
-	"dojo/_base/event",
 	"dojo/_base/lang",
 	"dojo/_base/window",
 	"dojo/dom-class",
-	"dojo/dom-construct",
-	"dojo/dom-style",
 	"dojo/ready",
 	"dijit/registry",
 	"./sniff",
-	"./uacss",
-	"./TransitionEvent"
-], function(array, config, connect, event, lang, win, domClass, domConstruct, domStyle, ready, registry, has, uacss, TransitionEvent){
+	"./uacss" // (no direct references)
+], function(array, config, connect, lang, win, domClass, ready, registry, has){
 
 	var dm = lang.getObject("dojox.mobile", true);
 /*=====
