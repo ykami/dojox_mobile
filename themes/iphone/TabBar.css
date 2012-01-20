@@ -147,6 +147,9 @@
 .mblTabBarTabPanel .mblTabBarButtonClosable .mblTabBarButtonLabel {
   margin-left: 20px;
 }
+.mblTabBarTabPanel .mblTabBarButtonHasIcon .mblTabBarButtonLabel {
+  margin-left: 20px;
+}
 .mblTabBarTabPanel .mblTabBarButtonSelected {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#f3f4f6), to(#f2f3f7));
 }
