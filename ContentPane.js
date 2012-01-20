@@ -31,8 +31,8 @@ define([
 		href: "",
 
 		// lazy: String
-		//		If true, external content specified with the href property is no
-		//		loaded at startup time. It can be loaded by calling load().
+		//		If true, external content specified with the href property is
+		//		not loaded at startup time. It can be loaded by calling load().
 		lazy: false,
 
 		// content: String
