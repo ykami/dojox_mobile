@@ -2,16 +2,13 @@ define([
 	"dojo/_base/array",
 	"dojo/_base/declare",
 	"dojo/_base/lang",
-	"dojo/_base/window",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/dom-style",
-	"dojo/has",
 	"./iconUtils",
 	"./_ItemBase",
 	"./ProgressIndicator",
-	"./TransitionEvent"
-], function(array, declare, lang, win, domClass, domConstruct, domStyle, has, iconUtils, ItemBase, ProgressIndicator, TransitionEvent){
+], function(array, declare, lang, domClass, domConstruct, domStyle, iconUtils, ItemBase, ProgressIndicator){
 
 /*=====
 	var ItemBase = dojox.mobile._ItemBase;
@@ -99,7 +96,7 @@ define([
 		rightIcon2Title: "",
 
 		// header: Boolean
-		//		If true, this item is rendered as a header.
+		//		If true, this item is rendered as a category header.
 		header: false,
 
 		// tag: String
@@ -114,8 +111,8 @@ define([
 		//		A css class name to add to the progress indicator.
 		progStyle: "",
 
+		/* internal properties */	
 		paramsToInherit: "variableHeight,transition,deleteIcon,icon,rightIcon,rightIcon2,uncheckIcon,arrowClass,checkClass,uncheckClass",
-
 		baseClass: "mblListItem",
 
 		_selStartMethod: "touch",
@@ -253,12 +250,12 @@ define([
 				if(n){
 					var domNode = this.domNode;
 					var f = function(){
-						var t = Math.round((h - n.offsetHeight) / 2) -
+						var t = Math.round((domNode.offsetHeight - n.offsetHeight) / 2) -
 							domStyle.get(domNode, "paddingTop");
 						n.style.marginTop = t + "px";
 					}
 					if(n.offsetHeight === 0 && n.tagName === "IMG"){
-						n.onload = function(){ f(); };
+						n.onload = f;
 					}else{
 						f();
 					}
