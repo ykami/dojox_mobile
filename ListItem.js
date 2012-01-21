@@ -325,8 +325,8 @@ define([
 			var parent = this.getParent();
 			if(parent && parent.select === "single" && checked){
 				array.forEach(parent.getChildren(), function(child){
-					child.set("checked", false);
-				});
+					child !== this && child.checked && child.set("checked", false);
+				}, this);
 			}
 			this._setRightIconAttr(this.checkClass || "mblDomButtonCheck");
 			this._setUncheckIconAttr(this.uncheckClass);
