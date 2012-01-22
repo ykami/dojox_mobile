@@ -1,14 +1,14 @@
 define([
 	"dojo/_base/array",
-	"dojo/_base/connect",
 	"dojo/_base/declare",
 	"dojo/_base/event",
 	"dojo/_base/lang",
 	"dojo/_base/window",
+	"dojo/dom-construct",
 	"dijit/_Contained",
 	"dijit/_Container",
 	"dijit/_WidgetBase"
-], function(array, connect, declare, event, lang, win, Contained, Container, WidgetBase){
+], function(array, declare, event, lang, win, domConstruct, Contained, Container, WidgetBase){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -53,7 +53,7 @@ define([
 		stateful: false,
 
 		// syncWithViews: Boolean
-		//		True if the TabBar listens to view transition events to be
+		//		True if this widget listens to view transition events to be
 		//		synchronized with view's visibility.
 		syncWithViews: false,
 
@@ -61,11 +61,16 @@ define([
 		//		If true, the list can be re-ordered.
 		editable: false,
 
+		// tag: String
+		//		A name of html tag to create as domNode.
+		tag: "ul",
+
 		editableMixinClass: "dojox/mobile/_EditableListMixin",
+		baseClass: "mblRoundRectList",
 
 		buildRendering: function(){
-			this.domNode = this.containerNode = this.srcNodeRef || win.doc.createElement("ul");
-			this.domNode.className = "mblRoundRectList";
+			this.domNode = this.srcNodeRef || domConstruct.create(this.tag);
+			this.inherited(arguments);
 		},
 
 		postCreate: function(){
@@ -74,11 +79,12 @@ define([
 					lang.mixin(this, new module());
 				}));
 			}
-			connect.connect(this.domNode, "onselectstart", event, "stop");
+			this.connect(this.domNode, "onselectstart", event.stop);
 
-			if(this.syncWithViews){
+			if(this.syncWithViews){ // see also TabBar#postCreate
 				var f = function(view, moveTo, dir, transition, context, method){
-					var child = array.filter(this.getChildren(), function(w){ return w.moveTo === "#" + view.id; })[0];
+					var child = array.filter(this.getChildren(), function(w){
+						return w.moveTo === "#" + view.id || w.moveTo === view.id; })[0];
 					if(child){ child.set("selected", true); }
 				};
 				this.subscribe("/dojox/mobile/afterTransitionIn", f);

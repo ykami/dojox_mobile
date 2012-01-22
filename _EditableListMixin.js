@@ -7,23 +7,13 @@ define([
 	"dojo/_base/connect",
 	"dojo/_base/declare",
 	"dojo/_base/event",
-	"dojo/_base/window",
 	"dojo/dom-class",
 	"dojo/dom-geometry",
 	"dojo/dom-style",
 	"dijit/registry",
-	"dijit/_Contained",
-	"dijit/_Container",
-	"dijit/_WidgetBase",
 	"./ListItem",
 	"./sniff"
-], function(array, connect, declare, event, win, domClass, domGeometry, domStyle, registry, Contained, Container, WidgetBase, ListItem, has){
-
-/*=====
-	var Contained = dijit._Contained;
-	var Container = dijit._Container;
-	var WidgetBase = dijit._WidgetBase;
-=====*/
+], function(array, connect, declare, event, domClass, domGeometry, domStyle, registry, ListItem, has){
 
 	// module:
 	//		dojox/mobile/EditableRoundRectList

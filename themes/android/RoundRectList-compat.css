@@ -1,12 +1,12 @@
 /* dojox.mobile.RoundRectList */
-.mblRoundRectList { /* 1.8 */
+.mblRoundRectList {
 	-moz-border-radius: 8px;
 }
-.mblRoundRectList .mblListItem:first-child { /* 1.8 */
+.mblRoundRectList .mblListItem:first-child {
 	-moz-border-radius-topleft: 8px;
 	-moz-border-radius-topright: 8px;
 }
-.mblRoundRectList .mblListItem:last-child { /* 1.8 */
+.mblRoundRectList .mblListItem:last-child {
 	-moz-border-radius-bottomleft: 8px;
 	-moz-border-radius-bottomright: 8px;
 }

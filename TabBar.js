@@ -54,7 +54,7 @@ define([
 		inHeading: false,
 
 		// syncWithViews: Boolean
-		//		True if the TabBar listens to view transition events to be
+		//		True if this widget listens to view transition events to be
 		//		synchronized with view's visibility.
 		syncWithViews: false,
 
@@ -71,7 +71,7 @@ define([
 		_largeScreenWidth: 500,
 
 		buildRendering: function(){
-			this.domNode = this.containerNode = this.srcNodeRef || domConstruct.create(this.tag);
+			this.domNode = this.srcNodeRef || domConstruct.create(this.tag);
 			this.inherited(arguments);
 			var t = this.barType,
 				c = this.baseClass + t.charAt(0).toUpperCase() + t.substring(1);
@@ -85,9 +85,10 @@ define([
 		},
 
 		postCreate: function(){
-			if(this.syncWithViews){
+			if(this.syncWithViews){ // see also RoundRect#postCreate
 				var f = function(view, moveTo, dir, transition, context, method){
-					var child = array.filter(this.getChildren(), function(w){ return w.moveTo === "#" + view.id; })[0];
+					var child = array.filter(this.getChildren(), function(w){
+						return w.moveTo === "#" + view.id || w.moveTo === view.id; })[0];
 					if(child){ child.set("selected", true); }
 				};
 				this.subscribe("/dojox/mobile/afterTransitionIn", f);
