@@ -73,10 +73,13 @@ define([
 		//		If true, the icons can be removed or re-ordered.
 		editable: false,
 
-		editableMixinClass: "dojox/mobile/_EditableIconMixin",
-
-		baseClass: "mblIconContainer",
+		// tag: String
+		//		A name of html tag to create as domNode.
 		tag: "ul",
+
+		/* internal properties */	
+		baseClass: "mblIconContainer",
+		editableMixinClass: "dojox/mobile/_EditableIconMixin",
 		iconItemPaneContainerClass: "dojox/mobile/Container",
 		iconItemPaneContainerProps: null,
 		iconItemPaneClass: "dojox/mobile/_IconItemPane",

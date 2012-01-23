@@ -49,13 +49,13 @@ define([
 
 		// shape: String
 		//		The shape of the switch.
-		//		"mblSwDefaultShape", "mblSwSquareShape", "mblSwRoundShape1", "mblSwRoundShape2",
-		//		"mblSwArcShape1" or "mblSwArcShape2".
+		//		"mblSwDefaultShape", "mblSwSquareShape", "mblSwRoundShape1",
+		//		"mblSwRoundShape2", "mblSwArcShape1" or "mblSwArcShape2".
 		//		The default value is "mblSwDefaultShape".
 		shape: "mblSwDefaultShape",
 
 		/* internal properties */
-		_width: 53,
+		baseClass: "mblSwitch",
 		_createdMasks: [],
 
 		buildRendering: function(){
@@ -63,7 +63,7 @@ define([
 			var cell = this.domNode.insertRow(-1).insertCell(-1);
 			var c = (this.srcNodeRef && this.srcNodeRef.className) || this.className || this["class"];
 			if(c = c.match(/mblSw.*Shape\d*/)){ this.shape = c; }
-			this.domNode.className = "mblSwitch" + " " + this.shape;
+			this.domNode.className = this.baseClass + " " + this.shape;
 			var nameAttr = this.name ? " name=\"" + this.name + "\"" : "";
 			cell.innerHTML =
 				  '<div class="mblSwitchInner">'

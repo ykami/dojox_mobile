@@ -3,7 +3,6 @@ define([
 	"dojo/_base/event",
 	"dojo/_base/lang",
 	"dojo/_base/sniff",
-	"dojo/_base/window",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/dom-geometry",
@@ -13,7 +12,7 @@ define([
 	"./TransitionEvent",
 	"./iconUtils",
 	"./lazyLoadUtils"
-], function(declare, event, lang, has, win, domClass, domConstruct, domGeometry, domStyle, ItemBase, Badge, TransitionEvent, iconUtils, lazyLoadUtils){
+], function(declare, event, lang, has, domClass, domConstruct, domGeometry, domStyle, ItemBase, Badge, TransitionEvent, iconUtils, lazyLoadUtils){
 
 /*=====
 	var ItemBase = dojox.mobile._ItemBase;
@@ -58,19 +57,22 @@ define([
 		//		An html fragment to embed.
 		content: "",
 
-		badge: "", /* 1.8 */
-		badgeClass: "mblDomButtonRedBadge", /* 1.8 */
+		badge: "",
+		badgeClass: "mblDomButtonRedBadge",
 
-		deletable: true, /* 1.8 */
-		deleteIcon: "", /* 1.8 */
+		deletable: true,
+		deleteIcon: "",
 
-		baseClass: "mblIconItem",
+		// tag: String
+		//		A name of html tag to create as domNode.
 		tag: "li",
 
+		/* internal properties */	
+		baseClass: "mblIconItem",
 		_selStartMethod: "touch",
 		_selEndMethod: "none",
 
-		destroy: function(){ /* 1.8 */
+		destroy: function(){
 			if(this.badgeObj){
 				delete this.badgeObj;
 			}
@@ -127,16 +129,16 @@ define([
 			this._keydownHandle = this.connect(this.domNode, "onkeydown", "_onClick"); // for desktop browsers
 		},
 
-		highlight: function(/*Number?*/timeout){ /* 1.8 */
+		highlight: function(/*Number?*/timeout){
 			// summary:
 			//		Shakes the icon 10 seconds.
 			domClass.add(this.iconDivNode, "mblVibrate");
-			timeout = (timeout !== undefined) ? timeout : this.timeout; /* 1.8 */
-			if(timeout > 0){ /* 1.8 */
+			timeout = (timeout !== undefined) ? timeout : this.timeout;
+			if(timeout > 0){
 				var _this = this;
 				setTimeout(function(){
 					_this.unhighlight();
-				}, timeout*1000); /* 1.8 */
+				}, timeout*1000);
 			}
 		},
 
@@ -235,7 +237,7 @@ define([
 		_open_1: function(){
 			this.paneWidget.show();
 			this.unhighlight();
-			if(this.lazy){ /* 1.8 */
+			if(this.lazy){
 				lazyLoadUtils.instantiateLazyWidgets(this.containerNode, this.requires);
 				this.lazy = false;
 			}
@@ -248,7 +250,7 @@ define([
 			//		Closes the icon content.
 			if(!this.isOpen()){ return; }
 			this.set("selected", false);
-			if(has("webkit") && !noAnimation){ /* 1.8 */
+			if(has("webkit") && !noAnimation){
 				var contentNode = this.paneWidget.domNode;
 				if(this.getParent().transition == "below"){
 					domClass.add(contentNode, "mblCloseContent mblShrink");
@@ -284,11 +286,11 @@ define([
 			}
 		},
 
-		_getBadgeAttr: function(){ /* 1.8 */
+		_getBadgeAttr: function(){
 			return this.badgeObj ? this.badgeObj.getValue() : null;
 		},
 
-		_setBadgeAttr: function(/*String*/value){ /* 1.8 */
+		_setBadgeAttr: function(/*String*/value){
 			if(!this.badgeObj){
 				this.badgeObj = new Badge({fontSize:14, className:this.badgeClass});
 				domStyle.set(this.badgeObj.domNode, {
