@@ -442,10 +442,10 @@
 
 // TabBar.less
 .mblTabBarTabBar-styles () {
+	height: 48px;
 	border-top: 1px solid #000000;
 	background-color: #000000;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#2D2D2D), to(#000000));
-	color: white;
 }
 .mblTabBarSegmentedControl-styles () {
 	height: 64px;
@@ -456,25 +456,30 @@
 	font-size: 20px;
 	text-shadow: none;
 	color: white;
-	text-align: center;
 }
 .mblTabBarSegmentedControl-InHeading-styles () {
 	height: 39px;
 }
-.mblTabBarButtonIconArea-styles () {
-	width: 29px;
+.mblTabBarTabPanel-styles () {
+	height: 44px;
+	border-bottom: 1px solid #33b5e5;
 }
-.mblTabBarTabBarIconArea-styles () {
-	padding-top: 4px;
+.mblTabBarSlimTabBar-styles () {
+	height: 30px;
+	background-color: #000000;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#2D2D2D), to(#000000));
 }
-.mblTabBarTabBarLabel-styles () {
+.mblTabBarTabBarButton-styles () {
 	font-family: "Helvetica Neue", Helvetica;
 	font-size: 11px;
-}
-.mblTabBarTabBarLabelSelected-styles () {
 	color: white;
 }
-.mblTabBarTabBarSelected-styles () {
+.mblTabBarTabBarButtonIconArea-styles () {
+	padding-top: 4px;
+}
+.mblTabBarTabBarButtonLabel-styles () {
+}
+.mblTabBarTabBarButtonSelected-styles () {
 	border-radius: 3px;
 	background-color: #404040;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#484848), to(#242424));
@@ -492,20 +497,17 @@
 	font-family: Helvetica;
 	font-size: 13px;
 	color: white;
-	text-align: center;
 }
-.mblTabBarSegmentedControl-FirstTabButtom-styles () {
+.mblTabBarSegmentedControlButton-FirstChild-styles () {
 }
-.mblTabBarSegmentedControl-LastTabButton-styles () {
+.mblTabBarSegmentedControlButton-LastChild-styles () {
 }
-.mblTabBarSegmentedControl-img-styles () {
+.mblTabBarSegmentedControlButton-img-styles () {
 	margin-top: 8px;
 }
-.mblTabBarSegmentedControlIconArea-styles () {
+.mblTabBarSegmentedControlButtonIconArea-styles () {
 }
-.mblTabBarSegmentedControlLabel-styles () {
-}
-.mblTabBarSegmentedControlSelected-styles () {
+.mblTabBarSegmentedControlButtonSelected-styles () {
 	background-color: #8C8E8C;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#a59ea5), to(#848284));
 }
@@ -521,17 +523,56 @@
 	background-color: @default-button-background-color;
 	background-image: @default-button-background-image;
 }
-.mblTabBarSegmentedControlButton-InHeading-FirstTabButtom-styles () {
+.mblTabBarSegmentedControlButton-InHeading-FirstChild-styles () {
 	border-left-width: 1px;
 }
-.mblTabBarSegmentedControlButton-InHeading-LastTabButtom-styles () {
+.mblTabBarSegmentedControlButton-InHeading-LastChild-styles () {
 }
-.mblTabBarSegmentedControlIconArea-InHeading-styles () {
+.mblTabBarSegmentedControlButtonIconArea-InHeading-styles () {
 }
 .mblTabBarSegmentedControlButtonSelected-InHeading-styles () {
 	color: @default-button-selected-color;
 	background-color: @default-button-selected-background-color;
 	background-image: @default-button-selected-background-image;
+}
+.mblTabBarTabPanelButton-styles () {
+	margin-top: 9px;
+	padding: 9px;
+	border-top: 1px solid #000000;
+	border-right: 1px solid #62676D;
+	background-color: #2D2D2D;
+	font-family: Helvetica;
+	font-size: 14px;
+	font-weight: normal;
+	color: white;
+	text-shadow: rgba(255,255,255,0.6) 0px 1px 0px;
+}
+.mblTabBarTabPanelButton-FirstChild-styles () {
+	border-left: 1px solid #62676D;
+}
+.mblTabBarTabPanelButtonIconArea-styles () {
+	top: 3px;
+	left: 0px;
+}
+.mblTabBarTabPanelButtonSelected-styles () {
+	background-color: #000000;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#2D2D2D), to(#33b5e5), color-stop(0.9, #2D2D2D), color-stop(0.9, #33b5e5));
+}
+.mblTabBarSlimTabBarButton-styles () {
+	padding: 7px;
+	border-right: 1px solid #4E4E4E;
+	font-family: Helvetica;
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	text-shadow: rgba(100, 100, 100, 0.6) 0px -1px 0px;
+}
+.mblTabBarSlimTabBarButton-FirstChild-styles () {
+	border-left: 1px solid #4E4E4E;
+}
+.mblTabBarSlimTabBarButtonSelected-styles () {
+	background-color: #404040;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#484848), to(#242424));
 }
 
 // TextArea.less

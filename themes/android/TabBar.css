@@ -10,11 +10,9 @@
 .mblTabBarTabBar {
   padding: 0px;
   height: 48px;
-  text-align: center;
   border-top: 1px solid #000000;
   background-color: #000000;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#000000));
-  color: white;
 }
 .mblTabBarNoIcons, .mblTabBarNoText {
   height: 34px;
@@ -30,7 +28,6 @@
   font-size: 20px;
   text-shadow: none;
   color: white;
-  text-align: center;
 }
 /* dojox.mobile.TabBar in Heading (segmentedControl) */
 .mblHeading .mblTabBarSegmentedControl {
@@ -38,6 +35,17 @@
   height: 39px;
 }
 /* dojox.mobile.TabBar (type=tabPanel) */
+.mblTabBarTabPanel {
+  height: 44px;
+  border-bottom: 1px solid #33b5e5;
+}
+/* dojox.mobile.TabBar (slimTabBar) */
+.mblTabBarSlimTabBar {
+  padding: 0px;
+  height: 30px;
+  background-color: #000000;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#000000));
+}
 /* dojox.mobile.TabBarButton */
 .mblTabBarButton {
   cursor: pointer;
@@ -63,23 +71,23 @@
   display: block;
 }
 /* dojox.mobile.TabBarButton (tabBar) */
-.mblTabBarTabBar .mblTabBarButtonIconArea {
-  padding-top: 4px;
-}
-.mblTabBarTabBar .mblTabBarButtonLabel {
+.mblTabBarTabBar .mblTabBarButton {
+  text-align: center;
   font-family: "Helvetica Neue", Helvetica;
   font-size: 11px;
+  color: white;
+}
+.mblTabBarTabBar .mblTabBarButtonIconArea {
+  padding-top: 4px;
 }
 .mblTabBarTabBar .mblTabBarButtonSelected {
   border-radius: 3px;
   background-color: #404040;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#484848), to(#242424));
 }
-.mblTabBarTabBar .mblTabBarButtonSelected .mblTabBarButtonLabel {
-  color: white;
-}
 /* dojox.mobile.TabBarButton (segmentedControl) */
 .mblTabBarSegmentedControl .mblTabBarButton {
+  text-align: center;
   margin-top: 3px;
   margin-right: 2px;
   width: 78px;
@@ -92,7 +100,6 @@
   font-family: Helvetica;
   font-size: 13px;
   color: white;
-  text-align: center;
 }
 .mblTabBarSegmentedControl .mblTabBarButton img {
   margin-top: 8px;
@@ -125,55 +132,43 @@
   background-image: -webkit-gradient(linear, left top, left bottom, from(#306ea1), to(#266093), color-stop(0.06, #4090d3), color-stop(0.5, #306ea1));
 }
 /* dojox.mobile.TabBarButton (tabPanel) */
-.mblTabBarTabPanel {
-  height: 44px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f2f3f5), to(#969aa3));
-  border-bottom: 1px solid #62676D;
-}
 .mblTabBarTabPanel .mblTabBarButton {
   margin-top: 9px;
   padding: 9px;
-  border: 1px solid #62676D;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f0f2), to(#959da0));
+  border-top: 1px solid #000000;
+  border-right: 1px solid #62676D;
+  background-color: #2D2D2D;
   font-family: Helvetica;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: normal;
+  color: white;
   text-shadow: rgba(255, 255, 255, 0.6) 0px 1px 0px;
+}
+.mblTabBarTabPanel .mblTabBarButton:first-child {
+  border-left: 1px solid #62676D;
 }
 .mblTabBarTabPanel .mblTabBarButtonIconArea {
   position: absolute;
   top: 3px;
   left: 0px;
 }
-.mblTabBarTabPanel .mblTabBarButtonClosable .mblTabBarButtonLabel {
-  margin-left: 20px;
-}
 .mblTabBarTabPanel .mblTabBarButtonHasIcon .mblTabBarButtonLabel {
   margin-left: 20px;
 }
 .mblTabBarTabPanel .mblTabBarButtonSelected {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f3f4f6), to(#f2f3f7));
+  background-color: #000000;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#33b5e5), color-stop(0.9, #2d2d2d), color-stop(0.9, #33b5e5));
 }
 /* dojox.mobile.TabBarButton (slimTabBar) */
-.mblTabBarSlimTabBar {
-  height: 30px;
-  padding: 0px;
-  background-color: #000000;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#000000), color-stop(0.5, #141414), color-stop(0.5, #000000));
-  color: white;
-}
 .mblTabBarSlimTabBar .mblTabBarButton {
+  text-align: center;
   padding: 7px;
   border-right: 1px solid #4E4E4E;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#000000), color-stop(0.5, #141414), color-stop(0.5, #000000));
   font-family: Helvetica;
   font-size: 14px;
   font-weight: bold;
   color: white;
   text-shadow: rgba(100, 100, 100, 0.6) 0px -1px 0px;
-  text-align: center;
 }
 .mblTabBarSlimTabBar .mblTabBarButton:first-child {
   border-left: 1px solid #4E4E4E;
@@ -183,13 +178,10 @@
   top: 0px;
   left: 0px;
 }
-.mblTabBarSlimTabBar .mblTabBarButtonClosable .mblTabBarButtonLabel {
-  margin-left: 20px;
-}
 .mblTabBarSlimTabBar .mblTabBarButtonHasIcon .mblTabBarButtonLabel {
   margin-left: 20px;
 }
 .mblTabBarSlimTabBar .mblTabBarButtonSelected {
   background-color: #404040;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#484848), to(#242424), color-stop(0.5, #353535), color-stop(0.5, #242424));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#484848), to(#242424));
 }

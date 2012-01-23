@@ -54,7 +54,8 @@
 @theme-heading-font-family: @theme-highlight-font-family;
 @theme-heading-font-weight: @theme-default-font-weight;
 @theme-heading-text-shadow: @theme-highlight-text-shadow;
-@theme-tabbar-font-size: @theme-default-font-size - 3;
+@theme-tabbar-font-size: @theme-default-font-size;
+@theme-tabbar-small-font-size: @theme-default-font-size - 3;
 @theme-tabbar-font-family: @theme-default-font-family;
 @theme-tabbar-font-weight: @theme-default-font-weight;
 @theme-category-font-size: @theme-highlight-font-size;
@@ -633,7 +634,6 @@
 	background-color: @theme-heading-background-color;
 	._background-image-gradient-mask-ui-widget;
 	border-bottom: 1px solid @theme-heading-border-color;
-	color: @theme-heading-color;
 }
 .mblTabBarSegmentedControl-styles () {
 	padding-top: 3px;
@@ -641,35 +641,35 @@
 	background-color: @theme-heading-background-color;
 	._background-image-gradient-mask-heading();
 	border-bottom: 1px solid @theme-heading-border-color;
-	color: @theme-heading-color;
-	font-size: @theme-heading-font-size;
-	font-family: @theme-heading-font-family;
-	font-weight: @theme-heading-font-weight;
-	text-shadow: @theme-heading-text-shadow;
-	text-align: center;
-	line-height: @theme-heading-height + 2;
 }
 .mblTabBarSegmentedControl-InHeading-styles () {
 }
-.mblTabBarButtonIconArea-styles () {
-	width: @mbl-dom-button-size;
+.mblTabBarTabPanel-styles () {
+	height: @theme-heading-height;
+	border-bottom: 1px solid @theme-highlight-border-color;
 }
-.mblTabBarTabBarIconArea-styles () {
-	padding-top: ((@theme-tabbar-height - @mbl-dom-button-size - @theme-tabbar-font-size) * 0.5);
+.mblTabBarSlimTabBar-styles () {
+	height: 30px;
+	background-color: @theme-heading-background-color;
+	._background-image-gradient-mask-ui-widget;
+	border-bottom: 1px solid @theme-heading-border-color;
 }
-.mblTabBarTabBarLabel-styles () {
-	padding-bottom: ((@theme-tabbar-height - @mbl-dom-button-size - @theme-tabbar-font-size) * 0.5);
-	color: @theme-tabbar-color;
+.mblTabBarTabBarButton-styles () {
 	font-family: @theme-tabbar-font-family;
-	font-size: @theme-tabbar-font-size;
+	font-size: @theme-tabbar-small-font-size;
 	font-weight: @theme-tabbar-font-weight;
+	color: @theme-tabbar-color;
 }
-.mblTabBarTabBarLabelSelected-styles () {
-	color: @theme-ui-widget-selected-color;
+.mblTabBarTabBarButtonIconArea-styles () {
+	padding-top: ((@theme-tabbar-height - @mbl-dom-button-size - @theme-tabbar-small-font-size) * 0.5);
 }
-.mblTabBarTabBarSelected-styles () {
+.mblTabBarTabBarButtonLabel-styles () {
+	padding-bottom: ((@theme-tabbar-height - @mbl-dom-button-size - @theme-tabbar-small-font-size) * 0.5);
+}
+.mblTabBarTabBarButtonSelected-styles () {
 	background-color: @theme-ui-widget-selected-background-color;
 	._background-image-gradient-mask-ui-widget;
+	color: @theme-ui-widget-selected-color;
 }
 .mblTabBarSegmentedControlButton-styles () {
 	margin-top: (@theme-heading-height - @theme-ui-widget-height - 2) * 0.5;
@@ -680,42 +680,80 @@
 	border-color: @theme-default-border-color;
 	background-color: @theme-ui-widget-background-color;
 	._background-image-gradient-mask-ui-widget;
-	font-family: @theme-default-font-family;
-	font-size: @theme-default-font-size;
-	font-weight: @theme-default-font-weight;
+	font-family: @theme-tabbar-font-family;
+	font-size: @theme-tabbar-font-size;
+	font-weight: @theme-tabbar-font-weight;
+	text-shadow: @theme-heading-text-shadow;
 	color: @theme-default-color;
-	text-align: center;
 	line-height: @theme-ui-widget-height;
 }
-.mblTabBarSegmentedControl-FirstTabButtom-styles () {
+.mblTabBarSegmentedControlButton-FirstChild-styles () {
 	-webkit-border-top-left-radius: @theme-ui-widget-border-radius;
 	-webkit-border-bottom-left-radius: @theme-ui-widget-border-radius;
 	border-left-width: 1px;
 }
-.mblTabBarSegmentedControl-LastTabButton-styles () {
+.mblTabBarSegmentedControlButton-LastChild-styles () {
 	-webkit-border-top-right-radius: @theme-ui-widget-border-radius;
 	-webkit-border-bottom-right-radius: @theme-ui-widget-border-radius;
 }
-.mblTabBarSegmentedControl-img-styles () {
+.mblTabBarSegmentedControlButton-img-styles () {
 }
-.mblTabBarSegmentedControlIconArea-styles () {
+.mblTabBarSegmentedControlButtonIconArea-styles () {
 	display: none;
 }
-.mblTabBarSegmentedControlLabel-styles () {
-}
-.mblTabBarSegmentedControlSelected-styles () {
+.mblTabBarSegmentedControlButtonSelected-styles () {
 	background-color: @theme-ui-widget-selected-background-color;
 }
 .mblTabBarSegmentedControlButton-InHeading-styles () {
 }
-.mblTabBarSegmentedControlButton-InHeading-FirstTabButtom-styles () {
+.mblTabBarSegmentedControlButton-InHeading-FirstChild-styles () {
 }
-.mblTabBarSegmentedControlButton-InHeading-LastTabButtom-styles () {
+.mblTabBarSegmentedControlButton-InHeading-LastChild-styles () {
 }
-.mblTabBarSegmentedControlIconArea-InHeading-styles () {
+.mblTabBarSegmentedControlButtonIconArea-InHeading-styles () {
 	display: block;
 }
 .mblTabBarSegmentedControlButtonSelected-InHeading-styles () {
+}
+.mblTabBarTabPanelButton-styles () {
+	margin-top: @theme-heading-height - @mbl-dom-button-size - 4;
+	padding: ((@mbl-dom-button-size - @theme-tabbar-font-size) * 0.5 + 1) (@mbl-dom-button-size - 20);
+	border: 1px solid @theme-default-border-color;
+	border-top-left-radius: @theme-default-border-radius;
+	border-top-right-radius: @theme-default-border-radius;
+	background-color: @theme-ui-widget-background-color;
+	._background-image-gradient-mask-ui-widget;
+	font-family: @theme-tabbar-font-family;
+	font-size: @theme-tabbar-font-size;
+	font-weight: @theme-tabbar-font-weight;
+	color: @theme-heading-color;
+	text-shadow: @theme-heading-text-shadow;
+}
+.mblTabBarTabPanelButton-FirstChild-styles () {
+}
+.mblTabBarTabPanelButtonIconArea-styles () {
+	top: 3px;
+	left: 0px;
+}
+.mblTabBarTabPanelButtonSelected-styles () {
+	background-color: @theme-ui-widget-selected-background-color;
+}
+.mblTabBarSlimTabBarButton-styles () {
+	padding: 7px;
+	height: 16px;
+	border-right: 1px solid @theme-default-border-color;
+	font-family: @theme-tabbar-font-family;
+	font-size: @theme-tabbar-font-size;
+	font-weight: @theme-tabbar-font-weight;
+	color: @theme-heading-color;
+	text-shadow: @theme-heading-text-shadow;
+}
+.mblTabBarSlimTabBarButton-FirstChild-styles () {
+	border-left: 1px solid @theme-default-border-color;
+}
+.mblTabBarSlimTabBarButtonSelected-styles () {
+	background-color: @theme-ui-widget-selected-background-color;
+	._background-image-gradient-mask-ui-widget;
 }
 
 //----------------------------------------------------------------

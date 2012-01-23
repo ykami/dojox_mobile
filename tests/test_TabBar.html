@@ -10,12 +10,32 @@
 	<script type="text/javascript" src="../../../dojo/dojo.js" data-dojo-config="async: true, parseOnLoad: true"></script>
 
 	<script type="text/javascript">
-		require([
-			"dojox/mobile/parser",
-			"dojox/mobile",
-			"dojox/mobile/compat",
-			"dojox/mobile/TabBar"
-		]);
+	require([
+				"dojo/_base/array",
+				"dojo/_base/connect",
+				"dojo/ready",
+				"dijit/registry",
+				"dojox/mobile/parser",
+				"dojox/mobile",
+				"dojox/mobile/compat",
+				"dojox/mobile/TabBar"
+			], function(array, connect, ready, registry){
+				function closeTab(tab){
+					var sel = this.getSelectedTab();
+					if(!sel || sel === tab){
+						var next = tab.getNextSibling() || tab.getPreviousSibling();
+						if(next){
+							next.defaultClickAction();
+						}
+					}
+				};
+				ready(function(){
+					array.forEach(["bar1", "bar2"], function(barId){
+						var w = registry.byId(barId);
+						connect.connect(w, "onCloseButtonClick", null, closeTab);
+					});
+				});
+			});
 	</script>
 
 	<style>
@@ -32,27 +52,75 @@
 	</style>
 </head>
 <body style="visibility:hidden;">
-	<div class="label">Segmented Control</div>
+	<div class="label">barType: segmentedControl</div>
 	<ul data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"segmentedControl"'>
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='icon1:"images/tab-icon-16.png", icon2:"images/tab-icon-16h.png", moveTo:"view1", selected:true'>New</li>
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='icon1:"images/tab-icon-15.png", icon2:"images/tab-icon-15h.png", moveTo:"view2"'>What's Hot</li>
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='icon1:"images/tab-icon-10.png", icon2:"images/tab-icon-10h.png", moveTo:"view3"'>Genius</li>
 	</ul>
 
-	<div class="label">Tab Bar</div>
+	<div class="label">barType: tabBar</div>
 	<ul data-dojo-type="dojox.mobile.TabBar">
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='icon1:"images/tab-icon-16.png", icon2:"images/tab-icon-16h.png", moveTo:"view1", selected:true'>New</li>
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='icon1:"images/tab-icon-15.png", icon2:"images/tab-icon-15h.png", moveTo:"view2"'>What's Hot</li>
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='icon1:"images/tab-icon-10.png", icon2:"images/tab-icon-10h.png", moveTo:"view3"'>Genius</li>
 	</ul>
 
-	<div class="label">Tab Bar (CSS Sprite)</div>
+	<div class="label">barType: tabBar (CSS Sprite)</div>
 	<ul data-dojo-type="dojox.mobile.TabBar" data-dojo-props='iconBase:"images/tab-icons.png"'>
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='iconPos1:"0,0,29,29", iconPos2:"29,0,29,29", selected:true'>Featured</li>
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='iconPos1:"0,29,29,29", iconPos2:"29,29,29,29"'>Categories</li>
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='iconPos1:"0,58,29,29", iconPos2:"29,58,29,29"'>Top 25</li>
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='iconPos1:"0,87,29,29", iconPos2:"29,87,29,29"'>Search</li>
 		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='iconPos1:"0,116,29,29", iconPos2:"29,116,29,29"'>Updates</li>
+	</ul>
+
+	<div class="label">barType: tabPanel</div>
+	<ul data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"tabPanel"'>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view1", selected:true'>Dashboard</li>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view2"'>Plan</li>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view3"'>Today's Main Event</li>
+	</ul>
+
+	<div class="label">barType: tabPanel (closable)</div>
+	<ul id="bar1" data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"tabPanel",closable:true'>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view1", selected:true'>Dashboard</li>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view2"'>Plan</li>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view3"'>Today's Main Event</li>
+	</ul>
+
+	<div class="label">barType: tabPanel (CSS Sprite)</div>
+	<ul data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"tabPanel", iconBase:"images/tab-icons.png"'>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view1", selected:true,
+			iconPos1:"0,0,29,29", iconPos2:"29,0,29,29"'>Dashboard</li>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view2",
+			iconPos1:"0,29,29,29", iconPos2:"29,29,29,29"'>Plan</li>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view3",
+			iconPos1:"0,58,29,29", iconPos2:"29,58,29,29"'>Today's Main Event</li>
+	</ul>
+
+	<div class="label">barType: slimTabBar</div>
+	<ul data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"slimTabBar"'>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view1", selected:true'>Dashboard</li>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view2"'>Plan</li>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view3"'>Today's Main Event</li>
+	</ul>
+
+	<div class="label">barType: slimTabBar (closable)</div>
+	<ul id="bar2" data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"slimTabBar",closable:true'>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view1", selected:true'>Dashboard</li>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view2"'>Plan</li>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view3"'>Today's Main Event</li>
+	</ul>
+
+	<div class="label">barType: slimTabBar (CSS Sprite)</div>
+	<ul data-dojo-type="dojox.mobile.TabBar" data-dojo-props='barType:"slimTabBar", iconBase:"images/tab-icons.png"'>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view1", selected:true,
+			iconPos1:"0,0,29,29", iconPos2:"29,0,29,29"'>Dashboard</li>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view2",
+			iconPos1:"0,29,29,29", iconPos2:"29,29,29,29"'>Plan</li>
+		<li data-dojo-type="dojox.mobile.TabBarButton" data-dojo-props='moveTo:"view3",
+			iconPos1:"0,58,29,29", iconPos2:"29,58,29,29"'>Event</li>
 	</ul>
 
 	<div id="view1" data-dojo-type="dojox.mobile.View">

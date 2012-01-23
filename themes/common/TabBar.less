@@ -9,14 +9,11 @@
 /* dojox.mobile.TabBar (type=tabBar) */
 .mblTabBarTabBar {
 	padding: 0px;
-	height: 48px;
-	text-align: center;
 	.mblTabBarTabBar-styles;
 }
 .mblTabBarNoIcons, .mblTabBarNoText {
-  height: 34px;
+	height: 34px;
 }
-
 
 /* dojox.mobile.TabBar (type=segmentedControl) */
 .mblTabBarSegmentedControl {
@@ -30,9 +27,16 @@
 	.mblTabBarSegmentedControl-InHeading-styles;
 }
 
-
 /* dojox.mobile.TabBar (type=tabPanel) */
+.mblTabBarTabPanel {
+	.mblTabBarTabPanel-styles;
+}
 
+/* dojox.mobile.TabBar (slimTabBar) */
+.mblTabBarSlimTabBar {
+	padding: 0px;
+	.mblTabBarSlimTabBar-styles;
+}
 
 /* dojox.mobile.TabBarButton */
 .mblTabBarButton {
@@ -42,10 +46,9 @@
 	list-style-type: none;
 	float: left;
 }
-
 .mblTabBarButtonIconArea {
 	margin: 0 auto;
-	.mblTabBarButtonIconArea-styles;
+	width: 29px;
 }
 .mblTabBarButtonIconParent1 {
 	display: block;
@@ -53,139 +56,114 @@
 .mblTabBarButtonIconParent2 {
 	display: none;
 }
-.mblTabBarButtonSelected .mblTabBarButtonIconParent1 {
-	display: none;
+.mblTabBarButtonSelected {
+	.mblTabBarButtonIconParent1 {
+		display: none;
+	}
+	.mblTabBarButtonIconParent2 {
+		display: block;
+	}
 }
-.mblTabBarButtonSelected .mblTabBarButtonIconParent2 {
-	display: block;
-}
-
 
 /* dojox.mobile.TabBarButton (tabBar) */
-.mblTabBarTabBar .mblTabBarButtonIconArea {
-	.mblTabBarTabBarIconArea-styles;
-}
-.mblTabBarTabBar .mblTabBarButtonLabel {
-	.mblTabBarTabBarLabel-styles;
-}
-.mblTabBarTabBar .mblTabBarButtonSelected {
-	.mblTabBarTabBarSelected-styles;
-}
-.mblTabBarTabBar .mblTabBarButtonSelected .mblTabBarButtonLabel {
-	.mblTabBarTabBarLabelSelected-styles;
+.mblTabBarTabBar {
+	.mblTabBarButton {
+		text-align: center;
+		.mblTabBarTabBarButton-styles;
+	}
+	.mblTabBarButtonIconArea {
+		.mblTabBarTabBarButtonIconArea-styles;
+	}
+	.mblTabBarButtonLabel {
+		.mblTabBarTabBarButtonLabel-styles;
+	}
+	.mblTabBarButtonSelected {
+		.mblTabBarTabBarButtonSelected-styles;
+	}
 }
 
 /* dojox.mobile.TabBarButton (segmentedControl) */
-.mblTabBarSegmentedControl .mblTabBarButton {
-	.mblTabBarSegmentedControlButton-styles;
-	&:first-child {
-		.mblTabBarSegmentedControl-FirstTabButtom-styles;
+.mblTabBarSegmentedControl {
+	.mblTabBarButton {
+		text-align: center;
+		.mblTabBarSegmentedControlButton-styles;
+		&:first-child {
+			.mblTabBarSegmentedControlButton-FirstChild-styles;
+		}
+		&:last-child {
+			.mblTabBarSegmentedControlButton-LastChild-styles;
+		}
+		img {
+			.mblTabBarSegmentedControlButton-img-styles;
+		}
 	}
-	&:last-child {
-		.mblTabBarSegmentedControl-LastTabButton-styles;
+	.mblTabBarButtonIconArea {
+		.mblTabBarSegmentedControlButtonIconArea-styles;
 	}
-	img {
-		.mblTabBarSegmentedControl-img-styles;
+	.mblTabBarButtonSelected {
+		.mblTabBarSegmentedControlButtonSelected-styles;
 	}
-}
-.mblTabBarSegmentedControl .mblTabBarButtonIconArea {
-	.mblTabBarSegmentedControlIconArea-styles;
-}
-.mblTabBarSegmentedControl .mblTabBarButtonLabel {
-	.mblTabBarSegmentedControlLabel-styles;
-}
-.mblTabBarSegmentedControl .mblTabBarButtonSelected {
-	.mblTabBarSegmentedControlSelected-styles;
 }
 
 /* dojox.mobile.TabBarButton in Heading (segmentedControl) */
-.mblHeading .mblTabBarSegmentedControl .mblTabBarButton {
-	padding: 0 3px;
-	width: auto;
-	.mblTabBarSegmentedControlButton-InHeading-styles;
-	&:first-child {
-		.mblTabBarSegmentedControlButton-InHeading-FirstTabButtom-styles;
+.mblHeading .mblTabBarSegmentedControl {
+	.mblTabBarButton {
+		padding: 0 3px;
+		width: auto;
+		.mblTabBarSegmentedControlButton-InHeading-styles;
+		&:first-child {
+			.mblTabBarSegmentedControlButton-InHeading-FirstChild-styles;
+		}
+		&:last-child {
+			.mblTabBarSegmentedControlButton-InHeading-LastChild-styles;
+		}
 	}
-	&:last-child {
-		.mblTabBarSegmentedControlButton-InHeading-LastTabButtom-styles;
+	.mblTabBarButtonIconArea {
+		.mblTabBarSegmentedControlButtonIconArea-InHeading-styles;
+	}
+	.mblTabBarButtonSelected {
+		.mblTabBarSegmentedControlButtonSelected-InHeading-styles;
 	}
 }
-.mblHeading .mblTabBarSegmentedControl .mblTabBarButtonIconArea {
-	.mblTabBarSegmentedControlIconArea-InHeading-styles;
-}
-.mblHeading .mblTabBarSegmentedControl .mblTabBarButtonSelected {
-	.mblTabBarSegmentedControlButtonSelected-InHeading-styles;
-}
-
 
 /* dojox.mobile.TabBarButton (tabPanel) */
 .mblTabBarTabPanel {
-	height: 44px;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F3F5), to(#969AA3));
-	border-bottom: 1px solid #62676D;
+	.mblTabBarButton {
+		.mblTabBarTabPanelButton-styles;
+		&:first-child {
+			.mblTabBarTabPanelButton-FirstChild-styles;
+		}
+	}
+	.mblTabBarButtonIconArea {
+		position: absolute;
+		.mblTabBarTabPanelButtonIconArea-styles;
+	}
+	.mblTabBarButtonHasIcon .mblTabBarButtonLabel {
+		margin-left: 20px;
+	}
+	.mblTabBarButtonSelected {
+		.mblTabBarTabPanelButtonSelected-styles;
+	}
 }
-.mblTabBarTabPanel .mblTabBarButton {
-	margin-top: 9px;
-	padding: 9px;
-	border: 1px solid #62676D;
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#F0F0F2), to(#959DA0));
-	font-family: Helvetica;
-	font-size: 14px;
-	font-weight: bold;
-	text-shadow: rgba(255,255,255,0.6) 0px 1px 0px;
-}
-.mblTabBarTabPanel .mblTabBarButtonIconArea {
-	position: absolute;
-	top: 3px;
-	left: 0px;
-}
-.mblTabBarTabPanel .mblTabBarButtonClosable .mblTabBarButtonLabel {
-	margin-left: 20px;
-}
-.mblTabBarTabPanel .mblTabBarButtonHasIcon .mblTabBarButtonLabel {
-	margin-left: 20px;
-}
-.mblTabBarTabPanel .mblTabBarButtonSelected {
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#F3F4F6), to(#F2F3F7));
-}
-
 
 /* dojox.mobile.TabBarButton (slimTabBar) */
 .mblTabBarSlimTabBar {
-	height: 30px;
-	padding: 0px;
-	background-color: #000000;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#000000), color-stop(0.5, #141414), color-stop(0.5, #000000));
-	color: white;
-}
-.mblTabBarSlimTabBar .mblTabBarButton {
-	padding: 7px;
-	border-right: 1px solid #4E4E4E;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#000000), color-stop(0.5, #141414), color-stop(0.5, #000000));
-	font-family: Helvetica;
-	font-size: 14px;
-	font-weight: bold;
-	color: white;
-	text-shadow: rgba(100, 100, 100, 0.6) 0px -1px 0px;
-	text-align: center;
-}
-.mblTabBarSlimTabBar .mblTabBarButton:first-child {
-	border-left: 1px solid #4E4E4E;
-}
-.mblTabBarSlimTabBar .mblTabBarButtonIconArea {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-}
-.mblTabBarSlimTabBar .mblTabBarButtonClosable .mblTabBarButtonLabel {
-	margin-left: 20px;
-}
-.mblTabBarSlimTabBar .mblTabBarButtonHasIcon .mblTabBarButtonLabel {
-	margin-left: 20px;
-}
-.mblTabBarSlimTabBar .mblTabBarButtonSelected {
-	background-color: #404040;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#484848), to(#242424), color-stop(0.5, #353535), color-stop(0.5, #242424));
+	.mblTabBarButton {
+		text-align: center;
+		.mblTabBarSlimTabBarButton-styles;
+		&:first-child {
+			.mblTabBarSlimTabBarButton-FirstChild-styles;
+		}
+	}
+	.mblTabBarButtonIconArea {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	}
+	.mblTabBarButtonHasIcon .mblTabBarButtonLabel {
+		margin-left: 20px;
+	}
+	.mblTabBarButtonSelected {
+		.mblTabBarSlimTabBarButtonSelected-styles;
+	}
 }
