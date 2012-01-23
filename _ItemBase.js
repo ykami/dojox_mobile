@@ -133,6 +133,8 @@ define([
 		//		If true, the item is highlighted to indicate it is selected.
 		selected: false,
 
+		/* internal properties */	
+
 		// paramsToInherit: String
 		//		Comma separated parameters to inherit from the parent.
 		paramsToInherit: "transition,icon",

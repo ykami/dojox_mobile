@@ -3,17 +3,15 @@ define([
 	"dojo/_base/declare",
 	"dojo/_base/event",
 	"dojo/_base/lang",
-	"dojo/_base/window",
 	"dojo/dom",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/dom-style",
-	"dijit/registry",
 	"./iconUtils",
 	"./_ItemBase",
 	"./Badge",
 	"./sniff"
-], function(connect, declare, event, lang, win, dom, domClass, domConstruct, domStyle, registry, iconUtils, ItemBase, Badge, has){
+], function(connect, declare, event, lang, dom, domClass, domConstruct, domStyle, iconUtils, ItemBase, Badge, has){
 
 /*=====
 	var ItemBase = dojox.mobile._ItemBase;
@@ -71,10 +69,10 @@ define([
 		//		A name of html tag to create as domNode.
 		tag: "li",
 
-		baseClass: "mblTabBarButton",
+		badge: "",
 
 		/* internal properties */	
-		badge: "",
+		baseClass: "mblTabBarButton",
 
 		_selStartMethod: "none",
 		_selEndMethod: "none",
@@ -137,6 +135,7 @@ define([
 			if(this._started){ return; }
 
 			this._dragstartHandle = this.connect(this.domNode, "ondragstart", event.stop);
+
 			// Unlike other _ItemBase-based widgets, TabBarButton should be
 			// selected immediately after it is touched. So we use ontouchstart
 			// rather than onclick to invode the button action.

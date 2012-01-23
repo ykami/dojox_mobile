@@ -96,6 +96,7 @@ define([
 		//		A css class name to add to the progress indicator.
 		progStyle: "mblProgWhite",
 
+		/* internal properties */	
 		baseClass: "mblHeading",
 
 		buildRendering: function(){

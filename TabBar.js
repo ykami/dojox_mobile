@@ -8,9 +8,8 @@ define([
 	"dijit/_Contained",
 	"dijit/_Container",
 	"dijit/_WidgetBase",
-	"./Heading",
-	"./TabBarButton"
-], function(array, declare, domClass, domConstruct, domGeometry, domStyle, Contained, Container, WidgetBase, Heading, TabBarButton){
+	"./TabBarButton" // to load TabBarButton for you (no direct references)
+], function(array, declare, domClass, domConstruct, domGeometry, domStyle, Contained, Container, WidgetBase, TabBarButton){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -40,7 +39,7 @@ define([
 		iconPos: "",
 
 		// barType: String
-		//		"tabBar"(default) or "segmentedControl".
+		//		"tabBar", "segmentedControl", "tabPanel", or "slimTabBar".
 		barType: "tabBar",
 
 		// closable: Boolean
@@ -62,10 +61,9 @@ define([
 		//		A name of html tag to create as domNode.
 		tag: "ul",
 
+		/* internal properties */	
 		selectOne: true,
 		baseClass: "mblTabBar",
-
-		/* internal properties */	
 		_fixedButtonWidth: 76,
 		_fixedButtonMargin: 17,
 		_largeScreenWidth: 500,
@@ -127,7 +125,7 @@ define([
 				}
 				margin = Math.floor(margin/2);
 				var parent = this.getParent();
-				var inHeading = this.inHeading || parent instanceof Heading;
+				var inHeading = this.inHeading || parent && domClass.contains(parent.domNode, "mblHeading");
 				this.containerNode.style.paddingLeft = (inHeading ? 0 : margin) + "px";
 				if(inHeading){
 					domStyle.set(this.domNode, {

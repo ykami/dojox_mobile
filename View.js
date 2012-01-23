@@ -55,6 +55,7 @@ define([
 		//		A name of html tag to create as domNode.
 		tag: "div",
 
+		/* internal properties */	
 		baseClass: "mblView",
 
 		constructor: function(params, node){
