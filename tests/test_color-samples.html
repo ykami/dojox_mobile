@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html class="mobile dj_tablet">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+
+	<script type="text/javascript" src="../deviceTheme.js"></script>
+
+	<script type="text/javascript">
+		function change(ua){
+			deviceTheme.loadDeviceTheme(ua);
+		}
+	</script>
+
+	<style>
+	.header {
+		height: 40px;
+		margin: 6px;
+		font-weight: bold;
+	}
+	</style>
+</head>
+<body>
+	<input type="radio" name="theme" onclick="change('iPhone')" checked>iPhone</li>
+	<input type="radio" name="theme" onclick="change('iPad')">iPad</li>
+	<input type="radio" name="theme" onclick="change('Android')">Android</li>
+	<input type="radio" name="theme" onclick="change('BlackBerry')">BlackBerry</li>
+	<input type="radio" name="theme" onclick="change('Custom')">Custom</li>
+
+	<div class="mblColorBlue header">mblColorBlue</div>
+	<div class="mblColorDefault header">mblColorDefault</div>
+	<div class="mblColorDefaultSel header">mblColorDefaultSel</div>
+
+	<div class="mblHeading">mblHeading</div>
+	<div class="mblListItem">mblListItem</div>
+	<div class="mblListItemSelected">mblListItemSelected</div>
+</body>
+</html>
