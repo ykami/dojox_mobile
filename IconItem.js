@@ -310,7 +310,7 @@ define([
 		_setDeleteIconAttr: function(icon){
 			if(!this.getParent()){ return; } // icon may be invalid because inheritParams is not called yet
 
-			this._set("deleteIcon", icon);			
+			this._set("deleteIcon", icon);
 			icon = this.deletable ? icon : "";
 			this.deleteIconNode = iconUtils.setIcon(icon, this.deleteIconPos, this.deleteIconNode, 
 					this.deleteIconTitle || this.alt, this.iconDivNode);
