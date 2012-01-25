@@ -26,6 +26,7 @@ if(typeof define === "undefined"){ // assumes dojo.js is not loaded
 			return (typeof dojo.doc.documentElement.ontouchstart != "undefined" &&
 				navigator.appVersion.indexOf("Mobile") != -1) || !!dojo.has("android");
 		}
+		return null;
 	};
 
 	dojo.stopEvent = function(evt){
