@@ -14,6 +14,11 @@
 @default-selected-background-color: #0869C6;
 @default-selected-background-image: -webkit-gradient(linear, left top, left bottom, from(#088EEF), to(#0851AD), color-stop(0.5, #0869C6));
 
+@heading-background-color: #424142;
+@heading-background-image: -webkit-gradient(linear, left top, left bottom, from(#4a4d52), to(#292c31));
+@heading-border-top-color: #63696B;
+@heading-border-bottom-color: #292C31;
+
 // common.less
 .mobile-body-styles () {
 	background-color: #DEDFDE;
@@ -49,8 +54,8 @@
 .mblHeading-styles () {
 	background-color: #424142;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#4A4D52), to(#292C31));
-	border-top: 1px solid #63696B;
-	border-bottom: 1px solid #292C31;
+	border-top: 1px solid @heading-border-top-color;
+	border-bottom: 1px solid @heading-border-bottom-color;
 	color: white;
 }
 
@@ -459,142 +464,100 @@
 }
 
 // TabBar.less
+.mblTabBar-styles () {
+	text-shadow: none;
+}
+
+// barType="tabBar"
 .mblTabBarTabBar-styles () {
-	height: 48px;
-	border-top: 1px solid #000000;
-	background-color: #212421;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#181818), to(#100C10));
 }
-.mblTabBarSegmentedControl-styles () {
-	height: 64px;
-	border-top: 1px solid #CDD5DF;
-	border-bottom: 2px solid #949694;
-	background-color: #000000;
-}
-.mblTabBarSegmentedControl-InHeading-styles () {
-	height: 39px;
-}
-.mblTabBarTabPanel-styles () {
-	height: 44px;
-	background-color: #424142;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#4A4D52), to(#292C31));
-	border-bottom: 1px solid #292C31;
-}
-.mblTabBarSlimTabBar-styles () {
-	height: 30px;
+.mblTabBarTabBar-compat () {
 	background-color: #212421;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#181818), to(#100C10));
 }
 .mblTabBarTabBarButton-styles () {
-	font-family: "Helvetica Neue", Helvetica;
-	font-size: 11px;
-	color: #979797;
 }
 .mblTabBarTabBarButtonIconArea-styles () {
-	padding-top: 4px;
 }
 .mblTabBarTabBarButtonLabel-styles () {
+	color: #979797;
 }
 .mblTabBarTabBarButtonSelected-styles () {
 	background-color: #404040;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#484848), to(#242424), color-stop(0.5, #353535));
 	border-radius: 3px;
+}
+.mblTabBarTabBarButtonLabelSelected-styles () {
 	color: white;
+}
+
+// barType="segmentedControl"
+.mblTabBarSegmentedControl-styles () {
 }
 .mblTabBarSegmentedControlButton-styles () {
-	margin-top: 3px;
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
-	width: 78px;
-	height: 61px;
-	border-width: 1px 1px 0px 1px;
 	border-style: solid;
 	border-color: #7B7D84 #182018 black #393C39;
-	background-color: #212421;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#181818), to(#100c10), color-stop(0.1, #313031));
-	font-family: Helvetica;
-	font-size: 13px;
-	color: white;
-}
-.mblTabBarSegmentedControlButton-FirstChild-styles () {
-}
-.mblTabBarSegmentedControlButton-LastChild-styles () {
-}
-.mblTabBarSegmentedControlButton-img-styles () {
-	margin-top: 8px;
-}
-.mblTabBarSegmentedControlButtonIconArea-styles () {
-}
-.mblTabBarSegmentedControlButtonSelected-styles () {
-	background-color: #404040;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#484848), to(#242424), color-stop(0.5, #353535));
-}
-.mblTabBarSegmentedControlButton-InHeading-styles () {
-	height: 29px;
-	line-height: 29px;
-	margin-top: 6px;
-	margin-right: 0px;
-	border-radius: 0px;
-	border-width: 1px 1px 1px 0px;
-	border-style: solid;
 	color: @default-button-color;
-	background-color: @default-button-background-color;
 	background-image: @default-button-background-image;
 }
-.mblTabBarSegmentedControlButton-InHeading-FirstChild-styles () {
+.mblTabBarSegmentedControlButton-FirstChild-styles () {
 	border-left-width: 1px;
 	border-top-left-radius: 6px;
 	border-bottom-left-radius: 6px;
 }
-.mblTabBarSegmentedControlButton-InHeading-LastChild-styles () {
+.mblTabBarSegmentedControlButton-LastChild-styles () {
 	border-top-right-radius: 6px;
 	border-bottom-right-radius: 6px;
 }
-.mblTabBarSegmentedControlButtonIconArea-InHeading-styles () {
+.mblTabBarSegmentedControlButtonSelected-styles () {
+	color: @default-button-selected-color;
+	background-image: @default-button-selected-background-image;
 }
-.mblTabBarSegmentedControlButtonSelected-InHeading-styles () {
+
+// barType="standardTab"
+.mblTabBarStandardTab-styles () {
+}
+.mblTabBarStandardTabButton-styles () {
+	color: @default-button-color;
+	background-color: @default-button-background-color; /* TODO: to compat */
+	background-image: @default-button-background-image;
+}
+.mblTabBarStandardTabButtonIconArea-styles () {
+}
+.mblTabBarStandardTabButtonLabel-styles () {
+}
+.mblTabBarStandardTabButtonSelected-styles () {
 	color: @default-button-selected-color;
 	background-color: @default-button-selected-background-color;
 	background-image: @default-button-selected-background-image;
 }
-.mblTabBarTabPanelButton-styles () {
-	margin-top: 9px;
-	padding: 9px;
-	border: 1px solid #292C31;
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
-	background-color: #000000;
-	font-family: Helvetica;
-	font-size: 14px;
-	font-weight: bold;
-	color: white;
+.mblTabBarStandardTabButtonLabelSelected-styles () {
 }
-.mblTabBarTabPanelButton-FirstChild-styles () {
+
+// barType="tallTab"
+.mblTabBarTallTab-styles () {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#2D2D2D), to(#000000));
 }
-.mblTabBarTabPanelButtonIconArea-styles () {
-	top: 3px;
-	left: 0px;
+.mblTabBarTallTabButton-styles () {
+	background-color: #212421;
+	background-image: none;
 }
-.mblTabBarTabPanelButtonSelected-styles () {
-	background-color: @default-button-selected-background-color;
-	background-image: @default-button-selected-background-image;
+.mblTabBarTallTabButton-FirstChild-styles () {
 }
-.mblTabBarSlimTabBarButton-styles () {
-	padding: 7px;
-	border-right: 1px solid #4E4E4E;
-	font-family: Helvetica;
-	font-size: 14px;
-	font-weight: bold;
-	color: white;
-	text-shadow: rgba(100, 100, 100, 0.6) 0px -1px 0px;
+.mblTabBarTallTabButton-LastChild-styles () {
 }
-.mblTabBarSlimTabBarButton-FirstChild-styles () {
-	border-left: 1px solid #4E4E4E;
+.mblTabBarTallTabButtonIconArea-styles () {
 }
-.mblTabBarSlimTabBarButtonSelected-styles () {
-	background-color: #404040;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#484848), to(#242424), color-stop(0.5, #353535));
+.mblTabBarTallTabButtonLabel-styles () {
 }
+.mblTabBarTallTabButtonSelected-styles () {
+	background-color: #636363;
+	background-image: none;
+}
+.mblTabBarTallTabButtonLabelSelected-styles () {
+}
+
+
 
 // TextArea.less
 .mblTextArea-styles () {

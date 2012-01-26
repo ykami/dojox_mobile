@@ -1,10 +1,10 @@
-/* === Gray Cross Button ==*/
-.mblDomButtonGrayCross {
+/* === Red Cross Button ==*/
+.mblDomButtonRedCross {
 	position: relative;
 	width: 29px;
 	height: 29px;
 }
-.mblDomButtonGrayCross > div {
+.mblDomButtonRedCross > div {
 	position: absolute;
 	top: 12px;
 	left: 7px;
@@ -12,13 +12,13 @@
 	height: 2px;
 	margin: 0px;
 	font-size: 1px;
-	border: 1px solid #0D1721;
-	background-color: #6C6E6D;
+	border: 1px solid #AD3213;
+	background-color: #E54D1F;
 	-webkit-transform: rotate(45deg);
 	-moz-transform: rotate(45deg);
 	border-radius: 2px;
 }
-.mblDomButtonGrayCross > div > div {
+.mblDomButtonRedCross > div > div {
 	position: absolute;
 	top: -7px;
 	left: 5px;
@@ -26,7 +26,7 @@
 	height: 14px;
 	margin: 0px;
 	font-size: 1px;
-	border: 1px solid #0D1721;
-	background-color: #6C6E6D;
+	border: 1px solid #AD3213;
+	background-color: #E54D1F;
 	border-radius: 2px;
 }

@@ -108,29 +108,47 @@
 /* Progress Indicator */
 
 /* dojox.mobile.TabBar */
-.dj_tablet .mblTabPanelHeader {
-	background-color: #889BB3;
-	background: -webkit-gradient(linear, left top, left bottom, from(#F3F4F6), to(#A7ABB8));
-	border-top: 1px solid #FEFEFE;
-	border-bottom: 1px solid #787E8F;
+.dj_tablet .mblTabBar {
 	color: #70777F;
 	text-shadow: rgba(256,256,256,0.6) 0px 1px 0px;
 }
-
-/* dojox.mobile.TabBarButton */
-.dj_tablet .mblTabButton {
-	font-weight: bold;
-	color: #70777F;
-	text-shadow: none;
-	border-color: silver;
-	background-color: #CCCED6;
+/* barType=tabBar */
+.dj_tablet .mblTabBarTabBar {
+	border-top: 1px solid #000000;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#000000), color-stop(0.5, #141414), color-stop(0.5, #000000));
+}
+/* barType=segmentedControl */
+.dj_tablet .mblTabBarSegmentedControl,
+.dj_tablet .mblTabBarStandardTab {
+	border-top: 1px solid #FEFEFE;
+	border-bottom: 1px solid #787E8F;
 	background: -webkit-gradient(linear, left top, left bottom, from(#F3F4F6), to(#A7ABB8));
 }
-.dj_tablet .mblTabPanelHeader .mblTabButton.mblTabButtonSelected {
+.dj_tablet .mblTabBarSegmentedControl .mblTabBarButton {
+	background-color: #889BB3;
+	background: -webkit-gradient(linear, left top, left bottom, from(#F3F4F6), to(#A7ABB8));
+	border-color: silver;
+	color: #70777F;
+	text-shadow: none;
+}
+.dj_tablet .mblTabBarSegmentedControl .mblTabBarButtonSelected {
 	color: white;
 	text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0px;
 	background-color: #8B919A;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#B1B5BB), to(#6A727D));
+}
+/* barType=standardTab */
+.dj_tablet .mblTabBarStandardTab .mblTabBarButton {
+	color: #000000;
+	text-shadow: rgba(255, 255, 255, 0.6) 0px 1px 0px;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f0f2), to(#959da0));
+}
+.dj_tablet .mblTabBarStandardTab .mblTabBarButtonSelected {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f3f4f6), to(#f2f3f7));
+}
+/* barType=flatTab */
+.dj_tablet .mblTabBarFlatTab .mblTabBarButton {
+	color: white;
 }
 
 /* dojox.mobile.ToolBarButton */

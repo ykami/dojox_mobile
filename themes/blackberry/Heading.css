@@ -16,8 +16,8 @@
   line-height: 44px;
   background-color: #424142;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#4a4d52), to(#292c31));
-  border-top: 1px solid #63696B;
-  border-bottom: 1px solid #292C31;
+  border-top: 1px solid #63696b;
+  border-bottom: 1px solid #292c31;
   color: white;
 }
 .mblHeading * {

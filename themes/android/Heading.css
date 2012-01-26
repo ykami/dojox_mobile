@@ -16,8 +16,8 @@
   line-height: 44px;
   background-color: #8C8A8C;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#9c9e9c), to(#848284));
-  border-top: 1px solid #CDD5DF;
-  border-bottom: 1px solid #2D3642;
+  border-top: 1px solid #cdd5df;
+  border-bottom: 1px solid #2d3642;
   color: white;
   text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0px;
 }
