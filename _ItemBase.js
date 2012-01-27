@@ -352,7 +352,7 @@ define([
 		_setIconAttr: function(icon){
 			if(!this._isOnLine){ return; } // icon may be invalid because inheritParams is not called yet
 			this._set("icon", icon);
-			this.iconNode = iconUtils.setIcon(icon, this.iconPos, this.iconNode, this.alt, this.iconParentNode);
+			this.iconNode = iconUtils.setIcon(icon, this.iconPos, this.iconNode, this.alt, this.iconParentNode, this.refNode, this.position);
 		},
 
 		_setLabelAttr: function(/*String*/text){

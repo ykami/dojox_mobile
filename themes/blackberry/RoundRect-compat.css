@@ -12,14 +12,14 @@
 	font-size: 1px;
 	overflow: hidden;
 	border-style: solid;
-	border-color: #C6C7C6;
+	border-color: #c6c7c6;
 	border-width: 0px 1px;
 }
 .mblRoundRectContainer {
 	padding: 3px 8px;
 	background-color: white;
 	border-style: solid;
-	border-color: #C6C7C6;
+	border-color: #c6c7c6;
 	border-width: 0px 1px;
 }
 .mblRoundRectList .mblRoundRectContainer {
@@ -30,7 +30,7 @@
 	height: 0px;
 }
 .mblRoundCorner1T {
-	background-color: #ADAAAD;
+	background-color: #adaaad;
 	margin: 0px 5px;
 }
 .mblRoundCorner2T {
@@ -66,6 +66,6 @@
 	border-width: 0px 3px;
 }
 .mblRoundCorner5B {
-	background-color: #ADAAAD;
+	background-color: #adaaad;
 	margin: 0px 5px;
 }

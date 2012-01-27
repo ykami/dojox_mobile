@@ -18,9 +18,9 @@
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
-}
-.mblIconMenuItemIcon img {
-	border: none;
+	img {
+		border: none;
+	}
 }
 .mblIconMenuItemFirstColumn {
 	border-left: none;
@@ -28,21 +28,26 @@
 .mblIconMenuItemLastRow {
 	border-bottom: none;
 }
-.mblIconMenuItemFirstRow.mblIconMenuItemFirstColumn {
-	.mblIconMenuItemFirstRow-FirstColumn-styles;
+.mblIconMenuItemFirstRow {
+	&.mblIconMenuItemFirstColumn {
+		.mblIconMenuItemFirstRow-FirstColumn-styles;
+	}
+	&.mblIconMenuItemLastColumn {
+		.mblIconMenuItemFirstRow-LastColumn-styles;
+	}
 }
-.mblIconMenuItemFirstRow.mblIconMenuItemLastColumn {
-	.mblIconMenuItemFirstRow-LastColumn-styles;
-}
-.mblIconMenuItemLastRow.mblIconMenuItemFirstColumn {
-	.mblIconMenuItemLastRow-FirstColumn-styles;
-}
-.mblIconMenuItemLastRow.mblIconMenuItemLastColumn {
-	.mblIconMenuItemLastRow-LastColumn-styles;
+.mblIconMenuItemLastRow {
+	&.mblIconMenuItemFirstColumn {
+		.mblIconMenuItemLastRow-FirstColumn-styles;
+	}
+	&.mblIconMenuItemLastColumn {
+		.mblIconMenuItemLastRow-LastColumn-styles;
+	}
 }
 .mblIconMenuItemAnchor {
 	display: block;
 	height: 100%;
+	font-family: Helvetica;
 	text-decoration: none;
 	.mblIconMenuItemAnchor-styles;
 }

@@ -3,6 +3,9 @@
 /* dijit.Calendar */
 .dijitCalendar {
 	padding: 0;
+	width: 320px;
+	border-radius: 0;
+	text-align: center;
 	.dijitCalendar-styles;
 }
 .dijitCalendar thead {
@@ -11,6 +14,9 @@
 	.dijitCalendar-thead-styles;
 }
 .dijitCalendarMonthLabel {
+	padding: 0 4px;
+	font-family: Helvetica;
+	text-shadow: rgba(247,247,247,0.6) 0 1px 0px;
 	.dijitCalendarMonthLabel-styles;
 }
 .dijitCalendarMonthMenu {
@@ -30,32 +36,45 @@
 	display: none;
 }
 .dijitCalendarMonthContainer th {
-	.dijitCalendarMonthContainer-th-styles;
+	border-right: 1px solid transparent;
 }
 .dijitCalendarIncrementControl {
 	width: 0;
 	height: 0;
-	.dijitCalendarIncrementControl-styles;
+	border: 6px solid transparent;
 }
 .dijitCalendarDecrease {
+	border-left-width: 0;
 	.dijitCalendarDecrease-styles;
 }
 .dijitCalendarIncrease {
+	border-right-width: 0;
 	.dijitCalendarIncrease-styles;
 }
 .dijitA11ySideArrow {
     display: none;
 }
 .dijitCalendarDayLabelTemplate {
+	border-right: 1px solid transparent;
+	text-align: center;
+	text-shadow: rgba(247,247,247,0.6) 0px 1px 0px;
 	.dijitCalendarDayLabelTemplate-styles;
 }
 .dijitCalendarDateTemplate {
+	border-bottom: 1px solid lightGrey;
+	font-family: Helvetica;
+	font-size: 22px;
+	font-weight: normal;
+	text-align: center;
 	.dijitCalendarDateTemplate-styles;
 }
 .dijitCalendarDateTemplate:last-child {
 	.dijitCalendarDateTemplate-LastChild-styles;
 }
 .dijitCalendarDateTemplate .dijitCalendarDateLabel {
+	padding: 3px 5px 3px 4px;
+	display: block;
+	text-decoration: none;
 	.dijitCalendarDateLabel-DateTemplate-styles;
 }
 .dijitCalendarPreviousMonth .dijitCalendarDateLabel, 
@@ -72,12 +91,16 @@
 	.dijitCalendarDateLabel-Active-styles;
 }
 .dijitCalendarYearLabel {
+	margin: 0;
 	.dijitCalendarYearLabel-styles;
 }
 .dijitCalendarSelectedYear {
+	font-family: Helvetica;
+	text-shadow: rgba(247,247,247,0.6) 0px 1px 0px;
 	.dijitCalendarSelectedYear-styles;
 }
 .dijitCalendarNextYear, 
 .dijitCalendarPreviousYear {
+	text-shadow: rgba(247,247,247,0.6) 0px 1px 0px;
 	.dijitCalendarNextYear-styles;
 }

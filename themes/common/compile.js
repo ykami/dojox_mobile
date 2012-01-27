@@ -7,8 +7,7 @@ var less = require("less");
 // 1.8
 var folders = ["../android", "../android/dijit",
                "../blackberry", "../blackberry/dijit",
-               "../iphone", "../iphone/dijit",
-               "../custom", "../custom/dijit"]; 
+               "../iphone", "../iphone/dijit"]; 
 //1.8
 var files = [];
 folders.forEach(function(folder){

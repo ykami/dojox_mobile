@@ -1,16 +1,13 @@
 /* dojox.mobile.RoundRectList */
 .mblRoundRectList {
-  position: relative;
-  /* IE needs this */
-
-  margin: 3px 9px;
+  margin: 7px 9px 16px;
   padding: 0px;
-  border: 1px solid #ADAAAD;
+  border: 1px solid #adaaad;
   border-radius: 6px;
   background-color: white;
 }
 .mblRoundRectList .mblListItem:first-child, .mblRoundRectList .mblEdgeToEdgeCategory:first-child {
-  border-top-width: 0px;
+  border-top-width: 0;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
@@ -18,13 +15,4 @@
   border-bottom-width: 0px;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
-}
-.mblRoundRectCategory + .mblRoundRectList {
-  margin-top: 0;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-}
-.mblRoundRectCategory + .mblRoundRectList .mblListItem:first-child {
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
 }

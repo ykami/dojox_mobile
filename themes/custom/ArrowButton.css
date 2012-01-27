@@ -24,7 +24,7 @@
 .mblArrowButton.mblBlueButton {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   color: #131313;
-  background-color: #0000FF;
+  background-color: #0000ff;
 }
 .mblArrowButton.mblBlueButtonSelected, .mblArrowButton.mblBlueButtonSelected .mblArrowButton {
   color: #000000;
@@ -34,7 +34,7 @@
 .mblArrowButton.mblRedButton {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   color: #131313;
-  background-color: #FF0000;
+  background-color: #ff0000;
 }
 .mblArrowButton.mblRedButtonSelected, .mblArrowButton.mblRedButtonSelected .mblArrowButton {
   color: #000000;

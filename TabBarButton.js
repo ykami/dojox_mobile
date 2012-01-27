@@ -73,6 +73,7 @@ define([
 
 		/* internal properties */	
 		baseClass: "mblTabBarButton",
+		closeIcon: "mblDomButtonWhiteCross",
 
 		_selStartMethod: "none",
 		_selEndMethod: "none",
@@ -106,10 +107,10 @@ define([
 
 				if(parent.closable){
 					if(!this.icon1){
-						this.icon1 = "mblDomButtonGrayCross";
+						this.icon1 = this.closeIcon;
 					}
 					if(!this.icon2){
-						this.icon2 = "mblDomButtonGrayCross";
+						this.icon2 = this.closeIcon;
 					}
 					domClass.add(this.domNode, "mblTabBarButtonClosable");
 				}

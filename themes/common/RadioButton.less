@@ -1,10 +1,18 @@
 /* dojox.mobile.RadioButton */
 .mblRadioButton {
 	position: relative;
+	margin: -0.5em 3px 0.3em 4px;
+	width: 1em;
+	height: 1em;
+	border-style: outset;
+	border-width: 1px;
+	border-radius: 0.5em;
+	font: inherit;
 	cursor: pointer;
 	outline: none;
 	-webkit-appearance: none;
 	-webkit-tap-highlight-color: rgba(255,255,255,0);
+	-webkit-transform: translateY(0.45em);
 	.mblRadioButton-styles;
 }
 .mblRadioButtonChecked,
@@ -12,6 +20,15 @@
 	.mblRadioButtonChecked-styles;
 	&::after {
 		position: absolute;
+		content: "";
+		width: 0.3em;
+		height: 0.6em;
+		top: 0;
+		left: 0.25em;
+		border-width: 0.15em;
+		border-style: none solid solid none;
+		-webkit-transform: rotate(45deg);
+		-webkit-transform-origin: 50% 50%;
 		.mblRadioButtonChecked-after-styles;
 	}
 	&.mblRadioButtonSelected {

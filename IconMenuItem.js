@@ -45,13 +45,14 @@ define([
 			var tbl = domConstruct.create("table", {
 				className: "mblIconMenuItemTable"
 			}, a);
-			var cell = tbl.insertRow(-1).insertCell(-1);
-			this.iconNode = this.iconParentNode = domConstruct.create("div", {
+			var cell = this.iconParentNode = tbl.insertRow(-1).insertCell(-1);
+			this.iconNode = domConstruct.create("div", {
 				className: "mblIconMenuItemIcon"
 			}, cell);
-			this.labelNode = domConstruct.create("div", {
+			this.labelNode = this.refNode = domConstruct.create("div", {
 				className: "mblIconMenuItemLabel"
 			}, cell);
+			this.position = "before";
 			this.domNode.appendChild(a);
 		},
 

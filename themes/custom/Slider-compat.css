@@ -10,7 +10,7 @@
   box-sizing: content-box;
 }
 .mblSlider.mblSliderV {
-  background: #ABABAB;
+  background: #ababab;
 }
 .mblSliderProgressBar {
   background-image: url(compat/ui-widget-bg.png);
@@ -22,7 +22,7 @@
   _background-color: transparent;
 }
 .mblSliderV .mblSliderProgressBar {
-  background: #0D48A8;
+  background: #0d48a8;
 }
 .mblSliderHandle {
   background-image: url(compat/ui-widget-bg.png);

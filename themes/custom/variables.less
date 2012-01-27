@@ -1,3 +1,6 @@
+// temporary definition 
+@mbl-list-item-height: 50px;
+//
 //----------------------------------------------------------------
 // 1. Variables for quick setting
 //----------------------------------------------------------------
@@ -10,7 +13,7 @@
 @theme-default-font-weight: normal;
 @theme-default-text-shadow: none;
 @theme-default-color: #131313;	// numerical color value
-@theme-default-border-color: #B5BCC7;	// numerical color value
+@theme-default-border-color: #b5bcc7;	// numerical color value
 @theme-default-border-radius: 5px;
 @theme-default-background-color: lighten(@theme-default-border-color, 20%);
 
@@ -20,8 +23,8 @@
 @theme-highlight-font-weight: bold;
 @theme-highlight-text-shadow: rgba(0,0,0,0.2) 0px 1px 2px;
 @theme-highlight-color: #000000;	// numerical color value
-@theme-highlight-border-color: #769DC0;	// numerical color value
-@theme-highlight-background-color: #5CB0FF;	// numerical color value
+@theme-highlight-border-color: #769dc0;	// numerical color value
+@theme-highlight-background-color: #5cb0ff;	// numerical color value
 
 //----------------------------------------------------------------
 // 2. Variables for typical style setting
@@ -34,12 +37,12 @@
 @theme-dom-button-background-color: @theme-highlight-background-color;
 @theme-tabbar-color: @theme-default-color;
 @theme-round-rect-border-color: @theme-default-border-color;
-@theme-round-rect-background-color: #FFFFFF;
+@theme-round-rect-background-color: #ffffff;
 @theme-round-rect-box-shadow: 5px 5px 5px @theme-round-rect-border-color;
 @theme-category-color: @theme-highlight-color;
 @theme-list-item-color: @theme-default-color;
 @theme-list-item-border-color: @theme-default-border-color;
-@theme-list-item-background-color: #FFFFFF;
+@theme-list-item-background-color: #ffffff;
 @theme-ui-widget-color: @theme-default-color;
 @theme-ui-widget-selected-color: @theme-highlight-color;
 @theme-ui-widget-border-color: @theme-default-border-color;
@@ -122,7 +125,7 @@
 
 // dojox.mobile fixed variables
 @mbl-dom-button-size: 29px;
-@mbl-switch-height: 27px;
+@mbl-switch-height2: 27px;
 
 // Application's customizable variables
 @appl-list-item-icon-size: 29px; // size of ListItemIcon
@@ -146,7 +149,7 @@
 }
 // .mblColorBlue
 .mblColorBlue-styles () {
-	background-color: #366EDF;
+	background-color: #366edf;
 	._background-image-gradient-mask-ui-widget;
 }
 // .mblColorDefault
@@ -200,7 +203,7 @@
 	}
 }
 .mblToolBarButtonArrow-styles () {
-	border: 1px solid #3A4655;
+	border: 1px solid #3a4655;
 }
 .mblToolBarButtonArrowInHeading-styles () {
 }
@@ -373,7 +376,7 @@
 // Switch.less
 //----------------------------------------------------------------
 .mblItemSwitch-styles () {
-	top: (@theme-list-item-height - @mbl-switch-height + 1) * 0.5;
+	top: (@theme-list-item-height - @mbl-switch-height2 + 1) * 0.5;
 }
 .mblSwitchBg-styles () {
 	border-width: 1px;
@@ -420,21 +423,21 @@
 }
 .mblButton-mblBlueButton-styles () {
 	color: @theme-ui-widget-color;
-	background-color: #0000FF;
+	background-color: #0000ff;
 }
 .mblButton-mblBlueButtonSelected-styles () {
 	color: @theme-ui-widget-selected-color;
 	border-color: @theme-ui-widget-selected-border-color;
-	background-color: darken(#0000FF, 30%);
+	background-color: darken(#0000ff, 30%);
 }
 .mblButton-mblRedButton-styles () {
 	color: @theme-ui-widget-color;
-	background-color: #FF0000;
+	background-color: #ff0000;
 }
 .mblButton-mblRedButtonSelected-styles () {
 	color: @theme-ui-widget-selected-color;
 	border-color: @theme-ui-widget-selected-border-color;
-	background-color: darken(#FF0000, 30%);
+	background-color: darken(#ff0000, 30%);
 }
 .mblButtonSelected-styles () {
 	color: @theme-ui-widget-selected-color;

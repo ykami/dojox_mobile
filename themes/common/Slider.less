@@ -1,5 +1,8 @@
 /* dojox.mobile.Slider */
 .mblSlider {
+	margin: 15px; /* 1/2 handle width for hanging off the ends of the bar */
+	border-style: inset;
+	border-width: 1px;
 	outline: none;
 	-webkit-user-select: none; /* prevent selection */
 	-webkit-box-sizing: content-box; /* make width and height consistent with a DIV */
@@ -29,6 +32,11 @@
 	.mblSliderProgressBar-styles;
 }
 .mblSliderHandle {
+	margin: -10px 0 0 -10px;
+	width: 18px;
+	height: 18px;
+	border-style: outset;
+	border-width: 1px;
 	.mblSliderHandle-styles;
 }
 .mblSliderTransition {

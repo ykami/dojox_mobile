@@ -15,7 +15,7 @@
 	box-sizing: content-box;
 }
 .mblSlider.mblSliderV {
-	background: #BDBEBD;
+	background: #bdbebd;
 }
 .mblSliderProgressBar {
 	background-image: url(compat/slider-h-bar-bg.png);
@@ -26,7 +26,7 @@
 	border-radius: 2px;
 }
 .mblSliderV .mblSliderProgressBar {
-	background: #00A200;
+	background: #00a200;
 }
 .mblSliderHandle {
 	background-image: url(compat/slider-handle-bg.png);
