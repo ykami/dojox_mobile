@@ -1,6 +1,12 @@
 /* dojox.mobile.ArrowButton */
 .mblArrowButton {
 	position: relative;
+	padding: 0 10px;
+	height: 29px;
+	border-style: outset;
+	border-width: 1px;
+	font-family: Helvetica;
+	line-height: 29px;
 	cursor: pointer;
 	outline: none;
 	-webkit-tap-highlight-color: rgba(255,255,255,0);
@@ -12,14 +18,12 @@
 }
 .mblArrowButton {
 	&.mblBlueButton {
-		-webkit-tap-highlight-color: rgba(255,255,255,0);
 		.mblButton-mblBlueButton-styles;
 	}
 	&.mblBlueButtonSelected, &.mblBlueButtonSelected .mblArrowButton {
 		.mblButton-mblBlueButtonSelected-styles;
 	}
 	&.mblRedButton {
-		-webkit-tap-highlight-color: rgba(255,255,255,0);
 		.mblButton-mblRedButton-styles;
 	}
 	&.mblRedButtonSelected, &.mblRedButtonSelected .mblArrowButton {
@@ -31,30 +35,44 @@
 .mblArrowButton:disabled,
 .mblArrowButton:disabled .mblArrowButton {
 	cursor: default;
+	border-color: grey;
+	color: grey;
 	.mblArrowButtonDisabled-styles;
 }
 .mblArrowButtonHead {
 	position: absolute;
 	margin: 0;
 	padding: 0;
+	top: 3px;
+	width: 19px;
+	height: 19px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 0;
+	-webkit-transform: rotate(45deg);
 	.mblArrowButtonHead-styles;
 }
 .mblArrowButtonHead.mblArrowButtonLeft {
-	.mblArrowButtonHeadLeft-styles;
+	left: -11px;
 }
 .mblArrowButtonHead.mblArrowButtonRight {
-	.mblArrowButtonHeadRight-styles;
+	right: -11px;
 }
 .mblArrowButtonNeck {
 	position: absolute;
 	margin: 0;
 	padding: 0;
+	top: -1px;
+	width: 15px;
+	height: 29px;
+	border-width: 1px 0;
+	border-style: outset;
 	border-radius: 0;
-	.mblArrowButtonNeck-styles;
+	-webkit-box-sizing: border-box;
 }
 .mblArrowButtonNeck.mblArrowButtonLeft {
-	.mblArrowButtonNeckLeft-styles;
+	left: -1px;
 }
 .mblArrowButtonNeck.mblArrowButtonRight {
-	.mblArrowButtonNeckRight-styles;
+	right: -1px;
 }

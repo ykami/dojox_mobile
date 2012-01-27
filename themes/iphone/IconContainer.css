@@ -25,12 +25,12 @@
 }
 .mblIconArea {
   position: relative;
-  margin-bottom: 10px;
   height: 78px;
-  width: 74px;
   font-family: Helvetica;
   font-size: 12px;
   text-align: center;
+  margin-bottom: 10px;
+  width: 74px;
 }
 .mblIconArea img {
   vertical-align: middle;
@@ -88,8 +88,6 @@ table.mblClose {
   position: relative;
   clear: both;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   margin-top: 0px;
   padding-left: 40px;
   height: 25px;
@@ -101,6 +99,8 @@ table.mblClose {
   color: white;
   line-height: 26px;
   text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .mblIconItemPaneIcon {
   position: absolute;

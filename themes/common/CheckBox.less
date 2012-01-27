@@ -1,10 +1,17 @@
 /* dojox.mobile.CheckBox */
 .mblCheckBox {
 	position: relative;
+	margin: -0.5em 3px 0.3em 4px;
+	width: 1em;
+	height: 1em;
+	border-style: outset;
+	border-width: 1px;
+	font: inherit;
 	cursor: pointer;
 	outline: none;
 	-webkit-appearance: none;
 	-webkit-tap-highlight-color: rgba(255,255,255,0);
+	-webkit-transform: translateY(0.45em);
 	.mblCheckBox-styles;
 }
 .mblCheckBoxSelected {
@@ -14,6 +21,16 @@
 .mblCheckBox:checked {
 	.mblCheckBoxChecked-styles;
 	&::after {
+		position: absolute;
+		content: "";
+		width: 0.3em;
+		height: 0.6em;
+		top: 0;
+		left: 0.3em;
+		border-width: 0.15em;
+		border-style: none solid solid none;
+		-webkit-transform: rotate(45deg);
+		-webkit-transform-origin: 50% 50%;
 		.mblCheckBoxChecked-after-styles;
 	}
 	&.mblCheckBoxSelected {
