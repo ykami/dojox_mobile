@@ -8,8 +8,8 @@
   float: left;
 }
 .mblCarouselHeaderBar {
-  background-color: #3A3A3B;
-  color: #B1B1B1;
+  background-color: #3a3a3b;
+  color: #b1b1b1;
   font: bold 16px arial, helvetica, clean, sans-serif;
   padding: 1px;
 }
@@ -61,6 +61,6 @@
   vertical-align: bottom;
 }
 .mblCarouselItemSelected .mblCarouselItemImage {
-  border: 1px dashed #C0C0C0;
+  border: 1px dashed #c0c0c0;
   -webkit-box-shadow: none;
 }

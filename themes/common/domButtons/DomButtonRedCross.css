@@ -12,8 +12,8 @@
 	height: 2px;
 	margin: 0px;
 	font-size: 1px;
-	border: 1px solid #AD3213;
-	background-color: #E54D1F;
+	border: 1px solid #ad3213;
+	background-color: #e54d1f;
 	-webkit-transform: rotate(45deg);
 	-moz-transform: rotate(45deg);
 	border-radius: 2px;
@@ -26,7 +26,7 @@
 	height: 14px;
 	margin: 0px;
 	font-size: 1px;
-	border: 1px solid #AD3213;
-	background-color: #E54D1F;
+	border: 1px solid #ad3213;
+	background-color: #e54d1f;
 	border-radius: 2px;
 }

@@ -18,7 +18,7 @@
 .mblButton.mblBlueButton {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   color: #131313;
-  background-color: #0000FF;
+  background-color: #0000ff;
 }
 .mblButton.mblBlueButtonSelected {
   color: #000000;
@@ -28,7 +28,7 @@
 .mblButton.mblRedButton {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   color: #131313;
-  background-color: #FF0000;
+  background-color: #ff0000;
 }
 .mblButton.mblRedButtonSelected {
   color: #000000;
