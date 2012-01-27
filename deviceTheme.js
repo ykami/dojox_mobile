@@ -220,9 +220,7 @@ define([
 				if(ua.match(new RegExp(m[i][0]))){
 					var theme = m[i][1];
 					var cls = win.doc.documentElement.className;
-					if(dm.currentTheme){
-						cls = cls.replace(new RegExp(" *" + dm.currentTheme + "_theme"), "") + " " + theme + "_theme";
-					}
+					cls = cls.replace(new RegExp(" *" + dm.currentTheme + "_theme"), "") + " " + theme + "_theme";
 					win.doc.documentElement.className = cls;
 					dm.currentTheme = theme;
 					var files = [].concat(m[i][2]);
