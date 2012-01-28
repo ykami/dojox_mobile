@@ -64,6 +64,14 @@
 .mblTabBarSegmentedControl {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#9c9e9c), to(#848284));
 }
+.mblTabBarSegmentedControl.mblTabBarNoText .mblTabBarButton {
+  width: auto;
+  padding: 0 3px;
+}
+.mblTabBarSegmentedControl.mblTabBarNoText .mblTabBarButtonIconArea {
+  position: relative;
+  display: block;
+}
 .mblTabBarSegmentedControl .mblTabBarButton {
   margin-top: 6px;
   width: 100px;

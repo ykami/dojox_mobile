@@ -298,7 +298,13 @@ define([
 					this._selTimer = null;
 				}
 				this._disconnect();
-				this.set("selected", false);
+
+				var p = this.getParent();
+				if(p && p.selectOne){
+					this._prevSel.set("selected", true);
+				}else{
+					this.set("selected", false);
+				}
 			}
 		},
 

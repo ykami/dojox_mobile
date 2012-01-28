@@ -75,8 +75,8 @@ define([
 		baseClass: "mblTabBarButton",
 		closeIcon: "mblDomButtonWhiteCross",
 
-		_selStartMethod: "none",
-		_selEndMethod: "none",
+		_selStartMethod: "touch",
+		_selEndMethod: "touch",
 
 		destroy: function(){
 			if(this.badgeObj){
@@ -136,13 +136,6 @@ define([
 			if(this._started){ return; }
 
 			this._dragstartHandle = this.connect(this.domNode, "ondragstart", event.stop);
-
-			// Unlike other _ItemBase-based widgets, TabBarButton should be
-			// selected immediately after it is touched. So we use ontouchstart
-			// rather than onclick to invode the button action.
-			// Even so, we use "_onClick" as a handler name to be consistent
-			// with others.
-			this._clickHandle = this.connect(this.domNode, has('touch') ? "ontouchstart" : "onmousedown", "_onClick");
 			this._keydownHandle = this.connect(this.domNode, "onkeydown", "_onClick"); // for desktop browsers
 			if(this.getParent().closable){
 				this._clickCloseHandler = this.connect(this.iconDivNode, "onclick", "_onCloseButtonClick");
@@ -182,9 +175,7 @@ define([
 			//		private
 			if(e && e.type === "keydown" && e.keyCode !== 13){ return; }
 			if(this.onClick(e) === false){ return; } // user's click action
-			if(!this.selected){
-				this.defaultClickAction(e);
-			}
+			this.defaultClickAction(e);
 		},
 
 		onClick: function(/*Event*/ /*===== e =====*/){
