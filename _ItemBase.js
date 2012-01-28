@@ -279,6 +279,7 @@ define([
 				this._onTouchMoveHandle = this.connect(win.body(), has('touch') ? "ontouchmove" : "onmousemove", "_onTouchMove");
 				this._onTouchEndHandle = this.connect(win.body(), has('touch') ? "ontouchend" : "onmouseup", "_onTouchEnd");
 			}
+			this.touchStartX = e.touches ? e.touches[0].pageX : e.clientX;
 			this.touchStartY = e.touches ? e.touches[0].pageY : e.clientY;
 			this._currentSel = this.selected;
 
@@ -291,8 +292,10 @@ define([
 		},
 
 		_onTouchMove: function(e){
+			var x = e.touches ? e.touches[0].pageX : e.clientX;
 			var y = e.touches ? e.touches[0].pageY : e.clientY;
-			if(Math.abs(y - this.touchStartY) >= 4){ // dojox.mobile.scrollable#threshold
+			if(Math.abs(x - this.touchStartX) >= 4 ||
+			   Math.abs(y - this.touchStartY) >= 4){ // dojox.mobile.scrollable#threshold
 				if(this._selTimer){
 					clearTimeout(this._selTimer);
 					this._selTimer = null;
