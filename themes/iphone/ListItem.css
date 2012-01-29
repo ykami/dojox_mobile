@@ -82,3 +82,12 @@
 .mblVariableHeight .mblListItemTextBox {
   white-space: normal;
 }
+/* dojox.mobile._EditableListMixin */
+.mblListItemFloat {
+  position: absolute;
+  border: 1px solid gray;
+  opacity: 0.5;
+  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+}
