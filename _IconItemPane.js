@@ -1,9 +1,12 @@
 define([
 	"dojo/_base/declare",
+	"dojo/_base/window",
 	"dojo/dom-construct",
+	"dojo/dom-geometry",
 	"./Pane",
-	"./iconUtils"
-], function(declare, domConstruct, Pane, iconUtils){
+	"./iconUtils",
+	"./viewRegistry"
+], function(declare, win, domConstruct, domGeometry, Pane, iconUtils, viewRegistry){
 
 /*=====
 	var IconItemPane = dojox.mobile._IconItemPane
@@ -43,7 +46,12 @@ define([
 		},
 
 		scrollIntoView: function(){
-			this.domNode.scrollIntoView();
+			var p = viewRegistry.getEnclosingScrollable(this.domNode);
+			if(p){ // this pane is placed inside scrollable
+				p.scrollIntoView(this.domNode, true);
+			}else{
+				win.global.scrollBy(0, domGeometry.position(this.domNode, false).y);
+			}
 		},
 
 		_setLabelAttr: function(/*String*/text){
