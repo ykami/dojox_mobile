@@ -36,6 +36,7 @@ try{
 	doh.registerUrl("dojox.mobile.tests.doh.TabBar", dojo.moduleUrl("dojox.mobile", "tests/doh/TabBar_Programmatic.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.ToolBarButton", dojo.moduleUrl("dojox.mobile", "tests/doh/ToolBarButton.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.ToolBarButton", dojo.moduleUrl("dojox.mobile", "tests/doh/ToolBarButton_Programmatic.html"),999999);
+	doh.registerUrl("dojox.mobile.tests.doh.ToolBarButton", dojo.moduleUrl("dojox.mobile", "tests/doh/ToolBarButtonSetter.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.View", dojo.moduleUrl("dojox.mobile", "tests/doh/View.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.View", dojo.moduleUrl("dojox.mobile", "tests/doh/View_Programmatic.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.View", dojo.moduleUrl("dojox.mobile", "tests/doh/View2_Programmatic.html"),999999);

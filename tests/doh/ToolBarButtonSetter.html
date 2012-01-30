@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<title>Heading</title>
+
+	<script type="text/javascript" src="../../deviceTheme.js"
+		data-dojo-config="mblThemeFiles: ['base','TabBar','dojox/mobile/themes/common/domButtons.css']"></script>
+	<script type="text/javascript" src="../../../../dojo/dojo.js" data-dojo-config="async: true, parseOnLoad: true"></script>
+
+	<script type="text/javascript">
+		var timeoutInterval = 300;
+		var WIDGET_CLASSNAME1 = "mblDomButtonWhitePlus";
+		var WIDGET_CLASSNAME2 = "mblToolBarButtonSelected";
+		var WIDGET_LABEL1 = "XXXX";
+		require([
+			"dojo/dom-class", // dojo.hasClass
+			"dojo/ready",
+			"dijit/registry",
+			"doh/runner",	//doh functions
+			"dojox/mobile/tests/doh/TestHelper",
+			"dojox/mobile/parser",
+			"dojox/mobile",
+			"dojox/mobile/compat",
+			"dojox/mobile/TabBar"
+		], function(domClass, ready, registry, runner, TestHelper){
+/*
+			setIcon = function(flag){
+				if(flag == 1){
+					btn1.set("iconPos", "");
+					btn1.set("icon", "mblDomButtonWhitePlus");
+				}else if(flag == 2){
+					btn1.set("iconPos", "");
+					btn1.set("icon", "images/tab-icon-33w.png");
+				}else if(flag == 3){
+					btn1.set("iconPos", "29,116,29,29");
+					btn1.set("icon", "images/tab-icons.png");
+				}else if(flag == 4){
+					btn1.set("iconPos", "");
+					btn1.set("icon", "");
+				}
+			}
+			setSelected = function(flag){
+				btn1.set("selected", flag);
+			}
+			setLabel = function(){
+				btn1.set("label", dom.byId("txt1").value);
+			}
+*/
+			ready(function(){
+				runner.register("dojox.mobile.test.doh.ToolBarButton", [
+					{
+						name: "ToolBarButton setter 1",
+						timeout: 4000,
+						runTest: function(){
+							var d = new runner.Deferred();
+							var demoWidget = registry.byId("btn1");
+							demoWidget.set("icon", WIDGET_CLASSNAME1);
+							setTimeout(d.getTestCallback(function(){
+
+								var demoWidget = registry.byId("btn1");
+								runner.assertTrue(domClass.contains(demoWidget.iconNode.childNodes[0], WIDGET_CLASSNAME1), WIDGET_CLASSNAME1 + " value=" + demoWidget.iconNode.childNodes[0].className);
+
+								demoWidget.set("icon", "../images/tab-icon-33w.png");
+							}), timeoutInterval);
+							return d;
+						}
+					},
+					{
+						name: "ToolBarButton setter 2",
+						timeout: 4000,
+						runTest: function(){
+							var d = new runner.Deferred();
+							setTimeout(d.getTestCallback(function(){
+
+								var demoWidget = registry.byId("btn1");
+								TestHelper.verifyImageSrc(demoWidget.iconNode.childNodes[0], /tab-icon-33w.png/i);
+
+								demoWidget.set("iconPos", "29,116,29,29");
+								demoWidget.set("icon", "../images/tab-icons.png");
+							}), timeoutInterval);
+							return d;
+						}
+					},
+					{
+						name: "ToolBarButton setter 3",
+						timeout: 4000,
+						runTest: function(){
+							var d = new runner.Deferred();
+							setTimeout(d.getTestCallback(function(){
+
+								var demoWidget = registry.byId("btn1");
+								TestHelper.verifyImageSrc(demoWidget.iconNode.childNodes[0], /tab-icons.png/i);
+								demoWidget.set("selected", true);
+							}), timeoutInterval);
+							return d;
+						}
+					},
+					{
+						name: "ToolBarButton setter 4",
+						timeout: 4000,
+						runTest: function(){
+							var d = new runner.Deferred();
+							setTimeout(d.getTestCallback(function(){
+
+								var demoWidget = registry.byId("btn1");
+								runner.assertTrue(domClass.contains(demoWidget.domNode, WIDGET_CLASSNAME2), WIDGET_CLASSNAME2 + " value=" + demoWidget.iconNode.childNodes[0].className);
+								runner.assertTrue(demoWidget.get("selected"), 'return value of get("selected") should be true');
+								demoWidget.set("selected", false);
+								demoWidget.set("label", WIDGET_LABEL1);
+							}), timeoutInterval);
+							return d;
+						}
+					},
+					{
+						name: "ToolBarButton setter 5",
+						timeout: 4000,
+						runTest: function(){
+							var d = new runner.Deferred();
+							setTimeout(d.getTestCallback(function(){
+
+								var demoWidget = registry.byId("btn1");
+								runner.assertFalse(domClass.contains(demoWidget.domNode, WIDGET_CLASSNAME2), WIDGET_CLASSNAME2 + " value=" + demoWidget.iconNode.childNodes[0].className);
+								runner.assertFalse(demoWidget.get("selected"), 'return value of get("selected") should be false');
+//								runner.assertEqual(WIDGET_LABEL1, demoWidget.labelNode.innerHTML);
+								runner.assertEqual(WIDGET_LABEL1, demoWidget.get("label"), 'return value of get("label") should be ' + WIDGET_LABEL1);
+							}), timeoutInterval);
+							return d;
+						}
+					}
+				]);
+				runner.run();
+			});
+		});
+	</script>
+</head>
+<body style="visibility:hidden;">
+	<div data-dojo-type="dojox.mobile.Heading" data-dojo-props='label:"Arrow"'>
+		<button id="btn1" data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='light:false'>MMMM</button>
+	</div>
+</body>
+</html>

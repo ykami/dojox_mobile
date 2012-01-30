@@ -35,6 +35,13 @@ define([
 				node.dispatchEvent(e);
 			}
 		};
+		this.verifyImageSrc = function(node, regExp, hintPrefix, hintSuffix) {
+			hintPrefix = hintPrefix || "";
+			hintSuffix = hintSuffix || "";
+			if(!has("ie") && regExp && node){
+				doh.assertTrue(node.src.search(regExp) != -1, hintPrefix + "search " + regExp.toString() + hintSuffix);
+			}
+		};
 	};
 	return TestHelper;
 });
