@@ -24,6 +24,7 @@
 			var delItem, handler, btn1, list1;
 
 			function showDeleteButton(item){
+				hideDeleteButton();
 				delItem = item;
 				item.rightIconNode.style.display = "none";
 				if(!item.rightIcon2Node){
@@ -44,7 +45,6 @@
 			}
 
 			function onClick(e){
-				console.log("onDelete");
 				var item = registry.getEnclosingWidget(e.target);
 				if(domClass.contains(e.target, "mblDomButtonMyRedButton_0")){
 					setTimeout(function(){
@@ -64,6 +64,7 @@
 					list1.startEdit();
 					btn1.set("label", "Done");
 				}else{
+					hideDeleteButton();
 					list1.endEdit();
 					btn1.set("label", "Edit");
 				}

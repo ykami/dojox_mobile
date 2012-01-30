@@ -153,8 +153,12 @@ define([
 			this.isEditing = true;
 			domClass.add(this.domNode, "mblEditableRoundRectList");
 			array.forEach(this.getChildren(), function(child){
-				child.set("rightIcon", this.rightIconForEdit);
-				child.set("deleteIcon", this.deleteIconForEdit);
+				if(!child.deleteIconNode){
+					child.set("rightIcon", this.rightIconForEdit);
+					child.set("deleteIcon", this.deleteIconForEdit);
+				}
+				child.rightIconNode.style.display = "";
+				child.deleteIconNode.style.display = "";
 			}, this);
 			if(!this._handles){
 				this._handles = [];
@@ -167,8 +171,8 @@ define([
 			this.isEditing = false;
 			domClass.remove(this.domNode, "mblEditableRoundRectList");
 			array.forEach(this.getChildren(), function(child){
-				child.set("rightIcon", "");
-				child.set("deleteIcon", "");
+				child.rightIconNode.style.display = "none";
+				child.deleteIconNode.style.display = "none";
 			});
 			if(this._handles){
 				array.forEach(this._handles, this.disconnect, this);
