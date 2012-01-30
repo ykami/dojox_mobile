@@ -246,16 +246,15 @@ define([
 				return;
 			}
 			var transOpts = this.transitionOptions || {};
-			var doTransition = false;
-			if(this.moveTo || this.href || this.url || this.scene){
-				array.forEach(["moveTo", "href", "hrefTarget", "url",
-					"urlTarget", "scene", "transition", "transitionDir"], function(p){
-					if(this[p]){
-						transOpts[p] = this[p];
-					}
-				}, this);
-				doTransition = true;
-			}
+			array.forEach(["moveTo", "href", "hrefTarget", "url",
+				"urlTarget", "scene", "transition", "transitionDir"], function(p){
+				if(this[p]){
+					transOpts[p] = this[p];
+				}
+			}, this);
+
+			var doTransition = 
+				!!(transOpts.moveTo || transOpts.href || transOpts.url || transOpts.scene);
 			if(this._prepareForTransition(e, doTransition ? transOpts : null) === false){ return; }
 			if(doTransition){
 				this.setTransitionPos(e);
@@ -279,6 +278,7 @@ define([
 				this._onTouchMoveHandle = this.connect(win.body(), has('touch') ? "ontouchmove" : "onmousemove", "_onTouchMove");
 				this._onTouchEndHandle = this.connect(win.body(), has('touch') ? "ontouchend" : "onmouseup", "_onTouchEnd");
 			}
+			this.touchStartX = e.touches ? e.touches[0].pageX : e.clientX;
 			this.touchStartY = e.touches ? e.touches[0].pageY : e.clientY;
 			this._currentSel = this.selected;
 
@@ -291,14 +291,22 @@ define([
 		},
 
 		_onTouchMove: function(e){
+			var x = e.touches ? e.touches[0].pageX : e.clientX;
 			var y = e.touches ? e.touches[0].pageY : e.clientY;
-			if(Math.abs(y - this.touchStartY) >= 4){ // dojox.mobile.scrollable#threshold
+			if(Math.abs(x - this.touchStartX) >= 4 ||
+			   Math.abs(y - this.touchStartY) >= 4){ // dojox.mobile.scrollable#threshold
 				if(this._selTimer){
 					clearTimeout(this._selTimer);
 					this._selTimer = null;
 				}
 				this._disconnect();
-				this.set("selected", false);
+
+				var p = this.getParent();
+				if(p && p.selectOne){
+					this._prevSel.set("selected", true);
+				}else{
+					this.set("selected", false);
+				}
 			}
 		},
 

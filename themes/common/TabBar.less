@@ -70,6 +70,16 @@
 	background-image: @heading-background-image;
 	.mblTabBarSegmentedControl-styles;
 
+	&.mblTabBarNoText {
+		.mblTabBarButton {
+			width: auto;
+			padding: 0 3px;
+		}
+		.mblTabBarButtonIconArea {
+			position: relative;
+			display: block;
+		}
+	}
 	.mblTabBarButton {
 		margin-top: 6px;
 		width: 100px;

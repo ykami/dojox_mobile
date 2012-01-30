@@ -9,9 +9,8 @@ define([
 	// summary:
 	//		A widget widget that has ContentPane's capability
 
-	return declare("dojox.mobile.ContentView", [View, ContentPane], {
+	return declare("dojox.mobile.ContentView", [ContentPane, View], {
 		// summary:
 		//		A widget widget that has ContentPane's capability
-		baseClass: "mblView mblContentView"
 	});
 });
