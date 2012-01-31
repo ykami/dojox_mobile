@@ -1,28 +1,52 @@
 @default-blue-button-color: white;
 @default-blue-button-background-color: #366edf;
 @default-blue-button-background-image: -webkit-gradient(linear, left top, left bottom, from(#7a9de9), to(#2362dd), color-stop(0.5, #366edf), color-stop(0.5, #215fdc));
+@default-blue-button-background-image-gecko: -moz-linear-gradient(top, #7a9de9 0%, #366edf 50%, #215fdc 50%, #2362dd 100%);
 
 @default-button-color: black;
 @default-button-background-color: #c6c6c6;
 @default-button-background-image: -webkit-gradient(linear, left top, left bottom, from(#dfdfdf), to(#a6a6a6));
+@default-button-background-image-gecko: -moz-linear-gradient(top, #dfdfdf 0%, #a6a6a6 100%);
+@default-button-border-radius: 3px;
 
 @default-button-selected-color: white;
 @default-button-selected-background-color: #3578b1;
 @default-button-selected-background-image: -webkit-gradient(linear, left top, left bottom, from(#306ea1), to(#266093), color-stop(0.06, #4090d3), color-stop(0.5, #306ea1));
+@default-button-selected-background-image-gecko: -moz-linear-gradient(top, #306ea1 0%, #4090d3 6%, #306ea1 50%, #266093 100%);
 
 @default-selected-color: white;
 @default-selected-background-color: #3578b1;
 @default-selected-background-image: -webkit-gradient(linear, left top, left bottom, from(#306ea1), to(#266093), color-stop(0.06, #4090d3), color-stop(0.5, #306ea1));
+@default-selected-background-image-gecko: -moz-linear-gradient(top, #306ea1 0%, #4090d3 6%, #306ea1 50%, #266093 100%);
 
 @heading-background-color: #8c8a8c;
 @heading-background-image: -webkit-gradient(linear, left top, left bottom, from(#9c9e9c), to(#848284));
+@heading-background-image-gecko: -moz-linear-gradient(top, #9c9e9c 0%, #848284 100%);
 @heading-border-top-color: #cdd5df;
 @heading-border-bottom-color: #2d3642;
 
 .default-button-border-styles () {
 	border-color: #9cacc0;
-	border-radius: 3px;
+	border-radius: @default-button-border-radius;
 }
+
+// background styles of form controls
+@mbl-button-background-image: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#cecece), color-stop(0.5, #f8f8f8), color-stop(0.5, #eeeeee));
+@mbl-button-selected-background-image: @default-button-selected-background-image;
+@mbl-blue-button-background-image: @default-blue-button-background-image;
+@mbl-blue-button-selected-background-image: @default-button-selected-background-image;
+@mbl-red-button-background-image: -webkit-gradient(linear, left top, left bottom, from(#fa9d58), to(#ee4115), color-stop(0.5, #ff4d25), color-stop(0.5, #ed4d15));
+@mbl-red-button-selected-background-image: @default-button-selected-background-image;
+@mbl-button-checked-background-image: -webkit-gradient(linear, left top, left bottom, from(#00a200), to(#00d300), color-stop(0.2, #00ba00), color-stop(0.2, #00ba00));
+
+// background styles of form controls (for gecko)
+@mbl-button-background-image-gecko: -moz-linear-gradient(top, #fdfdfd 0%, #f8f8f8 50%, #eeeeee 50%, #cecece 100%);
+@mbl-button-selected-background-image-gecko: @default-button-selected-background-image-gecko;
+@mbl-blue-button-background-image-gecko: @default-blue-button-background-image-gecko;
+@mbl-blue-button-selected-background-image-gecko: @default-button-selected-background-image-gecko;
+@mbl-red-button-background-image-gecko: -moz-linear-gradient(top, #fa9d58 0%, #ff4d25 50%, #ed4d15 50%, #ee4115 100%);
+@mbl-red-button-selected-background-image-gecko: @default-button-selected-background-image-gecko;
+@mbl-button-checked-background-image-gecko: -moz-linear-gradient(top, #00a200 0%, #00ba00 20%, #00ba00 20%, #00d300 100%);
 
 // common.less
 .mobile-body-styles () {
@@ -58,10 +82,12 @@
 	border-top: 1px solid @heading-border-top-color;
 	border-bottom: 1px solid @heading-border-bottom-color;
 	color: white;
-	text-shadow: rgba(0,0,0,0.6) 0px -1px 0px;
+	text-shadow: rgba(0,0,0,0.6) 0 -1px 0;
 }
 
 // ToolBarButton.less
+@mbl-tool-bar-button-body-border-radius: 0;
+//
 .mblToolBarButton-styles () {
 	text-shadow: none;
 }
@@ -76,15 +102,14 @@
 .mblToolBarButtonBodyInHeading-styles () {
 }
 
-// RoundRect.less
+// RoundRect.less & RoundRectList.less
+@mbl-round-rect-border-color: #adaaad;
+@mbl-round-rect-border-radius: 8px;
+@mbl-round-rect-background-color: black;
+@mbl-round-rect-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+//
 .mblRoundRect-styles () {
-	border: 1px solid #adaaad;
-	border-radius: 8px;
 	color: white;
-	background-color: black;
-}
-.mblRoundRectShadowBox-styles () {
-	-webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 // EdgeToEdgeCategory.less
@@ -94,28 +119,12 @@
 	background-color: #212021;
 	color: white;
 	line-height: 22px;
-	text-shadow: rgba(0,0,0,0.6) 0px -1px 0px;
+	text-shadow: rgba(0,0,0,0.6) 0 -1px 0;
 }
 
 // RoundRectCategory.less
 .mblRoundRectCategory-styles () {
 	color: white;
-}
-
-// RoundRectList.less
-.mblRoundRectList-styles () {
-	border: 1px solid #adaaad;
-	border-radius: 8px;
-	background-color: white;
-}
-.mblRoundRectList-FirstListItem-styles () {
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
-}
-.mblRoundRectList-LastListItem-styles () {
-	border-bottom-width: 0;
-	border-bottom-left-radius: 8px;
-	border-bottom-right-radius: 8px;
 }
 
 // EdgeToEdgeList.less
@@ -154,75 +163,54 @@
 }
 
 // Switch.less
+@mbl-switch-bg-left-background-color: #00a200;
+@mbl-switch-bg-left-background-image: -webkit-gradient(linear, left top, left bottom, from(#00a200), to(#00d300), color-stop(0.2, #00ba00), color-stop(0.2, #00ba00));
+@mbl-switch-bg-right-background-color: #bdbebd;
+@mbl-switch-bg-right-background-image: -webkit-gradient(linear, left top, left bottom, from(#bdbebd), to(#f7f3f7));
+@mbl-switch-knob-background-image: -webkit-gradient(linear, left top, left bottom, from(#9c9a9c), to(#848284));
+//
+@mbl-switch-bg-left-background-image-gecko: -moz-linear-gradient(top, #00a200 0%, #00ba00 20%, #00ba00 20%, #00d300 100%);
+@mbl-switch-bg-right-background-image-gecko: -moz-linear-gradient(top, #bdbebd 0%, #f7f3f7 100%);
+@mbl-switch-knob-background-image-gecko: -moz-linear-gradient(top, #9c9a9c 0%, #848284 100%);
+@mbl-switch-square-border-radius: 2px;
+//
 .mblSwitchBg-styles () {
 	border: rgba(176,176,176,0.5) 1px inset;
 }
-.mblSwitchBgLeft-styles () {
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#00a200), to(#00d300), color-stop(0.2, #00ba00), color-stop(0.2, #00ba00));
-}
-.mblSwitchBgRight-styles () {
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#bdbebd), to(#f7f3f7));
-}
 .mblSwitchKnob-styles () {
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#9c9a9c), to(#848284));
 	border: rgba(157,157,157,0.5) 1px outset;
-}
-.mblSwitchSquareBg-styles () {
-	border-radius: 2px;
-}
-.mblSwitchSquareKnob-styles () {
-	border-radius: 2px;
 }
 
 // Button.less
 .mblButton-styles () {
 	.default-button-border-styles;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#cecece), color-stop(0.5, #f8f8f8), color-stop(0.5, #eeeeee));
 	color: black;
 	font-size: 13px;
 }
-.mblButton-mblBlueButton-styles () {
-	background-image: @default-blue-button-background-image;
+.mblButtonSelected-styles () {
 	color: white;
 }
-.mblButton-mblBlueButtonSelected-styles () {
-	background-image: @default-button-selected-background-image;
+.mblButton-mblBlueButton-styles () {
+	color: white;
 }
 .mblButton-mblRedButton-styles () {
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#fa9d58), to(#ee4115), color-stop(0.5, #ff4d25), color-stop(0.5, #ed4d15));
-	color: white;
-}
-.mblButton-mblRedButtonSelected-styles () {
-	background-image: @default-button-selected-background-image;
-}
-.mblButtonSelected-styles () {
-	background-image: @default-button-selected-background-image;
 	color: white;
 }
 
 // CheckBox.less
 .mblCheckBox-styles () {
 	.default-button-border-styles;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#cecece), color-stop(0.5, #f8f8f8), color-stop(0.5, #eeeeee));
-}
-.mblCheckBoxSelected-styles () {
-	background-image: @default-button-selected-background-image;
-}
-.mblCheckBoxChecked-styles () {
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#00a200), to(#00d300), color-stop(0.2, #00ba00), color-stop(0.2, #00ba00));
 }
 .mblCheckBoxChecked-after-styles () {
 	border-color: white;
-}
-.mblCheckBoxChecked-mblCheckBoxSelected-styles () {
-	background-image: @default-button-selected-background-image;
 }
 .mblCheckBoxChecked-mblCheckBoxSelected-after-styles () {
 }
 
 // ComboBox.less
+@mbl-combo-box-popup-box-shadow: 0 0 50px black;
+//
 .dijitPopup-styles () {
-	-webkit-box-shadow: 0px 0px 50px black;
 	border-radius: 0;
 }
 .mblComboBoxMenu-styles () {
@@ -253,35 +241,23 @@
 // RadioButton.less
 .mblRadioButton-styles () {
 	border-color: #9cacc0;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#cecece), color-stop(0.5, #f8f8f8), color-stop(0.5, #eeeeee));
-}
-.mblRadioButtonChecked-styles () {
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#00a200), to(#00d300), color-stop(0.2, #00ba00), color-stop(0.2, #00ba00));
 }
 .mblRadioButtonChecked-after-styles () {
 	border-color: white;
-}
-.mblRadioButtonChecked-Selected-styles () {
-	background-image: @default-button-selected-background-image;
 }
 .mblRadioButtonChecked-Selected-after-styles () {
 	border-color: white;
 }
 
 // Slider.less
+@mbl-slider-bar-border-radius: 2px;
+@mbl-slider-knob-border-radius: 2px;
+//
 .mblSlider-styles () {
 	border-color: #b0b0b0;
-	border-radius: 2px;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#bdbebd), to(#f7f3f7));
-}
-.mblSliderProgressBar-styles () {
-	border-radius: 2px;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#00a200), to(#00d300), color-stop(0.2, #00ba00), color-stop(0.2, #00ba00));
 }
 .mblSliderHandle-styles () {
 	border-color: #9d9d9d;
-	border-radius: 2px;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#9c9a9c), to(#848284));
 }
 
 // TabBar.less
@@ -386,23 +362,19 @@
 // ToggleButton.less
 .mblToggleButton-styles () {
 	.default-button-border-styles;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#cecece), color-stop(0.5, #f8f8f8), color-stop(0.5, #eeeeee));
 	font-size: 13px;
 	color: black;
 }
 .mblToggleButtonSelected-styles () {
-	background-image: @default-button-selected-background-image;
 	color: white;
 }
 .mblToggleButtonChecked-styles () {
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#00a200), to(#00d300), color-stop(0.2, #00ba00), color-stop(0.2, #00ba00));
 	color: white;
 }
 .mblToggleButtonChecked-after-styles () {
 	border-color: white;
 }
 .mblToggleButtonCheckedSelected-styles () {
-	background-image: @default-button-selected-background-image;
 	color: white;
 }
 .mblToggleButtonCheckedSelected-after-styles () {
@@ -413,11 +385,17 @@
 	background-color: #333333;
 	background-image: none;
 }
+.mblOverlay-compat () {
+}
+.mblOverlay-compat-gecko () {
+}
 
 // Tooltip.less
+@mbl-tooltip-border-radius: 3px;
+//
 .mblTooltip-styles () {
 	border-color: #adaaad;
-	border-radius: 3px;
+	border-radius: @mbl-tooltip-border-radius;
 	background-color: #8c8a8c;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#9c9e9c), to(#848284));
 }
@@ -477,7 +455,11 @@
 	background-color: transparent;
 	background-image: none;
 }
+.mblTooltip-Heading-compat () {
+}
 .mblTooltip-Heading-ToolbarButton-styles () {
+}
+.mblTooltip-Heading-ToolbarButton-compat () {
 }
 
 // Accordion.less
@@ -640,7 +622,7 @@
 .dijitCalendarDateLabel-Selected-styles () {
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#00a200), to(#00d300), color-stop(0.2, #00ba00), color-stop(0.2, #00ba00));
 	color: white;
-	text-shadow: rgba(0,0,0,0.4) 0px 1px 0px;
+	text-shadow: rgba(0,0,0,0.4) 0 1px 0;
 }
 .dijitCalendarDateLabel-Active-styles () {
 	background-image: @default-selected-background-image;

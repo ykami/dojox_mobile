@@ -64,7 +64,7 @@
   text-align: center;
   background-color: #dddde0;
   color: #4a5b6e;
-  text-shadow: #e7e7e9 0px 1px 0px;
+  text-shadow: #e7e7e9 0 1px 0;
 }
 .dijitCalendarDateTemplate .dijitCalendarDateLabel {
   padding: 3px 5px 3px 4px;
@@ -89,7 +89,7 @@
   border: solid 1px #1037b3;
   background-color: #1a80e5;
   color: white;
-  text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 0px;
+  text-shadow: rgba(0, 0, 0, 0.4) 0 1px 0;
 }
 .dijitCalendarActiveDate .dijitCalendarDateLabel {
   border: solid 1px white;

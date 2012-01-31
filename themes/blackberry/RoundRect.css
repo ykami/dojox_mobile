@@ -4,8 +4,8 @@
   padding: 8px;
   border: 1px solid #c6c7c6;
   border-radius: 6px;
-  color: black;
   background-color: white;
+  color: black;
 }
 .mblRoundRect.mblShadow {
   -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.35);

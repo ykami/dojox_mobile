@@ -45,6 +45,7 @@ table.mblToolBarButton {
 .mblToolBarButtonBody {
   position: relative;
   overflow: hidden;
+  border-radius: 0;
   border: 1px solid #555555;
 }
 .mblToolBarButtonBody table {

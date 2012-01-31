@@ -55,9 +55,9 @@
   position: absolute;
   top: 0;
   height: 27px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#fafafa));
   font-size: 1px;
   -webkit-box-sizing: border-box;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#fafafa));
   border-width: 1px;
   border-style: solid;
   border-color: #5e5e5e #9e9e9e #828282 #797979;

@@ -53,9 +53,9 @@
   position: absolute;
   top: 0;
   height: 27px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#999999), color-stop(0.5, #bbbbbb));
   font-size: 1px;
   -webkit-box-sizing: border-box;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#999999), color-stop(0.5, #bbbbbb));
   border: rgba(156, 172, 192, 0.5) 1px outset;
 }
 .mblSwitchText {

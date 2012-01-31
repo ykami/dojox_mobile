@@ -7,6 +7,7 @@
 	border-style: outset;
 	border-width: 1px;
 	border-radius: 0.5em;
+	background-image: @mbl-button-background-image;
 	font: inherit;
 	cursor: pointer;
 	outline: none;
@@ -17,7 +18,7 @@
 }
 .mblRadioButtonChecked,
 .mblRadioButton:checked {
-	.mblRadioButtonChecked-styles;
+	background-image: @mbl-button-checked-background-image;
 	&::after {
 		position: absolute;
 		content: "";
@@ -32,7 +33,7 @@
 		.mblRadioButtonChecked-after-styles;
 	}
 	&.mblRadioButtonSelected {
-		.mblRadioButtonChecked-Selected-styles;
+		background-image: @mbl-blue-button-selected-background-image;
 		&::after {
 			.mblRadioButtonChecked-Selected-after-styles;
 		}

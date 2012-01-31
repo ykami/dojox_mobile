@@ -7,6 +7,7 @@
   border-style: outset;
   border-width: 1px;
   border-radius: 0.5em;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#cecece), color-stop(0.5, #f8f8f8), color-stop(0.5, #eeeeee));
   font: inherit;
   cursor: pointer;
   outline: none;
@@ -14,7 +15,6 @@
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-transform: translatey(0.45em);
   border-color: #9cacc0;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#cecece), color-stop(0.5, #f8f8f8), color-stop(0.5, #eeeeee));
 }
 .mblRadioButtonChecked, .mblRadioButton:checked {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#7a9de9), to(#2362dd), color-stop(0.5, #366edf), color-stop(0.5, #215fdc));

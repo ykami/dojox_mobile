@@ -5,8 +5,8 @@
   position: absolute;
   border: 0;
   background-color: transparent;
-  -webkit-box-shadow: 0px 0px 50px black;
-  border-radius: 0px;
+  -webkit-box-shadow: 0 0 50px black;
+  border-radius: 0;
 }
 .mblReset {
   margin: 0;
@@ -21,7 +21,7 @@
   overflow-y: hidden !important;
   overflow: hidden;
   border: 1px solid black;
-  border-radius: 0px;
+  border-radius: 0;
   background-color: white;
 }
 .mblComboBoxMenuItem {
