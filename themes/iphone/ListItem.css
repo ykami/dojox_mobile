@@ -51,19 +51,29 @@
   margin-top: 7px;
   margin-right: 11px;
 }
-.mblListItemIcon {
+.mblListItemIcon, .mblListItemLayoutLeft {
   position: relative;
   float: left;
   line-height: normal;
   margin-top: 7px;
   margin-right: 11px;
 }
-.mblListItemRightIcon, .mblListItemRightIcon2, .mblListItemUncheckIcon {
+.mblListItemRightIcon,
+.mblListItemRightIcon2,
+.mblListItemUncheckIcon,
+.mblListItemLayoutRight {
   position: relative;
   float: right;
   line-height: normal;
   margin-top: 7px;
   margin-bottom: -7px;
+}
+.mblListItemLayoutCenter {
+  position: absolute;
+  width: 100%;
+  line-height: normal;
+  margin-top: 7px;
+  text-align: center;
 }
 .mblListItemRightText {
   position: relative;
@@ -74,9 +84,11 @@
   margin-top: 12px;
 }
 .mblListItemTextBox {
+  position: relative;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  height: 100%;
 }
 .mblVariableHeight .mblListItemTextBox {
   white-space: normal;
