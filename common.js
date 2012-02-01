@@ -138,6 +138,9 @@ define([
 		if(dm.disableResizeAll){ return; }
 		connect.publish("/dojox/mobile/resizeAll", [evt, root]); // back compat
 		connect.publish("/dojox/mobile/beforeResizeAll", [evt, root]);
+		if(dm._hiding === false){
+			win.body().style.minHeight = dm.getScreenSize().h + "px";
+		} 
 		dm.updateOrient();
 		dm.detectScreenSize();
 		var isTopLevel = function(w){
@@ -196,6 +199,15 @@ define([
 			if(config["mblAlwaysHideAddressBar"] === true){
 				f = dm.hideAddressBar;
 			}
+		}
+		if(has('android') && win.global.onorientationchange !== undefined){
+			var _f = f;
+			f = function(evt){
+				var _conn = connect.connect(null, "onresize", null, function(e){
+					connect.disconnect(_conn);
+					_f(e);
+				});
+			};
 		}
 		connect.connect(null, win.global.onorientationchange !== undefined
 			? "onorientationchange" : "onresize", null, f);
