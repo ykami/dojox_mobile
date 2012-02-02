@@ -174,7 +174,6 @@ define([
 					return (e.target !== this.labelNode);
 				};
 			}
-			this._layoutChildren = [];
 		},
 
 		startup: function(){
@@ -213,6 +212,8 @@ define([
 		},
 
 		resize: function(){
+			this._layoutChildren = [];
+			var centerNode;
 			array.forEach(this.domNode.childNodes, function(n){
 				if(n.nodeType !== 1){ return; }
 				var layout = n.getAttribute("layout");
@@ -224,8 +225,12 @@ define([
 					domClass.add(n, "mblListItemLayout" +
 						layout.charAt(0).toUpperCase() + layout.substring(1));
 					this._layoutChildren.push(n);
+					if(layout === "center"){ centerNode = n; }
 				}
 			}, this);
+			if(centerNode){
+				this.domNode.insertBefore(centerNode, this.domNode.firstChild);
+			}
 
 			if(this.variableHeight){
 				this.layoutVariableHeight();
