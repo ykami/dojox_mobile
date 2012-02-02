@@ -205,6 +205,15 @@ define([
 			return !!parent;
 		},
 
+		getTransOpts: function(){
+			var opts = this.transitionOptions || {};
+			array.forEach(["moveTo", "href", "hrefTarget", "url",
+				"urlTarget", "scene", "transition", "transitionDir"], function(p){
+				opts[p] = opts[p] || this[p];
+			}, this);
+			return opts;
+		},
+
 		userClickAction: function(e){
 			// summary:
 			//		User defined click action
@@ -253,20 +262,13 @@ define([
 				this._onNewWindowOpened(e);
 				return;
 			}
-			var transOpts = this.transitionOptions || {};
-			array.forEach(["moveTo", "href", "hrefTarget", "url",
-				"urlTarget", "scene", "transition", "transitionDir"], function(p){
-				if(this[p]){
-					transOpts[p] = this[p];
-				}
-			}, this);
-
+			var opts = this.getTransOpts();
 			var doTransition = 
-				!!(transOpts.moveTo || transOpts.href || transOpts.url || transOpts.scene);
-			if(this._prepareForTransition(e, doTransition ? transOpts : null) === false){ return; }
+				!!(opts.moveTo || opts.href || opts.url || opts.scene);
+			if(this._prepareForTransition(e, doTransition ? opts : null) === false){ return; }
 			if(doTransition){
 				this.setTransitionPos(e);
-				new TransitionEvent(this.domNode, transOpts, e).dispatch();
+				new TransitionEvent(this.domNode, opts, e).dispatch();
 			}
 		},
 
@@ -279,6 +281,8 @@ define([
 		},
 
 		_onTouchStart: function(e){
+			if(this.onTouchStart(e) === false ||
+				e.target !== this.domNode && e.target.onclick){ return; } // user's touchStart action
 			if(!this._onTouchEndHandle && this._selStartMethod === "touch"){
 				// Connect to the entire window. Otherwise, fail to receive
 				// events if operation is performed outside this widget.
@@ -296,6 +300,13 @@ define([
 			}else{
 				this.set("selected", true);
 			}
+		},
+
+		onTouchStart: function(/*Event*/ /*===== e =====*/){
+			// summary:
+			//		User defined function to handle touchStart
+			// tags:
+			//		callback
 		},
 
 		_onTouchMove: function(e){
@@ -359,7 +370,7 @@ define([
 			//		Given a transition destination, this method performs a view
 			//		transition. This method is typically called when this item
 			//		is clicked.
-			var opts = (typeof(moveTo) === "object") ? moveTo :
+			var opts = (moveTo && typeof(moveTo) === "object") ? moveTo :
 				{moveTo: moveTo, href: href, url: url, scene: scene,
 				 transition: this.transition, transitionDir: this.transitionDir};
 			new TransitionEvent(this.domNode, opts).dispatch();
