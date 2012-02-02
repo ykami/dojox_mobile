@@ -7,10 +7,14 @@ define([
 	"dijit/_Container",
 	"dijit/_WidgetBase",
 	"dojox/mobile/_ItemBase",
+	"dojox/mobile/common", 
 	"dojox/mobile/Heading",
+	"dojox/mobile/iconUtils",
 	"dojox/mobile/RoundRect",
+	"dojox/mobile/TabBarButton",
+	"dojox/mobile/ToolBarButton",
 	"dojox/mobile/View"
-], function(declare, lang, win, domClass, ready, Container, WidgetBase, _ItemBase, Heading, RoundRect, View){
+], function(declare, lang, win, domClass, ready, Container, WidgetBase, _ItemBase, mobile, Heading, iconUtils, RoundRect, TabBarButton, ToolBarButton, View){
 
 	// module:
 	//		dojox/mobile/migrationAssist
@@ -84,6 +88,30 @@ define([
 	extendContainerFunction(Heading);
 	extendContainerFunction(View);
 	extendContainerFunction(RoundRect);
+	extendContainerFunction(_ItemBase);
+
+
+	extendSelectFunction = function(obj) {
+		lang.extend(obj, {
+			select: function(){
+				console.log('[MIG:fixed] ' + this.declaredClass + '(id='+this.id+'): Use set("selected", boolean) instead of select/deselect.');
+				obj.prototype.set("selected", !!arguments[0]);;
+			},
+			deselect: function(){
+				this.select(true);
+			}
+		});
+	};
+
+	extendSelectFunction(ToolBarButton);
+	extendSelectFunction(TabBarButton);
+
+	lang.extend(mobile, {
+		createDomButton: function(){
+			console.log('[MIG:fixed] ' + this.declaredClass + '(id='+this.id+'): createDomButton had been moved to iconUtils.');
+			return iconUtils.prototype.createDomButton.apply(this, arguments);
+		}
+	});
 
 	// check css
 	ready(function(){
@@ -109,10 +137,11 @@ define([
 		}
 
 		for(i = 0; i < cssFiles.length; i++){
-			if(cssFiles[i].indexOf("themes/common/FixedSplitter.css") !== -1){
-				console.log('[MIG:error] FixedSplitter.css is no longer in the themes/common folder. It is in a device theme folder.');
+			if(cssFiles[i].match(/themes\/common\/(FixedSplitter.css)|themes\/common\/(SpinWheel.css)/)){
+				console.log('[MIG:error] ' + (RegExp.$1 || RegExp.$2) + ' is no longer in the themes/common folder. It is in a device theme folder.');
 			}
 		}
+		
 	});
 
 	return migrationAssist;
