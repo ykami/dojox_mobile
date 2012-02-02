@@ -209,9 +209,10 @@ define([
 				this.set("checked", this.checked); // retry applying the attribute
 			}
 			this.setArrow();
+			this.layoutChildren();
 		},
 
-		resize: function(){
+		layoutChildren: function(){
 			this._layoutChildren = [];
 			var centerNode;
 			array.forEach(this.domNode.childNodes, function(n){
@@ -231,7 +232,9 @@ define([
 			if(centerNode){
 				this.domNode.insertBefore(centerNode, this.domNode.firstChild);
 			}
+		},
 
+		resize: function(){
 			if(this.variableHeight){
 				this.layoutVariableHeight();
 			}
