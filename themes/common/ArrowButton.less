@@ -5,6 +5,7 @@
 	height: 29px;
 	border-style: outset;
 	border-width: 1px;
+	background-image: @mbl-button-background-image;
 	font-family: Helvetica;
 	line-height: 29px;
 	cursor: pointer;
@@ -14,6 +15,7 @@
 }
 .mblArrowButtonSelected,
 .mblArrowButtonSelected .mblArrowButton {
+	background-image: @mbl-button-selected-background-image;
 	.mblButtonSelected-styles;
 }
 .mblArrowButton {
@@ -21,13 +23,13 @@
 		.mblButton-mblBlueButton-styles;
 	}
 	&.mblBlueButtonSelected, &.mblBlueButtonSelected .mblArrowButton {
-//		.mblButton-mblBlueButtonSelected-styles;
+		background-image: @mbl-blue-button-selected-background-image;
 	}
 	&.mblRedButton {
 		.mblButton-mblRedButton-styles;
 	}
 	&.mblRedButtonSelected, &.mblRedButtonSelected .mblArrowButton {
-//		.mblButton-mblRedButtonSelected-styles;
+		background-image: @mbl-red-button-selected-background-image;
 	}
 }
 .mblArrowButtonDisabled,

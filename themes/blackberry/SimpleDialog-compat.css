@@ -1,16 +1,12 @@
 /* dojox.mobile.SimpleDialog */
-.mblSimpleDialogDecoration {
-	-moz-border-radius: 6px;
-	-o-border-radius: 6px;
-	-ms-border-radius: 6px;
-	border-radius: 6px;
+.dj_gecko .mblSimpleDialogTitle,
+.dj_gecko .mblSimpleDialogText,
+.dj_gecko .mblSimpleDialogInput,
+.dj_gecko .mblSimpleDialogButton,
+.dj_gecko .mblSimpleDialogButton2l,
+.dj_gecko .mblSimpleDialogButton2r {
+  -moz-box-sizing: border-box;
 }
-.mblSimpleDialogInput,
-.mblSimpleDialogButton,
-.mblSimpleDialogButton2l,
-.mblSimpleDialogButton2r {
-	-moz-box-sizing: border-box;
-	-o-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	box-sizing: border-box;
+.dj_ff3 .mblSimpleDialogDecoration {
+  -moz-border-radius: 6px;
 }

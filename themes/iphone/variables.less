@@ -5,8 +5,8 @@
 
 @default-button-color: white;
 @default-button-background-color: #5877a2;
-@default-button-background-image: -webkit-gradient(linear, left top, left bottom, from(#8ea4c1), to(#4a6c9b), color-stop(0.5, #5877a2), color-stop(0.5, #476999));
-@default-button-background-image-gecko: -moz-linear-gradient(top, #8ea4c1 0%, #5877a2 50%, #476999 50%, #4a6c9b 100%);
+@default-button-background-image: -webkit-gradient(linear, left top, left bottom, from(#2f3740), to(#4a6c9b), color-stop(0.02, #8ea4c1), color-stop(0.5, #5877a2), color-stop(0.5, #476999));
+@default-button-background-image-gecko: -moz-linear-gradient(top, #2f3740 0%, #8ea4c1 2%, #5877a2 48%, #476999 48%, #4a6c9b 100%);
 @default-button-border-radius: 5px;
 
 @default-button-selected-color: white;
@@ -92,13 +92,33 @@
 	border: 1px solid #9cacc0;
 }
 .mblToolBarButtonArrowInHeading-styles () {
-	border: 1px solid #3a4655;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgba(55,80,115,0.8) rgba(55,80,115,0.8) rgba(47,55,64,0.8) rgba(47,55,64,0.8);
+}
+.mblToolBarButtonHasLeftArrowInHeading-styles () {
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.305);
+}
+.mblToolBarButtonHasLeftArrowInHeading-compat-gecko () {
+	-moz-box-shadow: 0 1px 0 rgba(255,255,255,0.305);
+}
+.mblToolBarButtonHasRightArrowInHeading-styles () {
+  -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.305);
+}
+.mblToolBarButtonHasRightArrowInHeading-compat-gecko () {
+	-moz-box-shadow: 1px 0 0 rgba(255,255,255,0.305);
 }
 .mblToolBarButtonBody-styles () {
 	border: 1px outset #9cacc0;
 }
 .mblToolBarButtonBodyInHeading-styles () {
-	border: 1px inset #9cacc0;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgba(47,55,64,1) rgba(55,80,115,0.8) rgba(55,80,115,1) rgba(47,55,64,0.8);
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.305);
+}
+.mblToolBarButtonBodyInHeading-compat-gecko () {
+	-moz-box-shadow: 0 1px 0 rgba(255,255,255,0.305);
 }
 
 // RoundRect.less & RoundRectList.less
@@ -477,19 +497,26 @@
 .mblAccordion-styles () {
 	border-color: #8c8f91;
 }
-.mblAccordionRoundRect-styles () {
-	border-color: #adaaad;
-}
 .mblAccordionTitle-styles () {
 	border-top: 1px solid #8c8f91;
-	background-color: #f0f2f3;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#e1e5e8), color-stop(0.2, #f0f2f3));
+}
+.mblAccordionTitle-compat () {
+	background-color: #f0f2f3;
+}
+.mblAccordionTitle-compat-gecko () {
+	background-image: -moz-linear-gradient(top, #fcfcfc 0%, #f0f2f3 20%, #e1e5e8 100%);
 }
 .mblAccordionTitleSelected-styles () {
 	border-bottom: 1px solid #8c8f91;
-	background-color: #7796ac;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#97afc0), to(#46708e), color-stop(0.2, #7796ac));
 	color: white;
+}
+.mblAccordionTitleSelected-compat () {
+	background-color: #7796ac;
+}
+.mblAccordionTitleSelected-compat-gecko () {
+	background-image: -moz-linear-gradient(top, #97afc0 0%, #7796ac 20%, #46708e 100%);
 }
 .mblAccordionTitleAnchor-styles () {
 	color: black;
@@ -499,6 +526,8 @@
 }
 
 // SimpleDialog.less
+@mbl-simple-dialog-border-radius: 10px;
+//
 .mblSimpleDialog-styles () {
 	padding: 5px;
 	width: 262px;
@@ -508,9 +537,16 @@
 	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(150,150,170,0.85)), to(rgba(18,29,68,0.85)), color-stop(0.15, rgba(77,85,119,0.85)), color-stop(0.15, rgba(35,50,96,0.85)));
 	border: 2px solid #bac1d3;
 	border-top-color: #eaeaf2;
-	border-radius: 10px;
 	-webkit-box-shadow: 0 3px 2px #000000;
 	color: white;
+}
+.mblSimpleDialogDecoration-compat () {
+	background-color: #233260;
+}
+.mblSimpleDialogDecoration-compat-gecko () {
+	background-color: rgba(35,50,96,0.85);
+	background-image: -moz-linear-gradient(top, rgba(150,150,170,0.85) 0%, rgba(77,85,119,0.85) 15%, rgba(35,50,96,0.85) 15%, rgba(18,29,68,0.85) 100%);
+	-moz-box-shadow: 0 3px 2px #000000;
 }
 .mblSimpleDialogTitle-styles () {
 	margin: 14px 0 7px;
@@ -542,29 +578,27 @@
 }
 
 // IconMenu.less
+@mbl-icon-menu-border-radius: 10px;
+@mbl-icon-menu-item-border-radius: 10px;
+//
 .mblIconMenu-styles () {
 	padding: 0;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(102,102,119,0.85)), to(rgba(4,4,4,0.85)), color-stop(0.35, rgba(22,22,30,0.85)));
 	border: 2px solid #9a9a9e;
 	border-top-color: #f2f2f3;
-	border-radius: 10px;
 	-webkit-box-shadow: 1px 3px 5px rgba(0,0,0,0.5);
+}
+.mblIconMenu-compat () {
+	background-color: #040404;
+}
+.mblIconMenu-compat-gecko () {
+	background-color: transparent;
+	background-image: -moz-linear-gradient(top, rgba(102,102,119,0.85) 0%, rgba(22,22,30,0.85) 35%, rgba(4,4,4,0.85) 100%);
+	-moz-box-shadow: 1px 3px 5px rgba(0,0,0,0.5);
 }
 .mblIconMenuItem-styles () {
 	border-left: 1px solid #6b6c6f;
 	border-bottom: 1px solid #6b6c6f;
-}
-.mblIconMenuItemFirstRow-FirstColumn-styles () {
-	border-top-left-radius: 10px;
-}
-.mblIconMenuItemFirstRow-LastColumn-styles () {
-	border-top-right-radius: 10px;
-}
-.mblIconMenuItemLastRow-FirstColumn-styles () {
-	border-bottom-left-radius: 10px;
-}
-.mblIconMenuItemLastRow-LastColumn-styles () {
-	border-bottom-right-radius: 10px;
 }
 .mblIconMenuItemAnchor-styles () {
 	font-size: 11px;
@@ -572,6 +606,13 @@
 }
 .mblIconMenuItemSel-styles () {
 	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(139,157,229,0.6)), to(rgba(10,54,233,0.8)), color-stop(0.6, rgba(10,54,233,0.8)));
+}
+.mblIconMenuItemSel-compat () {
+	background-color: #0a36e9;
+}
+.mblIconMenuItemSel-compat-gecko () {
+	background-color: transparent;
+	background-image: -moz-linear-gradient(top, rgba(139,157,229,0.6) 0%, rgba(10,54,233,0.8) 60%, rgba(10,54,233,0.8) 100%);
 }
 
 // ArrowButton.less
@@ -590,11 +631,19 @@
 .dijitCalendar-thead-styles () {
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#ccccd1));
 }
+.dijitCalendar-thead-compat () {
+	background-image: url(compat/calendar-month-bg.png);
+}
+.dijitCalendar-thead-compat-gecko () {
+	background-image: -moz-linear-gradient(top, #f6f6f6 0%, #ccccd1 100%);
+}
 .dijitCalendarMonthLabel-styles () {
 	color: #545454;
 	font-size: 22px;
 }
 .dijitCalendarMonthMenu-styles () {
+}
+.dijitCalendarMonthMenu-compat-ff3 () {
 }
 .dijitCalendarMonthMenu-Label-styles () {
 }
@@ -637,14 +686,28 @@
 	color: white;
 	text-shadow: rgba(0,0,0,0.4) 0 1px 0;
 }
+.dijitCalendarDateLabel-Selected-compat () {
+}
+.dijitCalendarDateLabel-Selected-compat-gecko () {
+}
 .dijitCalendarDateLabel-Active-styles () {
 	border: solid 1px white;
 	background-color: #1a80e5;
 	-webkit-transition-duration: 0.1s;
 }
+.dijitCalendarDateLabel-Active-compat () {
+}
+.dijitCalendarDateLabel-Active-compat-gecko () {
+}
 .dijitCalendarYearLabel-styles () {
 	padding: 2px 0 0 0;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#ccccd1));
+}
+.dijitCalendarYearLabel-compat () {
+	background-image: url(compat/calendar-year-bg.png);
+}
+.dijitCalendarYearLabel-compat-gecko () {
+	background-image: -moz-linear-gradient(top, #f6f6f6 0%, #ccccd1 100%);
 }
 .dijitCalendarSelectedYear-styles () {
 	color: #545454;

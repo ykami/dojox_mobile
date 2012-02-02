@@ -5,6 +5,7 @@
   height: 29px;
   border-style: outset;
   border-width: 1px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#cecece), color-stop(0.5, #f8f8f8), color-stop(0.5, #eeeeee));
   font-family: Helvetica;
   line-height: 29px;
   cursor: pointer;
@@ -16,13 +17,20 @@
   font-size: 13px;
 }
 .mblArrowButtonSelected, .mblArrowButtonSelected .mblArrowButton {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#bfbfbf), color-stop(0.5, #ebebeb), color-stop(0.5, #dedede));
   color: black;
 }
 .mblArrowButton.mblBlueButton {
   color: white;
 }
+.mblArrowButton.mblBlueButtonSelected, .mblArrowButton.mblBlueButtonSelected .mblArrowButton {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#8ea4c1), to(#4a6c9b), color-stop(0.5, #5877a2), color-stop(0.5, #476999));
+}
 .mblArrowButton.mblRedButton {
   color: white;
+}
+.mblArrowButton.mblRedButtonSelected, .mblArrowButton.mblRedButtonSelected .mblArrowButton {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#c1a48e), to(#9b6c4a), color-stop(0.5, #a27758), color-stop(0.5, #996947));
 }
 .mblArrowButtonDisabled,
 .mblArrowButtonDisabled .mblArrowButton,

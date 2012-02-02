@@ -7,10 +7,8 @@
 .mblAccordionRoundRect {
   margin: 7px 9px 16px 9px;
   padding: 0;
-  border-style: solid;
-  border-width: 1px;
+  border: 1px solid #c6c7c6;
   border-radius: 8px;
-  border-color: #c6c7c6;
 }
 .mblAccordionRoundRect .mblAccordionTitle:first-child {
   border-top-left-radius: 8px;
@@ -57,7 +55,6 @@
 }
 .mblAccordionTitleSelected {
   border-bottom: 1px outset #9cacc0;
-  background-color: #0869c6;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#088eef), to(#0851ad), color-stop(0.5, #0869c6));
   color: white;
 }

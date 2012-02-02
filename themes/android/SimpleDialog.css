@@ -8,9 +8,9 @@
   width: 272px;
 }
 .mblSimpleDialogDecoration {
+  border-radius: 6px;
   background-color: rgba(64, 64, 64, 0.85);
   border: 2px solid #eeeeee;
-  border-radius: 6px;
   color: white;
 }
 .mblSimpleDialogContainer {
@@ -33,20 +33,20 @@
 }
 .mblSimpleDialogTitle {
   width: 100%;
+  -webkit-box-sizing: border-box;
   margin: 0;
   padding: 14px;
   border-bottom: 1px solid rgba(96, 96, 96, 0.85);
   font-size: 21px;
   text-align: left;
-  -webkit-box-sizing: border-box;
 }
 .mblSimpleDialogText {
   width: 100%;
+  -webkit-box-sizing: border-box;
   margin: 0;
   padding: 7px 14px;
   font-size: 18px;
   text-align: left;
-  -webkit-box-sizing: border-box;
 }
 .mblSimpleDialogInput {
   -webkit-box-sizing: border-box;

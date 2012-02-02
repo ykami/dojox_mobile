@@ -1,0 +1,24 @@
+/* dojox.mobile.SimpleDialog */
+.mblSimpleDialogDecoration {
+	.mblSimpleDialogDecoration-compat;
+}
+
+.dj_gecko {
+	.mblSimpleDialogDecoration {
+		.mblSimpleDialogDecoration-compat-gecko;
+	}
+	.mblSimpleDialogTitle,
+	.mblSimpleDialogText,
+	.mblSimpleDialogInput,
+	.mblSimpleDialogButton,
+	.mblSimpleDialogButton2l,
+	.mblSimpleDialogButton2r {
+		-moz-box-sizing: border-box;
+	}
+}
+
+.dj_ff3 {
+	.mblSimpleDialogDecoration {
+		-moz-border-radius: @mbl-simple-dialog-border-radius;
+	}
+}

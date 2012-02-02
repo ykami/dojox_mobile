@@ -8,9 +8,9 @@
   width: 262px;
 }
 .mblSimpleDialogDecoration {
+  border-radius: 6px;
   background-color: #000000;
   border: none;
-  border-radius: 6px;
   color: white;
 }
 .mblSimpleDialogContainer {
@@ -33,10 +33,12 @@
 }
 .mblSimpleDialogTitle {
   width: 100%;
+  -webkit-box-sizing: border-box;
   margin: 7px 0 14px;
 }
 .mblSimpleDialogText {
   width: 100%;
+  -webkit-box-sizing: border-box;
   margin: 7px 0 14px;
 }
 .mblSimpleDialogInput {

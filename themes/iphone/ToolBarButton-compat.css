@@ -2,16 +2,28 @@
 .dj_gecko .mblToolBarButtonArrow {
   -moz-transform: scale(0.7, 0.99) rotate(45deg);
 }
+.dj_gecko .mblHeading .mblToolBarButtonHasLeftArrow .mblToolBarButtonArrow {
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.305);
+}
+.dj_gecko .mblHeading .mblToolBarButtonHasRightArrow .mblToolBarButtonArrow {
+  -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.305);
+}
+.dj_gecko .mblHeading .mblToolBarButtonBody {
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.305);
+}
+.dj_ff3 .mblToolBarButtonArrow {
+  -moz-border-radius: 3px 2px;
+}
 .dj_ff3 .mblToolBarButtonBody {
   -moz-border-radius: 5px;
 }
 .dj_ff3 .mblToolBarButtonHasLeftArrow .mblToolBarButtonBody {
-  -moz-border-radius-topleft: 0;
-  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-bottomleft: 5px;
 }
 .dj_ff3 .mblToolBarButtonHasRightArrow .mblToolBarButtonBody {
-  -moz-border-radius-topright: 0;
-  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
 }
 .dj_ie .mblToolBarButton {
   display: inline;
@@ -45,4 +57,7 @@
 }
 .dj_ie .mblToolBarButtonSelected .mblToolBarButtonBody {
   background-image: url(compat/arrow-button-bg-sel.png);
+}
+.dj_ie .mblToolBarButtonBody table {
+  margin: 0;
 }

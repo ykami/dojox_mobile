@@ -1,20 +1,20 @@
 /* dojox.mobile.SimpleDialog */
 .mblSimpleDialogDecoration {
-	-moz-border-radius: 10px;
-	-o-border-radius: 10px;
-	-ms-border-radius: 10px;
-	border-radius: 10px;
-	-moz-box-shadow: 0 3px 2px #000000;
-	-o-box-shadow: 0 3px 2px #000000;
-	-ms-box-shadow: 0 3px 2px #000000;
-	box-shadow: 0 3px 2px #000000;
+  background-color: #233260;
 }
-.mblSimpleDialogInput,
-.mblSimpleDialogButton,
-.mblSimpleDialogButton2l,
-.mblSimpleDialogButton2r {
-	-moz-box-sizing: border-box;
-	-o-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	box-sizing: border-box;
+.dj_gecko .mblSimpleDialogDecoration {
+  background-color: rgba(35, 50, 96, 0.85);
+  background-image: -moz-linear-gradient(top, rgba(150, 150, 170, 0.85) 0%, rgba(77, 85, 119, 0.85) 15%, rgba(35, 50, 96, 0.85) 15%, rgba(18, 29, 68, 0.85) 100%);
+  -moz-box-shadow: 0 3px 2px #000000;
+}
+.dj_gecko .mblSimpleDialogTitle,
+.dj_gecko .mblSimpleDialogText,
+.dj_gecko .mblSimpleDialogInput,
+.dj_gecko .mblSimpleDialogButton,
+.dj_gecko .mblSimpleDialogButton2l,
+.dj_gecko .mblSimpleDialogButton2r {
+  -moz-box-sizing: border-box;
+}
+.dj_ff3 .mblSimpleDialogDecoration {
+  -moz-border-radius: 10px;
 }

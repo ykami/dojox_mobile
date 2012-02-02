@@ -93,11 +93,21 @@
 }
 .mblToolBarButtonArrowInHeading-styles () {
 }
+.mblToolBarButtonHasLeftArrowInHeading-styles () {
+}
+.mblToolBarButtonHasLeftArrowInHeading-compat-gecko () {
+}
+.mblToolBarButtonHasRightArrowInHeading-styles () {
+}
+.mblToolBarButtonHasRightArrowInHeading-compat-gecko () {
+}
 .mblToolBarButtonBody-styles () {
 	border: 1px outset #9cacc0;
 }
 .mblToolBarButtonBodyInHeading-styles () {
 	border: 1px inset #9cacc0;
+}
+.mblToolBarButtonBodyInHeading-compat-gecko () {
 }
 
 // RoundRect.less & RoundRectList.less
@@ -469,18 +479,24 @@
 .mblAccordion-styles () {
 	border-color: #9cacc0;
 }
-.mblAccordionRoundRect-styles () {
-	border-color: #c6c7c6;
-}
 .mblAccordionTitle-styles () {
 	border-top: 1px outset #9cacc0;
 	background-color: white;
 }
+.mblAccordionTitle-compat () {
+}
+.mblAccordionTitle-compat-gecko () {
+}
 .mblAccordionTitleSelected-styles () {
 	border-bottom: 1px outset #9cacc0;
-	background-color: #0869c6;
 	background-image: @default-selected-background-image;
 	color: white;
+}
+.mblAccordionTitleSelected-compat () {
+	background-color: #0869c6;
+}
+.mblAccordionTitleSelected-compat-gecko () {
+	background-image: @default-selected-background-image-gecko;
 }
 .mblAccordionTitleAnchor-styles () {
 	color: #7b7d84;
@@ -490,6 +506,8 @@
 }
 
 // SimpleDialog.less
+@mbl-simple-dialog-border-radius: 6px;
+//
 .mblSimpleDialog-styles () {
 	padding: 8px;
 	width: 262px;
@@ -497,8 +515,11 @@
 .mblSimpleDialogDecoration-styles () {
 	background-color: #000000;
 	border: none;
-	border-radius: 6px;
 	color: white;
+}
+.mblSimpleDialogDecoration-compat () {
+}
+.mblSimpleDialogDecoration-compat-gecko () {
 }
 .mblSimpleDialogTitle-styles () {
 	margin: 7px 0 14px;
@@ -521,23 +542,21 @@
 }
 
 // IconMenu.less
+@mbl-icon-menu-border-radius: 6px;
+@mbl-icon-menu-item-border-radius: 0;
+//
 .mblIconMenu-styles () {
 	padding: 8px;
 	background-color: #000000;
 	border: none;
-	border-radius: 6px;
+}
+.mblIconMenu-compat () {
+}
+.mblIconMenu-compat-gecko () {
 }
 .mblIconMenuItem-styles () {
 	border-left: 1px solid #000000;
 	border-bottom: 1px solid #000000;
-}
-.mblIconMenuItemFirstRow-FirstColumn-styles () {
-}
-.mblIconMenuItemFirstRow-LastColumn-styles () {
-}
-.mblIconMenuItemLastRow-FirstColumn-styles () {
-}
-.mblIconMenuItemLastRow-LastColumn-styles () {
 }
 .mblIconMenuItemAnchor-styles () {
 	font-size: 16px;
@@ -546,6 +565,12 @@
 .mblIconMenuItemSel-styles () {
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#088eef), to(#0851ad), color-stop(0.5, #0869c6));
 	color: white;
+}
+.mblIconMenuItemSel-compat () {
+	background-color: #0869c6;
+}
+.mblIconMenuItemSel-compat-gecko () {
+	background-image: -moz-linear-gradient(top, #088eef 0%, #0869c6 50%, #0851ad 100%);
 }
 
 // ArrowButton.less
@@ -564,6 +589,12 @@
 .dijitCalendar-thead-styles () {
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#63696b), to(#182021));
 }
+.dijitCalendar-thead-compat () {
+	background-image: url(compat/calendar-month-bg.png);
+}
+.dijitCalendar-thead-compat-gecko () {
+	background-image: -moz-linear-gradient(top, #63696b 0%, #182021 100%);
+}
 .dijitCalendarMonthLabel-styles () {
 	color: white;
 	font-size: 18px;
@@ -571,7 +602,10 @@
 .dijitCalendarMonthMenu-styles () {
 	border: 1px solid black;
 	border-radius: 6px;
-	background-color: black;
+	background-color: white;
+}
+.dijitCalendarMonthMenu-compat-ff3 () {
+	-moz-border-radius: 6px;
 }
 .dijitCalendarMonthMenu-Label-styles () {
 	color: black;
@@ -611,12 +645,30 @@
 	color: white;
 	text-shadow: rgba(0,0,0,0.4) 0 1px 0;
 }
+.dijitCalendarDateLabel-Selected-compat () {
+	background-image: url(compat/calendar-datelabel-sel-bg.png);
+}
+.dijitCalendarDateLabel-Selected-compat-gecko () {
+	background-image: @default-selected-background-image-gecko;
+}
 .dijitCalendarDateLabel-Active-styles () {
 	background-image: @default-selected-background-image;
+}
+.dijitCalendarDateLabel-Active-compat () {
+	background-image: url(compat/calendar-datelabel-sel-bg.png);
+}
+.dijitCalendarDateLabel-Active-compat-gecko () {
+	background-image: @default-selected-background-image-gecko;
 }
 .dijitCalendarYearLabel-styles () {
 	padding: 0;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#63696b), to(#182021));
+}
+.dijitCalendarYearLabel-compat () {
+	background-image: url(compat/calendar-year-bg.png);
+}
+.dijitCalendarYearLabel-compat-gecko () {
+	background-image: -moz-linear-gradient(top, #63696b 0%, #182021 100%);
 }
 .dijitCalendarSelectedYear-styles () {
 	color: white;

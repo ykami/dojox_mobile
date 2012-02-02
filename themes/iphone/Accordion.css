@@ -7,10 +7,8 @@
 .mblAccordionRoundRect {
   margin: 7px 9px 16px 9px;
   padding: 0;
-  border-style: solid;
-  border-width: 1px;
+  border: 1px solid #adaaad;
   border-radius: 8px;
-  border-color: #adaaad;
 }
 .mblAccordionRoundRect .mblAccordionTitle:first-child {
   border-top-left-radius: 8px;
@@ -32,7 +30,6 @@
   vertical-align: middle;
   white-space: nowrap;
   border-top: 1px solid #8c8f91;
-  background-color: #f0f2f3;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#e1e5e8), color-stop(0.2, #f0f2f3));
 }
 .mblAccordionTitle:first-child {
@@ -58,7 +55,6 @@
 }
 .mblAccordionTitleSelected {
   border-bottom: 1px solid #8c8f91;
-  background-color: #7796ac;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#97afc0), to(#46708e), color-stop(0.2, #7796ac));
   color: white;
 }

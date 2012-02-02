@@ -2,8 +2,6 @@
 /* dojox.mobile.TabBar */
 .dj_ie6 .mblTabBar .mblTabBarButton {
   display: inline;
-  /* IE bug*/
-
 }
 /* barType=tabBar */
 .mblTabBarTabBar {

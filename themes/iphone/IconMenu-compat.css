@@ -1,44 +1,37 @@
 /* dojox.mobile.IconMenu */
 .mblIconMenu {
-	background-color: rgba(22,22,30,0.85);
-	-moz-border-radius: 10px;
-	-o-border-radius: 10px;
-	-ms-border-radius: 10px;
-	border-radius: 10px;	
-	-moz-box-shadow: 1px 3px 5px rgba(0,0,0,0.5);
-	-o-box-shadow: 1px 3px 5px rgba(0,0,0,0.5);
-	-ms-box-shadow: 1px 3px 5px rgba(0,0,0,0.5);
-	box-shadow: 1px 3px 5px rgba(0,0,0,0.5);
+  background-color: #040404;
 }
-
-/* dojox.mobile.IconMenuItem */
-.mblIconMenuItem {
-	-moz-box-sizing: border-box;
-	-o-box-sizing : border-box;
-	-ms-box-sizing: border-box;
-	box-sizing : border-box;
+.mblIconMenuItemSel {
+  background-color: #0a36e9;
 }
-.mblIconMenuItemFirstRow.mblIconMenuItemFirstColumn {
-	-moz-border-radius-topleft: 10px;
-	-o-border-top-left-radius: 10px;
-	-ms-border-top-left-radius: 10px;
-	border-top-left-radius: 10px;
+.dj_gecko .mblIconMenu {
+  background-color: transparent;
+  background-image: -moz-linear-gradient(top, rgba(102, 102, 119, 0.85) 0%, rgba(22, 22, 30, 0.85) 35%, rgba(4, 4, 4, 0.85) 100%);
+  -moz-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
 }
-.mblIconMenuItemFirstRow.mblIconMenuItemLastColumn {
-	-moz-border-radius-topright: 10px;
-	-o-border-top-right-radius: 10px;
-	-ms-border-top-right-radius: 10px;
-	border-top-right-radius: 10px;
+.dj_gecko .mblIconMenuItem {
+  -moz-box-sizing: border-box;
 }
-.mblIconMenuItemLastRow.mblIconMenuItemFirstColumn {
-	-moz-border-radius-bottomleft: 10px;
-	-o-border-bottom-left-radius: 10px;
-	-ms-border-bottom-left-radius: 10px;
-	border-bottom-left-radius: 10px;
+.dj_gecko .mblIconMenuItemSel {
+  background-color: transparent;
+  background-image: -moz-linear-gradient(top, rgba(139, 157, 229, 0.6) 0%, rgba(10, 54, 233, 0.8) 60%, rgba(10, 54, 233, 0.8) 100%);
 }
-.mblIconMenuItemLastRow.mblIconMenuItemLastColumn {
-	-moz-border-radius-bottomright: 10px;
-	-o-border-bottom-right-radius: 10px;
-	-ms-border-bottom-right-radius: 10px;
-	border-bottom-right-radius: 10px;
+.dj_ff3 .mblIconMenu {
+  -moz-border-radius: 10px;
+}
+.dj_ff3 .mblIconMenuItemIcon img {
+  border: 1px solid red;
+}
+.dj_ff3 .mblIconMenuItemFirstRow.mblIconMenuItemFirstColumn {
+  -moz-border-top-left-radius: 10px;
+}
+.dj_ff3 .mblIconMenuItemFirstRow.mblIconMenuItemLastColumn {
+  -moz-border-top-right-radius: 10px;
+}
+.dj_ff3 .mblIconMenuItemLastRow.mblIconMenuItemFirstColumn {
+  -moz-border-bottom-left-radius: 10px;
+}
+.dj_ff3 .mblIconMenuItemLastRow.mblIconMenuItemLastColumn {
+  -moz-border-bottom-right-radius: 10px;
 }
