@@ -21,7 +21,8 @@
 			"dojox/mobile/SimpleDialog",
 			"dojox/mobile/TextBox",
 			"dojox/mobile/Button",
-			"dojox/mobile/Slider"
+			"dojox/mobile/Slider",
+			"dojox/mobile/_ContentPaneMixin"
 		], function(dom, registry, ProgressIndicator){
 			show = function(dlg){
 				registry.byId(dlg).show();
@@ -61,17 +62,35 @@
 	</style>
 </head>
 <body style="visibility:hidden;">
-	<div id="dlg_message" data-dojo-type="dojox.mobile.SimpleDialog" data-dojo-props='href:"data/dialog1.html"'></div>
+	<div id="dlg_message"
+	     data-dojo-type="dojox.mobile.SimpleDialog"
+	     data-dojo-mixins="dojox.mobile._ContentPaneMixin"
+	     data-dojo-props='href:"data/dialog1.html"'></div>
 
-	<div id="dlg_confirm" data-dojo-type="dojox.mobile.SimpleDialog" data-dojo-props='href:"data/dialog2.html"'></div>
+	<div id="dlg_confirm"
+	     data-dojo-type="dojox.mobile.SimpleDialog"
+	     data-dojo-mixins="dojox.mobile._ContentPaneMixin"
+	     data-dojo-props='href:"data/dialog2.html"'></div>
 	
-	<div id="dlg_login" data-dojo-type="dojox.mobile.SimpleDialog" data-dojo-props='href:"data/dialog3.html"'></div>
+	<div id="dlg_login"
+	     data-dojo-type="dojox.mobile.SimpleDialog"
+	     data-dojo-mixins="dojox.mobile._ContentPaneMixin"
+	     data-dojo-props='href:"data/dialog3.html"'></div>
 
-	<div id="dlg_progress" data-dojo-type="dojox.mobile.SimpleDialog" data-dojo-props='href:"data/dialog4.html"'></div>
+	<div id="dlg_progress"
+	     data-dojo-type="dojox.mobile.SimpleDialog"
+	     data-dojo-mixins="dojox.mobile._ContentPaneMixin"
+	     data-dojo-props='href:"data/dialog4.html"'></div>
 
-	<div id="dlg_volume" data-dojo-type="dojox.mobile.SimpleDialog" data-dojo-props='href:"data/dialog5.html"'></div>
+	<div id="dlg_volume"
+	     data-dojo-type="dojox.mobile.SimpleDialog"
+	     data-dojo-mixins="dojox.mobile._ContentPaneMixin"
+	     data-dojo-props='href:"data/dialog5.html"'></div>
 
-	<div id="dlg_select" data-dojo-type="dojox.mobile.SimpleDialog" data-dojo-props='href:"data/dialog6.html"'></div>
+	<div id="dlg_select"
+	     data-dojo-type="dojox.mobile.SimpleDialog"
+	     data-dojo-mixins="dojox.mobile._ContentPaneMixin"
+	     data-dojo-props='href:"data/dialog6.html"'></div>
 
 	<div id="view" data-dojo-type="dojox.mobile.View" data-dojo-props='selected:true'>
 		<div data-dojo-type="dojox.mobile.RoundRect" data-dojo-props='shadow:true'>

@@ -3,17 +3,15 @@ define([
 	"dojo/_base/window",
 	"dojo/dom-class",
 	"dojo/dom-construct",
-	"dijit/_Contained",
-	"dijit/_WidgetBase",
-	"./iconUtils",
-	"./ContentPane"
-], function(declare, win, domClass, domConstruct, Contained, WidgetBase, iconUtils, ContentPane){
+	"./Pane",
+	"./iconUtils"
+], function(declare, win, domClass, domConstruct, Pane, iconUtils){
 	// module:
 	//		dojox/mobile/SimpleDialog
 	// summary:
 	//		TODOC
 
-	return declare("dojox.mobile.SimpleDialog", [WidgetBase, Contained, ContentPane], {
+	return declare("dojox.mobile.SimpleDialog", Pane, {
 		title: "",
 		top: "auto",
 		left: "auto",
