@@ -181,6 +181,7 @@ define([
 					arrow: "left",
 					label: back,
 					moveTo: this.moveTo,
+					back: !this.moveTo,
 					href: this.href,
 					transition: this.transition,
 					transitionDir: -1

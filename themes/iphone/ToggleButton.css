@@ -5,6 +5,7 @@
   height: 29px;
   border-width: 1px 1px 1px 1px;
   border-style: outset;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#cecece), color-stop(0.5, #f8f8f8), color-stop(0.5, #eeeeee));
   font-family: Helvetica;
   line-height: 29px;
   cursor: pointer;
@@ -12,18 +13,23 @@
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   border-color: #9cacc0;
   border-radius: 5px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#cecece), color-stop(0.5, #f8f8f8), color-stop(0.5, #eeeeee));
   font-size: 13px;
   color: black;
 }
-.mblToggleButton.mblToggleButtonSelected {
+.mblToggleButton:disabled {
+  border-color: grey;
+  background-image: none;
+  color: grey;
+  cursor: default;
+}
+.mblToggleButtonSelected {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#bfbfbf), color-stop(0.5, #ebebeb), color-stop(0.5, #dedede));
 }
-.mblToggleButton.mblToggleButtonChecked {
+.mblToggleButtonChecked {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#7a9de9), to(#2362dd), color-stop(0.5, #366edf), color-stop(0.5, #215fdc));
   color: white;
 }
-.mblToggleButton.mblToggleButtonChecked::after {
+.mblToggleButtonChecked::after {
   position: absolute;
   content: "";
   top: 6px;
@@ -36,12 +42,6 @@
   -webkit-transform-origin: 50% 50%;
   border-color: white;
 }
-.mblToggleButton.mblToggleButtonChecked.mblToggleButtonSelected {
+.mblToggleButtonChecked.mblToggleButtonSelected {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#8ea4c1), to(#4a6c9b), color-stop(0.5, #5877a2), color-stop(0.5, #476999));
-}
-.mblToggleButton:disabled {
-  border-color: grey;
-  background-image: none;
-  color: grey;
-  cursor: default;
 }

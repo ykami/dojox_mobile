@@ -89,7 +89,7 @@
 .dijitCalendarSelectedDate .dijitCalendarDateLabel {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#00a200), to(#00d300), color-stop(0.2, #00ba00), color-stop(0.2, #00ba00));
   color: white;
-  text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 0px;
+  text-shadow: rgba(0, 0, 0, 0.4) 0 1px 0;
 }
 .dijitCalendarActiveDate .dijitCalendarDateLabel {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#306ea1), to(#266093), color-stop(0.06, #4090d3), color-stop(0.5, #306ea1));

@@ -6,6 +6,7 @@
 	height: 1em;
 	border-style: outset;
 	border-width: 1px;
+	background-image: @mbl-button-background-image;
 	font: inherit;
 	cursor: pointer;
 	outline: none;
@@ -15,11 +16,11 @@
 	.mblCheckBox-styles;
 }
 .mblCheckBoxSelected {
-	.mblCheckBoxSelected-styles;
+	background-image: @mbl-button-selected-background-image;
 }
 .mblCheckBoxChecked,
 .mblCheckBox:checked {
-	.mblCheckBoxChecked-styles;
+	background-image: @mbl-button-checked-background-image;
 	&::after {
 		position: absolute;
 		content: "";
@@ -34,7 +35,7 @@
 		.mblCheckBoxChecked-after-styles;
 	}
 	&.mblCheckBoxSelected {
-		.mblCheckBoxChecked-mblCheckBoxSelected-styles;
+		background-image: @mbl-blue-button-selected-background-image;
 		&::after {
 			.mblCheckBoxChecked-mblCheckBoxSelected-after-styles;
 		}

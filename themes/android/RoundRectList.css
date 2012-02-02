@@ -1,10 +1,10 @@
 /* dojox.mobile.RoundRectList */
 .mblRoundRectList {
   margin: 7px 9px 16px;
-  padding: 0px;
+  padding: 0;
   border: 1px solid #adaaad;
   border-radius: 8px;
-  background-color: white;
+  background-color: black;
 }
 .mblRoundRectList .mblListItem:first-child, .mblRoundRectList .mblEdgeToEdgeCategory:first-child {
   border-top-left-radius: 8px;

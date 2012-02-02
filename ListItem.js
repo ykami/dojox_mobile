@@ -5,10 +5,11 @@ define([
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/dom-style",
+	"dijit/registry",
 	"./iconUtils",
 	"./_ItemBase",
 	"./ProgressIndicator"
-], function(array, declare, lang, domClass, domConstruct, domStyle, iconUtils, ItemBase, ProgressIndicator){
+], function(array, declare, lang, domClass, domConstruct, domStyle, registry, iconUtils, ItemBase, ProgressIndicator){
 
 /*=====
 	var ItemBase = dojox.mobile._ItemBase;
@@ -18,6 +19,10 @@ define([
 	//		dojox/mobile/ListItem
 	// summary:
 	//		An item of either RoundRectList or EdgeToEdgeList.
+
+	lang.extend(dijit._WidgetBase, {
+		layout: ""
+	});
 
 	return declare("dojox.mobile.ListItem", ItemBase, {
 		// summary:
@@ -147,6 +152,7 @@ define([
 				this.labelNode.style.display = "inline"; // to narrow the text region
 				this.labelNode.style.cursor = "pointer";
 			}
+			this._layoutChildren = [];
 		},
 
 		startup: function(){
@@ -185,6 +191,20 @@ define([
 		},
 
 		resize: function(){
+			array.forEach(this.containerNode.childNodes, function(n){
+				if(n.nodeType !== 1){ return; }
+				var layout = n.getAttribute("layout");
+				if(!layout){
+					var w = registry.byNode(n);
+					layout = w && w.layout;
+				}
+				if(layout){
+					n.className = "mblListItemLayout" +
+						layout.charAt(0).toUpperCase() + layout.substring(1);
+					this._layoutChildren.push(n);
+				}
+			}, this);
+
 			if(this.variableHeight){
 				this.layoutVariableHeight();
 			}
@@ -238,7 +258,7 @@ define([
 			var h = this.domNode.offsetHeight;
 			if(h === this.domNodeHeight){ return; }
 			this.domNodeHeight = h;
-			array.forEach([
+			array.forEach(this._layoutChildren.concat([
 				this.rightTextNode,
 				this.rightIcon2Node,
 				this.rightIconNode,
@@ -246,7 +266,7 @@ define([
 				this.iconNode,
 				this.deleteIconNode,
 				this.knobIconNode
-			], function(n){
+			]), function(n){
 				if(n){
 					var domNode = this.domNode;
 					var f = function(){

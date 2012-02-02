@@ -5,7 +5,7 @@
   position: absolute;
   border: 0;
   background-color: transparent;
-  -webkit-box-shadow: 0px 0px 50px black;
+  -webkit-box-shadow: 0 0 50px black;
   border-radius: 0;
 }
 .mblReset {

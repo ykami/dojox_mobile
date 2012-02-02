@@ -5,7 +5,6 @@
 	height: @mbl-list-item-height;
 	list-style-type: none;
 	line-height: @mbl-list-item-height;
-	vertical-align: bottom; // To avoid IE6 LI bug
 	-webkit-tap-highlight-color: rgba(255,255,255,0);
 	.mblListItem-styles;
 	&.mblVariableHeight {
@@ -51,7 +50,8 @@
 	margin-top: (@mbl-list-item-height - 29) / 2; // '29': Icon's height.
 	margin-right: 11px;
 }
-.mblListItemIcon {
+.mblListItemIcon,
+.mblListItemLayoutLeft {
 	position: relative;
 	float: left;
 	line-height: normal;
@@ -60,12 +60,20 @@
 }
 .mblListItemRightIcon,
 .mblListItemRightIcon2,
-.mblListItemUncheckIcon {
+.mblListItemUncheckIcon,
+.mblListItemLayoutRight {
 	position: relative;
 	float: right;
 	line-height: normal;
 	margin-top: (@mbl-list-item-height - 29) / 2;
 	margin-bottom: -(@mbl-list-item-height - 29) / 2;
+}
+.mblListItemLayoutCenter {
+	position: absolute;
+	width: 100%;
+	line-height: normal;
+	margin-top: (@mbl-list-item-height - 29) / 2;
+	text-align: center;
 }
 
 .mblListItemRightText {
@@ -76,9 +84,11 @@
 	.mblListItemRightText-styles;
 }
 .mblListItemTextBox {
+	position: relative;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	height: 100%;
 }
 .mblVariableHeight .mblListItemTextBox {
 	white-space: normal;

@@ -1,20 +1,14 @@
 /* dojox.mobile.Slider */
 .mblSlider {
   margin: 15px;
-  /* 1/2 handle width for hanging off the ends of the bar */
-
   border-style: inset;
   border-width: 1px;
-  outline: none;
-  -webkit-user-select: none;
-  /* prevent selection */
-
-  -webkit-box-sizing: content-box;
-  /* make width and height consistent with a DIV */
-
-  border-color: #b0b0b0;
   border-radius: 2px;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#bdbebd), to(#f7f3f7));
+  outline: none;
+  -webkit-user-select: none;
+  -webkit-box-sizing: content-box;
+  border-color: #b0b0b0;
 }
 .mblSliderH {
   width: 200px;
@@ -46,9 +40,9 @@
   height: 18px;
   border-style: outset;
   border-width: 1px;
-  border-color: #9d9d9d;
   border-radius: 2px;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#9c9a9c), to(#848284));
+  border-color: #9d9d9d;
 }
 .mblSliderTransition {
   -webkit-transition-duration: 400ms;

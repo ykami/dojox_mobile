@@ -45,16 +45,17 @@
 	left: 0;
 	color: white;
 	background-color: #3f84eb;
-	.mblSwitchBgLeft-styles;
+	background-image: @mbl-switch-bg-left-background-image;
 }
 .mblSwitchBgRight {
 	color: #7f7f7f;
-	.mblSwitchBgRight-styles;
+	background-image: @mbl-switch-bg-right-background-image;
 }
 .mblSwitchKnob {
 	position: absolute;
 	top: 0;
 	height: @mbl-switch-height;
+	background-image: @mbl-switch-knob-background-image;
 	font-size: 1px;
 	-webkit-box-sizing: border-box;
 	.mblSwitchKnob-styles;
@@ -82,7 +83,7 @@
 		left: -53px;
 	}
 	.mblSwitchBg {
-		.mblSwitchSquareBg-styles;
+		border-radius: @mbl-switch-square-border-radius;
 	}
 	.mblSwitchBgRight {
 		left: 53px;
@@ -90,7 +91,7 @@
 	.mblSwitchKnob {
 		left: 53px;
 		width: 41px;
-		.mblSwitchSquareKnob-styles;
+		border-radius: @mbl-switch-square-border-radius;
 	}
 	.mblSwitchText {
 		width: 53px;

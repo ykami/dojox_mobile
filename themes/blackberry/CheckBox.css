@@ -6,6 +6,7 @@
   height: 1em;
   border-style: outset;
   border-width: 1px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f7fbf7), to(#cecfd6), color-stop(0.5, #ced3ce));
   font: inherit;
   cursor: pointer;
   outline: none;
@@ -14,7 +15,6 @@
   -webkit-transform: translatey(0.45em);
   border-color: #9cacc0;
   border-radius: 3px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f7fbf7), to(#cecfd6), color-stop(0.5, #ced3ce));
 }
 .mblCheckBoxSelected {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#088eef), to(#0851ad), color-stop(0.5, #0869c6));

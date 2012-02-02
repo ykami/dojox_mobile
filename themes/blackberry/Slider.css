@@ -1,20 +1,14 @@
 /* dojox.mobile.Slider */
 .mblSlider {
   margin: 15px;
-  /* 1/2 handle width for hanging off the ends of the bar */
-
   border-style: inset;
   border-width: 1px;
+  border-radius: 6px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f7f3f7), to(#cec5d6), color-stop(0.5, #ced3ce));
   outline: none;
   -webkit-user-select: none;
-  /* prevent selection */
-
   -webkit-box-sizing: content-box;
-  /* make width and height consistent with a DIV */
-
   border-color: #b0b0b0;
-  border-radius: 6px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f7fbf7), to(#cecfd6), color-stop(0.5, #ced3ce));
 }
 .mblSliderH {
   width: 200px;
@@ -37,8 +31,8 @@
   left: 50%;
 }
 .mblSliderProgressBar {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#088eef), to(#0851ad), color-stop(0.5, #0869c6));
   border-radius: 6px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#088eef), to(#0851ad), color-stop(0.5, #0869c6));
 }
 .mblSliderHandle {
   margin: -10px 0 0 -10px;
@@ -46,9 +40,9 @@
   height: 18px;
   border-style: outset;
   border-width: 1px;
-  border-color: #9d9d9d;
   border-radius: 6px;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#999999), color-stop(0.5, #bbbbbb));
+  border-color: #9d9d9d;
 }
 .mblSliderTransition {
   -webkit-transition-duration: 400ms;
