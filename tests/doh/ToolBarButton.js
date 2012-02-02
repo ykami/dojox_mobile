@@ -28,7 +28,7 @@ dojo.addOnLoad(function(){
 			doh.assertEqual('Update All', demoWidget.labelNode.innerHTML, "id= "+ demoWidget.domNode.id);
 
 			demoWidget = dijit.byId("dojox_mobile_ToolBarButton_6");
-			doh.assertEqual('mblToolBarButton mblToolBarButtonLeftArrow', demoWidget.domNode.className, "id= "+ demoWidget.domNode.id);
+			doh.assertEqual('mblToolBarButton mblToolBarButtonHasLeftArrow', demoWidget.domNode.className, "id= "+ demoWidget.domNode.id);
 			doh.assertEqual('Bookmarks', demoWidget.labelNode.innerHTML);
 
 			demoWidget = dijit.byId("dojox_mobile_ToolBarButton_7");
@@ -82,7 +82,7 @@ dojo.addOnLoad(function(){
 			}
 
 			demoWidget = dijit.byId("dojox_mobile_ToolBarButton_18");
-			doh.assertEqual('mblToolBarButton mblToolBarButtonLeftArrow', demoWidget.domNode.className, "id= "+ demoWidget.domNode.id);
+			doh.assertEqual('mblToolBarButton mblToolBarButtonHasLeftArrow', demoWidget.domNode.className, "id= "+ demoWidget.domNode.id);
 			doh.assertEqual('Top', demoWidget.labelNode.innerHTML);
 
 			demoWidget = dijit.byId("dojox_mobile_ToolBarButton_19");
