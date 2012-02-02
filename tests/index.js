@@ -97,6 +97,8 @@ var tests = [
 	{ url: "test_ListItem-sprite.html", tags: "List" },
 	{ url: "test_ListItem-variable-edge.html", tags: "List" },
 	{ url: "test_ListItem-variable-round.html", tags: "List" },
+	{ url: "test_ListItem-layout.html", tags: "List" },
+	{ url: "test_ListItem-transOpt.html", tags: "List" },
 	{ url: "test_Opener-ActionSheet-async.html", tags: "Opener" },
 	{ url: "test_Opener-Calendar-async.html", tags: "Opener" },
 	{ url: "test_Opener-ColorPalette-async.html", tags: "Opener" },
