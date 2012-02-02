@@ -73,7 +73,7 @@
   display: block;
 }
 .mblTabBarSegmentedControl .mblTabBarButton {
-  margin-top: 6px;
+  margin: 6px 0;
   width: 100px;
   height: 28px;
   border-width: 1px 1px 1px 0px;
