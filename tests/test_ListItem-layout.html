@@ -20,8 +20,9 @@
 			PlainWidget = declare("PlainWidget", WidgetBase, {
 				buildRendering: function(){
 					this.inherited(arguments);
-					this.domNode.style.border = "1px dashed red";
+					this.domNode.style.backgroundColor = "gray";
 					this.domNode.style.display = "inline";
+					this.domNode.style.lineHeight = "normal";
 				}
 			});
 		});
@@ -34,7 +35,7 @@
 		<h2 data-dojo-type="dojox.mobile.RoundRectCategory">Examples</h2>
 		<ul data-dojo-type="dojox.mobile.RoundRectList">
 			<li data-dojo-type="dojox.mobile.ListItem">
-				<div data-dojo-type="PlainWidget" layout="left">Left Widget</div>
+				<div layout="left"><div data-dojo-type="PlainWidget">Left Widget</div></div>
 			</li>
 
 			<li data-dojo-type="dojox.mobile.ListItem">
@@ -42,7 +43,7 @@
 			</li>
 
 			<li data-dojo-type="dojox.mobile.ListItem">
-				<div data-dojo-type="PlainWidget" data-dojo-props='layout:"right"'>Right Widget</div>
+				<div layout="right"><div data-dojo-type="PlainWidget">Right Widget</div></div>
 			</li>
 
 
@@ -110,6 +111,14 @@
 				<div layout="left">Left Node</div>
 				<div layout="right">Right Node</div>
 				<div layout="center">Center Node</div>
+			</li>
+
+
+			<li data-dojo-type="dojox.mobile.ListItem"
+	 			data-dojo-props='icon:"images/i-icon-1.png", moveTo:"bar", variableHeight:true, label:"Label<br>Label<br>Label"'>
+				<div data-dojo-type="PlainWidget" layout="left">Left Widget</div>
+				<div data-dojo-type="PlainWidget" data-dojo-props='layout:"right"'>Right Widget</div>
+				<div layout="center"><div data-dojo-type="PlainWidget">Center Widget</div></div>
 			</li>
 
 
