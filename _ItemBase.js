@@ -281,8 +281,7 @@ define([
 		},
 
 		_onTouchStart: function(e){
-			if(this.onTouchStart(e) === false ||
-				e.target !== this.domNode && e.target.onclick){ return; } // user's touchStart action
+			if(this.onTouchStart(e) === false){ return; } // user's touchStart action
 			if(!this._onTouchEndHandle && this._selStartMethod === "touch"){
 				// Connect to the entire window. Otherwise, fail to receive
 				// events if operation is performed outside this widget.

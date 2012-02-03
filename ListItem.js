@@ -21,7 +21,8 @@ define([
 	//		An item of either RoundRectList or EdgeToEdgeList.
 
 	lang.extend(dijit._WidgetBase, {
-		layout: ""
+		layout: "",
+		preventTouch: false
 	});
 
 	return declare("dojox.mobile.ListItem", ItemBase, {
@@ -241,6 +242,14 @@ define([
 
 			// If labelNode is empty, shrink it so as not to prevent user clicks.
 			this.labelNode.style.display = this.labelNode.firstChild ? "block" : "inline";
+		},
+
+		_onTouchStart: function(e){
+			if(e.target.getAttribute("preventTouch") ||
+				(registry.byNode(e.target)||{}).preventTouch){
+				return;
+			}
+			this.inherited(arguments);
 		},
 
 		_onClick: function(e){
