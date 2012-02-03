@@ -3,18 +3,21 @@ define([
 	"dojo/_base/lang",
 	"dojo/_base/window",
 	"dojo/dom-class",
+	"dojo/dom-construct",
+	"dojo/dom-style",
 	"dojo/ready",
 	"dijit/_Container",
 	"dijit/_WidgetBase",
 	"dojox/mobile/_ItemBase",
 	"dojox/mobile/common", 
+	"dojox/mobile/FixedSplitterPane",
 	"dojox/mobile/Heading",
 	"dojox/mobile/iconUtils",
 	"dojox/mobile/RoundRect",
 	"dojox/mobile/TabBarButton",
 	"dojox/mobile/ToolBarButton",
 	"dojox/mobile/View"
-], function(declare, lang, win, domClass, ready, Container, WidgetBase, _ItemBase, mobile, Heading, iconUtils, RoundRect, TabBarButton, ToolBarButton, View){
+], function(declare, lang, win, domClass, domConstruct, domStyle, ready, Container, WidgetBase, _ItemBase, mobile, FixedSplitterPane, Heading, iconUtils, RoundRect, TabBarButton, ToolBarButton, View){
 
 	// module:
 	//		dojox/mobile/migrationAssist
@@ -52,6 +55,27 @@ define([
 			if(w.class === "mblItemSwitch"){
 				console.log('[MIG:fixed] Switch: class="mblItemSwitch" is no longer necessary.');
 			}
+		};
+
+		this.checkFixedSplitter = function(/*Widget*/ w){
+			var dummy = domConstruct.create("div", {
+				className: "mblFixedSplitter"
+			}, win.body());
+			if(domStyle.get(dummy, "height") == 0){
+				domConstruct.create("link", {
+					href: "../themes/android/FixedSplitter.css",
+					type: "text/css",
+					rel: "stylesheet"
+				}, win.doc.getElementsByTagName('head')[0]);
+				console.log('[MIG:fixed] FixedSplitter.css does not seem to be loaded. Loaded it for you just now. It is in a device theme folder.');
+			}
+			setTimeout(function(){
+				w.resize();
+			}, 1000);
+		};
+
+		this.checkFixedSplitterPane = function(/*Widget*/ w){
+			console.log('[MIG:fixed] FixedSplitterPane: Deprecated. Use dojox.mobile.Container instead.');
 		};
 	};
 
