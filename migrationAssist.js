@@ -106,10 +106,10 @@ define([
 	extendSelectFunction(ToolBarButton);
 	extendSelectFunction(TabBarButton);
 
-	lang.extend(mobile, {
+	lang.mixin(mobile, {
 		createDomButton: function(){
 			console.log('[MIG:fixed] ' + this.declaredClass + '(id='+this.id+'): createDomButton had been moved to iconUtils.');
-			return iconUtils.prototype.createDomButton.apply(this, arguments);
+			return iconUtils.createDomButton(this, arguments);
 		}
 	});
 
