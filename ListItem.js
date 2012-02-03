@@ -246,7 +246,7 @@ define([
 
 		_onTouchStart: function(e){
 			if(e.target.getAttribute("preventTouch") ||
-				(registry.byNode(e.target)||{}).preventTouch){
+				(registry.getEnclosingWidget(e.target)||{}).preventTouch){
 				return;
 			}
 			this.inherited(arguments);
