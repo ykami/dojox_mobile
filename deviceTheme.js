@@ -120,7 +120,10 @@ define([
 				config.baseUrl = src.replace("deviceTheme\.js", "../../dojo/");
 				var conf = (n.getAttribute("data-dojo-config") || n.getAttribute("djConfig"));
 				if(conf){
-					config.mblThemeFiles = eval("({ " + conf + " })").mblThemeFiles;
+					var obj = eval("({ " + conf + " })");
+					for(var key in obj){
+						config[key] = obj[key];
+					}
 				}
 				break;
 			}else if(src.match(/\/dojo\.js/i)){
