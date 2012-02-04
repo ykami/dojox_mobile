@@ -25,6 +25,11 @@ define([
 	//		Dojo Mobile 1.6/1.7 to 1.8 migration assistance.
 
 	var migrationAssist = new function(){
+		this.dispatch = function(/*String*/cls, /*Widget*/ w){
+			var base = cls.replace(/.*\./, "");
+			this["check" + base] && this["check" + base](w);
+		};
+
 		this.checkListItem = function(/*Widget*/ w){
 			if(w.sync !== undefined || w.srcNodeRef && w.srcNodeRef.getAttribute("sync")){
 				console.log('[MIG:fixed] ListItem: The sync property is no longer supported. (async always)');
@@ -86,8 +91,13 @@ define([
 	};
 
 	WidgetBase.prototype.postMixInProperties = function(){
-		var base = this.declaredClass.replace(/.*\./, "");
-		migrationAssist["check" + base] && migrationAssist["check" + base](this);
+		migrationAssist.dispatch(this.declaredClass, this);
+		dojo.forEach([FixedSplitterPane, Heading, RoundRect, TabBarButton, ToolBarButton, View], function(module){
+			if(this instanceof module){
+				migrationAssist.dispatch(module.prototype.declaredClass, this);
+			}
+		}, this);
+
 	};
 
 	extendContainerFunction = function(obj) {
