@@ -58,20 +58,26 @@ define([
 		};
 
 		this.checkFixedSplitter = function(/*Widget*/ w){
-			var dummy = domConstruct.create("div", {
-				className: "mblFixedSplitter"
-			}, win.body());
-			if(domStyle.get(dummy, "height") == 0){
-				domConstruct.create("link", {
-					href: "../themes/android/FixedSplitter.css",
-					type: "text/css",
-					rel: "stylesheet"
-				}, win.doc.getElementsByTagName('head')[0]);
-				console.log('[MIG:fixed] FixedSplitter.css does not seem to be loaded. Loaded it for you just now. It is in a device theme folder.');
+			// FixedSplitter.css has been moved from the themes/common folder
+			// to a device theme folder such as themes/android.
+			if(!this._fixedSplitter_css_checked){
+				this._fixedSplitter_css_checked = true;
+				var dummy = domConstruct.create("div", {
+					className: "mblFixedSplitter"
+				}, win.body());
+				if(domStyle.get(dummy, "height") == 0){
+					domConstruct.create("link", {
+						href: "../themes/android/FixedSplitter.css",
+						type: "text/css",
+						rel: "stylesheet"
+					}, win.doc.getElementsByTagName('head')[0]);
+					console.log('[MIG:fixed] FixedSplitter.css does not seem to be loaded. Loaded it for you just now. It is in a device theme folder.');
+				}
+				win.body().removeChild(dummy);
+				setTimeout(function(){
+					w.resize();
+				}, 1000);
 			}
-			setTimeout(function(){
-				w.resize();
-			}, 1000);
 		};
 
 		this.checkFixedSplitterPane = function(/*Widget*/ w){
