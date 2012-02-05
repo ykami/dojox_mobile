@@ -1,7 +1,7 @@
 /* dojox.mobile.ToolBarButton */
 .dj_gecko {
 	.mblToolBarButtonArrow {
-		-moz-transform: scale(0.7, 0.99) rotate(45deg);
+		-moz-transform: scale(0.77, 1.05) rotate(45deg);
 	}
 	.mblHeading {
 		.mblToolBarButtonHasLeftArrow .mblToolBarButtonArrow {
@@ -17,27 +17,30 @@
 }
 .dj_ff3 {
 	.mblToolBarButtonArrow {
-		-moz-border-radius: 3px 2px;
+		-moz-border-radius: 0 2px;
 	}
 	.mblToolBarButtonBody {
 		-moz-border-radius: @mbl-tool-bar-button-body-border-radius;
 	}
 	.mblToolBarButtonHasLeftArrow .mblToolBarButtonBody {
-		-moz-border-radius-topleft: 5px;
-		-moz-border-radius-bottomleft: 5px;
+		-moz-border-radius-topleft: 4px;
+		-moz-border-radius-bottomleft: 4px;
 	}
 	.mblToolBarButtonHasRightArrow .mblToolBarButtonBody {
-		-moz-border-radius-topright: 5px;
-		-moz-border-radius-bottomright: 5px;
+		-moz-border-radius-topright: 4px;
+		-moz-border-radius-bottomright: 4px;
 	}
 }
 .dj_ie {
 	.mblToolBarButton {
 		display: inline;
 	}
+	.mblToolBarButtonHasLeftArrow, .mblToolBarButtonHasRightArrow {
+		margin-right: 19px;
+	}
 	.mblToolBarButtonLeftArrow {
 		position: absolute;
-		top: 0px;
+		top: 0;
 		left: -2px;
 		width: 13px;
 		height: 30px;
@@ -50,7 +53,7 @@
 
 	.mblToolBarButtonRightArrow {
 		position: absolute;
-		top: 0px;
+		top: 0;
 		right: -13px;
 		width: 13px;
 		height: 30px;
@@ -69,5 +72,12 @@
 	}
 	.mblToolBarButtonBody table {
 		margin: 0;
+	}
+	.mblToolBarButtonHasLeftArrow .mblToolBarButtonBody {
+		left: 11px;
+		padding-left: 0;
+	}
+	.mblToolBarButtonHasRightArrow .mblToolBarButtonBody {
+		padding-right: 0;
 	}
 }

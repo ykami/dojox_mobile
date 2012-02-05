@@ -14,10 +14,10 @@
 	text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0px;
 }
 .dj_tablet .mblHeading .mblToolBarButtonArrow {
-	border-color: rgba(86, 91, 100, 0.8) rgba(86, 91, 100, 0.8) rgba(78, 79, 81, 0.8) rgba(78, 79, 81, 0.8);
+	border-color: #60656f #60656f #5a5c5f #5a5c5f;
 }
 .dj_tablet .mblHeading .mblToolBarButtonBody {
-	border-color: #4E4F51 rgba(86, 91, 100, 0.8) #565B64 rgba(78, 79, 81, 0.8);
+	border-color: #4e4f51 #60656f #565b64 #5a5c5f;
 }
 
 /*Headings and Button styles are overridden in Tooltips*/
