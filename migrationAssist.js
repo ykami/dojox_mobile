@@ -93,7 +93,7 @@ define([
 	WidgetBase.prototype.postMixInProperties = function(){
 		migrationAssist.dispatch(this.declaredClass, this);
 		dojo.forEach([FixedSplitterPane, Heading, RoundRect, TabBarButton, ToolBarButton, View], function(module){
-			if(this instanceof module){
+			if(this.declaredClass !== module.prototype.declaredClass && this instanceof module){
 				migrationAssist.dispatch(module.prototype.declaredClass, this);
 			}
 		}, this);
