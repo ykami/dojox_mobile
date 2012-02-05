@@ -1,30 +1,23 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html style="overflow:hidden;">
+<!DOCTYPE html>
+<html>
 <head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
-	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
 	<title>test Opener with Calendar</title>
-	<!-- 1.8 -->
+
 	<link href="../../../dijit/themes/dijit.css" rel="stylesheet">
-	<!-- 1.8 -->
-	<style>
-		.mblTooltip.mblOpener DIV[label='Cancel'] {
-			display: none;
-		}
-	</style>
-	<!-- 1.8 -->
-	<script type="text/javascript" src="../../../dojo/dojo.js" djConfig="parseOnLoad: true, async:true, mblThemeFiles:['@theme','dijit/Calendar']"></script>
-	<!-- 1.8 -->
+	<script type="text/javascript" src="../deviceTheme.js" data-dojo-config="mblThemeFiles: ['base','Overlay','Tooltip','dijit.Calendar']"></script>
+	<script type="text/javascript" src="../../../dojo/dojo.js" data-dojo-config="async: true, parseOnLoad: true"></script>
 
 	<script language="JavaScript" type="text/javascript">
 		require([
-			"dojox/mobile",				// This is a mobile app.
-			"dojox/mobile/compat",		// This mobile app supports running on desktop browsers
-			"dojox/mobile/parser",		// This mobile app uses declarative programming with fast mobile parser
-			"dojox/mobile/deviceTheme",	// This mobile app automatically changes it's theme to match devices
+			"dojox/mobile",
+			"dojox/mobile/compat",
+			"dojox/mobile/parser",
 			"dojox/mobile/Opener",
-			"dijit/_base/manager",		// dijit.byId // 1.8
-			"dijit/CalendarLite"		// 1.8
+			"dijit/_base/manager", // dijit.byId
+			"dijit/CalendarLite"
 		]);
 
 		function getDate2(node, v){
@@ -47,6 +40,15 @@
 			}
 		}
 	</script>
+
+	<style>
+		html, body{
+			overflow: hidden;
+		}
+		.mblTooltip.mblOpener DIV[label='Cancel'] {
+			display: none;
+		}
+	</style>
 </head>
 <body style="visibility:hidden;">
 	<table cellspacing="20">
