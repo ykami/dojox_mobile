@@ -50,7 +50,7 @@ table.mblToolBarButton {
 .mblHeading .mblToolBarButtonArrow {
   border-width: 1px;
   border-style: solid;
-  border-color: rgba(55, 80, 115, 0.8) rgba(55, 80, 115, 0.8) rgba(47, 55, 64, 0.8) rgba(47, 55, 64, 0.8);
+  border-color: #405a7e #405a7e #3a4755 #3a4755;
 }
 .mblHeading .mblToolBarButtonHasLeftArrow .mblToolBarButtonArrow {
   -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.305);
@@ -67,7 +67,7 @@ table.mblToolBarButton {
 .mblHeading .mblToolBarButtonBody {
   border-width: 1px;
   border-style: solid;
-  border-color: #2f3740 rgba(55, 80, 115, 0.8) #375073 rgba(47, 55, 64, 0.8);
+  border-color: #2f3740 #405a7e #375073 #3a4755;
   -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.305);
 }
 .mblToolBarButtonBody table {
@@ -75,11 +75,13 @@ table.mblToolBarButton {
 }
 .mblToolBarButtonHasLeftArrow .mblToolBarButtonBody {
   left: 9px;
+  padding-left: 2px;
   border-left-width: 0;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
 .mblToolBarButtonHasRightArrow .mblToolBarButtonBody {
+  padding-right: 2px;
   border-right-width: 0;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
