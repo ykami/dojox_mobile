@@ -271,7 +271,7 @@ define([
 			return ret;
 		},
 
-		adjustDestination: function(to, pos){
+		adjustDestination: function(to, pos, dim){
 			// summary:
 			//		Overrides dojox.mobile.scrollable.adjustDestination().
 			var h = this._itemHeight;
@@ -279,6 +279,7 @@ define([
 			var a = Math.abs(j);
 			var r = j >= 0 ? j % h : j % h + h;
 			to.y = j - r;
+			return true;
 		},
 
 		resize: function(e){
