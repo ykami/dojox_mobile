@@ -149,7 +149,7 @@ define([
 	lang.mixin(mobile, {
 		createDomButton: function(){
 			console.log('[MIG:fixed] ' + this.declaredClass + '(id='+this.id+'): createDomButton had been moved to iconUtils.');
-			return iconUtils.createDomButton(this, arguments);
+			return iconUtils.createDomButton.apply(this, arguments);
 		}
 	});
 
