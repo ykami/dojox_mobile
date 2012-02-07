@@ -190,10 +190,6 @@ define([
 	ready(function(){
 		dm.detectScreenSize(true);
 
-		if(config["mblAndroidWorkaround"] !== false && has('android')){
-			// workaround for the screen flicker issue on Android 2.2 (partially works for 3.x/4.0)
-			domConstruct.create("style", {innerHTML:".mblView{-webkit-transform-style:preserve-3d;}"}, win.doc.head, "first");
-		}
 		if(config["mblAndroidWorkaroundButtonStyle"] !== false && has('android')){
 			// workaround for the form button disappearing issue on Android 2.2-4.0
 			domConstruct.create("style", {innerHTML:"BUTTON,INPUT[type='button'],INPUT[type='submit'],INPUT[type='reset'],INPUT[type='file']::-webkit-file-upload-button{-webkit-appearance:none;}"}, win.doc.head, "first");
