@@ -37,6 +37,7 @@
 }
 .dj_tablet .mblTabBarStandardTab .mblTabBarButtonSelected {
 	background-color: #f3f4f6;
+	background-image: none;
 }
 .dj_gecko.dj_tablet .mblTabBarSegmentedControl,
 .dj_gecko.dj_tablet .mblTabBarStandardTab,

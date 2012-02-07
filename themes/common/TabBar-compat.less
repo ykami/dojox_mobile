@@ -5,15 +5,22 @@
 	display: inline; // IE bug
 }
 
-/* barType=tabBar */
+/* barType="tabBar" */
 .mblTabBarTabBar {
 	background-image: none;
 	.mblTabBarTabBar-compat;
 }
+.dj_ff3 {
+	.mblTabBarTabBar {
+		.mblTabBarButtonSelected {
+			-moz-border-radius: 3px;
+		}
+	}
+}
 
-/* barType=segmentedControl */
+/* barType="segmentedControl" | "standardTab" */
 .mblTabBarSegmentedControl, .mblTabBarStandardTab {
-/*	background-image: url(compat/heading-bg.png);*/
+	background-image: url(compat/heading-bg.png);
 	.mblTabBarButton {
 		background-image: url(compat/tab-seg-button-bg.png);
 	}
@@ -26,26 +33,47 @@
 		.mblTabBarSegmentedControlButton-compat-gecko;
 	}
 }
-
-/* barType=plainTab */
-.mblTabBarPlainTab {
-	background-image: url(compat/heading-bg.png);
-	.mblTabBarButtonSelected {
-		background-image: url(compat/tab-seg-sel-button-bg.png);
+.dj_ff3 {
+	.mblTabBarSegmentedControl {
+		.mblTabBarButton {
+			&:first-child {
+				-moz-border-radius-topleft: @mbl-tab-bar-segmented-control-border-radius;
+				-moz-border-radius-bottomleft: @mbl-tab-bar-segmented-control-border-radius;
+			}
+			&:last-child {
+				-moz-border-radius-topright: @mbl-tab-bar-segmented-control-border-radius;
+				-moz-border-radius-bottomright: @mbl-tab-bar-segmented-control-border-radius;
+			}
+		}
+	}
+	.mblTabBarStandardTab {
+		.mblTabBarButton {
+			-moz-border-radius-topleft: 4px;
+			-moz-border-radius-topright: 4px;
+		}
 	}
 }
 
-/* barType=slimTab */
+/* barType="slimTab" */
 .mblTabBarSlimTab {
 	background-image: url(compat/tab-slim-bar-bg.png);
 }
-
-/* barType=flatTab */
-.mblTabBarFlatTab {
-/*	background-image: none;*/
+.dj_gecko .mblTabBarSlimTab {
+	background-image: -moz-linear-gradient(top, #2d2d2d 0%, #141414 50%, #000000 50%, #000000 100%);
+	.mblTabBarButton {
+		background-image: -moz-linear-gradient(top, #2d2d2d 0%, #141414 50%, #000000 50%, #000000 100%);
+	}
+	.mblTabBarButtonSelected {
+		background-image: -moz-linear-gradient(top, #313031 0%, #5a555a 50%, #616161 50%, #959595 100%);
+	}
 }
 
-/* barType=tallTab */
+/* barType="flatTab" */
+.mblTabBarFlatTab {
+//	background-image: none;
+}
+
+/* barType="tallTab" */
 .mblTabBarTallTab {
 	background-image: url(compat/tab-tall-bar-bg.png);
 	.mblTabBarButtonSelected {

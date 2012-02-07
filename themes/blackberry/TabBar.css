@@ -53,9 +53,9 @@
   color: #979797;
 }
 .mblTabBarTabBar .mblTabBarButtonSelected {
+  border-radius: 3px;
   background-color: #404040;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#484848), to(#242424), color-stop(0.5, #353535));
-  border-radius: 3px;
 }
 .mblTabBarTabBar .mblTabBarButtonSelected .mblTabBarButtonLabel {
   color: white;
@@ -87,7 +87,6 @@
   background-image: -webkit-gradient(linear, left top, left bottom, from(#f7fbf7), to(#cecfd6), color-stop(0.5, #ced3ce));
 }
 .mblTabBarSegmentedControl .mblTabBarButton:first-child {
-  border-left-width: 1px;
   border-left-width: 1px;
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
