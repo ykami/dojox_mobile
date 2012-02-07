@@ -12,13 +12,18 @@
 }
 
 /* barType=segmentedControl */
-.mblTabBarSegmentedControl {
+.mblTabBarSegmentedControl, .mblTabBarStandardTab {
 	background-image: url(compat/heading-bg.png);
 	.mblTabBarButton {
 		background-image: url(compat/tab-seg-button-bg.png);
 	}
 	.mblTabBarButtonSelected {
 		background-image: url(compat/tab-seg-sel-button-bg.png);
+	}
+}
+.dj_gecko .mblTabBarSegmentedControl {
+	.mblTabBarButton {
+		.mblTabBarSegmentedControlButton-compat-gecko;
 	}
 }
 

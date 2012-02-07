@@ -80,7 +80,7 @@
 .dj_tablet .mblTabBarSegmentedControl .mblTabBarButton {
 	background-color: #889bb3;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#f3f4f6), to(#a7abb8));
-	border-color: silver;
+	border-color: #4e4f51 #60656f #565b64 #5a5c5f;
 	color: #70777f;
 	text-shadow: none;
 }

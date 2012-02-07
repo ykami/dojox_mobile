@@ -9,14 +9,17 @@
   background-color: #000000;
 }
 /* barType=segmentedControl */
-.mblTabBarSegmentedControl {
+.mblTabBarSegmentedControl, .mblTabBarStandardTab {
   background-image: url(compat/heading-bg.png);
 }
-.mblTabBarSegmentedControl .mblTabBarButton {
+.mblTabBarSegmentedControl .mblTabBarButton, .mblTabBarStandardTab .mblTabBarButton {
   background-image: url(compat/tab-seg-button-bg.png);
 }
-.mblTabBarSegmentedControl .mblTabBarButtonSelected {
+.mblTabBarSegmentedControl .mblTabBarButtonSelected, .mblTabBarStandardTab .mblTabBarButtonSelected {
   background-image: url(compat/tab-seg-sel-button-bg.png);
+}
+.dj_gecko .mblTabBarSegmentedControl .mblTabBarButton {
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.305);
 }
 /* barType=plainTab */
 .mblTabBarPlainTab {
