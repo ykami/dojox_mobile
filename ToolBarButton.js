@@ -37,8 +37,9 @@ define([
 
 		// light: Boolean
 		//		If true, this widget produces only a single <span> node when it
-		// 		has no icon nor arrow.  In that case, you cannot have icon or
-		// 		arrow even with setters.
+		// 		has only an icon or only a label, and has no arrow. In that
+		// 		case, you cannot have both icon and label, or arrow even with
+		// 		setters.
 		light: true,
 
 		baseClass: "mblToolBarButton",
@@ -53,9 +54,12 @@ define([
 			if(!this.label && this.srcNodeRef){
 				this.label = this.srcNodeRef.innerHTML;
 			}
-			if(this.light && !this.icon && !this.arrow){
-				this.domNode = this.labelNode = this.tableNode = this.bodyNode =
-					domConstruct.create("span", {className:this.defaultColor+" mblToolBarButtonBody"});
+			if(this.light && !this.arrow && (!this.icon || !this.label)){
+				this.domNode = this.labelNode = this.tableNode = this.bodyNode = this.iconParentNode =
+					domConstruct.create("span", {
+						className: this.defaultColor + " mblToolBarButtonBody" +
+							(this.icon ? " mblToolBarButtonLightIcon" : " mblToolBarButtonLightText")
+					});
 				this.inherited(arguments);
 				return;
 			}

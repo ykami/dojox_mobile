@@ -15,6 +15,9 @@ span.mblToolBarButton {
   padding: 6px 10px 7px 10px;
   display: inline;
 }
+span.mblToolBarButtonLightIcon {
+  padding: 0;
+}
 table.mblToolBarButton {
   vertical-align: middle;
 }
@@ -23,6 +26,9 @@ table.mblToolBarButton {
 }
 .mblHeading span.mblToolBarButton {
   padding: 0 10px;
+}
+.mblHeading span.mblToolBarButtonLightIcon {
+  padding: 0;
 }
 .mblToolBarButtonCell {
   position: relative;
