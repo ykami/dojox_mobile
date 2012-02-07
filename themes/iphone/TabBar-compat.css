@@ -18,6 +18,9 @@
 .mblTabBarSegmentedControl .mblTabBarButtonSelected {
   background-image: url(compat/tab-seg-sel-button-bg.png);
 }
+.dj_gecko .mblTabBarSegmentedControl .mblTabBarButton {
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.305);
+}
 /* barType=plainTab */
 .mblTabBarPlainTab {
   background-image: url(compat/heading-bg.png);
