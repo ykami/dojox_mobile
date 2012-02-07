@@ -88,6 +88,39 @@ define([
 		this.checkFixedSplitterPane = function(/*Widget*/ w){
 			console.log('[MIG:fixed] FixedSplitterPane: Deprecated. Use dojox.mobile.Container instead.');
 		};
+		this.checkFixedSplitter = function(/*Widget*/ w){
+			// FixedSplitter.css has been moved from the themes/common folder
+			// to a device theme folder such as themes/android.
+			if(!this._fixedSplitter_css_checked){
+				this._fixedSplitter_css_checked = true;
+				var dummy = domConstruct.create("div", {
+					className: "mblFixedSplitter"
+				}, win.body());
+				if(domStyle.get(dummy, "height") == 0){
+					domConstruct.create("link", {
+						href: "../themes/android/FixedSplitter.css",
+						type: "text/css",
+						rel: "stylesheet"
+					}, win.doc.getElementsByTagName('head')[0]);
+					console.log('[MIG:fixed] FixedSplitter.css does not seem to be loaded. Loaded it for you just now. It is in a device theme folder.');
+				}
+				win.body().removeChild(dummy);
+				setTimeout(function(){
+					w.resize();
+				}, 1000);
+			}
+		};
+
+		this.checkSpinWheelSlot = function(/*Widget*/ w){
+			if(w.labels && w.labels[0] && w.labels[0].charAt(0) === '['){
+				for(var i = 0; i < w.labels.length; i++){
+					w.labels[i] = w.labels[i].replace(/^\[*[\'\"]*/, '');
+					w.labels[i] = w.labels[i].replace(/[\'\"]*\]*$/, '');
+				}
+				console.log('[MIG:fixed] dojox.mobile.parser became the same specification as dojo.parser. It is necessary that SpinWheelSlot label parameter should be same as dojo.parser.' );
+			}
+
+		};
 	};
 
 	WidgetBase.prototype.postMixInProperties = function(){
@@ -135,7 +168,7 @@ define([
 		lang.extend(obj, {
 			select: function(){
 				console.log('[MIG:fixed] ' + this.declaredClass + '(id='+this.id+'): Use set("selected", boolean) instead of select/deselect.');
-				obj.prototype.set("selected", !!arguments[0]);;
+				obj.prototype.set.apply(this, ["selected", !arguments[0]]);
 			},
 			deselect: function(){
 				this.select(true);
@@ -148,7 +181,7 @@ define([
 
 	lang.mixin(mobile, {
 		createDomButton: function(){
-			console.log('[MIG:fixed] ' + this.declaredClass + '(id='+this.id+'): createDomButton had been moved to iconUtils.');
+			console.log('[MIG:fixed] dojox.mobile(id='+arguments[0].id+'): createDomButton had been moved to iconUtils.');
 			return iconUtils.createDomButton.apply(this, arguments);
 		}
 	});
