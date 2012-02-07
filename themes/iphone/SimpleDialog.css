@@ -35,44 +35,11 @@
   position: absolute !important;
 }
 .mblSimpleDialogTitle {
-  width: 100%;
-  -webkit-box-sizing: border-box;
   margin: 14px 0 7px;
+  width: 262px;
   font-weight: bold;
 }
 .mblSimpleDialogText {
-  width: 100%;
-  -webkit-box-sizing: border-box;
   margin: 7px 0 14px;
-}
-.mblSimpleDialogInput {
-  -webkit-box-sizing: border-box;
-  margin: 7px 0 14px;
-  width: 100%;
-}
-.mblSimpleDialogButton {
-  -webkit-box-sizing: border-box;
-  opacity: 0.95;
-  font-weight: bold;
-  margin: 7px 0 0;
-  width: 100%;
-  font-size: 17px;
-}
-.mblSimpleDialogButton2l {
-  font-weight: bold;
-  opacity: 0.95;
-  -webkit-box-sizing: border-box;
-  float: left;
-  width: 127px;
-  margin: 7px 0 0;
-  font-size: 17px;
-}
-.mblSimpleDialogButton2r {
-  font-weight: bold;
-  opacity: 0.95;
-  -webkit-box-sizing: border-box;
-  float: right;
-  width: 127px;
-  margin: 7px 0 0;
-  font-size: 17px;
+  width: 262px;
 }

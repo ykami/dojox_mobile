@@ -1,12 +1,4 @@
 /* dojox.mobile.SimpleDialog */
-.dj_gecko .mblSimpleDialogTitle,
-.dj_gecko .mblSimpleDialogText,
-.dj_gecko .mblSimpleDialogInput,
-.dj_gecko .mblSimpleDialogButton,
-.dj_gecko .mblSimpleDialogButton2l,
-.dj_gecko .mblSimpleDialogButton2r {
-  -moz-box-sizing: border-box;
-}
 .dj_ff3 .mblSimpleDialogDecoration {
   -moz-border-radius: 6px;
 }
