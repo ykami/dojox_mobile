@@ -1,6 +1,7 @@
 define([
 	"dojo/_base/array",
 	"dojo/_base/declare",
+	"dojo/_base/lang",
 	"dojo/_base/window",
 	"dojo/dom-class",
 	"dijit/registry",
@@ -9,7 +10,7 @@ define([
 	"./TransitionEvent",
 	"./iconUtils",
 	"./sniff"
-], function(array, declare, win, domClass, registry, Contained, WidgetBase, TransitionEvent, iconUtils, has){
+], function(array, declare, lang, win, domClass, registry, Contained, WidgetBase, TransitionEvent, iconUtils, has){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -295,7 +296,7 @@ define([
 
 			if(this._delayedSelection){
 				// so as not to make selection when the user flicks on ScrollableView
-				this._selTimer = setTimeout(dojo.hitch(this, function(){ this.set("selected", true); }), 100);
+				this._selTimer = setTimeout(lang.hitch(this, function(){ this.set("selected", true); }), 100);
 			}else{
 				this.set("selected", true);
 			}

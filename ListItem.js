@@ -218,11 +218,7 @@ define([
 			var centerNode;
 			array.forEach(this.domNode.childNodes, function(n){
 				if(n.nodeType !== 1){ return; }
-				var layout = n.getAttribute("layout");
-				if(!layout){
-					var w = registry.byNode(n);
-					layout = w && w.layout;
-				}
+				var layout = n.getAttribute("layout") || (registry.byNode(n) || {}).layout;
 				if(layout){
 					domClass.add(n, "mblListItemLayout" +
 						layout.charAt(0).toUpperCase() + layout.substring(1));
@@ -246,7 +242,7 @@ define([
 
 		_onTouchStart: function(e){
 			if(e.target.getAttribute("preventTouch") ||
-				(registry.getEnclosingWidget(e.target)||{}).preventTouch){
+				(registry.getEnclosingWidget(e.target) || {}).preventTouch){
 				return;
 			}
 			this.inherited(arguments);
@@ -342,17 +338,13 @@ define([
 		_findRef: function(/*String*/type){
 			// summary:
 			//		Find an appropriate position to insert a new child node.
-			// description:
-			//		This method searches for the last node whose layout is
-			//		float:left or float:right. Immediately after that node is
-			//		the position to insert a new child.
-			var list = ["deleteIcon", "icon", "rightIcon", "uncheckIcon", "rightIcon2", "rightText"];
-			for(var i = array.indexOf(list, type) + 1; i < list.length; i++){
-				var node = this[list[i] + "Node"];
+			var i, node, list = ["deleteIcon", "icon", "rightIcon", "uncheckIcon", "rightIcon2", "rightText"];
+			for(i = array.indexOf(list, type) + 1; i < list.length; i++){
+				node = this[list[i] + "Node"];
 				if(node){ return node; }
 			}
-			for(var i = list.length - 1; i >= 0; i--){
-				var node = this[list[i] + "Node"];
+			for(i = list.length - 1; i >= 0; i--){
+				node = this[list[i] + "Node"];
 				if(node){ return node.nextSibling; }
 			}
 			return this.domNode.firstChild;
