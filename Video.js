@@ -1,7 +1,7 @@
 define([
 	"dojo/_base/declare",
 	"dojo/_base/sniff",
-	"dojox/mobile/Audio"
+	"./Audio"
 ], function(declare, has, Audio){
 	// module:
 	//		dojox/mobile/Video

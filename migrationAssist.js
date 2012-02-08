@@ -8,15 +8,15 @@ define([
 	"dojo/ready",
 	"dijit/_Container",
 	"dijit/_WidgetBase",
-	"dojox/mobile/_ItemBase",
-	"dojox/mobile/common", 
-	"dojox/mobile/FixedSplitterPane",
-	"dojox/mobile/Heading",
-	"dojox/mobile/iconUtils",
-	"dojox/mobile/RoundRect",
-	"dojox/mobile/TabBarButton",
-	"dojox/mobile/ToolBarButton",
-	"dojox/mobile/View"
+	"./_ItemBase",
+	"./common", 
+	"./FixedSplitterPane",
+	"./Heading",
+	"./iconUtils",
+	"./RoundRect",
+	"./TabBarButton",
+	"./ToolBarButton",
+	"./View"
 ], function(declare, lang, win, domClass, domConstruct, domStyle, ready, Container, WidgetBase, _ItemBase, mobile, FixedSplitterPane, Heading, iconUtils, RoundRect, TabBarButton, ToolBarButton, View){
 
 	// module:
