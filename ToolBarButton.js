@@ -124,8 +124,7 @@ define([
 				domStyle.set(this.arrowNode, "backgroundImage",
 							 s.replace(/\(top,/, "(top left,") // webkit new
 							 .replace(/0% 0%, 0% 100%/, "0% 0%, 100% 100%") // webkit old
-							 .replace(/50% 0%/, "0% 0%") // moz
-							 .replace(/0\.5/, "0.45")); // adjust color-stop
+							 .replace(/50% 0%/, "0% 0%")); // moz
 			}
 			return true;
 		},
