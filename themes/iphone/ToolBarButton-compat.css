@@ -28,9 +28,6 @@
 .dj_ie .mblToolBarButton {
   display: inline;
 }
-.dj_ie .mblToolBarButtonHasLeftArrow, .dj_ie .mblToolBarButtonHasRightArrow {
-  margin-right: 19px;
-}
 .dj_ie .mblToolBarButtonLeftArrow {
   position: absolute;
   top: 0;
