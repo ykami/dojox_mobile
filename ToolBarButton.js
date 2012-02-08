@@ -1,13 +1,11 @@
 define([
 	"dojo/_base/declare",
-	"dojo/_base/window",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/dom-style",
-	"./iconUtils",
 	"./sniff",
 	"./_ItemBase"
-], function(declare, win, domClass, domConstruct, domStyle, iconUtils, has, ItemBase){
+], function(declare, domClass, domConstruct, domStyle, has, ItemBase){
 /*=====
 	var ItemBase = dojox.mobile._ItemBase;
 =====*/
