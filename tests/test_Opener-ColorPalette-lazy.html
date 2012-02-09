@@ -16,8 +16,7 @@
 			"dojox/mobile/compat",
 			"dojox/mobile/parser",
 			"dojox/mobile/Opener",
-			"dijit/_base/manager", // dijit.byId
-			"dijit/ColorPalette"
+			"dijit/_base/manager" // dijit.byId
 		]);
 
 		function getColor1(node, v){
@@ -53,7 +52,7 @@
 	</tr>
 	</table>
 
-	<div id="colorPicker1" data-dojo-type="dojox.mobile.Opener" data-dojo-props="onHide:getColor1">
+	<div id="colorPicker1" data-dojo-type="dojox.mobile.Opener" data-dojo-props="onHide:getColor1, lazy:true">
 		<h1 dojoType="dojox.mobile.Heading" label="Select a Color">
 			<button dojoType="dojox.mobile.ToolBarButton" label="Done" class="mblColorBlue" style="position:absolute;width:45px;right:0;"
 				onclick="dijit.byId('colorPicker1').hide(true)"></button>
