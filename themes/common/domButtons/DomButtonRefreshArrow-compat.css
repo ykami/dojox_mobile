@@ -1,8 +1,0 @@
-/* === Refresh Arrow Button ==*/
-.mblDomButtonRefreshArrow {
-	background-image: url(compat/mblDomButtonRefreshArrow.png);
-	background-repeat: no-repeat;
-}
-.mblDomButtonRefreshArrow > div {
-	display: none;
-}
