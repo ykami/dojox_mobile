@@ -1,7 +1,7 @@
 define([
 	"dojo/_base/declare",
 	"dojo/_base/window",
-	"dojo/_base/kernel", // kernel.deprecated
+	"dojo/_base/kernel",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dijit/_Contained",
@@ -50,7 +50,7 @@ define([
 		// value: String
 		//		The initial value of the slot.
 		value: "",
-		
+
 		/* internal properties */	
 		maxSpeed: 500,
 		minItems: 15,
@@ -206,8 +206,7 @@ define([
 		_getValueAttr: function(){
 			// summary:
 			//		Gets the currently selected value.
-			var key = this.getKey();
-			return this.items[key][1];
+			return this.items[this.getKey()][1];
 		},
 
 		getKey: function(){

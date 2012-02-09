@@ -1,7 +1,7 @@
 define([
 	"dojo/_base/array",
 	"dojo/_base/declare",
-	"dojo/_base/kernel", // kernel.deprecated
+	"dojo/_base/kernel",
 	"dojo/_base/lang",
 	"dojo/dom-class",
 	"dojo/dom-construct",
