@@ -18,10 +18,10 @@ dojo.addOnLoad(function(){
 					verifyListItem("dojox_mobile_ListItem_9", 'XX Widget', '', "mblDomButtonBluePlus", true, true, false);
 					verifyListItem("dojox_mobile_ListItem_10", 'YY Widget', '', "mblDomButtonRedMinus", true, true, false);
 					
-					var txt = 'Use wireless networks<div class="mblListItemSubText">See location in applications (such as Maps) using wireless networks</div>'
+					var txt = 'See location in applications (such as Maps) using wireless networks';
 					verifyListItem("dojox_mobile_ListItem_11", txt, '', "mblDomButtonCheckboxOff", false, true, false, true);
 					
-					txt = 'Use GPS satellites<div class="mblListItemSubText">When locating, accurate to street level (uncheck to conserve battery)</div>'
+					txt = 'When locating, accurate to street level (uncheck to conserve battery)';
 					verifyListItem("dojox_mobile_ListItem_12", txt, '', "mblDomButtonCheckboxOn", false, true, false, true);
 
 					verifyListItem("dojox_mobile_ListItem_13", 'Set unlock pattern', '', "", false, false, false);
@@ -109,7 +109,7 @@ dojo.addOnLoad(function(){
 				var demoWidget = dijit.byId("dojox_mobile_ListItem_11");
 				demoWidget.set({rightIcon:"mblDomButtonCheckboxOn"});
 
-				var txt = 'Use wireless networks<div class="mblListItemSubText">See location in applications (such as Maps) using wireless networks</div>'
+				var txt = 'See location in applications (such as Maps) using wireless networks';
 				verifyListItem("dojox_mobile_ListItem_11", txt, '', "mblDomButtonCheckboxOn", false, true, false, true);
 //							doh.assertEqual("mblDomButtonCheckboxOn", demoWidget.get("icon"));
 			}

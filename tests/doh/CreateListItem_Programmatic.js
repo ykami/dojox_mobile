@@ -36,13 +36,15 @@ dojo.addOnLoad(function(){
 	list.addChild(demoWidget);
 
 	list = dijit.byId("dojox_mobile_EdgeToEdgeList_1");
-	demoWidget = new dojox.mobile.ListItem({rightIcon:"mblDomButtonCheckboxOff", label:"Use wireless networks", variableHeight:"true"});
-	var child = dojo.create("DIV", {className:"mblListItemSubText"}, demoWidget.labelNode);
+	demoWidget = new dojox.mobile.ListItem({rightIcon:"mblDomButtonCheckboxOff", variableHeight:"true"});
+	dojo.create(dojo.doc.createTextNode("Use wireless networks"), null, demoWidget.labelNode, "before");
+	var child = dojo.create("DIV", {className:"mblListItemSubText"}, demoWidget.labelNode, "before");
 	child.appendChild(dojo.doc.createTextNode("See location in applications (such as Maps) using wireless networks"));
 	list.addChild(demoWidget);
 
-	demoWidget = new dojox.mobile.ListItem({rightIcon:"mblDomButtonCheckboxOn", label:"Use GPS satellites", variableHeight:"true"});
-	child = dojo.create("DIV", {className:"mblListItemSubText", innerHTML:"When locating, accurate to street level (uncheck to conserve battery)"}, demoWidget.labelNode);
+	demoWidget = new dojox.mobile.ListItem({rightIcon:"mblDomButtonCheckboxOn", variableHeight:"true"});
+	dojo.create(dojo.doc.createTextNode("Use GPS satellites"), null, demoWidget.labelNode, "before");
+	child = dojo.create("DIV", {className:"mblListItemSubText", innerHTML:"When locating, accurate to street level (uncheck to conserve battery)"}, demoWidget.labelNode, "before");
 	list.addChild(demoWidget);
 
 	demoWidget = new dojox.mobile.ListItem({label:" Set unlock pattern"});

@@ -78,7 +78,7 @@ require([
 						runner.assertEqual('mblImageIcon mblListItemIcon', demoWidget.iconNode.className);
 						runner.assertTrue(demoWidget.iconNode.src.search(/i-icon-1.png/i) != -1);
 						runner.assertEqual('mblListItemRightIcon', demoWidget.rightIconNode.className);
-						runner.assertEqual('mblListItemTextBox', demoWidget.labelNode.className);
+						runner.assertEqual('mblListItemLabel', demoWidget.labelNode.className);
 						runner.assertEqual('Wi-Fi', demoWidget.labelNode.innerHTML);
 						runner.assertEqual('mblDomButtonArrow mblDomButton', demoWidget.rightIconNode.childNodes[0].className);
 
@@ -87,7 +87,7 @@ require([
 						runner.assertEqual('mblImageIcon mblListItemIcon', demoWidget.iconNode.className);
 						runner.assertTrue(demoWidget.iconNode.src.search(/i-icon-4.png/i) != -1);
 						runner.assertEqual('mblListItemRightIcon', demoWidget.rightIconNode.className);
-						runner.assertEqual('mblListItemTextBox', demoWidget.labelNode.className);
+						runner.assertEqual('mblListItemLabel', demoWidget.labelNode.className);
 						runner.assertEqual('General', demoWidget.labelNode.innerHTML);
 						runner.assertEqual('mblDomButtonArrow mblDomButton', demoWidget.rightIconNode.childNodes[0].className);
 						
@@ -106,7 +106,7 @@ require([
 						var demoWidget = registry.byId("dojox_mobile_ListItem_13");
 						runner.assertEqual('mblListItem', demoWidget.domNode.className);
 						runner.assertEqual(null, demoWidget.iconNode);
-						runner.assertEqual('mblListItemTextBox', demoWidget.labelNode.className);
+						runner.assertEqual('mblListItemLabel', demoWidget.labelNode.className);
 						runner.assertEqual('Grape', demoWidget.labelNode.innerHTML);
 						runner.assertEqual('mblDomButtonArrow mblDomButton', demoWidget.rightIconNode.childNodes[0].className);
 
@@ -128,7 +128,7 @@ require([
 						var demoWidget = registry.byId("dojox_mobile_ListItem_19");
 						runner.assertEqual('mblListItem', demoWidget.domNode.className);
 						runner.assertEqual('mblImageIcon mblListItemIcon', demoWidget.iconNode.className);
-						runner.assertEqual('mblListItemTextBox', demoWidget.labelNode.className);
+						runner.assertEqual('mblListItemLabel', demoWidget.labelNode.className);
 						runner.assertEqual('New Item 1', demoWidget.labelNode.innerHTML);
 						runner.assertEqual('mblDomButtonArrow mblDomButton', demoWidget.rightIconNode.childNodes[0].className);
 
@@ -139,7 +139,7 @@ require([
 						demoWidget = registry.byId("dojox_mobile_ListItem_20");
 						runner.assertEqual('mblListItem', demoWidget.domNode.className);
 						runner.assertEqual('mblImageIcon mblListItemIcon', demoWidget.iconNode.className);
-						runner.assertEqual('mblListItemTextBox', demoWidget.labelNode.className);
+						runner.assertEqual('mblListItemLabel', demoWidget.labelNode.className);
 						runner.assertEqual('New Item 2', demoWidget.labelNode.innerHTML);
 						runner.assertEqual('mblDomButtonArrow mblDomButton', demoWidget.rightIconNode.childNodes[0].className);
 					}),1500);

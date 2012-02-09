@@ -91,7 +91,7 @@ function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIco
 	var demoWidget = dijit.byId(id);
 	doh.assertNotEqual(null, demoWidget, "ListItem: Did not instantiate. id=" + id);
 	doh.assertEqual('mblListItem' + (hasVariableHeight ?" mblVariableHeight":"") + (hasSelected ?" mblListItemSelected":""), demoWidget.domNode.className, "id=" + id);
-	var childNodes = demoWidget.domNode.childNodes;
+	var childNodes = demoWidget.domNode.children;
 //	doh.assertEqual('mblListItemAnchor' + (hasIcon?'':' mblListItemAnchorNoIcon'), childNodes[0].className);
 	
 //	doh.assertEqual('A', childNodes[0].tagName);
@@ -128,8 +128,13 @@ function verifyListItem(id, text, rightText, domButtonType, hasIcon, hasRightIco
 		doh.assertEqual(rightText, dojo.isFF ==3.6 ? childNodes[i].childNodes[0].innerHTML : childNodes[i].innerHTML, "id=" + id); //2 0r 3
 		doh.assertEqual('mblListItemRightText', childNodes[i++].className, "id=" + id);
 	}
-	doh.assertEqual('mblListItemTextBox', childNodes[i].className, "id=" + id);
-	doh.assertEqual('DIV', childNodes[i].tagName, "id=" + id);
+	if(!hasVariableHeight){
+		doh.assertEqual('mblListItemLabel', childNodes[i].className, "id=" + id);
+		doh.assertEqual('DIV', childNodes[i].tagName, "id=" + id);
+	}else{
+		doh.assertEqual('mblListItemLabel', childNodes[i+1].className, "id=" + id);
+		doh.assertEqual('DIV', childNodes[i+1].tagName, "id=" + id);
+	}
 
 	try{
 		doh.assertEqual(text, dojo.trim(childNodes[i].innerHTML.replace(/\r\n|\n|\t/g,"")), "id=" + id);
@@ -186,25 +191,31 @@ function verifyTabBarButton(id, text, classNames, visibility1, visibility2, regE
 	for(var i = 0; i < classNames.length;i++){
 		doh.assertTrue(dojo.hasClass(demoWidget.domNode, classNames[i]), classNames[i] + " id=" +id + " className:"+demoWidget.domNode.className);
 	}
-	doh.assertEqual('mblTabBarButtonAnchor', demoWidget.domNode.childNodes[0].className, "id=" +id);
-	doh.assertEqual('mblTabBarButtonIconArea', demoWidget.domNode.childNodes[0].childNodes[0].className, "id=" +id);
-	doh.assertTrue(demoWidget.iconNode1, "There is no iconNode1. id=" + id);
-	if(!dojo.isIE) {
-		if(isSprite){
-			doh.assertTrue(demoWidget.iconNode1.childNodes[0].src.search(regExp1) != -1, "search " + regExp1.toString() + " id=" +id);
-		}else{
-			doh.assertTrue(demoWidget.iconNode1.src.search(regExp1) != -1, "search " + regExp1.toString() + " id=" +id);
+	doh.assertEqual('mblTabBarButtonIconArea', demoWidget.domNode.childNodes[0].className, "id=" +id);
+	doh.assertEqual('mblTabBarButtonLabel', demoWidget.domNode.childNodes[1].className, "id=" +id);
+	if(demoWidget.iconNode1){
+		if(!dojo.isIE) {
+			if(isSprite){
+				doh.assertTrue(demoWidget.iconNode1.childNodes[0].src.search(regExp1) != -1, "search " + regExp1.toString() + " id=" +id);
+			}else{
+				doh.assertTrue(demoWidget.iconNode1.src.search(regExp1) != -1, "search " + regExp1.toString() + " id=" +id);
+			}
 		}
+//		doh.assertEqual(visibility1, demoWidget.iconNode1.style.visibility, "id=" +id);
+	}else{
+		console.log("There is no iconNode1. id=" + id);
 	}
-//	doh.assertEqual(visibility1, demoWidget.iconNode1.style.visibility, "id=" +id);
-	doh.assertTrue(demoWidget.iconNode2, "There is no iconNode2. id=" + id);
-	if(!dojo.isIE) {
-		if(isSprite){
-			doh.assertTrue(demoWidget.iconNode2.childNodes[0].src.search(regExp2) != -1, "search " + regExp2.toString() + " id=" +id);
-		}else{
-			doh.assertTrue(demoWidget.iconNode2.src.search(regExp2) != -1, "search " + regExp2.toString() + " id=" +id);
+	if(demoWidget.iconNode2){
+		if(!dojo.isIE){
+			if(isSprite){
+				doh.assertTrue(demoWidget.iconNode2.childNodes[0].src.search(regExp2) != -1, "search " + regExp2.toString() + " id=" +id);
+			}else{
+				doh.assertTrue(demoWidget.iconNode2.src.search(regExp2) != -1, "search " + regExp2.toString() + " id=" +id);
+			}
 		}
+		doh.assertEqual(visibility2, demoWidget.iconNode2.style.visibility, "id=" +id);
+	}else{
+		console.log("There is no iconNode2. id=" + id);
 	}
-	doh.assertEqual(visibility2, demoWidget.iconNode2.style.visibility, "id=" +id);
-	doh.assertEqual(text, dojo.trim(demoWidget.domNode.childNodes[0].childNodes[1].innerHTML), "id=" +id);
+	doh.assertEqual(text, dojo.trim(demoWidget.labelNode.innerHTML), "id=" +id);
 }
