@@ -51,8 +51,6 @@ define([
 		//		The initial value of the slot.
 		value: "",
 		
-		colorClass: "mblSpinWheelSlotLabelBlue",
-
 		/* internal properties */	
 		maxSpeed: 500,
 		minItems: 15,
@@ -134,7 +132,7 @@ define([
 			//		Sets the initial value using this.value or the first item.
 			if(this.items.length > 0){
 				var val = (this.value !== "") ? this.value : this.items[0][1];
-				this.set('value', val);
+				this.set("value", val);
 			}
 		},
 
@@ -158,9 +156,9 @@ define([
 				var items = this.panelNodes[i].childNodes;
 				for(var j = 0; j < items.length; j++){
 					if(items[j].innerHTML === String(value)){
-						domClass.add(items[j], this.colorClass);
+						domClass.add(items[j], "mblSpinWheelSlotLabelBlue");
 					}else{
-						domClass.remove(items[j], this.colorClass);
+						domClass.remove(items[j], "mblSpinWheelSlotLabelBlue");
 					}
 				}
 			}
@@ -203,7 +201,7 @@ define([
 
 		getValue: function(){
 			kernel.deprecated(this.declaredClass+"::getValue() is deprecated. Use get('value') instead.", "", "2.0");
-			return this.get('value');
+			return this.get("value");
 		},
 		_getValueAttr: function(){
 			// summary:
@@ -221,13 +219,13 @@ define([
 
 		setValue: function(newValue){
 			kernel.deprecated(this.declaredClass+"::setValue() is deprecated. Use set('value', val) instead.", "", "2.0");
-			return this.set('value', newValue);
+			return this.set("value", newValue);
 		},
 		_setValueAttr: function(newValue){
 			// summary:
 			//		Sets the newValue to this slot.
 			var idx0, idx1;
-			var curValue = this.get('value');
+			var curValue = this.get("value");
 			if(!curValue){
 				this._penddingValue = newValue;
 				return;
@@ -296,7 +294,7 @@ define([
 
 		resize: function(e){
 			if(this._penddingValue){
-				this.set('value', this._penddingValue);
+				this.set("value", this._penddingValue);
 			}
 		},
 
