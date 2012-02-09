@@ -62,7 +62,7 @@ define([
 
 		getValue: function(){
 			kernel.deprecated(this.declaredClass+"::getValue() is deprecated. Use get('value') instead.", "", "2.0");
-			return this.get('value');
+			return this.get("value");
 		},
 		_getValueAttr: function(){
 			// summary:
@@ -78,7 +78,7 @@ define([
 
 		setValue: function(/*Array*/a){
 			kernel.deprecated(this.declaredClass+"::setValue() is deprecated. Use set('value', a) instead.", "", "2.0");
-			return this.set('value', a, true);
+			return this.set("value", a);
 		},
 		_setValueAttr: function(/*Array*/a){
 			// summary:
@@ -89,14 +89,6 @@ define([
 					w.set("value", a[i]);
 					w.setColor(a[i]);
 					i++;
-				}
-			}, this);
-		},
-
-		resize: function(e){
-			array.forEach(this.getChildren(), function(w){
-				if(w instanceof SpinWheelSlot){
-					w.resize();
 				}
 			}, this);
 		},
