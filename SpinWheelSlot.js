@@ -1,12 +1,13 @@
 define([
 	"dojo/_base/declare",
 	"dojo/_base/window",
+	"dojo/_base/kernel", // kernel.deprecated
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dijit/_Contained",
 	"dijit/_WidgetBase",
 	"./_ScrollableMixin"
-], function(declare, win, domClass, domConstruct, Contained, WidgetBase, ScrollableMixin){
+], function(declare, win, kernel, domClass, domConstruct, Contained, WidgetBase, ScrollableMixin){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -49,6 +50,8 @@ define([
 		// value: String
 		//		The initial value of the slot.
 		value: "",
+		
+		colorClass: "mblSpinWheelSlotLabelBlue",
 
 		/* internal properties */	
 		maxSpeed: 500,
@@ -131,11 +134,11 @@ define([
 			//		Sets the initial value using this.value or the first item.
 			if(this.items.length > 0){
 				var val = (this.value !== "") ? this.value : this.items[0][1];
-				this.setValue(val);
+				this.set('value', val);
 			}
 		},
 
-		getCenterPanel: function(){
+		_getCenterPanel: function(){
 			// summary:
 			//		Gets a panel that contains the currently selected item.
 			var pos = this.getPos();
@@ -155,9 +158,9 @@ define([
 				var items = this.panelNodes[i].childNodes;
 				for(var j = 0; j < items.length; j++){
 					if(items[j].innerHTML === String(value)){
-						domClass.add(items[j], "mblSpinWheelSlotLabelBlue");
+						domClass.add(items[j], this.colorClass);
 					}else{
-						domClass.remove(items[j], "mblSpinWheelSlotLabelBlue");
+						domClass.remove(items[j], this.colorClass);
 					}
 				}
 			}
@@ -184,7 +187,7 @@ define([
 			// summary:
 			//		Gets the currently selected item.
 			var pos = this.getPos();
-			var centerPanel = this.getCenterPanel();
+			var centerPanel = this._getCenterPanel();
 			if(centerPanel){
 				var top = pos.y + centerPanel.offsetTop;
 				var items = centerPanel.childNodes;
@@ -199,23 +202,32 @@ define([
 		},
 
 		getValue: function(){
+			kernel.deprecated(this.declaredClass+"::getValue() is deprecated. Use get('value') instead.", "", "2.0");
+			return this.get('value');
+		},
+		_getValueAttr: function(){
 			// summary:
 			//		Gets the currently selected value.
-			var item = this.getCenterItem();
-			return (item && item.innerHTML);
+			var key = this.getKey();
+			return this.items[key][1];
 		},
 
 		getKey: function(){
 			// summary:
 			//		Gets the key for the currently selected value.
-			return this.getCenterItem().getAttribute("name");
+			var item = this.getCenterItem();
+			return (item && item.getAttribute("name"));
 		},
 
 		setValue: function(newValue){
+			kernel.deprecated(this.declaredClass+"::setValue() is deprecated. Use set('value', val) instead.", "", "2.0");
+			return this.set('value', newValue);
+		},
+		_setValueAttr: function(newValue){
 			// summary:
 			//		Sets the newValue to this slot.
 			var idx0, idx1;
-			var curValue = this.getValue();
+			var curValue = this.get('value');
 			if(!curValue){
 				this._penddingValue = newValue;
 				return;
@@ -284,7 +296,7 @@ define([
 
 		resize: function(e){
 			if(this._penddingValue){
-				this.setValue(this._penddingValue);
+				this.set('value', this._penddingValue);
 			}
 		},
 
