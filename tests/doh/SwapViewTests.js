@@ -12,6 +12,7 @@ require([
 ], function(connect, domConst, domClass, ready, registry, runner, SwapView){
 
 
+	var timeoutInterval = 1000;
 	var WIDGET_CLASSNAME1 = "mblView";
 	var WIDGET_CLASSNAME2 = "mblSwapView";
 
@@ -69,14 +70,13 @@ require([
 					var widget2 = registry.byId("bar");
 
 					var d = new runner.Deferred();
-					var handle1 = connect.connect(widget2, "resize", this, d.getTestCallback(function(){
-						connect.disconnect(handle1);
+					setTimeout(d.getTestCallback(function(){
 						var widget1 = registry.byId("foo");
 						var widget2 = registry.byId("bar");
 						_assertCorrectSwapView(widget1, true);
 						_assertCorrectSwapView(widget2, false);
 						widget1.goTo(1);
-					}));
+					}), timeoutInterval);
 					return d;
 			
 				}
@@ -86,15 +86,12 @@ require([
 				timeout: 4000,
 				runTest: function(){
 					var d = new runner.Deferred();
-					var handle2 = connect.subscribe("/dojox/mobile/viewChanged", d.getTestCallback(function(view){
-						if(view.id=="bar"){
-							connect.unsubscribe(handle2);
-						}
+					setTimeout(d.getTestCallback(function(){
 						var widget1 = registry.byId("foo");
 						var widget2 = registry.byId("bar");
 						_assertCorrectSwapView(widget1, false);
 						_assertCorrectSwapView(widget2, true);
-					}));
+					}), timeoutInterval);
 					return d;
 				}
 			}

@@ -1,3 +1,5 @@
+var timeoutInterval = 3000;
+
 var WIDGET_CLASSNAME1 = "mblPageIndicator";
 var WIDGET_CLASSNAME2 = "mblFixedBottomBar";
 var WIDGET_DOT_CLASSNAME1 = "mblPageIndicatorDot";
@@ -106,11 +108,10 @@ require([
 					var widget1 = registry.byId("dojox_mobile_PageIndicator_0");
 
 					var d = new runner.Deferred();
-					var handle1 = connect.connect(widget1, "reset", this, d.getTestCallback(function(){
-						connect.disconnect(handle1);
+					setTimeout(d.getTestCallback(function(){
 						_assertCorrectPageIndicator(widget1, 1);
 						view1.goTo(1);
-					}));
+					}), timeoutInterval);
 					return d;
 			
 				}
@@ -121,16 +122,11 @@ require([
 				runTest: function(){
 					var view2 = registry.byId("dojox_mobile_SwapView_1");
 					var d = new runner.Deferred();
-					var handle2 = connect.subscribe("/dojox/mobile/viewChanged", d.getTestCallback(function(view){
-						if(has("ie") || view.id=="dojox_mobile_SwapView_1"){
-							connect.unsubscribe(handle2);
-						}else{
-							return;
-						}
+					setTimeout(d.getTestCallback(function(){
 						var widget1 = registry.byId("dojox_mobile_PageIndicator_0");
 						_assertCorrectPageIndicator(widget1, 2);
 						view2.goTo(1);
-					}));
+					}), timeoutInterval);
 					return d;
 				}
 			},
@@ -139,16 +135,11 @@ require([
 				timeout: 4000,
 				runTest: function(){
 					var d = new runner.Deferred();
-					var handle3 = connect.subscribe("/dojox/mobile/viewChanged", d.getTestCallback(function(view){
-						if(has("ie") || view.id=="dojox_mobile_SwapView_2"){
-							connect.unsubscribe(handle3);
-						}else{
-							return;
-						}
+					setTimeout(d.getTestCallback(function(){
 						var widget1 = registry.byId("dojox_mobile_PageIndicator_0");
 						_assertCorrectPageIndicator(widget1, 3);
 						fireOnClick(widget1.domNode);
-					}));
+					}), timeoutInterval);
 					return d;
 				}
 			},
@@ -157,15 +148,10 @@ require([
 				timeout: 4000,
 				runTest: function(){
 					var d = new runner.Deferred();
-					var handle4 = connect.subscribe("/dojox/mobile/viewChanged", d.getTestCallback(function(view){
-						if(has("ie") || view.id=="dojox_mobile_SwapView_1"){
-							connect.unsubscribe(handle4);
-						}else{
-							return;
-						}
+					setTimeout(d.getTestCallback(function(){
 						var widget1 = registry.byId("dojox_mobile_PageIndicator_0");
 						_assertCorrectPageIndicator(widget1, 2);
-					}));
+					}), timeoutInterval);
 					return d;
 				}
 			}

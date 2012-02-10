@@ -37,9 +37,9 @@ require([
 		parentWidget.addChild(r);
 		r = new ListItem({id:widgetId[1], label:"u2space"});
 		parentWidget.addChild(r);
-		r = new ListItem({id:widgetId[2], btnClass:"mblDomButtonBluePlus", label:"Wi-Fi"});
+		r = new ListItem({id:widgetId[2], rightIcon:"mblDomButtonBluePlus", label:"Wi-Fi"});
 		parentWidget.addChild(r);
-		r = new ListItem({id:widgetId[3], btnClass:"mblDomButtonCheckboxOn", label:"VPN"});
+		r = new ListItem({id:widgetId[3], rightIcon:"mblDomButtonCheckboxOn", label:"VPN"});
 		parentWidget.addChild(r);
 		r = new ListItem({id:widgetId[4], variableHeight:"true", style:"font-size:10px", label:'<div>1. <a href="#" class="lnk">Dojo: Traditional Karate-do Spirit</a><br>Sarah Connor Hardcover<br>Eligible for FREE Super Saver Shipping<br><font color="red">$14.50 (50%)</font> In Stock<br># (531)</div>'});
 		parentWidget.addChild(r);
@@ -51,10 +51,15 @@ require([
 		// Create IconContainer
 		var r;
 		r = new ListItem({icon:"../images/i-icon-1.png", rightText:"Off", moveTo:"bar"}, widgetId[0]);
+		r.startup();
 		r = new ListItem({}, widgetId[1]);
-		r = new ListItem({btnClass:"mblDomButtonBluePlus"}, widgetId[2]);
-		r = new ListItem({btnClass:"mblDomButtonCheckboxOn"}, widgetId[3]);
+		r.startup();
+		r = new ListItem({rightIcon:"mblDomButtonBluePlus"}, widgetId[2]);
+		r.startup();
+		r = new ListItem({rightIcon:"mblDomButtonCheckboxOn"}, widgetId[3]);
+		r.startup();
 		r = new ListItem({variableHeight:"true"}, widgetId[4]);
+		r.startup();
 
 		return r;
 	};
@@ -73,15 +78,11 @@ require([
 		var widget = registry.byId(widgetId);
 		doh.assertNotEqual(null, widget, "ListItem: Did not instantiate.");
 		runner.assertTrue(domClass.contains(widget.domNode, WIDGET_CLASSNAME1), WIDGET_CLASSNAME1 + " id=" + widget.domNode.id);
-		runner.assertTrue(widget.anchorNode, "anchorNode: There is no anchorNode. id=" + widget.domNode.id);
-		runner.assertTrue(domClass.contains(widget.anchorNode, WIDGET_ANCHOR_CLASSNAME1), WIDGET_ANCHOR_CLASSNAME1 + " id=" + widget.domNode.id);
-		if(noIcon){
-			runner.assertTrue(domClass.contains(widget.anchorNode, WIDGET_ANCHOR_CLASSNAME2), WIDGET_ANCHOR_CLASSNAME2 + " id=" + widget.domNode.id);
-		}else{
+		if(!noIcon){
 			runner.assertTrue(widget.iconNode, "iconNode: There is no iconNode. id=" + widget.domNode.id);
 			runner.assertTrue(domClass.contains(widget.iconNode, WIDGET_ICON_CLASSNAME1), WIDGET_ICON_CLASSNAME1 + " id=" + widget.domNode.id);
 			if(dojo.isIE!=6){
-				runner.assertTrue(!!widget.iconNode.childNodes[0].src, "iconNode: There is no src in iconNode. id=" + widget.domNode.id);
+				runner.assertTrue(!!widget.iconNode.src, "iconNode: There is no src in iconNode. id=" + widget.domNode.id);
 			}
 		}
 		if(rightIcon){
@@ -98,8 +99,8 @@ require([
 			runner.assertEqual(rightText, widget.rightTextNode.innerHTML);
 		}
 		if(boxText){
-			runner.assertTrue(widget.box, "box: There is no box. id=" + widget.domNode.id);
-			var innerHTML = string.trim(widget.box.childNodes[0].innerHTML.replace(/\r\n/g,""));
+			runner.assertTrue(widget.labelNode, "box: There is no box. id=" + widget.domNode.id);
+			var innerHTML = string.trim(widget.labelNode.innerHTML.replace(/\r\n/g,""));
 			runner.assertEqual(boxText, innerHTML, "id=" + widget.domNode.id);
 		}
 	};
@@ -117,6 +118,7 @@ require([
 				runTest: function(){
 					_createListItemProgrammatically("view1-RoundRectList2", ["view1-item6", "view1-item7", "view1-item8", "view1-item9", "view1-item10"]);
 					_createListItemProgrammaticallyWithSourceNodeReference(["view1-item11", "view1-item12", "view1-item13", "view1-item14", "view1-item15"]);
+
 					_assertCorrectListItems(["view1-item1", "view1-item2", "view1-item3", "view1-item4", "view1-item5"]);
 					_assertCorrectListItems(["view1-item6", "view1-item7", "view1-item8", "view1-item9", "view1-item10"]);
 					_assertCorrectListItems(["view1-item11", "view1-item12", "view1-item13", "view1-item14", "view1-item15"]);

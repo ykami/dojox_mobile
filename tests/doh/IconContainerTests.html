@@ -55,10 +55,10 @@
 				var childWidget = new IconItem(CHILD_ITEM_PROPS[i]);
 				r.addChild(childWidget);
 				if(CHILD_ITEM_CONTAINERS[i]){
-					childWidget.containerNode.innerHTML = CHILD_ITEM_CONTAINERS[i];
+					childWidget.set("content", CHILD_ITEM_CONTAINERS[i]);
 				}
 			}
-			
+			r.startup();
 			return r;
 		}
 		function _createIconContainerProgrammaticallyWithSourceNodeReference(widgetId){
