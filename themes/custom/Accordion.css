@@ -1,52 +1,52 @@
 /* dojox.mobile.Accordion */
 .mblAccordion {
-  border: 1px solid #b5bcc7;
+  border-style: outset;
+  border-width: 1px;
+  border-color: #9b9b9b;
 }
 .mblAccordionRoundRect {
-  margin: 8px 8px 12px;
+  margin: 7px 9px 16px 9px;
   padding: 0;
-  border: 1px solid #b5bcc7;
-  border-radius: 5px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
 }
 .mblAccordionRoundRect .mblAccordionTitle:first-child {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.mblAccordionRoundRect .mblAccordionTitleLast, .mblAccordionRoundRect .mblAccordionPane:last-child {
+  border-bottom-width: 0;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.mblAccordionTitle {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  font-family: Helvetica;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 30px;
+  vertical-align: middle;
+  white-space: nowrap;
+  border-top: 1px solid #9b9b9b;
+  background-color: #bfbfbf;
+  background-image: none;
+  font-weight: normal;
 }
 .mblAccordionTitle:first-child {
   border-top: none;
 }
-.mblAccordionRoundRect .mblAccordionTitleLast, .mblAccordionRoundRect .mblAccordionPane:last-child {
-  border-bottom-width: 0;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-.mblAccordionTitle {
-  position: relative;
-  width: 100%;
-  vertical-align: middle;
-  white-space: nowrap;
-  border-top: 1px outset #b5bcc7;
-  background-color: #5cb0ff;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(3.3333333333333335%, rgba(255, 255, 255, 0.1)), color-stop(0.5, rgba(255, 255, 255, 0.6)), color-stop(1, rgba(255, 255, 255, 0.3)));
-  font-family: Helvetica;
-  font-size: 18px;
-  font-weight: normal;
-  line-height: 30px;
-  color: #131313;
-  line-height: 30px;
-  height: 30px;
-}
 .mblAccordionTitleAnchor {
   display: block;
+  height: 100%;
   text-decoration: none;
   white-space: nowrap;
-  color: #131313;
-  text-shadow: none;
-  height: 100%;
+  color: black;
 }
 .mblAccordionIconParent {
   float: left;
-  margin: 6px 4px 0px 6px;
+  margin: 6px 4px 0 6px;
   line-height: normal;
 }
 .mblAccordionIconParent1 {
@@ -56,12 +56,9 @@
   display: none;
 }
 .mblAccordionTitleSelected {
-  border-bottom: 1px outset #769dc0;
-  background-color: #007ef5;
-}
-.mblAccordionTitleSelected .mblAccordionTitleAnchor {
-  color: #000000;
-  text-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px;
+  border-bottom: 1px solid #bfbfbf;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e2e2e2));
+  font-weight: bold;
 }
 .mblAccordionTitleSelected .mblAccordionIconParent1 {
   display: none;

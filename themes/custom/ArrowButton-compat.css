@@ -1,91 +1,115 @@
 /* dojox.mobile.ArrowButton */
 .mblArrowButton {
-  background-image: url(compat/ui-widget-bg.png);
-  background-image: -moz-linear-gradient(top, #ffffff, rgba(255, 255, 255, 0.1) 3.3%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.3));
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  overflow: visible\9;
-  _overflow: hidden;
+	background-image: url(compat/button-bg.png);
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	overflow: visible\9; /* IE7/8/9 */
+	_overflow: hidden; /* IE6 */
+}
+.mblArrowButtonSelected,
+.mblArrowButtonSelected .mblArrowButton {
+	background-image: url(compat/button-sel-bg.png);
+}
+
+.mblArrowButton.mblBlueButton {
+	background-image: url(compat/blue-button-bg.png);
+}
+.mblArrowButton.mblBlueButtonSelected,
+.mblArrowButton.mblBlueButtonSelected .mblArrowButtonNeck {
+	background-image: url(compat/button-sel-bg.png) !important;
+}
+.mblArrowButton.mblRedButton {
+	background-image: url(compat/red-button-bg.png);
+}
+.mblArrowButton.mblRedButtonSelected,
+.mblArrowButton.mblRedButtonSelected .mblArrowButtonNeck {
+	background-image: url(compat/button-sel-bg.png) !important;
 }
 .mblArrowButtonDisabled,
 .mblArrowButtonDisabled .mblArrowButton,
 .mblArrowButton:disabled,
 .mblArrowButton:disabled .mblArrowButton {
-  background-color: #8fc9ff;
+	background-image: none;
+	background-color: black;
 }
 .mblArrowButtonHead {
-  position: absolute;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  height: 29px;
-  background-color: transparent !important;
-  background-image: url(compat/button-arrow-head-bg.gif) !important;
-  border: none !important;
-  top: -1px;
-  width: 15px;
+	position: absolute;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	height: 29px;
+	background-color: transparent !important;
+	background-image: url(compat/button-arrow-head-bg.gif) !important;
+	border: none !important;
+	top: -1px;
+	width: 15px;
 }
 .dj_gecko .mblArrowButtonHead {
-  top: -2px;
+	top: -2px;
 }
 .dj_ff3 .mblArrowButtonHead {
-  top: -8px;
+	top: -8px;
 }
 .dj_ie .mblArrowButtonHead {
-  *top: -2px;
-  *width: 17px;
-  _display: none;
+	/* IE7 */
+	*top: -2px;
+	*width: 17px;
+	/* IE6 */
+	_display: none;
 }
 .mblArrowButtonHead.mblArrowButtonLeft {
-  left: -15px;
+	left: -15px;
 }
 .dj_gecko .mblArrowButtonHead.mblArrowButtonLeft {
-  left: -28px;
+	left: -28px;
 }
 .dj_ie .mblArrowButtonHead.mblArrowButtonLeft {
-  *left: -16px;
+	/* IE7 */
+	*left: -16px;
 }
 .mblArrowButtonHead.mblArrowButtonRight {
-  right: -15px;
-  background-position: 15px;
+	right: -15px;
+	background-position: 15px;
 }
 .dj_gecko .mblArrowButtonHead.mblArrowButtonRight {
-  right: -2px;
-  background-position: 15px;
+	right: -2px;
+	background-position: 15px;
 }
 .dj_ie .mblArrowButtonHead.mblArrowButtonRight {
-  *right: -16px;
-  *background-position: 17px;
+	/* IE7 */
+	*right: -16px;
+	*background-position: 17px;
 }
 .mblArrowButton.mblBlueButtonSelected .mblArrowButtonHead {
-  background-image: url(compat/button-arrow-head-bg.gif) !important;
+	background-image: url(compat/button-arrow-head-bg.gif) !important;
 }
 .mblArrowButton.mblRedButtonSelected .mblArrowButtonHead {
-  background-image: url(compat/button-arrow-head-bg.gif) !important;
+	background-image: url(compat/button-arrow-head-bg.gif) !important;
 }
-.mblArrowButtonDisabled .mblArrowButtonHead, .mblArrowButton:disabled .mblArrowButtonHead {
-  background-color: transparent !important;
-  background-image: url(compat/button-arrow-head-bg.gif) !important;
+.mblArrowButtonDisabled .mblArrowButtonHead,
+.mblArrowButton:disabled .mblArrowButtonHead {
+	background-image: url(compat/button-arrow-head-bg.gif) !important;
 }
 .mblArrowButtonNeck {
-  position: absolute;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 5px;
+	position: absolute;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 5px;
 }
 .dj_gecko .mblArrowButtonNeck {
-  top: -2px;
+	top: -2px;
 }
 .dj_ff3 .mblArrowButtonNeck {
-  top: -8px;
+	top: -8px;
 }
 .dj_ie .mblArrowButtonNeck {
-  *display: none;
+	/* IE6/7 */
+	*display: none;
 }
 .dj_gecko .mblArrowButtonNeck.mblArrowButtonLeft {
-  left: -13px;
+	left: -13px;
 }
 .dj_gecko .mblArrowButtonNeck.mblArrowButtonRight {
-  right: 13px;
+	right: 13px;
 }

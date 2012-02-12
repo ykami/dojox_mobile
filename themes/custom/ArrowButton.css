@@ -1,54 +1,47 @@
 /* dojox.mobile.ArrowButton */
 .mblArrowButton {
   position: relative;
+  padding: 0 10px;
+  height: 29px;
+  border-style: outset;
+  border-width: 1px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e2e2e2));
+  font-family: Helvetica;
+  line-height: 29px;
   cursor: pointer;
   outline: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-  padding: 0 8px;
-  height: 30px;
-  border: 1px outset #b5bcc7;
-  color: #131313;
-  font-size: 14px;
-  font-family: Helvetica;
-  font-weight: normal;
-  line-height: 30px;
-  background-color: #5cb0ff;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(3.3333333333333335%, rgba(255, 255, 255, 0.1)), color-stop(0.5, rgba(255, 255, 255, 0.6)), color-stop(1, rgba(255, 255, 255, 0.3)));
-  border-radius: 2px;
+  border: 1px solid #c0c0c0;
+  border-bottom-color: #9b9b9b;
+  border-radius: 0;
+  color: black;
+  font-size: 13px;
 }
 .mblArrowButtonSelected, .mblArrowButtonSelected .mblArrowButton {
-  color: #000000;
-  border-color: #769dc0;
-  background-color: #0064c2;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#bbbbbb), to(#666666));
+  color: white;
 }
 .mblArrowButton.mblBlueButton {
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-  color: #131313;
-  background-color: #0000ff;
+  color: white;
 }
 .mblArrowButton.mblBlueButtonSelected, .mblArrowButton.mblBlueButtonSelected .mblArrowButton {
-  color: #000000;
-  border-color: #769dc0;
-  background-color: #000066;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#bbbbbb), to(#666666));
 }
 .mblArrowButton.mblRedButton {
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-  color: #131313;
-  background-color: #ff0000;
+  color: white;
 }
 .mblArrowButton.mblRedButtonSelected, .mblArrowButton.mblRedButtonSelected .mblArrowButton {
-  color: #000000;
-  border-color: #769dc0;
-  background-color: #660000;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#bbbbbb), to(#666666));
 }
 .mblArrowButtonDisabled,
 .mblArrowButtonDisabled .mblArrowButton,
 .mblArrowButton:disabled,
 .mblArrowButton:disabled .mblArrowButton {
   cursor: default;
-  color: grey;
   border-color: grey;
-  background-color: #8fc9ff;
+  color: grey;
+  background-color: #ececec;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ececec), to(#e3e3e3));
 }
 .mblArrowButtonHead {
   position: absolute;
@@ -57,10 +50,11 @@
   top: 3px;
   width: 19px;
   height: 19px;
-  border: 1px solid #b5bcc7;
+  border-style: solid;
+  border-width: 1px;
   border-radius: 0;
   -webkit-transform: rotate(45deg);
-  background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #ffffff), color-stop(3.3333333333333335%, rgba(255, 255, 255, 0.1)), color-stop(0.5, rgba(255, 255, 255, 0.6)), color-stop(1, rgba(255, 255, 255, 0.3)));
+  border-color: #c0c0c0 #9b9b9b #9b9b9b #c0c0c0;
 }
 .mblArrowButtonHead.mblArrowButtonLeft {
   left: -11px;
@@ -72,12 +66,11 @@
   position: absolute;
   margin: 0;
   padding: 0;
-  border-radius: 0;
   top: -1px;
   width: 15px;
-  height: 30px;
+  height: 29px;
   border-width: 1px 0;
-  border-style: outset;
+  border-radius: 0;
   -webkit-box-sizing: border-box;
 }
 .mblArrowButtonNeck.mblArrowButtonLeft {

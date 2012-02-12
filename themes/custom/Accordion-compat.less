@@ -1,23 +1,2 @@
 @import "variables.less";
-
-/* dojox.mobile.Accordion */
-.mblAccordionRoundRect {
-	-moz-border-radius: @theme-default-border-radius;
-	border-radius: @theme-default-border-radius;
-}
-.mblAccordionRoundRect .mblAccordionTitle:first-child {
-	-moz-border-radius-topleft: @theme-default-border-radius;
-	-moz-border-radius-topright: @theme-default-border-radius;
-	border-top-left-radius: @theme-default-border-radius;
-	border-top-right-radius: @theme-default-border-radius;
-}
-.mblAccordionRoundRect .mblAccordionTitleLast, .mblAccordionRoundRect .mblAccordionPane:last-child {
-	-moz-border-radius-bottomleft: @theme-default-border-radius;
-	-moz-border-radius-bottomright: @theme-default-border-radius;
-	border-bottom-left-radius: @theme-default-border-radius;
-	border-bottom-right-radius: @theme-default-border-radius;
-}
-.mblAccordionTitle {
-	._background-image-gradient-mask-ui-widget-compat;
-	._background-image-gradient-mask-ui-widget-gecko;
-}
+@import "../common/Accordion-compat.less";

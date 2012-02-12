@@ -4,11 +4,10 @@ var path = require("path");
 var less = require("less");
 
 // collect files
-// 1.8
 var folders = ["../android", "../android/dijit",
                "../blackberry", "../blackberry/dijit",
-               "../iphone", "../iphone/dijit"]; 
-//1.8
+			   "../custom", "../custom/dijit",
+               "../iphone", "../iphone/dijit"];
 var files = [];
 folders.forEach(function(folder){
 	files = files.concat(fs.readdirSync(folder).map(function(file){
