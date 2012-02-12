@@ -44,6 +44,12 @@ define([
 			this.findAppBars();
 		},
 
+		startup: function(){
+			if(this._started){ return; }
+			this.findAppBars();
+			this.inherited(arguments);
+		},
+
 		resize: function(){
 			// summary:
 			//		Calls resize() of each child widget.
