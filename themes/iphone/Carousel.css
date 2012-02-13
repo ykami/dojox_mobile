@@ -3,9 +3,10 @@
   overflow: hidden;
   height: 300px;
 }
-.mblCarouselBox {
+.mblCarouselSlot {
   position: relative;
   float: left;
+  text-align: left;
 }
 .mblCarouselHeaderBar {
   background-color: #3a3a3b;
@@ -44,6 +45,9 @@
   text-align: center;
 }
 /* dojox.mobile._CarouselItem */
+.mblCarouselItem {
+  text-align: center;
+}
 .mblCarouselItemHeaderText {
   color: white;
   font: 14px arial, helvetica, clean, sans-serif;
@@ -60,7 +64,10 @@
   -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   vertical-align: bottom;
 }
-.mblCarouselItemSelected .mblCarouselItemImage {
-  border: 1px dashed #c0c0c0;
+.mblCarouselItemBlank {
+  display: none;
+}
+.mblCarouselSlotSelected .mblCarouselItemImage {
+  opacity: 0.6;
   -webkit-box-shadow: none;
 }

@@ -17,14 +17,16 @@ define([
 	//		An internal widget used from Carousel.
 
 	return declare("dojox.mobile._CarouselItem", [WidgetBase, Contained], {
+		alt: "",
 		src: "",
 		headerText: "",
 		footerText: "",
 
-		baseClass: "mblCarouselBox", // TODO: rename to mblCarouselItem
+		baseClass: "mblCarouselItem",
 
 		buildRendering: function(){
 			this.inherited(arguments);
+			this.domNode.tabIndex = "0";
 			this.headerTextNode = domConstruct.create("div", { className: "mblCarouselItemHeaderText" }, this.domNode);
 			this.imageNode = domConstruct.create("img", { className: "mblCarouselItemImage" }, this.domNode);
 			this.footerTextNode = domConstruct.create("div", { className: "mblCarouselItemFooterText" }, this.domNode);
@@ -50,6 +52,11 @@ define([
 			setTimeout(function(){
 				domStyle.set(img, "opacity", 1);
 			}, 1000);
+		},
+
+		_setAltAttr: function(/*String*/alt){
+			this._set("alt", alt);
+			this.imageNode.alt = this.imageNode.title = alt;
 		},
 
 		_setSrcAttr: function(/*String*/src){

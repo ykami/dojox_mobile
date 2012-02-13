@@ -7,22 +7,22 @@
 	<title>Carousel</title>
 
 	<link href="../../../dijit/themes/tundra/tundra.css" rel="stylesheet"/>
-	<script type="text/javascript" src="../deviceTheme.js" data-dojo-config="mblThemeFiles: ['base','Carousel','PageIndicator']"></script>
+	<script type="text/javascript" src="../deviceTheme.js" data-dojo-config="mblThemeFiles: ['base','Carousel','PageIndicator','SimpleDialog']"></script>
 	<script type="text/javascript" src="../../../dojo/dojo.js" data-dojo-config="async: true, parseOnLoad: true, mblAlwaysHideAddressBar: true"></script>
 
 	<script type="text/javascript">
 		require([
 			"dojo/_base/connect",
-			"dojo/data/ItemFileReadStore",
+			"dojo/store/JsonRest",
 			"dojo/ready",
 			"dijit/registry",
-			"dojox/mobile/parser",
+			"dojo/parser",
 			"dojox/mobile",
 			"dojox/mobile/compat",
 			"dojox/mobile/ScrollableView",
 			"dojox/mobile/Carousel"
-		], function(connect, ItemFileReadStore, ready, registry){
-			store1 = new ItemFileReadStore({url: "data/carousel-widget.json"});
+		], function(connect, JsonRest, ready, registry){
+			store1 = new JsonRest({target: "data/carousel-widget.json"});
 			ready(function(){
 				connect.subscribe("/dojox/mobile/carouselSelect", function(carousel, itemWidget, item, idx){
 					if(carousel.id == "carousel1"){
@@ -32,6 +32,11 @@
 			});
 		});
 	</script>
+	<style>
+	.dijitCalendar {
+		color: black;
+	}
+	</style>
 </head>
 <body class="tundra" style="visibility:hidden;background-color:#6D6D6D">
 	<div id="foo" data-dojo-type="dojox.mobile.ScrollableView">

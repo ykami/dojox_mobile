@@ -4,42 +4,28 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
-	<title>Lazy-loadable Carousel Photo Gallery</title>
+	<title>Carousel</title>
 
 	<script type="text/javascript" src="../deviceTheme.js" data-dojo-config="mblThemeFiles: ['base','Carousel','PageIndicator']"></script>
 	<script type="text/javascript" src="../../../dojo/dojo.js" data-dojo-config="async: true, parseOnLoad: true, mblAlwaysHideAddressBar: true"></script>
 
 	<script type="text/javascript">
 		require([
-			"dojo/_base/connect",
-			"dojo/store/Memory",
-			"dojo/ready",
-			"dijit/registry",
+			"dojo/store/JsonRest",
 			"dojox/mobile/parser",
 			"dojox/mobile",
 			"dojox/mobile/compat",
-			"dojox/mobile/ScrollableView",
+			"dojox/mobile/View",
 			"dojox/mobile/Carousel"
-		]);
-
-		var json = [
-			{src:"images/pic1.jpg", alt:"Wally"},
-			{src:"images/pic2.jpg"},
-			{src:"images/pic3.jpg"},
-			{src:"images/pic4.jpg"},
-			{src:"images/pic5.jpg"},
-			{src:"images/pic6.jpg"},
-			{src:"images/pic7.jpg"},
-			{src:"images/pic8.jpg"},
-			{src:"images/pic9.jpg"},
-			{src:"images/pic10.jpg"}
-		];
+		], function(JsonRest){
+			store1 = new JsonRest({target: "data/carousel-shell.json"});
+		});
 	</script>
 </head>
 <body style="visibility:hidden;background-color:#6D6D6D">
-	<div id="foo" data-dojo-type="dojox.mobile.ScrollableView">
-		<span data-dojo-id="store1" data-dojo-type="dojo.store.Memory" data-dojo-props='data:json'></span>
-		<div data-dojo-type="dojox.mobile.Carousel" data-dojo-props='height:"280px", store:store1, numVisible:1, title:"Photo Gallery", selectable:false'></div>
+	<div id="foo" data-dojo-type="dojox.mobile.View">
+		<div id="carousel1" data-dojo-type="dojox.mobile.Carousel"
+			data-dojo-props='height:"150px", navButton:true, store:store1, itemWidth:156, title:"Category"'></div>
 	</div>
 </body>
 </html>

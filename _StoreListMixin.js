@@ -1,11 +1,10 @@
 define([
-	"dojo/_base/Deferred",
 	"dojo/_base/array",
 	"dojo/_base/declare",
 	"dojo/_base/lang",
-	"dijit/registry",
+	"./_StoreMixin",
 	"./ListItem"
-], function(Deferred, array, declare, lang, registry, ListItem){
+], function(array, declare, lang, StoreMixin, ListItem){
 
 	// module:
 	//		dojox/mobile/_StoreListMixin
@@ -13,7 +12,7 @@ define([
 	//		Mixin for widgets to generate the list items corresponding to the
 	//		dojo.store data provider object.
 
-	return declare("dojox.mobile._StoreListMixin", null, {
+	return declare("dojox.mobile._StoreListMixin", StoreMixin, {
 		// summary:
 		//		Mixin for widgets to generate the list items corresponding to
 		//		the dojo.store data provider object.
@@ -21,27 +20,6 @@ define([
 		//		By mixing this class into the widgets, the list item nodes are
 		//		generated as the child nodes of the widget and automatically
 		//		re-generated whenever the corresponding data items are modified.
-
-		// store: Object
-		//		Reference to data provider object
-		store: null,
-
-		// query: Object
-		//		A query that can be passed to 'store' to initially filter the
-		//		items.
-		query: null,
-
-		// queryOptions: Object
-		//		An optional parameter for the query.
-		queryOptions: null,
-
-		// labelProperty: String
-		//		A property name (a property in the dojo.store item) that specifies that item's label
-		labelProperty: "label",
-
-		// childrenProperty: String
-		//		A property name (a property in the dojo.store item) that specifies that item's children
-		childrenProperty: "children",
 
 		// append: Boolean
 		//		If true, refresh() does not clear the existing items.
@@ -53,48 +31,6 @@ define([
 			var store = this.store;
 			this.store = null;
 			this.setStore(store, this.query, this.queryOptions);
-		},
-
-		setStore: function(store, query, queryOptions){
-			// summary:
-			//		Sets the store to use with this widget.
-			if(store === this.store){ return; }
-			this.store = store;
-			this._setQuery(query, queryOptions);
-			return this.refresh();
-		},
-
-		setQuery: function(query, queryOptions){
-			this._setQuery(query, queryOptions);
-			return this.refresh();
-		},
-
-		_setQuery: function(query, queryOptions){
-			this.query = query;
-			this.queryOptions = queryOptions || this.queryOptions;
-		},
-
-		refresh: function(){
-			// summary:
-			//		Fetches the data and generates the list items.
-			if(!this.store){ return; }
-			var _this = this;
-			var promise = this.store.query(this.query, this.queryOptions);
-			Deferred.when(promise, function(results){
-				if(promise.observe){
-					promise.observe(function(object, removedFrom, insertedInto){
-						if(removedFrom > -1){ // existing object removed
-							_this.onDelete(object, removedFrom);
-						}else if(insertedInto > -1){ // new or updated object inserted
-							_this.onUpdate(object, insertedInto);
-						}
-					});
-				}
-				_this.onComplete(results);
-			}, function(error){
-				_this.onError(error);
-			});
-			return promise;
 		},
 
 		createListItem: function(/*Object*/item){
