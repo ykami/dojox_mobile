@@ -50,9 +50,9 @@ define([
 
 		show: function(node, positions){
 			if(this.lazy){
+				this.lazy = false;
 				var _this = this;
 				return Deferred.when(lazyLoadUtils.instantiateLazyWidgets(this.domNode, this.requires), function(){
-					_this.lazy = false;
 					return _this.show(node, positions);
 				});
 			}
