@@ -56,7 +56,7 @@ define([
 
 		_setAltAttr: function(/*String*/alt){
 			this._set("alt", alt);
-			this.imageNode.alt = this.imageNode.title = alt;
+			this.imageNode.alt = alt;
 		},
 
 		_setSrcAttr: function(/*String*/src){
