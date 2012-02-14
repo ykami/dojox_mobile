@@ -53,11 +53,13 @@
   font: 14px arial, helvetica, clean, sans-serif;
   text-align: center;
   margin-top: 8px;
+  margin-bottom: 5px;
 }
 .mblCarouselItemFooterText {
   color: white;
   font: 14px arial, helvetica, clean, sans-serif;
   text-align: center;
+  margin-top: 5px;
   margin-bottom: 8px;
 }
 .mblCarouselItemImage {

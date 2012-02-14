@@ -41,7 +41,7 @@ define([
 
 		// numVisible: Number
 		//		The number of visible items.
-		numVisible: 0,
+		numVisible: 2,
 
 		// itemWidth: Number
 		//		The number of visible items (=numVisible) is determined by

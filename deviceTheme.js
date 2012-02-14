@@ -202,7 +202,7 @@ define([
 			[
 				".*",
 //				"iphone",
-				"android", // Temporarily changed the default theme for testing purpose. Will be restored to iphone later.
+				"blackberry", // Temporarily changed the default theme for testing purpose. Will be restored to iphone later.
 				[]
 			]
 		];
