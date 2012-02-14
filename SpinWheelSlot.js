@@ -1,18 +1,18 @@
 define([
-	"dojo/_base/declare",
-	"dojo/_base/window",
 	"dojo/_base/kernel",
+	"dojo/_base/declare",
+	"dojo/_base/lang",
+	"dojo/_base/window",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dijit/_Contained",
 	"dijit/_WidgetBase",
-	"./_ScrollableMixin"
-], function(declare, win, kernel, domClass, domConstruct, Contained, WidgetBase, ScrollableMixin){
+	"./scrollable"
+], function(kernel, declare, lang, win, domClass, domConstruct, Contained, WidgetBase, Scrollable){
 
 /*=====
 	var Contained = dijit._Contained;
 	var WidgetBase = dijit._WidgetBase;
-	var ScrollableMixin = dojox.mobile._ScrollableMixin;
 =====*/
 
 	// module:
@@ -20,7 +20,10 @@ define([
 	// summary:
 	//		A slot of a SpinWheel.
 
-	return declare("dojox.mobile.SpinWheelSlot", [WidgetBase, Contained, ScrollableMixin], {
+	var cls = declare("", null, {});
+	lang.extend(cls, new Scrollable());
+
+	return declare("dojox.mobile.SpinWheelSlot", [WidgetBase, Contained, cls], {
 		// summary:
 		//		A slot of a SpinWheel.
 		// description:
@@ -102,7 +105,9 @@ define([
 		},
 
 		startup: function(){
+			if(this._started){ return; }
 			this.inherited(arguments);
+			this.init();
 			this.centerPos = this.getParent().centerPos;
 			var items = this.panelNodes[1].childNodes;
 			this._itemHeight = items[0].offsetHeight;

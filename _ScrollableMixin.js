@@ -50,8 +50,8 @@ define([
 
 		startup: function(){
 			if(this._started){ return; }
-			var node;
-			var params = this.scrollableParams;
+			this.findAppBars();
+			var node, params = this.scrollableParams;
 			if(this.fixedHeader){
 				node = dom.byId(this.fixedHeader);
 				if(node.parentNode == this.domNode){ // local footer

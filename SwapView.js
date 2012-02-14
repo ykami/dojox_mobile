@@ -41,12 +41,10 @@ define([
 			this.containerNode = this.domNode;
 			this.subscribe("/dojox/mobile/nextPage", "handleNextPage");
 			this.subscribe("/dojox/mobile/prevPage", "handlePrevPage");
-			this.findAppBars();
 		},
 
 		startup: function(){
 			if(this._started){ return; }
-			this.findAppBars();
 			this.inherited(arguments);
 		},
 
