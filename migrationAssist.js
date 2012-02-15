@@ -125,6 +125,11 @@ dojox.mobile.parser
      labels="['A','B','C','D','E']"
    Instead, you should specify like labels="A,B,C,D,E", which dojo.parser accepts as well.
 
+bookmarkable
+------------
+ - To enable the bookmarkable feature, require dojox.mobile.bookmarkable
+   instead of dojo.hash
+
 
 How to add/remove a child widget to/from a non-container widget
 ===============================================================
