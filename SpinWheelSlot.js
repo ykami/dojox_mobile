@@ -211,7 +211,8 @@ define([
 		_getValueAttr: function(){
 			// summary:
 			//		Gets the currently selected value.
-			return this.items[this.getKey()][1];
+			var item = this.items[this.getKey()];
+			return item && item[1];
 		},
 
 		getKey: function(){
