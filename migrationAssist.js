@@ -1,3 +1,14 @@
+/*
+Changes from 1.6/1.7 to 1.8:
+
+ListItem
+--------
+ - The sync property is no longer supported. It always behaves in the async manner.
+ - The btnClass property is no longer supported. You need to use rightIcon instead.
+ - The btnClass2 property is no longer supported. You need to use rightIcon2 instead.
+
+*/
+
 define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
@@ -13,11 +24,12 @@ define([
 	"./FixedSplitterPane",
 	"./Heading",
 	"./iconUtils",
+	"./ListItem",
 	"./RoundRect",
 	"./TabBarButton",
 	"./ToolBarButton",
 	"./View"
-], function(declare, lang, win, domClass, domConstruct, domStyle, ready, Container, WidgetBase, _ItemBase, mobile, FixedSplitterPane, Heading, iconUtils, RoundRect, TabBarButton, ToolBarButton, View){
+], function(declare, lang, win, domClass, domConstruct, domStyle, ready, Container, WidgetBase, _ItemBase, mobile, FixedSplitterPane, Heading, iconUtils, ListItem, RoundRect, TabBarButton, ToolBarButton, View){
 
 	// module:
 	//		dojox/mobile/migrationAssist
@@ -33,6 +45,14 @@ define([
 		this.checkListItem = function(/*Widget*/ w){
 			if(w.sync !== undefined || w.srcNodeRef && w.srcNodeRef.getAttribute("sync")){
 				console.log('[MIG:fixed] ListItem: The sync property is no longer supported. (async always)');
+			}
+			if(w.btnClass !== undefined || w.srcNodeRef && w.srcNodeRef.getAttribute("btnClass")){
+				console.log('[MIG:fixed] ListItem: The btnClass property is no longer supported. Use rightIcon instead.');
+				w.rightIcon = w.btnClass || w.srcNodeRef && w.srcNodeRef.getAttribute("btnClass");
+			}
+			if(w.btnClass2 !== undefined || w.srcNodeRef && w.srcNodeRef.getAttribute("btnClass2")){
+				console.log('[MIG:fixed] ListItem: The btnClass2 property is no longer supported. Use rightIcon2 instead.');
+				w.rightIcon2 = w.btnClass2 || w.srcNodeRef && w.srcNodeRef.getAttribute("btnClass2");
 			}
 		};
 
@@ -178,6 +198,19 @@ define([
 
 	extendSelectFunction(ToolBarButton);
 	extendSelectFunction(TabBarButton);
+
+	lang.extend(ListItem, {
+		set: function(key, value){
+			if(key === "btnClass"){
+				console.log('[MIG:fixed] ' + this.declaredClass + '(id='+this.id+'): Use set("rightIcon",x) instead of set("btnClass",x).');
+				key = "rightIcon";
+			}else if(key === "btnClass2"){
+				console.log('[MIG:fixed] ' + this.declaredClass + '(id='+this.id+'): Use set("rightIcon2",x) instead of set("btnClass2",x).');
+				key = "rightIcon2";
+			}
+			WidgetBase.prototype.set.apply(this, [key, value]);
+		}
+	});
 
 	lang.mixin(mobile, {
 		createDomButton: function(){
