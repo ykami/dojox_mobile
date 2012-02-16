@@ -138,6 +138,12 @@ define([
 		//		If true, the item is highlighted to indicate it is selected.
 		selected: false,
 
+		// tabIndex: String
+		//		Tabindex setting for the item so users can hit the tab key to
+		//		focus on it.
+		tabIndex: "0",
+		_setTabIndexAttr: "", // sets tabIndex to domNode
+
 		/* internal properties */	
 
 		// paramsToInherit: String
@@ -208,7 +214,7 @@ define([
 
 		getTransOpts: function(){
 			var opts = this.transitionOptions || {};
-			array.forEach(["moveTo", "href", "hrefTarget", "url",
+			array.forEach(["moveTo", "href", "hrefTarget", "url", "target",
 				"urlTarget", "scene", "transition", "transitionDir"], function(p){
 				opts[p] = opts[p] || this[p];
 			}, this);
@@ -265,7 +271,7 @@ define([
 			}
 			var opts = this.getTransOpts();
 			var doTransition = 
-				!!(opts.moveTo || opts.href || opts.url || opts.scene);
+				!!(opts.moveTo || opts.href || opts.url || opts.target || opts.scene);
 			if(this._prepareForTransition(e, doTransition ? opts : null) === false){ return; }
 			if(doTransition){
 				this.setTransitionPos(e);
