@@ -8,15 +8,15 @@ define([
 ], function(declare, domConstruct, domGeometry, domStyle, Contained, WidgetBase, iconUtils){
 
 /*=====
-	var CarouselItem = dojox.mobile._CarouselItem
+	var CarouselItem = dojox.mobile.CarouselItem
 =====*/
 
 	// module:
-	//		dojox/mobile/_CarouselItem
+	//		dojox/mobile/CarouselItem
 	// summary:
 	//		An internal widget used from Carousel.
 
-	return declare("dojox.mobile._CarouselItem", [WidgetBase, Contained], {
+	return declare("dojox.mobile.CarouselItem", [WidgetBase, Contained], {
 		alt: "",
 		src: "",
 		headerText: "",

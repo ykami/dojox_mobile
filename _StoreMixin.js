@@ -40,7 +40,7 @@ define([
 		setStore: function(store, query, queryOptions){
 			// summary:
 			//		Sets the store to use with this widget.
-			if(store === this.store){ return; }
+			if(store === this.store){ return null; }
 			if(store){
 				store.getValue = function(item, property){
 					return item[property];
@@ -64,7 +64,7 @@ define([
 		refresh: function(){
 			// summary:
 			//		Fetches the data and generates the list items.
-			if(!this.store){ return; }
+			if(!this.store){ return null; }
 			var _this = this;
 			var promise = this.store.query(this.query, this.queryOptions);
 			Deferred.when(promise, function(results){

@@ -2,7 +2,8 @@ define([
 	"dojo/_base/array",
 	"dojo/_base/declare",
 	"dojo/_base/lang",
-], function(array, declare, lang){
+	"dojo/_base/Deferred"
+], function(array, declare, lang, Deferred){
 
 	// module:
 	//		dojox/mobile/_DataMixin
@@ -33,7 +34,7 @@ define([
 		setStore: function(store, query, queryOptions){
 			// summary:
 			//		Sets the store to use with this widget.
-			if(store === this.store){ return; }
+			if(store === this.store){ return null; }
 			this.store = store;
 			this._setQuery(query, queryOptions);
 			if(store && store.getFeatures()["dojo.data.api.Notification"]){
@@ -45,7 +46,7 @@ define([
 					this.connect(store, "close", "onStoreClose")
 				];
 			}
-			this.refresh();
+			return this.refresh();
 		},
 
 		setQuery: function(query, queryOptions){
@@ -61,13 +62,26 @@ define([
 		refresh: function(){
 			// summary:
 			//		Fetches the data and generates the list items.
-			if(!this.store){ return; }
-			this.store.fetch({
-				query: this.query,
-				queryOptions: this.queryOptions,
-				onComplete: lang.hitch(this, "onComplete"),
-				onError: lang.hitch(this, "onError")
+			if(!this.store){ return null; }
+			var d = new Deferred();
+			var onComplete = lang.hitch(this, function(items, request){
+				this.onComplete(items, request);
+				d.resolve();
 			});
+			var onError = lang.hitch(this, function(errorData, request){
+				this.onError(errorData, request);
+				d.resolve();
+			});
+			var q = this.query;
+			this.store.fetch({
+				query: q,
+				queryOptions: this.queryOptions,
+				onComplete: onComplete,
+				onError: onError,
+				start: q && q.start,
+				count: q && q.count
+			});
+			return d;
 		}
 
 /*

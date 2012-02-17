@@ -37,7 +37,7 @@
 			icon.src = "../themes/common/domButtons/compat/mblDomButtonBlackDownArrow16.png";
 		}
 		function isRightIcon(icon){
-			return (icon.src.indexOf("Right") !== -1);
+			return (icon.src && icon.src.indexOf("Right") !== -1);
 		}
 
 		function sort(keys){

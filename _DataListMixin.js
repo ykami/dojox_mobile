@@ -21,6 +21,10 @@ define([
 		//		generated as the child nodes of the widget and automatically
 		//		re-generated whenever the corresponding data items are modified.
 
+		// append: Boolean
+		//		If true, refresh() does not clear the existing items.
+		append: false,
+
 		buildRendering: function(){
 			this.inherited(arguments);
 			if(!this.store){ return; }
@@ -50,9 +54,11 @@ define([
 		generateList: function(/*Array*/items, /*Object*/dataObject){
 			// summary:
 			//		Given the data, generates a list of items.
-			array.forEach(this.getChildren(), function(child){
-				child.destroyRecursive();
-			});
+			if(!this.append){
+				array.forEach(this.getChildren(), function(child){
+					child.destroyRecursive();
+				});
+			}
 			array.forEach(items, function(item, index){
 				this.addChild(this.createListItem(item));
 			}, this);
