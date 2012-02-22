@@ -15,7 +15,7 @@ define([
 	// summary:
 	//		A widget that shows rating with stars.
 
-	return declare("dojox.mobile.Rating", WidgetBase,{
+	return declare("dojox.mobile.Rating", WidgetBase, {
 		// summary:
 		//		A widget that shows rating with stars.
 		// description:
