@@ -135,11 +135,19 @@ define([
 		spin: function(/*Number*/steps){
 			// summary:
 			//		Spins the slot as specified by steps.
-			var key = this.get("key");
-			if(key === null){ return; }
-			var len = this.items.length;
-			if(len === 0){ return; }
-			var pos = key + steps;
+
+			// find the position of the current value
+			var pos = -1,
+				v = this.get("value"),
+				len = this.items.length;
+			for(var i = 0; i < len; i++){
+				if(this.items[i][1] === v){
+					pos = i;
+					break;
+				}
+			}
+			if(v == -1){ return; }
+			pos += steps;
 			if(pos < 0){ // shift to positive
 				pos += (Math.abs(Math.ceil(pos / len)) + 1) * len;
 			}
@@ -148,7 +156,6 @@ define([
 		},
 
 		setInitialValue: function(){
-				debugger;
 			// summary:
 			//		Sets the initial value using this.value or the first item.
 			this.set("value", this._initialValue);
@@ -232,7 +239,6 @@ define([
 		},
 
 		_onTouchEnd: function(e){
-				console.log("end");
 			if(this._timer){
 				clearTimeout(this._timer);
 				this._timer = null;

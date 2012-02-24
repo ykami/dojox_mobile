@@ -36,16 +36,18 @@ define([
 		],
 
 		slotProps: [
-			{labelFrom:1, labelTo:12, style:{width:"72px"}},
+			{labelFrom:0, labelTo:23, style:{width:"72px"}},
 			{labelFrom:0, labelTo:59, zeroPad:2, style:{width:"72px"}}
 		],
 
 		buildRendering: function(){
 			var p = this.slotProps;
 			p[0].readOnly = p[1].readOnly = this.readOnly;
-			p[0].labelFrom = this.is24h ? 0 : 1;
-			p[0].labelTo = this.is24h ? 23 : 12;
 			this.inherited(arguments);
+			var items = this.slots[0].items;
+			this._zero = items.slice(0, 1);
+			this._pm = items.slice(13);
+
 			domClass.add(this.domNode, "mblValuePickerTimePicker");
 
 			this.ampmButton = new ToolBarButton();
@@ -53,6 +55,7 @@ define([
 			this._conn = [
 				this.connect(this.ampmButton, "onClick", "onBtnClick")
 			];
+			this.set("is24h", this.is24h);
 		},
 
 		to12h: function(a){
@@ -79,10 +82,20 @@ define([
 		},
 
 		onBtnClick: function(e){
-			this.ampmButton.set("label", this.ampmButton.get("label") == "AM" ? "PM" : "AM");
+			var ampm = this.ampmButton.get("label") == "AM" ? "PM" : "AM";
+			var v = this.get("values12");
+			v[2] = ampm;
+			this.set("values12", v);
 		},
 
 		_setIs24hAttr: function(/*Boolean*/f){
+			var items = this.slots[0].items;
+			if(f && items.length != 24){ // 24h: 0 - 23
+				this.slots[0].items = this._zero.concat(items).concat(this._pm);
+			}else if(!f && items.length != 12){ // 12h: 1 - 12
+				items.splice(0, 1);
+				items.splice(12);
+			}
 			var v = this.get("values");
 			this._set("is24h", f);
 			this.ampmButton.domNode.style.display = f ? "none" : "";
@@ -105,13 +118,21 @@ define([
 				this.inherited(arguments);
 			}else{
 				a = this.to12h(a);
-				this.inherited(arguments);
 				this.ampmButton.set("label", a[2]);
+				this.inherited(arguments);
 			}
 		},
 
 		_getValues12Attr: function(){
 			return this.to12h(this._getValuesAttr());
+		},
+
+		_setValues12Attr: function(/*Array*/a){
+			// summary:
+			//		Sets an array of hour an minute in 12h format.
+			// a:
+			//		[hour12, minute, ampm]
+			this.set("values", this.to24h(a));
 		}
 	});
 });
