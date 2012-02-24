@@ -27,6 +27,7 @@ define([
 
 		/* internal properties */	
 		baseClass: "mblSimpleDialog",
+		_cover: [], // array is to share the cover instance
 
 		buildRendering: function(){
 			this.containerNode = domConstruct.create("div", {className:"mblSimpleDialogContainer"});
@@ -56,17 +57,17 @@ define([
 		},
 
 		addCover: function(){
-			if(!this._cover){
-				this._cover = domConstruct.create("div", {
+			if(!this._cover[0]){
+				this._cover[0] = domConstruct.create("div", {
 					className: "mblSimpleDialogCover"
 				}, win.body());
 			}else{
-				this._cover.style.display = "";
+				this._cover[0].style.display = "";
 			}
 		},
 
 		removeCover: function(){
-			this._cover.style.display = "none";
+			this._cover[0].style.display = "none";
 		},
 
 		_onCloseButtonClick: function(e){
