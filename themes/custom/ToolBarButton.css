@@ -13,8 +13,8 @@
   text-shadow: none;
 }
 span.mblToolBarButton {
-  padding: 6px 10px 7px 10px;
-  display: inline;
+  display: inline-block;
+  padding: 0 10px;
 }
 span.mblToolBarButtonLightIcon {
   padding: 0;
@@ -24,9 +24,6 @@ table.mblToolBarButton {
 }
 .mblHeading .mblToolBarButton {
   float: left;
-}
-.mblHeading span.mblToolBarButton {
-  padding: 0 10px;
 }
 .mblHeading span.mblToolBarButtonLightIcon {
   padding: 0;

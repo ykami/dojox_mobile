@@ -19,6 +19,13 @@ define([
 		closeButton: false,
 		closeButtonClass: "mblDomButtonSilverCircleRedCross",
 
+		// tabIndex: String
+		//		Tabindex setting for the item so users can hit the tab key to
+		//		focus on it.
+		tabIndex: "0",
+		_setTabIndexAttr: "", // sets tabIndex to domNode
+
+		/* internal properties */	
 		baseClass: "mblSimpleDialog",
 
 		buildRendering: function(){
@@ -40,6 +47,7 @@ define([
 				iconUtils.createDomButton(this.closeButtonNode);
 				this._clickHandle = this.connect(this.closeButtonNode, "onclick", "_onCloseButtonClick");
 			}
+			this._keydownHandle = this.connect(this.domNode, "onkeydown", "_onKeyDown"); // for desktop browsers
 		},
 
 		startup: function(){
@@ -73,6 +81,12 @@ define([
 			//		callback
 		},
 
+		_onKeyDown: function(e){
+			if(e.keyCode == 27){ // ESC
+				this.hide();
+			}
+		},
+
 		refresh: function(){ // TODO: should we call refresh on resize?
 			var n = this.domNode;
 			if(this.closeButton){
@@ -102,6 +116,7 @@ define([
 			}
 			this.domNode.style.display = "";
 			this.refresh();
+			this.domNode.focus();
 		},
 
 		hide: function(){
