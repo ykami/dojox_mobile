@@ -6,11 +6,11 @@ define([
 	// module:
 	//		dojox/mobile/Video
 	// summary:
-	//		TODOC
+	//		A thin wrapper around the html5 <video> element.
 
 	return declare("dojox.mobile.Video", Audio, {
-		width: "200px", //TODO: proper default value
-		height: "150px", //TODO: proper default value
+		width: "200px",
+		height: "150px",
 		_tag: "video",
 
 		_getEmbedRegExp: function(){

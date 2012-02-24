@@ -8,7 +8,7 @@ define([
 	// module:
 	//		dojox/mobile/Audio
 	// summary:
-	//		TODOC
+	//		A thin wrapper around the html5 <audio> element.
 
 	return declare("dojox.mobile.Audio", [WidgetBase, Contained], {
 		source: null,
