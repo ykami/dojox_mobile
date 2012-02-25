@@ -33,12 +33,6 @@
 			ready(function(){
 				var prog1 = registry.byId("prog1");
 				var v = 0;
-{
-		v = 140;
-	prog1.set("value", v);
-	prog1.set("label", v);
-		return;
-}
 				var timer = setInterval(function(){
 					prog1.set("value", v);
 					prog1.set("label", v);

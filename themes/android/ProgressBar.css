@@ -16,6 +16,10 @@
 .mblProgressBarComplete {
   border-radius: 6px;
 }
+.mblProgressBarNotStarted {
+  border-left: none;
+  border-right: none;
+}
 .mblProgressBarMsg {
   position: absolute;
   top: 0px;
