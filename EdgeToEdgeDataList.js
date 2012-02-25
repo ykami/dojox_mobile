@@ -1,9 +1,8 @@
 define([
-	"dojo/_base/kernel",
 	"dojo/_base/declare",
 	"./EdgeToEdgeList",
 	"./_DataListMixin"
-], function(kernel, declare, EdgeToEdgeList, DataListMixin){
+], function(declare, EdgeToEdgeList, DataListMixin){
 
 /*=====
 	var EdgeToEdgeList = dojox.mobile.EdgeToEdgeList;
@@ -15,7 +14,6 @@ define([
 	// summary:
 	//		An enhanced version of EdgeToEdgeList.
 
-	kernel.deprecated("dojox.mobile.EdgeToEdgeDataList is deprecated", "Use dojox.mobile.EdgeToEdgeStoreList instead", 2.0);
 	return declare("dojox.mobile.EdgeToEdgeDataList", [EdgeToEdgeList, DataListMixin],{
 		// summary:
 		//		An enhanced version of EdgeToEdgeList.
