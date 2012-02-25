@@ -1,7 +1,6 @@
 define([
 	"dojo/_base/array",
 	"dojo/_base/declare",
-	"dojo/_base/event",
 	"dojo/_base/lang",
 	"dojo/_base/window",
 	"dojo/dom-class",
@@ -11,7 +10,7 @@ define([
 	"./TransitionEvent",
 	"./iconUtils",
 	"./sniff"
-], function(array, declare, event, lang, win, domClass, registry, Contained, WidgetBase, TransitionEvent, iconUtils, has){
+], function(array, declare, lang, win, domClass, registry, Contained, WidgetBase, TransitionEvent, iconUtils, has){
 
 /*=====
 	var Contained = dijit._Contained;
@@ -307,7 +306,6 @@ define([
 			}else{
 				this.set("selected", true);
 			}
-			event.stop(e);
 		},
 
 		onTouchStart: function(/*Event*/ /*===== e =====*/){
@@ -330,7 +328,7 @@ define([
 
 				var p = this.getParent();
 				if(p && p.selectOne){
-					this._prevSel.set("selected", true);
+					this._prevSel && this._prevSel.set("selected", true);
 				}else{
 					this.set("selected", false);
 				}
