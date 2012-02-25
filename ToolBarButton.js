@@ -40,7 +40,9 @@ define([
 		// 		setters.
 		light: true,
 
+		/* internal properties */
 		baseClass: "mblToolBarButton",
+		role: "", // a11y
 
 		defaultColor: "mblColorDefault",
 		selColor: "mblColorDefaultSel",

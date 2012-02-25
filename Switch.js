@@ -62,6 +62,7 @@ define([
 
 		/* internal properties */
 		baseClass: "mblSwitch",
+		role: "", // a11y
 		_createdMasks: [],
 
 		buildRendering: function(){
