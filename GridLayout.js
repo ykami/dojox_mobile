@@ -3,16 +3,15 @@ define([
 	"./IconMenu"
 ], function(declare, IconMenu){
 	// module:
-	//		dojox/mobile/IconMenu
+	//		dojox/mobile/GridLayout
 	// summary:
-	//		TODOC
+	//		A container widget that places its children in the grid layout.
 
 	return declare("dojox.mobile.GridLayout", IconMenu, {
 		cols: 0,
 		childItemClass: "mblGridItem",
-		className: "mblGridLayout",
+		baseClass: "mblGridLayout",
 		_tags: "div",
 		_createTerminator: true
-
 	});
 });
