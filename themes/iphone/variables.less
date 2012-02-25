@@ -701,3 +701,36 @@
 	border-radius: 1em;
 }
 @mbl-searchbox-results-decoration-color: #93989c;
+
+// ProgressBar.less
+.mblProgressBar-styles () {
+	border-radius: 6px;
+	height: 9px;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#a5a6a5), to(#b5b6b5), color-stop(0.5, #d6d7d6), color-stop(0.5, #ffffff), color-stop(0.9, #ffffff));
+}
+.mblProgressBarProgress-styles () {
+	height: 7px;
+	border:1px solid #5e6fa3;
+	border-radius: 6px;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#b0c0ff), to(#2f83e1), color-stop(0.6, #70b2ff), color-stop(0.6, #3470b6));
+}
+.mblProgressBarComplete-styles () {
+}
+.mblProgressBarNotStarted-styles () {
+}
+.mblProgressBarMsg-styles () {
+	top: -1px;
+	font-size: 10px;
+}
+.mblProgressBar-compat () {
+	background-color: white;
+}
+.mblProgressBarProgress-compat () {
+	background-color: #3186e7;
+}
+.mblProgressBar-compat-gecko () {
+	background-image: -moz-linear-gradient(top, #a5a6a5 0%, #d6d7d6 50%, #ffffff 50%, #ffffff 90%, #b5b6b5 100%);
+}
+.mblProgressBarProgress-compat-gecko () {
+	background-image: -moz-linear-gradient(top, #b0c0ff 0%, #70b2ff 60%, #3470b6 60%, #2f83e1 100%);
+}

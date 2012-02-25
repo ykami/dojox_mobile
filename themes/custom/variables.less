@@ -688,3 +688,32 @@
 	border-radius: 1em;
 }
 @mbl-searchbox-results-decoration-color: #bbc4d0;
+
+// ProgressBar.less
+.mblProgressBar-styles () {
+	height: 13px;
+	background-color: white;
+	border: 1px solid #739ec6;
+}
+.mblProgressBarProgress-styles () {
+	height: 13px;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#e7f7ff), to(#add7ff), color-stop(0.5, #cee7ff));
+	border-right: 1px solid #739ec6;
+}
+.mblProgressBarComplete-styles () {
+}
+.mblProgressBarNotStarted-styles () {
+}
+.mblProgressBarMsg-styles () {
+	top: -1px;
+}
+.mblProgressBar-compat () {
+}
+.mblProgressBarProgress-compat () {
+	background-color: #cee7ff;
+}
+.mblProgressBar-compat-gecko () {
+}
+.mblProgressBarProgress-compat-gecko () {
+	background-image: -moz-linear-gradient(top, #e7f7ff 0%, #cee7ff 50%, #add7ff 100%);
+}

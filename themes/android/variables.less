@@ -674,3 +674,24 @@
 	border-radius: 0;
 }
 @mbl-searchbox-results-decoration-color: black;
+
+// ProgressBar.less
+.mblProgressBar-styles () {
+	border-radius: 6px;
+	height: 22px;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#545454), to(#414141), color-stop(0.3, #313031), color-stop(0.85, #293031));
+}
+.mblProgressBarProgress-styles () {
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#adf708), to(#5a8e00), color-stop(0.5, #7bbe08), color-stop(0.9, #63a600));
+	height: 22px;
+}
+.mblProgressBarComplete-styles () {
+	border-radius: 6px;
+}
+.mblProgressBarNotStarted-styles () {
+}
+.mblProgressBarMsg-styles () {
+	top: 3px;
+}
