@@ -3,7 +3,7 @@ define([
 	"dojo/_base/declare",
 	"dijit/_Contained",
 	"dijit/_Container",
-	"dijit/_WidgetBase",
+	"dijit/_WidgetBase"
 ], function(array, declare, Contained, Container, WidgetBase){
 
 /*=====
@@ -71,6 +71,13 @@ define([
 			//		Sets the slot values.
 			array.forEach(this.getSlots(), function(w, i){
 				w.set("value", a[i]);
+			});
+		},
+
+		_setColorsAttr: function(/*Array*/a){
+			// summary:
+			//		Sets the slot colors.
+			array.forEach(this.getSlots(), function(w, i){
 				w.setColor && w.setColor(a[i]);
 			});
 		},

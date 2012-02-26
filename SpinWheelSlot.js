@@ -60,6 +60,10 @@ define([
 		//		The initial value of the slot.
 		value: "",
 
+		// step: Number
+		//		The steps between labelFrom and labelTo.
+		step: 1,
+
 		// tabIndex: String
 		//		Tabindex setting for this widget so users can hit the tab key to
 		//		focus on it.
@@ -132,7 +136,7 @@ define([
 			if(this.labelFrom !== this.labelTo){
 				var a = this.labels = [],
 					zeros = this.zeroPad && Array(this.zeroPad).join("0");
-				for(var i = this.labelFrom; i <= this.labelTo; i++){
+				for(var i = this.labelFrom; i <= this.labelTo; i += this.step){
 					a.push(this.zeroPad ? (zeros + i).slice(-this.zeroPad) : i + "");
 				}
 			}

@@ -21,6 +21,7 @@ define([
 				m = now.getMinutes();
 			m = (m < 10 ? "0" : "") + m;
 			this.set("values", [h, m]);
+			this.set("colors", [h, m]);
 		},
 
 		_getDateAttr: function(){

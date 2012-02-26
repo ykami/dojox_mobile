@@ -4,13 +4,12 @@ define([
 	"dojo/_base/event",
 	"dojo/_base/lang",
 	"dojo/_base/window",
-	"dojo/dom",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/touch",
 	"dijit/_WidgetBase",
 	"./iconUtils"
-], function(array, declare, event, lang, win, dom, domClass, domConstruct, touch, WidgetBase, iconUtils){
+], function(array, declare, event, lang, win, domClass, domConstruct, touch, WidgetBase, iconUtils){
 
 /*=====
 	var WidgetBase = dijit._WidgetBase;
@@ -53,6 +52,10 @@ define([
 		// value: String
 		//		The initial value of the value picker.
 		value: "",
+
+		// step: Number
+		//		The steps between labelFrom and labelTo.
+		step: 1,
 
 		// readOnly: Boolean
 		//		A flag used to indicate if the input field is readonly or not.
@@ -102,7 +105,6 @@ define([
 				className: "mblValuePickerSlotIcon"
 			}, this.minusBtnNode);
 			iconUtils.createIcon("mblDomButtonGrayMinus", null, this.minusIconNode);
-			dom.setSelectable(this.domNode, false);
 
 			if(this.value === "" && this.items.length > 0){
 				this.value = this.items[0][1];
@@ -126,7 +128,7 @@ define([
 			if(this.labelFrom !== this.labelTo){
 				var a = this.labels = [],
 					zeros = this.zeroPad && Array(this.zeroPad).join("0");
-				for(var i = this.labelFrom; i <= this.labelTo; i++){
+				for(var i = this.labelFrom; i <= this.labelTo; i += this.step){
 					a.push(this.zeroPad ? (zeros + i).slice(-this.zeroPad) : i + "");
 				}
 			}

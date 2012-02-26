@@ -84,7 +84,9 @@ define([
 			// summary:
 			//		Goes to today.
 			var now = new Date();
-			this.set("values", array.map(this.slots, function(w){ return w.format(now); }));
+			var v = array.map(this.slots, function(w){ return w.format(now); });
+			this.set("values", v);
+			this.set("colors", v);
 			this.disableValues(this.onDaySet());
 		},
 
