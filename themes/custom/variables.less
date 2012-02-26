@@ -580,12 +580,24 @@
 }
 
 // ArrowButton.less
-.mblArrowButtonDisabled-styles () {
-	background-color: #ececec;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#ececec), to(#e3e3e3));
-}
 .mblArrowButtonHead-styles () {
 	border-color: #c0c0c0 #9b9b9b #9b9b9b #c0c0c0;
+    background-image: -webkit-gradient(linear, left top, right bottom, from(#ffffff), to(#e2e2e2));
+}
+.mblArrowButtonHeadSelected-styles () {
+	background-image: -webkit-gradient(linear, left top, right bottom, from(#bbbbbb), to(#666666));
+}
+.mblArrowButtonHead-mblBlueButton-styles () {
+	background-image: -webkit-gradient(linear, left top, right bottom, from(#7a9de9), to(#2362dd));
+}
+.mblArrowButtonHeadSelected-mblBlueButton-styles () {
+	.mblArrowButtonHeadSelected-styles;
+}
+.mblArrowButtonHead-mblRedButton-styles () {
+	background-image: -webkit-gradient(linear, left top, right bottom, from(#fa9d58), to(#ee4115));
+}
+.mblArrowButtonHeadSelected-mblRedButton-styles () {
+	.mblArrowButtonHeadSelected-styles;
 }
 
 // dijit.Calendar

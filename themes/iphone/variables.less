@@ -591,11 +591,24 @@
 }
 
 // ArrowButton.less
-.mblArrowButtonDisabled-styles () {
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#c5ccd4), to(#c5ccd4));
-}
 .mblArrowButtonHead-styles () {
-	border-color: #9cacc0;
+	border-color: #9cacc0 #57606c #57606c #9cacc0;
+    background-image: -webkit-gradient(linear, left top, right bottom, from(#fdfdfd), to(#cecece), color-stop(0.49, #f8f8f8), color-stop(0.49, #eeeeee));
+}
+.mblArrowButtonHeadSelected-styles () {
+	background-image: -webkit-gradient(linear, left top, right bottom, from(#f0f0f0), to(#bfbfbf), color-stop(0.49, #ebebeb), color-stop(0.49, #dedede));
+}
+.mblArrowButtonHead-mblBlueButton-styles () {
+	background-image: -webkit-gradient(linear, left top, right bottom, from(#7a9de9), to(#2362dd), color-stop(0.49, #366edf), color-stop(0.49, #215fdc));
+}
+.mblArrowButtonHeadSelected-mblBlueButton-styles () {
+	background-image: -webkit-gradient(linear, left top, right bottom, from(#8ea4c1), to(#4a6c9b), color-stop(0.49, #5877a2), color-stop(0.49, #476999));
+}
+.mblArrowButtonHead-mblRedButton-styles () {
+	background-image: -webkit-gradient(linear, left top, right bottom, from(#fa9d58), to(#ee4115), color-stop(0.49, #ff4d25), color-stop(0.49, #ed4d15));
+}
+.mblArrowButtonHeadSelected-mblRedButton-styles () {
+	background-image: -webkit-gradient(linear, left top, right bottom, from(#c1a48e), to(#9b6c4a), color-stop(0.49, #a27758), color-stop(0.49, #996947));
 }
 
 // dijit.Calendar

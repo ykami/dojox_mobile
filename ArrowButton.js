@@ -2,8 +2,9 @@ define([
 	"dojo/_base/declare",
 	"dojo/dom-construct",
 	"dojo/dom-style",
+	"dojo/dom-class",
 	"./Button"
-], function(declare, domConstruct, domStyle, Button){
+], function(declare, domConstruct, domStyle, domClass, Button){
 	// module:
 	//	dojox/mobile/ArrowButton
 	// summary:
@@ -29,22 +30,26 @@ define([
 		buildRendering: function(){
 			this.inherited(arguments);
 			var bc = this.baseClass,
-				pc = this.domNode.className + " " + bc + (this.direction === "right" ? "Right" : "Left"),
-				hn = domConstruct.create("div", {className:bc + "Head " + pc}, this.domNode, "first");
-			domConstruct.create("div", {className:bc + "Neck " + pc}, hn, "after");
+				dc = bc + (this.direction === "right" ? "Right" : "Left");
+			domClass.add(this.domNode, dc);
+			this.boxNode = domConstruct.create("div", {className:bc + "HeadBox"}, this.domNode, "first");
+			this.headNode = domConstruct.create("div", {className:bc + "Head"}, this.boxNode);
 		},
 
 		startup: function(){
 			this.inherited(arguments);
-			var headOffset = Math.max(Math.ceil(this.domNode.offsetHeight / 2), 15);
-			// var headOffset = Math.ceil(this.domNode.offsetHeight / 2;
-			this.domNode.style.width = this.domNode.offsetWidth - headOffset + "px";
+			var bh = Math.max(this.domNode.offsetHeight, 29),
+				headOffset = Math.ceil(bh / 2 * 0.7) - 2,
+				headSize = Math.floor((bh - 1) / Math.SQRT2);
+			domStyle.set(this.domNode, {width: this.domNode.offsetWidth - headOffset + "px"});
+			domStyle.set(this.boxNode, {width: headOffset+"px", height: bh+"px"});
+			domStyle.set(this.headNode, {width: headSize+1+"px", height: headSize+"px"});
 			if(this.direction === "left"){
 				this.domNode.style.marginLeft = domStyle.get(this.domNode, "marginLeft") + headOffset + "px";
-				this.domNode.style.borderLeft = "none";
+				this.boxNode.style.marginLeft = -(domStyle.get(this.domNode, "paddingLeft") + headOffset) + "px";
 			}else{
 				this.domNode.style.marginRight = domStyle.get(this.domNode, "marginRight") + headOffset + "px";
-				this.domNode.style.borderRight = "none";
+				this.boxNode.style.marginRight = -(domStyle.get(this.domNode, "paddingLeft") + headOffset) + "px";
 			}
 		}
 	});

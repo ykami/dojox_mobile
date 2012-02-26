@@ -1,6 +1,5 @@
 /* dojox.mobile.ArrowButton */
 .mblArrowButton {
-  position: relative;
   padding: 0 10px;
   height: 29px;
   border-style: outset;
@@ -16,65 +15,72 @@
   color: black;
   font-size: 13px;
 }
-.mblArrowButtonSelected, .mblArrowButtonSelected .mblArrowButton {
+.mblArrowButtonLeft {
+  border-left-width: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.mblArrowButtonRight {
+  border-right-width: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.mblArrowButtonSelected {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#bbbbbb), to(#666666));
   color: white;
-}
-.mblArrowButton.mblBlueButton {
-  color: white;
-}
-.mblArrowButton.mblBlueButtonSelected, .mblArrowButton.mblBlueButtonSelected .mblArrowButton {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#bbbbbb), to(#666666));
-}
-.mblArrowButton.mblRedButton {
-  color: white;
-}
-.mblArrowButton.mblRedButtonSelected, .mblArrowButton.mblRedButtonSelected .mblArrowButton {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#bbbbbb), to(#666666));
 }
 .mblArrowButtonDisabled,
-.mblArrowButtonDisabled .mblArrowButton,
+.mblArrowButtonDisabled .mblArrowButtonHead,
 .mblArrowButton:disabled,
-.mblArrowButton:disabled .mblArrowButton {
+.mblArrowButton:disabled .mblArrowButtonHead {
   cursor: default;
   border-color: grey;
   color: grey;
-  background-color: #ececec;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#ececec), to(#e3e3e3));
+  background-image: none !important;
+  background-color: lightgrey;
 }
-.mblArrowButtonHead {
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  top: 3px;
-  width: 19px;
-  height: 19px;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 0;
-  -webkit-transform: rotate(45deg);
-  border-color: #c0c0c0 #9b9b9b #9b9b9b #c0c0c0;
+.mblArrowButtonHeadBox {
+  position: relative;
+  overflow: hidden;
 }
-.mblArrowButtonHead.mblArrowButtonLeft {
-  left: -11px;
+.mblArrowButtonLeft .mblArrowButtonHeadBox {
+  float: left;
 }
-.mblArrowButtonHead.mblArrowButtonRight {
-  right: -11px;
+.mblArrowButtonRight .mblArrowButtonHeadBox {
+  float: right;
 }
-.mblArrowButtonNeck {
+.mblArrowButton .mblArrowButtonHead {
   position: absolute;
   margin: 0;
   padding: 0;
   top: -1px;
-  width: 15px;
-  height: 29px;
-  border-width: 1px 0;
-  border-radius: 0;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 1px;
+  -webkit-transform-origin: 0 0;
   -webkit-box-sizing: border-box;
+  -webkit-transform: scale(0.7, 1.05) rotate(45deg);
+  border-color: #c0c0c0 #9b9b9b #9b9b9b #c0c0c0;
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#ffffff), to(#e2e2e2));
 }
-.mblArrowButtonNeck.mblArrowButtonLeft {
-  left: -1px;
+.mblArrowButtonLeft .mblArrowButtonHead {
+  left: 100%;
 }
-.mblArrowButtonNeck.mblArrowButtonRight {
-  right: -1px;
+.mblArrowButtonRight .mblArrowButtonHead {
+  left: 0;
+}
+.mblArrowButtonSelected .mblArrowButtonHead {
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#bbbbbb), to(#666666));
+}
+.mblBlueButton .mblArrowButtonHead {
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#7a9de9), to(#2362dd));
+}
+.mblBlueButtonSelected .mblArrowButtonHead {
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#bbbbbb), to(#666666));
+}
+.mblRedButton .mblArrowButtonHead {
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#fa9d58), to(#ee4115));
+}
+.mblRedButtonSelected .mblArrowButtonHead {
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#bbbbbb), to(#666666));
 }
