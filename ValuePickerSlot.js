@@ -114,13 +114,15 @@ define([
 
 		startup: function(){
 			if(this._started){ return; }
-			this.connect(this.plusBtnNode, touch.press, "_onTouchStart");
-			this.connect(this.minusBtnNode, touch.press, "_onTouchStart");
-			this.connect(this.plusBtnNode, "onkeydown", "_onClick"); // for desktop browsers
-			this.connect(this.minusBtnNode, "onkeydown", "_onClick"); // for desktop browsers
-			this.connect(this.inputNode, "onchange", lang.hitch(this, function(e){
-				this._onChange(e);
-			}));
+			this._handlers = [
+				this.connect(this.plusBtnNode, touch.press, "_onTouchStart"),
+				this.connect(this.minusBtnNode, touch.press, "_onTouchStart"),
+				this.connect(this.plusBtnNode, "onkeydown", "_onClick"), // for desktop browsers
+				this.connect(this.minusBtnNode, "onkeydown", "_onClick"), // for desktop browsers
+				this.connect(this.inputNode, "onchange", lang.hitch(this, function(e){
+					this._onChange(e);
+				}))
+			];
 			this.inherited(arguments);
 		},
 
@@ -235,6 +237,10 @@ define([
 			var y = e.touches ? e.touches[0].pageY : e.clientY;
 			if(Math.abs(x - this.touchStartX) >= 4 ||
 			   Math.abs(y - this.touchStartY) >= 4){ // dojox.mobile.scrollable#threshold
+				if(this._interval){
+					clearTimeout(this._interval);
+					this._interval = null;
+				}
 				array.forEach(this._conn, this.disconnect, this);
 				domClass.remove(this._btn, "mblValuePickerSlotButtonSelected");
 			}
