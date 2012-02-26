@@ -1,115 +1,111 @@
 /* dojox.mobile.ArrowButton */
-.mblArrowButton {
-	background-image: url(compat/button-bg.png);
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	overflow: visible\9; /* IE7/8/9 */
-	_overflow: hidden; /* IE6 */
+.dj_gecko .mblArrowButton {
+  background-image: -moz-linear-gradient(top, #fdfdfd 0%, #f8f8f8 50%, #eeeeee 50%, #cecece 100%);
 }
-.mblArrowButtonSelected,
-.mblArrowButtonSelected .mblArrowButton {
-	background-image: url(compat/button-sel-bg.png);
+.dj_gecko .mblArrowButtonSelected {
+  background-image: -moz-linear-gradient(top, #306ea1 0%, #4090d3 6%, #306ea1 50%, #266093 100%);
 }
-
-.mblArrowButton.mblBlueButton {
-	background-image: url(compat/blue-button-bg.png);
+.dj_ff3 .mblArrowButton {
+  position: relative;
+  padding: 0;
+  -moz-border-radius: 3px;
 }
-.mblArrowButton.mblBlueButtonSelected,
-.mblArrowButton.mblBlueButtonSelected .mblArrowButtonNeck {
-	background-image: url(compat/button-sel-bg.png) !important;
+.dj_ff3 .mblArrowButtonLeft {
+  -moz-border-radius-topleft: 0;
+  -moz-border-radius-bottomleft: 0;
 }
-.mblArrowButton.mblRedButton {
-	background-image: url(compat/red-button-bg.png);
+.dj_ff3 .mblArrowButtonRight {
+  -moz-border-radius-topright: 0;
+  -moz-border-radius-bottomright: 0;
 }
-.mblArrowButton.mblRedButtonSelected,
-.mblArrowButton.mblRedButtonSelected .mblArrowButtonNeck {
-	background-image: url(compat/button-sel-bg.png) !important;
+.dj_ie .mblArrowButton {
+  overflow: visible;
+  background-image: url(compat/button-bg.png);
+  background-size: contain;
 }
-.mblArrowButtonDisabled,
-.mblArrowButtonDisabled .mblArrowButton,
-.mblArrowButton:disabled,
-.mblArrowButton:disabled .mblArrowButton {
-	background-image: none;
-	background-color: black;
+.dj_ie .mblBlueButton.mblArrowButton {
+  background-image: url(compat/blue-button-bg.png);
+  color: white;
 }
-.mblArrowButtonHead {
-	position: absolute;
-	-moz-border-radius: 0;
-	border-radius: 0;
-	height: 29px;
-	background-color: transparent !important;
-	background-image: url(compat/button-arrow-head-bg.gif) !important;
-	border: none !important;
-	top: -1px;
-	width: 15px;
+.dj_ie .mblRedButton.mblArrowButton {
+  background-image: url(compat/red-button-bg.png);
+  color: white;
 }
-.dj_gecko .mblArrowButtonHead {
-	top: -2px;
+.dj_ie .mblArrowButtonSelected {
+  overflow: visible;
+  background-image: url(compat/button-sel-bg.png);
 }
-.dj_ff3 .mblArrowButtonHead {
-	top: -8px;
+.dj_ie .mblBlueButtonSelected.mblArrowButton {
+  background-image: url(compat/blue-button-sel-bg.png);
 }
-.dj_ie .mblArrowButtonHead {
-	/* IE7 */
-	*top: -2px;
-	*width: 17px;
-	/* IE6 */
-	_display: none;
+.dj_ie .mblRedButtonSelected.mblArrowButton {
+  background-image: url(compat/red-button-sel-bg.png);
 }
-.mblArrowButtonHead.mblArrowButtonLeft {
-	left: -15px;
+.mblArrowButtonHeadBox {
+  top: -1px;
+  background-size: cover;
 }
-.dj_gecko .mblArrowButtonHead.mblArrowButtonLeft {
-	left: -28px;
+.mblArrowButtonLeft .mblArrowButtonHeadBox {
+  background-image: url(compat/button-head-bg.png);
 }
-.dj_ie .mblArrowButtonHead.mblArrowButtonLeft {
-	/* IE7 */
-	*left: -16px;
+.mblArrowButtonRight .mblArrowButtonHeadBox {
+  background-image: url(compat/button-right-head-bg.png);
 }
-.mblArrowButtonHead.mblArrowButtonRight {
-	right: -15px;
-	background-position: 15px;
+.mblArrowButtonSelected.mblArrowButtonLeft .mblArrowButtonHeadBox {
+  background-image: url(compat/button-head-sel-bg.png);
 }
-.dj_gecko .mblArrowButtonHead.mblArrowButtonRight {
-	right: -2px;
-	background-position: 15px;
+.mblArrowButtonSelected.mblArrowButtonRight .mblArrowButtonHeadBox {
+  background-image: url(compat/button-right-head-sel-bg.png);
 }
-.dj_ie .mblArrowButtonHead.mblArrowButtonRight {
-	/* IE7 */
-	*right: -16px;
-	*background-position: 17px;
+.mblBlueButton.mblArrowButtonLeft .mblArrowButtonHeadBox {
+  background-image: url(compat/blue-button-head-bg.png);
 }
-.mblArrowButton.mblBlueButtonSelected .mblArrowButtonHead {
-	background-image: url(compat/button-arrow-head-bg.gif) !important;
+.mblBlueButton.mblArrowButtonRight .mblArrowButtonHeadBox {
+  background-image: url(compat/blue-button-right-head-bg.png);
 }
-.mblArrowButton.mblRedButtonSelected .mblArrowButtonHead {
-	background-image: url(compat/button-arrow-head-bg.gif) !important;
+.mblBlueButtonSelected.mblArrowButtonLeft .mblArrowButtonHeadBox {
+  background-image: url(compat/blue-button-head-sel-bg.png);
 }
-.mblArrowButtonDisabled .mblArrowButtonHead,
-.mblArrowButton:disabled .mblArrowButtonHead {
-	background-image: url(compat/button-arrow-head-bg.gif) !important;
+.mblBlueButtonSelected.mblArrowButtonRight .mblArrowButtonHeadBox {
+  background-image: url(compat/blue-button-right-head-sel-bg.png);
 }
-.mblArrowButtonNeck {
-	position: absolute;
-	-moz-border-radius: 0;
-	border-radius: 0;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	width: 5px;
+.mblRedButton.mblArrowButtonLeft .mblArrowButtonHeadBox {
+  background-image: url(compat/red-button-head-bg.png);
 }
-.dj_gecko .mblArrowButtonNeck {
-	top: -2px;
+.mblRedButton.mblArrowButtonRight .mblArrowButtonHeadBox {
+  background-image: url(compat/red-button-right-head-bg.png);
 }
-.dj_ff3 .mblArrowButtonNeck {
-	top: -8px;
+.mblRedButtonSelected.mblArrowButtonLeft .mblArrowButtonHeadBox {
+  background-image: url(compat/red-button-head-sel-bg.png);
 }
-.dj_ie .mblArrowButtonNeck {
-	/* IE6/7 */
-	*display: none;
+.mblRedButtonSelected.mblArrowButtonRight .mblArrowButtonHeadBox {
+  background-image: url(compat/red-button-right-head-sel-bg.png);
 }
-.dj_gecko .mblArrowButtonNeck.mblArrowButtonLeft {
-	left: -13px;
+.mblArrowButtonDisabled.mblArrowButtonLeft .mblArrowButtonHeadBox, .mblArrowButton:disabled.mblArrowButtonLeft .mblArrowButtonHeadBox {
+  background-image: url(compat/button-head-dis-bg.png);
 }
-.dj_gecko .mblArrowButtonNeck.mblArrowButtonRight {
-	right: 13px;
+.mblArrowButtonDisabled.mblArrowButtonRight .mblArrowButtonHeadBox, .mblArrowButton:disabled.mblArrowButtonRight .mblArrowButtonHeadBox {
+  background-image: url(compat/button-right-head-dis-bg.png);
+}
+.dj_gecko .mblArrowButtonHeadBox {
+  top: -2px;
+}
+.dj_gecko .mblArrowButtonLeft .mblArrowButtonHeadBox {
+  left: -3px;
+}
+.dj_gecko .mblArrowButtonRight .mblArrowButtonHeadBox {
+  right: -3px;
+}
+.dj_ff3 .mblArrowButtonHeadBox {
+  position: absolute;
+  top: -8px;
+}
+.dj_ff3 .mblArrowButtonLeft .mblArrowButtonHeadBox {
+  left: 7px;
+}
+.dj_ff3 .mblArrowButtonRight .mblArrowButtonHeadBox {
+  right: 13px;
+}
+.mblArrowButton .mblArrowButtonHead {
+  display: none;
 }
