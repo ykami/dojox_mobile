@@ -164,18 +164,18 @@
 	</div>
 
 	<div id="view" data-dojo-type="dojox.mobile.View">
-		<ul data-dojo-type="dojox.mobile.EdgeToEdgeList">
-			<li class="mblVariableHeight" data-dojo-type="dojox.mobile.ListItem"
+		<ul data-dojo-type="dojox.mobile.EdgeToEdgeList" data-dojo-props='variableHeight:true'>
+			<li data-dojo-type="dojox.mobile.ListItem"
 				data-dojo-props='clickable:true,noArrow:true,onClick:function(){show("dlg1")}'>
 				Set date
 				<div id="dateMsg" class="subtitle">2012/02/23</div>
 			</li>
-			<li class="mblVariableHeight" data-dojo-type="dojox.mobile.ListItem"
+			<li data-dojo-type="dojox.mobile.ListItem"
 				data-dojo-props='clickable:true,noArrow:true,onClick:function(){show("dlg2")}'>
 				Set time
-			<div id="timeMsg" class="subtitle">22:34</div>
+				<div id="timeMsg" class="subtitle">22:34</div>
 			</li>
-			<li id="item1" class="mblVariableHeight" data-dojo-type="dojox.mobile.ListItem"
+			<li id="item1" data-dojo-type="dojox.mobile.ListItem"
 				data-dojo-props='clickable:true,noArrow:true,rightIcon:"mblDomButtonCheckboxOn",onClick:function(){use24h()}'>
 				Use 24-hour format
 				<div id="use24hMsg" class="subtitle">13:00</div>

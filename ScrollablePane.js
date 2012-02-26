@@ -13,11 +13,11 @@ define([
 	// module:
 	//		dojox/mobile/ScrollablePane
 	// summary:
-	//		A container that has the touch-scrolling capability.
+	//		A pane that has the touch-scrolling capability.
 
 	return declare("dojox.mobile.ScrollablePane", [Pane, ScrollableMixin], {
 		// summary:
-		//		A container that has the touch-scrolling capability.
+		//		A pane that has the touch-scrolling capability.
 
 		// roundCornerMask: Boolean
 		//		If true, created a rounded corner mask to clip

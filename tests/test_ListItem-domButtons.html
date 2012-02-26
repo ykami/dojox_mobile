@@ -57,6 +57,9 @@
 	.subject {
 		font: bold 16px Helvetica;
 	}
+	.textBox {
+		overflow: hidden;
+	}
 	
 	/* Note: The class name of DOM buttons must start with "mblDomButton". */
 	
@@ -158,27 +161,33 @@
 	<div id="view2" data-dojo-type="dojox.mobile.View">
 		<h1 data-dojo-type="dojox.mobile.Heading" data-dojo-props='back:"Back", moveTo:"view1"'>View 2</h1>
 		<h2 data-dojo-type="dojox.mobile.RoundRectCategory">Dom Button with Text</h2>
-		<ul id="list2" data-dojo-type="dojox.mobile.RoundRectList">
-			<li id="item1" class="mblVariableHeight" data-dojo-type="dojox.mobile.ListItem"
+		<ul id="list2" data-dojo-type="dojox.mobile.RoundRectList" data-dojo-props='variableHeight:true'>
+			<li id="item1" data-dojo-type="dojox.mobile.ListItem"
 				data-dojo-props='icon:"mblDomButtonBlueBall", moveTo:"view3", rightIcon2:"mblDomButtonGrayRoundRect"'>
-				<div class="subject">Dojo: Traditional Karate-do Spirit</div>
-				Sarah Connor Hardcover<br>
-				Eligible for FREE Super Saver Shipping<br>
-				<span style="color:red">$14.50 (50%)</span> In Stock
+				<div class="textBox">
+					<div class="subject">Dojo: Traditional Karate-do Spirit</div>
+					Sarah Connor Hardcover<br>
+					Eligible for FREE Super Saver Shipping<br>
+					<span style="color:red">$14.50 (50%)</span> In Stock
+				</div>
 			</li>
-			<li id="item2" class="mblVariableHeight" data-dojo-type="dojox.mobile.ListItem"
+			<li id="item2" data-dojo-type="dojox.mobile.ListItem"
 				data-dojo-props='icon:"mblDomButtonTransparent19", moveTo:"view3", rightIcon2:"mblDomButtonGrayRoundRect"'>
-				<div class="subject">Japanese Martial Arts Dojo</div>
-				Martin Parker Hardcover<br>
-				<span style="color:red">$14.00 (60%)</span> In Stock
+				<div class="textBox">
+					<div class="subject">Japanese Martial Arts Dojo</div>
+					Martin Parker Hardcover<br>
+					<span style="color:red">$14.00 (60%)</span> In Stock
+				</div>
 			</li>
-			<li id="item3" class="mblVariableHeight" data-dojo-type="dojox.mobile.ListItem"
+			<li id="item3" data-dojo-type="dojox.mobile.ListItem"
 				data-dojo-props='icon:"mblDomButtonGreenBall", moveTo:"view3", rightIcon2:"mblDomButtonGrayRoundRect"'>
-				<div class="subject">Total Solar Eclipse</div>
-				Steven Young Hardcover<br>
-				Get it by Mar. 2 if you order in the next <span style="color:green"><b>16 hours</b></span><br>
-				Eligible for FREE Super Saver Shipping<br>
-				<span style="color:red">$9.50 (62%)</span> In Stock
+				<div class="textBox">
+					<div class="subject">Total Solar Eclipse</div>
+					Steven Young Hardcover<br>
+					Get it by Mar. 2 if you order in the next <span style="color:green"><b>16 hours</b></span><br>
+					Eligible for FREE Super Saver Shipping<br>
+					<span style="color:red">$9.50 (62%)</span> In Stock
+				</div>
 			</li>
 		</ul>
 	</div>
@@ -186,16 +195,16 @@
 	<div id="view3" data-dojo-type="dojox.mobile.View">
 		<h1 data-dojo-type="dojox.mobile.Heading" data-dojo-props='back:"Back", moveTo:"view2"'>View 3</h1>
 		<h2 data-dojo-type="dojox.mobile.RoundRectCategory">Variable Height List</h2>
-		<ul id="list3" data-dojo-type="dojox.mobile.RoundRectList">
-			<li class="mblVariableHeight" data-dojo-type="dojox.mobile.ListItem"
+		<ul id="list3" data-dojo-type="dojox.mobile.RoundRectList" data-dojo-props='variableHeight:true'>
+			<li data-dojo-type="dojox.mobile.ListItem"
 				data-dojo-props='moveTo:"view4", arrowClass:"mblDomButtonBlueCircleArrow"'>
 				Top 10 news stories of the decade
 			</li>
-			<li class="mblVariableHeight" data-dojo-type="dojox.mobile.ListItem"
+			<li data-dojo-type="dojox.mobile.ListItem"
 				data-dojo-props='moveTo:"view4", arrowClass:"mblDomButtonBlueCircleArrow"'>
 				Create client-side diagrammatic interaction in Web applications with GFX
 			</li>
-			<li class="mblVariableHeight" data-dojo-type="dojox.mobile.ListItem"
+			<li data-dojo-type="dojox.mobile.ListItem"
 				data-dojo-props='moveTo:"view4", arrowClass:"mblDomButtonBlueCircleArrow"'>
 				Explores advanced topics in the new Java framework for implementing and consuming REST-based Web services, Part 3
 			</li>
