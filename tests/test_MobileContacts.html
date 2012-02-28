@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>PhoneGap</title>
+<script type="text/javascript" charset="utf-8" src="phonegap-1.3.0.js"></script>
+	<script type="text/javascript" src="../deviceTheme.js"
+		data-dojo-config="mblThemeFiles: ['base','dojox/mobile/themes/common/domButtons.css']"></script>
+	<script type="text/javascript" src="../../../dojo/dojo.js" data-dojo-config="async: true, parseOnLoad: true"></script>
+	<script type="text/javascript" charset="utf-8">
+		require([
+				"dojo/ready",
+				"dojo/store/Memory",
+				"dojo/store/Observable",
+				"dijit/registry",
+				"dojox/mobile/store/MobileContacts",
+		     	"dojo/_base/Deferred",
+				"dojox/mobile/parser",
+				"dojox/mobile",
+				"dojox/mobile/compat",
+				"dojox/mobile/ScrollableView",
+				"dojox/mobile/RoundRectStoreList",
+				"dojox/mobile/RoundRect",
+				"dojox/mobile/TextBox"
+		], function(ready, Memory, Observable, registry, mobileContacts){
+			ready(function(){
+		    	document.addEventListener("deviceready", onDeviceReady, false);
+			});
+
+		    // PhoneGap Ready
+		    //
+			var contacts = new mobileContacts();
+			
+		    function onDeviceReady() {
+				store = new Observable(Memory());
+
+				var d = contacts.query("", ["name", "id"]);
+		        d.then(function(c){
+			        for(var i=0; i<c.length; i++){
+						store.add({
+							label: c[i].name && c[i].name.givenName + " " + c[i].name.familyName || "",
+							moveTo: "edit",
+							id: c[i].id,
+							onTouchStart: setValue
+						});
+			        }
+					registry.byId("list").setStore(store);
+		        }, function(e){
+					alert(e);
+				});
+		    }
+
+			setValue = function(){
+				var d = contacts.get(this.id);
+		        d.then(function(c){
+					registry.byId("givenName").textbox.value = c.name && c.name.givenName || "";
+					registry.byId("familyName").textbox.value = c.name && c.name.familyName || "";
+					registry.byId("phoneNumberType").textbox.value = c.phoneNumbers && c.phoneNumbers[0] && c.phoneNumbers[0].type || "";
+					registry.byId("phoneNumberValue").textbox.value = c.phoneNumbers && c.phoneNumbers[0] && c.phoneNumbers[0].value || "";
+					registry.byId("emailType").textbox.value = c.emails && c.emails[0] && c.emails[0].type || "";
+					registry.byId("emailValue").textbox.value = c.emails && c.emails[0] && c.emails[0].value || "";
+					registry.byId("streetAddress").textbox.value = c.addresses && c.addresses[0] && c.addresses[0].streetAddress || "";
+					registry.byId("locality").textbox.value = c.addresses &&  c.addresses[0] && c.addresses[0].locality || "";
+					registry.byId("region").textbox.value = c.addresses &&  c.addresses[0] && c.addresses[0].region || "";
+					registry.byId("postalCode").textbox.value = c.addresses &&  c.addresses[0] && c.addresses[0].postalCode || "";
+					window.contact = c;
+		        }, function(e){
+					alert(e);
+				});
+				
+			}
+			
+			newContact = function(){
+				registry.byId("givenName").textbox.value = "";
+				registry.byId("familyName").textbox.value = "";
+				registry.byId("phoneNumberType").textbox.value = "";
+				registry.byId("phoneNumberValue").textbox.value = "";
+				registry.byId("emailType").textbox.value = "";
+				registry.byId("emailValue").textbox.value = "";
+				registry.byId("streetAddress").textbox.value = "";
+				registry.byId("locality").textbox.value = "";
+				registry.byId("region").textbox.value = "";
+				registry.byId("postalCode").textbox.value = "";
+				window.contact = null;
+			}
+
+			Save = function(){
+				var newContact = window.contact || {};
+				var name = {};
+				name.givenName = registry.byId("givenName").textbox.value;
+				name.familyName = registry.byId("familyName").textbox.value;
+				newContact.name = name;
+				var phoneNumber = newContact.phoneNumbers[0] || {};
+				phoneNumber.type = registry.byId("phoneNumberType").textbox.value;
+				phoneNumber.value = registry.byId("phoneNumberValue").textbox.value;
+				newContact.phoneNumbers = newContact.phoneNumbers || new Array(1);
+				newContact.phoneNumbers[0] = phoneNumber;
+				var email = newContact.emails[0] || {};
+				email.type = registry.byId("emailType").textbox.value;
+				email.value = registry.byId("emailValue").textbox.value;
+				newContact.emails = newContact.emails || new Array(1);
+				newContact.emails[0] = email;
+				var addresses = newContact.addresses[0] || {};
+				addresses.streetAddress = registry.byId("streetAddress").textbox.value;
+				addresses.locality = registry.byId("locality").textbox.value;
+				addresses.region = registry.byId("region").textbox.value;
+				addresses.postalCode = registry.byId("postalCode").textbox.value;
+				newContact.addresses = newContact.addresses || new Array(1);;
+				newContact.addresses[0] = addresses;
+				contacts.add(newContact);
+
+			};
+			contacts.onSaveSuccess = function(c){
+				store.put({
+					label: c.name && c.name.givenName + " " + c.name.familyName || "",
+					moveTo: "edit",
+					id: c.id,
+					onTouchStart: setValue
+				});
+			};
+
+		});
+	</script>
+	<style>
+	input {
+		font-size: 18px;
+		border-radius: 10px;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		border: 2px groove;
+	}
+	</style>
+</head>
+<body>
+<div id="view1" data-dojo-type="dojox.mobile.ScrollableView">
+	<div data-dojo-type="dojox.mobile.Heading" data-dojo-props='label:"Mobile Contacts"'></div>
+	<ul data-dojo-type="dojox.mobile.RoundRectStoreList" id="list" data-dojo-props='query:{}'></ul>
+	<button id="new" data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='light:true, moveTo:"edit", transition:"slide"' onclick="newContact()">+</button>
+	
+</div>
+<div id="edit" data-dojo-type="dojox.mobile.ScrollableView">
+	<div data-dojo-type="dojox.mobile.Heading" data-dojo-props='label:"Mobile Contact"'>
+			<button id="btn1" data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='light:true, moveTo:"view1", transition:"slide", transitionDir:-1'>Cancel</button>
+			<button id="btn2" data-dojo-type="dojox.mobile.ToolBarButton" data-dojo-props='light:true, moveTo:"view1", transition:"slide", transitionDir:-1' onclick="Save()" style="float:right;">Done</button>
+	</div>
+	<div data-dojo-type="dojox.mobile.RoundRect" data-dojo-props="shadow:true">
+		<table width="100%">
+			<tr>
+				<td align="right"><input id="givenName" data-dojo-type="dojox.mobile.TextBox" data-dojo-props='placeHolder:"Given Name"' style="width:90%;height:40px"></td>
+			</tr>
+			<tr>
+				<td align="right"><input id="familyName" data-dojo-type="dojox.mobile.TextBox" data-dojo-props='placeHolder:"Family Name"' style="width:90%;height:40px"></td>
+			</tr>
+		</table>
+	</div>
+	<div data-dojo-type="dojox.mobile.RoundRect" data-dojo-props="shadow:true">
+		<table width="100%">
+			<tr>
+				<td align="right" style="width:10%"></td>
+				<td align="right" style="width:30%"><input id="phoneNumberType" data-dojo-type="dojox.mobile.TextBox" data-dojo-props='placeHolder:"mobile"' style="width:100%;height:40px"></td>
+				<td align="right"><input id="phoneNumberValue" data-dojo-type="dojox.mobile.TextBox" data-dojo-props='placeHolder:"Phone"' style="width:90%;height:40px"></td>
+			</tr>
+		</table>
+	</div>
+	<div data-dojo-type="dojox.mobile.RoundRect" data-dojo-props="shadow:true">
+		<table width="100%">
+			<tr>
+				<td align="right" style="width:10%"></td>
+				<td align="right" style="width:30%"><input id="emailType" data-dojo-type="dojox.mobile.TextBox" data-dojo-props='placeHolder:"Work"' style="width:100%;height:40px"></td>
+				<td align="right"><input id="emailValue" data-dojo-type="dojox.mobile.TextBox" data-dojo-props='placeHolder:"Mail Address"' style="width:90%;height:40px"></td>
+			</tr>
+		</table>
+	</div>
+	<div data-dojo-type="dojox.mobile.RoundRect" data-dojo-props="shadow:true">
+		<table width="100%">
+			<tr>
+				<td align="right"><input id="streetAddress" data-dojo-type="dojox.mobile.TextBox" data-dojo-props='placeHolder:"streetAddress"' style="width:90%;height:40px"></td>
+			</tr>
+			<tr>
+				<td align="right"><input id="locality" data-dojo-type="dojox.mobile.TextBox" data-dojo-props='placeHolder:"locality"' style="width:90%;height:40px"></td>
+			</tr>
+			<tr>
+				<td align="right"><input id="region" data-dojo-type="dojox.mobile.TextBox" data-dojo-props='placeHolder:"region"' style="width:90%;height:40px"></td>
+			</tr>
+			<tr>
+				<td align="right"><input id="postalCode" data-dojo-type="dojox.mobile.TextBox" data-dojo-props='placeHolder:"postalCode"' style="width:90%;height:40px"></td>
+			</tr>
+		</table>
+	</div>
+</div>
+</body>
+</html>
