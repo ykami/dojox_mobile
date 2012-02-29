@@ -48,7 +48,6 @@ var categories = [
 ];
 var tests = [
 	{ url: "test_Accordion-demo.html", tags: "Accordion" },
-	{ url: "test_ArrowButton.html", tags: "Button" },
 	{ url: "test_Audio-single-source.html", tags: "Media" },
 	{ url: "test_Audio.html", tags: "Media" },
 	{ url: "test_Badge.html", tags: "Badge" },
