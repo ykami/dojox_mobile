@@ -75,7 +75,11 @@ define([
 			this._animEndHandle = this.connect(this.domNode, "webkitAnimationEnd", "onAnimationEnd");
 			this._animStartHandle = this.connect(this.domNode, "webkitAnimationStart", "onAnimationStart");
 			if(!config['mblCSS3Transition']){
-				this._transEndHandle = this.connect(this.domNode, "webkitTransitionEnd", "onAnimationEnd");
+			    this._transEndHandle = this.connect(this.domNode, "webkitTransitionEnd", "onAnimationEnd");
+			}
+			if(config["mblAndroidWorkaround"] !== false && has('android')){
+				// workaround for the screen flicker issue on Android 2.2 (partially works for 3.x/4.0)
+				domStyle.set(this.domNode, "webkitTransformStyle", "preserve-3d");
 			}
 
 			viewRegistry.add(this);
@@ -313,10 +317,6 @@ define([
 			var fromTop = fromNode.offsetTop;
 			toNode = this.toNode = dom.byId(toNode);
 			if(!toNode){ console.log("dojox.mobile.View#performTransition: destination view not found: "+detail.moveTo); return; }
-			if(config["mblAndroidWorkaround"] !== false && has('android')){
-				// workaround for the screen flicker issue on Android 2.2 (partially works for 3.x/4.0)
-				domStyle.set(toNode, "webkitTransformStyle", "preserve-3d");
-			}
 			toNode.style.visibility = "hidden";
 			toNode.style.display = "";
 			this._fixViewState(toNode);
@@ -492,10 +492,6 @@ define([
 				if(this.setFragIds && this._isBookmarkable(this._detail)){
 					this.setFragIds(toWidget); // setFragIds is defined in bookmarkable.js
 				}
-			}
-			if(config["mblAndroidWorkaround"] !== false && has('android')){
-				// workaround for the screen flicker issue on Android 2.2 (partially works for 3.x/4.0)
-				setTimeout(function(){ domStyle.set(this.toNode, "webkitTransformStyle", ""); }, 0);
 			}
 
 			var c = this._detail.context, m = this._detail.method;
