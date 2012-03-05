@@ -91,9 +91,6 @@ define([
 			if(dm.isAddressBarHidden() || dm._hidingTimer > dm.hideAddressBarWait){
 				// Succeeded to hide address bar, or failed but timed out 
 				dm.resizeAll();
-				if(has('android')){
-					win.doc.documentElement.style.overflow = win.body().style.overflow = "";
-				}
 				dm._hiding = false;
 			}else{
 				// Failed to hide address bar, so retry after a while
@@ -112,16 +109,27 @@ define([
 		if(dm.disableHideAddressBar || dm._hiding){ return; }
 		dm._hiding = true;
 		dm._hidingTimer = has('iphone') ? 200 : 0; // Need to wait longer in case of iPhone
-		var minH = screen.availHeight;
-		if(has('android')){
+		var minH = screen.availHeight,
+			android = has('android');
+		if(android){
 			minH = outerHeight / devicePixelRatio;
+
+			// On some Android devices such as Galaxy SII, minH might be 0 at this time.
+			// In that case, retry later again.
+			if(minH == 0){
+				dm._hiding = false;
+				setTimeout(function(){ dm.hideAddressBar(); }, 200);
+			}
+
 			// On some Android devices such as HTC EVO, "outerHeight/devicePixelRatio"
 			// is too short to hide address bar, so make it high enough
 			if(minH <= innerHeight){ minH = outerHeight; }
 
 			// On Android 2.2/2.3, hiding address bar fails when "overflow:hidden" style is
 			// applied to html/body element, so force "overflow:visible" style
-			win.doc.documentElement.style.overflow = win.body().style.overflow = "visible";
+			if(android < 3){
+				win.doc.documentElement.style.overflow = win.body().style.overflow = "visible";
+			}
 		}
 		if(win.body().offsetHeight < minH){ // to ensure enough height for scrollTo to work
 			win.body().style.minHeight = minH + "px";
