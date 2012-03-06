@@ -75,10 +75,10 @@ define([
 			this._animEndHandle = this.connect(this.domNode, "webkitAnimationEnd", "onAnimationEnd");
 			this._animStartHandle = this.connect(this.domNode, "webkitAnimationStart", "onAnimationStart");
 			if(!config['mblCSS3Transition']){
-			    this._transEndHandle = this.connect(this.domNode, "webkitTransitionEnd", "onAnimationEnd");
+				this._transEndHandle = this.connect(this.domNode, "webkitTransitionEnd", "onAnimationEnd");
 			}
-			if(config["mblAndroidWorkaround"] !== false && has('android')){
-				// workaround for the screen flicker issue on Android 2.2 (partially works for 3.x/4.0)
+			if(has('android3FlickerWorkaround')){
+				// workaround for the screen flicker issue on Android 3.x/4.0
 				domStyle.set(this.domNode, "webkitTransformStyle", "preserve-3d");
 			}
 
@@ -320,6 +320,15 @@ define([
 			toNode.style.visibility = "hidden";
 			toNode.style.display = "";
 			this._fixViewState(toNode);
+			if(has('androidWorkaround') && detail.transition && detail.transition != "none"){
+				// workaround for the screen flicker issue on Android 2.2/2.3
+				// add "-webkit-transform-style:preserve-3d" to both toNode and fromNode
+				// to make them 3d-transition-ready state
+				domStyle.set(toNode, "webkitTransformStyle", "preserve-3d");
+				domStyle.set(fromNode, "webkitTransformStyle", "preserve-3d");
+				// show toNode offscreen to avoid flicker when switching "display" and "visibility" styles
+				domClass.add(toNode, "mblAndroidWorkaround");
+			}
 			var toWidget = registry.byNode(toNode);
 			if(toWidget){
 				// Now that the target view became visible, it's time to run resize()
@@ -403,12 +412,27 @@ define([
 					}
 				}
 				var s = this._toCls(transition);
-				domClass.add(fromNode, s + " mblOut" + rev);
-				domClass.add(toNode, s + " mblIn" + rev);
-				setTimeout(function(){
-					domClass.add(fromNode, "mblTransition");
-					domClass.add(toNode, "mblTransition");
-				}, 100);
+				if(!has('androidWorkaround')){
+					domClass.add(fromNode, s + " mblOut" + rev);
+					domClass.add(toNode, s + " mblIn" + rev);
+					setTimeout(function(){
+						domClass.add(fromNode, "mblTransition");
+						domClass.add(toNode, "mblTransition");
+					}, 100);
+				}else{
+					// workaround for the screen flicker issue on Android 2.2
+					// applying transition css classes just after setting toNode.style.display = ""
+					// causes flicker, so wait for a while using setTimeout
+					setTimeout(function(){
+						domClass.add(fromNode, s + " mblOut" + rev);
+						domClass.add(toNode, s + " mblIn" + rev);
+						domClass.remove(toNode, "mblAndroidWorkaround"); // remove offscreen style
+						setTimeout(function(){
+							domClass.add(fromNode, "mblTransition");
+							domClass.add(toNode, "mblTransition");
+						}, 30); // 30 = 100 - 70, to make total delay equal to 100ms
+					}, 70); // 70ms is experiential value
+				}
 				// set transform origin
 				var fromOrigin = "50% 50%";
 				var toOrigin = "50% 50%";
@@ -492,6 +516,16 @@ define([
 				if(this.setFragIds && this._isBookmarkable(this._detail)){
 					this.setFragIds(toWidget); // setFragIds is defined in bookmarkable.js
 				}
+			}
+			if(has('androidWorkaround')){
+				// workaround for the screen flicker issue on Android 2.2/2.3
+				// remove "-webkit-transform-style" style after transition finished
+				// to avoid side effects such as input field auto-scrolling issue
+				// use setTimeout to avoid flicker in case of ScrollableView
+				setTimeout(lang.hitch(this, function(){
+					if(toWidget){ domStyle.set(this.toNode, "webkitTransformStyle", ""); }
+					domStyle.set(this.domNode, "webkitTransformStyle", "");
+				}), 0);
 			}
 
 			var c = this._detail.context, m = this._detail.method;
