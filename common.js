@@ -206,9 +206,9 @@ define([
 	}
 
 	// flag for Android transition animation flicker workaround
-	has.add('androidWorkaround', 
+	has.add('mblAndroidWorkaround', 
 			config["mblAndroidWorkaround"] !== false && has('android') < 3, undefined, true);
-	has.add('android3Workaround', 
+	has.add('mblAndroid3Workaround', 
 			config["mblAndroid3Workaround"] !== false && has('android') >= 3, undefined, true);
 
 	ready(function(){
@@ -218,8 +218,8 @@ define([
 			// workaround for the form button disappearing issue on Android 2.2-4.0
 			domConstruct.create("style", {innerHTML:"BUTTON,INPUT[type='button'],INPUT[type='submit'],INPUT[type='reset'],INPUT[type='file']::-webkit-file-upload-button{-webkit-appearance:none;}"}, win.doc.head, "first");
 		}
-		if(has('androidWorkaround')){
-			// add a css class to show view offscreen
+		if(has('mblAndroidWorkaround')){
+			// add a css class to show view offscreen for android flicker workaround
 			domConstruct.create("style", {innerHTML:".mblView.mblAndroidWorkaround{position:absolute;top:-9999px !important;left:-9999px !important;}"}, win.doc.head, "last");
 		}
 
