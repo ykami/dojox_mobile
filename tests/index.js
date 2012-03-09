@@ -72,6 +72,7 @@ var tests = [
 	{ url: "test_EdgeToEdgeFeedReader-atom.html", tags: "FeedReader" },
 	{ url: "test_EdgeToEdgeFeedReader-rss.html", tags: "FeedReader" },
 	{ url: "test_EdgeToEdgeList-check.html", tags: "EdgeToEdgeList" },
+	{ url: "test_EdgeToEdgeList-editable-a11y.html", tags: "EdgeToEdgeList" },
 	{ url: "test_EdgeToEdgeList-editable-sv.html", tags: "EdgeToEdgeList" },
 	{ url: "test_EdgeToEdgeList-editable.html", tags: "EdgeToEdgeList" },
 	{ url: "test_EdgeToEdgeList-variable.html", tags: "EdgeToEdgeList"},

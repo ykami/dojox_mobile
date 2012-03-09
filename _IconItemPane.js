@@ -16,7 +16,8 @@ define([
 
 	return declare("dojox.mobile._IconItemPane", Pane, {
 		iconPos: "",
-		alt: "",
+		closeIconRole: "",
+		closeIconTitle: "",
 		label: "",
 		closeIcon: "mblDomButtonBlueMinus",
 		baseClass: "mblIconItemPane",
@@ -31,7 +32,11 @@ define([
 			this.inherited(arguments);
 			this.hide();
 			this.closeHeaderNode = domConstruct.create("h2", {className:"mblIconItemPaneHeading"}, this.domNode);
-			this.closeIconNode = domConstruct.create("div", {className:"mblIconItemPaneIcon"}, this.closeHeaderNode);
+			this.closeIconNode = domConstruct.create("div", {
+				className: "mblIconItemPaneIcon",
+				role: this.closeIconRole,
+				title: this.closeIconTitle
+			}, this.closeHeaderNode);
 			this.labelNode = domConstruct.create("span", {className:"mblIconItemPaneTitle"}, this.closeHeaderNode);
 			this.containerNode = domConstruct.create("div", {className:"mblContent"}, this.domNode);
 		},
@@ -55,7 +60,7 @@ define([
 
 		_setCloseIconAttr: function(icon){
 			this._set("closeIcon", icon);
-			this.closeIconNode = iconUtils.setIcon(icon, this.iconPos, this.closeIconNode, this.alt, this.closeHeaderNode);
+			this.closeIconNode = iconUtils.setIcon(icon, this.iconPos, this.closeIconNode, null, this.closeHeaderNode);
 		}
 	});
 });
