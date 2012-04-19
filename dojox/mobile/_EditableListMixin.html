@@ -1,0 +1,297 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>dojox.mobile._EditableListMixin</title>
+  <link rel="stylesheet" href="../../css/dojo.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/jsdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../../themes/dtk/dtk.css" type="text/css" />
+  </head>
+<body>
+    <div style="width: 100%; height: 100%;">
+      <div id="treeHeader" region="top">
+        dojox.mobile
+      </div>
+      <div region="bottom" style="height:18px;background-color:#f2f2f2;border-top:1px solid #dedede;padding:0 2px 4px 48px;position:relative;overflow:hidden;">
+        <span style="position:absolute;top:3px;left:3px;font-size:small;">Legend: </span>
+        <img src="../../css/icons/16x16/array.png" align="middle" title="Array" alt="Array" border="0" />
+        <img src="../../css/icons/16x16/boolean.png" align="middle" title="Boolean" alt="Boolean" border="0" />
+        <img src="../../css/icons/16x16/constructor.png" align="middle" title="Constructor" alt="Constructor" border="0" />
+        <img src="../../css/icons/16x16/date.png" align="middle" title="Date" alt="Date" border="0" />
+        <img src="../../css/icons/16x16/domnode.png" align="middle" title="DomNode" alt="DomNode" border="0" />
+        <img src="../../css/icons/16x16/error.png" align="middle" title="Error" alt="Error" border="0" />
+        <img src="../../css/icons/16x16/function.png" align="middle" title="Function" alt="Function" border="0" />
+        <img src="../../css/icons/16x16/namespace.png" align="middle" title="Namespace" alt="Namespace" border="0" />
+        <img src="../../css/icons/16x16/number.png" align="middle" title="Number" alt="Number" border="0" />
+        <img src="../../css/icons/16x16/object.png" align="middle" title="Object" alt="Object" border="0" />
+        <img src="../../css/icons/16x16/regexp.png" align="middle" title="RegExp" alt="RegExp" border="0" />
+        <img src="../../css/icons/16x16/singleton.png" align="middle" title="Singleton" alt="Singleton" border="0" />
+        <img src="../../css/icons/16x16/string.png" align="middle" title="String" alt="String" border="0" />
+      </div>
+      <div region="center">
+       <div class="sidebar unit size1of4 lastUnit infoCenterHeader" >
+         <div class="apisidebar">
+           <div class="apisidebarwrapper">
+             <ul class="jsdoc-navigation">
+<li class="namespaceIcon"><a class="jsdoc-link" href="../../dojox/mobile.html">mobile</a>
+<ul class="jsdoc-children"><li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Accordion.html">Accordion</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/Accordion/domNode.html">domNode</a></li>
+</ul>
+</li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/app.html">app</a>
+<ul class="jsdoc-children"><li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/app/AlertDialog.html">AlertDialog</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/app/eventMap.html">eventMap</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/app/ImageThumbView.html">ImageThumbView</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/app/ImageView.html">ImageView</a>
+<ul class="jsdoc-children"><li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/app/ImageView/buildRendering.html">buildRendering</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/app/ImageView/buildRendering/domNode.html">domNode</a></li>
+</ul>
+</li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/app/ImageView/canvas.html">canvas</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/app/List.html">List</a>
+<ul class="jsdoc-children"><li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/app/List/deleteRow.html">deleteRow</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/app/ListSelector.html">ListSelector</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/app/SceneAssistant.html">SceneAssistant</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/app/SceneController.html">SceneController</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/app/SceneController/assistant.html">assistant</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/app/SceneController/domNode.html">domNode</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/app/StageController.html">StageController</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Audio.html">Audio</a>
+<ul class="jsdoc-children"><li class="arrayIcon"><a class="jsdoc-link" href="../../dojox/mobile/Audio/source.html">source</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Badge.html">Badge</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Button.html">Button</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/Button/srcNodeRef.html">srcNodeRef</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/Button/srcNodeRef/firstChild.html">firstChild</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Carousel.html">Carousel</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/Carousel/piw.html">piw</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/Carousel/titleNode.html">titleNode</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/CarouselItem.html">CarouselItem</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/CarouselItem/domNode.html">domNode</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/CarouselItem/footerTextNode.html">footerTextNode</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/CarouselItem/headerTextNode.html">headerTextNode</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/CarouselItem/imageNode.html">imageNode</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/CheckBox.html">CheckBox</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ComboBox.html">ComboBox</a>
+<ul class="jsdoc-children"><li class="widgetIcon"><a class="jsdoc-link" href="../../dojox/mobile/ComboBox/dropDown.html">dropDown</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/ComboBox/dropDown/domNode.html">domNode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Container.html">Container</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ContentPane.html">ContentPane</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/DataCarousel.html">DataCarousel</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/detectScreenSize.html">detectScreenSize</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/dh.html">dh</a>
+<ul class="jsdoc-children"><li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/dh/DataHandler.html">DataHandler</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/dh/HtmlContentHandler.html">HtmlContentHandler</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/dh/HtmlScriptContentHandler.html">HtmlScriptContentHandler</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/dh/JsonContentHandler.html">JsonContentHandler</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/dh/StringDataSource.html">StringDataSource</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/dh/UrlDataSource.html">UrlDataSource</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/EdgeToEdgeCategory.html">EdgeToEdgeCategory</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/EdgeToEdgeCategory/domNode.html">domNode</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/EdgeToEdgeDataList.html">EdgeToEdgeDataList</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/EdgeToEdgeList.html">EdgeToEdgeList</a>
+<ul class="jsdoc-children"><li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/EdgeToEdgeList/buildRendering.html">buildRendering</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/EdgeToEdgeList/buildRendering/domNode.html">domNode</a></li>
+</ul>
+</li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/EdgeToEdgeList/domNode.html">domNode</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/EdgeToEdgeStoreList.html">EdgeToEdgeStoreList</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ExpandingTextArea.html">ExpandingTextArea</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/FixedSplitter.html">FixedSplitter</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/FixedSplitterPane.html">FixedSplitterPane</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/GridLayout.html">GridLayout</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Heading.html">Heading</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/Heading/containerNode.html">containerNode</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/Heading/domNode.html">domNode</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/Heading/labelDivNode.html">labelDivNode</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/Heading/labelNode.html">labelNode</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/Heading/labelNode/style.html">style</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/i18n.html">i18n</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Icon.html">Icon</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/IconContainer.html">IconContainer</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/IconItem.html">IconItem</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/IconItem/labelNode.html">labelNode</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/IconItem/paneWidget.html">paneWidget</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/IconItem/paneWidget/containerNode.html">containerNode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/IconMenu.html">IconMenu</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/IconMenuItem.html">IconMenuItem</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/IconMenuItem/srcNodeRef.html">srcNodeRef</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ListItem.html">ListItem</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/ListItem/domNode.html">domNode</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/ListItem/rightTextNode.html">rightTextNode</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Opener.html">Opener</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Overlay.html">Overlay</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/PageIndicator.html">PageIndicator</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Pane.html">Pane</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ProgressBar.html">ProgressBar</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/ProgressBar/msgNode.html">msgNode</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ProgressIndicator.html">ProgressIndicator</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/RadioButton.html">RadioButton</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Rating.html">Rating</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/Rating/imgNode.html">imgNode</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/RoundRect.html">RoundRect</a>
+<ul class="jsdoc-children"><li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/RoundRect/buildRendering.html">buildRendering</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/RoundRect/buildRendering/domNode.html">domNode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/RoundRectCategory.html">RoundRectCategory</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/RoundRectCategory/domNode.html">domNode</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/RoundRectDataList.html">RoundRectDataList</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/RoundRectList.html">RoundRectList</a>
+<ul class="jsdoc-children"><li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/RoundRectList/buildRendering.html">buildRendering</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/RoundRectList/buildRendering/domNode.html">domNode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/RoundRectStoreList.html">RoundRectStoreList</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ScreenSizeAware.html">ScreenSizeAware</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ScrollablePane.html">ScrollablePane</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/ScrollablePane/domNode.html">domNode</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ScrollableView.html">ScrollableView</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/SearchBox.html">SearchBox</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/SimpleDialog.html">SimpleDialog</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Slider.html">Slider</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/Slider/valueNode.html">valueNode</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/SpinWheel.html">SpinWheel</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/SpinWheelDatePicker.html">SpinWheelDatePicker</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/SpinWheelSlot.html">SpinWheelSlot</a>
+<ul class="jsdoc-children"><li class="arrayIcon"><a class="jsdoc-link" href="../../dojox/mobile/SpinWheelSlot/items.html">items</a></li>
+<li class="arrayIcon"><a class="jsdoc-link" href="../../dojox/mobile/SpinWheelSlot/panelNodes.html">panelNodes</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/SpinWheelSlot/panelNodes/0.html">0</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/SpinWheelSlot/panelNodes/0/style.html">style</a></li>
+</ul>
+</li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/SpinWheelSlot/panelNodes/1.html">1</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/SpinWheelSlot/panelNodes/1/childNodes.html">childNodes</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/SpinWheelSlot/panelNodes/1/style.html">style</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/SpinWheelTimePicker.html">SpinWheelTimePicker</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/StoreCarousel.html">StoreCarousel</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/SwapView.html">SwapView</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/SwapView/domNode.html">domNode</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Switch.html">Switch</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/Switch/domNode.html">domNode</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/Switch/domNode/style.html">style</a></li>
+</ul>
+</li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/Switch/input.html">input</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/TabBar.html">TabBar</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/TabBarButton.html">TabBarButton</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/TabBarButton/iconDivNode.html">iconDivNode</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/TabBarButton/srcNodeRef.html">srcNodeRef</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/TextArea.html">TextArea</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/TextBox.html">TextBox</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ToggleButton.html">ToggleButton</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ToolBarButton.html">ToolBarButton</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/ToolBarButton/domNode.html">domNode</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/ToolBarButton/iconParentNode.html">iconParentNode</a></li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/ToolBarButton/labelNode.html">labelNode</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Tooltip.html">Tooltip</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/TransitionEvent.html">TransitionEvent</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/TreeView.html">TreeView</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ValuePicker.html">ValuePicker</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ValuePickerDatePicker.html">ValuePickerDatePicker</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ValuePickerSlot.html">ValuePickerSlot</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/ValuePickerSlot/inputNode.html">inputNode</a></li>
+<li class="arrayIcon"><a class="jsdoc-link" href="../../dojox/mobile/ValuePickerSlot/items.html">items</a></li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ValuePickerTimePicker.html">ValuePickerTimePicker</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Video.html">Video</a></li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/View.html">View</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/View/domNode.html">domNode</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/View/domNode/parentNode.html">parentNode</a>
+<ul class="jsdoc-children"><li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/View/domNode/parentNode/style.html">style</a></li>
+</ul>
+</li>
+<li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/View/domNode/style.html">style</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/ViewController.html">ViewController</a></li>
+</ul>
+</li>
+</ul>
+
+           </div>
+         </div>
+       </div>
+       <div role="main" class="main-content">
+        <div class="unit size3of4 firstUnit">
+          <a name="skip-navbar_top"></a>
+          <div class="jsdoc-permalink" style="display:none;">../../dojox/mobile/_EditableListMixin.html</div><h1 class="jsdoc-title constructorIcon36">dojox.mobile._EditableListMixin</h1><div class="jsdoc-prototype">Object &raquo; dojox.mobile._EditableListMixin</div><div class="jsdoc-require">dojo.require("dojox.mobile._EditableListMixin");</div><div class="jsdoc-prototype">Defined in dojox.mobile/_EditableListMixin.js</div><div class="jsdoc-full-summary"><p>EditableRoundRectList is a rounded rectangle list, which can be used to
+display a group of items. Each item must be
+dojox.mobile.ListItem.</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon private  even"><a class="inline-link" href="#_onClick">_onClick</a><span class="parameters">(e)</span><span class="jsdoc-returns"> returns user's click action</span> <span>Internal handler for click events.</span></li><li class="functionIcon private  odd"><a class="inline-link" href="#_onTouchEnd">_onTouchEnd</a><span class="parameters">(e)</span></li><li class="functionIcon private  even"><a class="inline-link" href="#_onTouchMove">_onTouchMove</a><span class="parameters">(e)</span></li><li class="functionIcon private  odd"><a class="inline-link" href="#_onTouchStart">_onTouchStart</a><span class="parameters">(e)</span></li><li class="functionIcon private  even"><a class="inline-link" href="#_resetMoveItem">_resetMoveItem</a><span class="parameters">(node)</span></li><li class="functionIcon private  odd"><a class="inline-link" href="#_setupMoveItem">_setupMoveItem</a><span class="parameters">(node)</span></li><li class="functionIcon public  even"><a class="inline-link" href="#destroy">destroy</a><span class="parameters">()</span></li><li class="functionIcon public  odd"><a class="inline-link" href="#endEdit">endEdit</a><span class="parameters">()</span></li><li class="functionIcon public  even"><a class="inline-link" href="#startEdit">startEdit</a><span class="parameters">()</span></li></ul></div><h2 class="jsdoc-summary-heading">Event Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public  odd"><a class="inline-link" href="#onClick">onClick</a><span class="parameters">(e)</span> <span>User defined function to handle clicks</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="../../dojox/mobile/_EditableListMixin/_movingItem/domNode/style.html">dojox.mobile._EditableListMixin._movingItem.domNode.style</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field private  even"><div class="jsdoc-title"><a name="_onClick"></a><span class="functionIcon">_onClick</span></div><div class="jsdoc-return-type">Returns <strong>user's click action</strong></div><div class="jsdoc-summary">Internal handler for click events.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">e</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private  odd"><div class="jsdoc-title"><a name="_onTouchEnd"></a><span class="functionIcon">_onTouchEnd</span></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">e</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private  even"><div class="jsdoc-title"><a name="_onTouchMove"></a><span class="functionIcon">_onTouchMove</span></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">e</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private  odd"><div class="jsdoc-title"><a name="_onTouchStart"></a><span class="functionIcon">_onTouchStart</span></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">e</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private  even"><div class="jsdoc-title"><a name="_resetMoveItem"></a><span class="functionIcon">_resetMoveItem</span></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">node</td><td class="jsdoc-param-type">DomNode</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private  odd"><div class="jsdoc-title"><a name="_setupMoveItem"></a><span class="functionIcon">_setupMoveItem</span></div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">node</td><td class="jsdoc-param-type">DomNode</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="destroy"></a><span class="functionIcon">destroy</span></div></div><div class="jsdoc-field public  odd"><div class="jsdoc-title"><a name="endEdit"></a><span class="functionIcon">endEdit</span></div></div><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="startEdit"></a><span class="functionIcon">startEdit</span></div></div><h2>Events</h2><div class="jsdoc-field public  odd"><div class="jsdoc-title"><a name="onClick"></a><span class="functionIcon">onClick</span></div><div class="jsdoc-summary">User defined function to handle clicks</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">e</td><td class="jsdoc-param-type">Event</td><td class="jsdoc-param-description"></td></tr></table></div></div></div>
+        </div>
+       </div>
+      </div>
+  </div>
+</body>
+</html>
