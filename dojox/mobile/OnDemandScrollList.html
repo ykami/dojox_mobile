@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>dojox.mobile.ViewController</title>
+  <title>dojox.mobile.OnDemandScrollList</title>
   <link rel="stylesheet" href="../../css/dojo.css" type="text/css" />
   <link rel="stylesheet" href="../../css/jsdoc.css" type="text/css" />
   <link rel="stylesheet" href="../../themes/dtk/dtk.css" type="text/css" />
@@ -158,6 +158,7 @@
 <li class="objectIcon"><a class="jsdoc-link" href="../../dojox/mobile/ListItem/rightTextNode.html">rightTextNode</a></li>
 </ul>
 </li>
+<li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/OnDemandScrollList.html">OnDemandScrollList</a></li>
 <li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Opener.html">Opener</a></li>
 <li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/Overlay.html">Overlay</a></li>
 <li class="constructorIcon"><a class="jsdoc-link" href="../../dojox/mobile/PageIndicator.html">PageIndicator</a></li>
@@ -285,62 +286,14 @@
        <div role="main" class="main-content">
         <div class="unit size3of4 firstUnit">
           <a name="skip-navbar_top"></a>
-          <div class="jsdoc-permalink" style="display:none;">../../dojox/mobile/ViewController.html</div><h1 class="jsdoc-title constructorIcon36">dojox.mobile.ViewController</h1><div class="jsdoc-prototype">Object &raquo; dojox.mobile.ViewController</div><div class="jsdoc-full-summary"><p>This class listens to the "startTransition" events and performs
-view transitions. If the transition destination is an external
-view specified with the url parameter, the view content is
-retrieved and parsed to create a new target view.</p>
-</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public  even"><a class="inline-link" href="#constructor">constructor</a><span class="parameters">()</span></li><li class="functionIcon public  odd"><a class="inline-link" href="#findTransitionViews">findTransitionViews</a><span class="parameters">(moveTo)</span><span class="jsdoc-returns"> returns fromView, toView, params</span> <span>Searches for a starting view and a destination view.</span></li><li class="functionIcon public  even"><a class="inline-link" href="#openExternalView">openExternalView</a><span class="parameters">(transOpts, target)</span> <span>Loads an external view and performs a transition to it.</span></li></ul></div><h2 class="jsdoc-summary-heading">Event Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon public  odd"><a class="inline-link" href="#onStartTransition">onStartTransition</a><span class="parameters">(evt)</span> <span>A handler that performs view transition.</span></li></ul></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="constructor"></a><span class="functionIcon">constructor</span></div></div><div class="jsdoc-field public  odd"><div class="jsdoc-title"><a name="findTransitionViews"></a><span class="functionIcon">findTransitionViews</span></div><div class="jsdoc-return-type">Returns <strong>fromView, toView, params</strong></div><div class="jsdoc-summary">Searches for a starting view and a destination view.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">moveTo</td><td class="jsdoc-param-type">String</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="openExternalView"></a><span class="functionIcon">openExternalView</span></div><div class="jsdoc-return-type"><div class="jsdoc-return-description">dojo.Deferred
-	Deferred object that resolves when the external view is
-	ready and a transition starts. Note that it resolves before
-	the transition is complete.</div></div><div class="jsdoc-summary"><p>This method loads external view content through the
-dojox.mobile data handlers, creates a new View instance with
-the loaded content, and performs a view transition to the
-new view. The external view content can be specified with
-the url property of transOpts. The new view is created under
-a DOM node specified by target.</p>
-</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">transOpts</td><td class="jsdoc-param-type">Object</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">target</td><td class="jsdoc-param-type">DomNode</td><td class="jsdoc-param-description"></td></tr></table><div class="jsdoc-examples"><div class="jsdoc-example"><div><strong>Example 1</strong></div>
-This example loads view1.html, creates a new view under
-&lt;body&gt;, and performs a transition to the new view with the
-slide animation.
-
-<pre class="brush: js;" lang="javascript">
-	var vc = ViewController.getInstance();
-	vc.openExternalView({
-	    url: &quot;view1.html&quot;,
-	    transition: &quot;slide&quot;
-	}, win.body());
-</pre></div><div class="jsdoc-example"><div><strong>Example 2</strong></div>
-If you want to perform a view transition without animation,
-you can give transition:&quot;none&quot; to transOpts.
-
-<pre class="brush: js;" lang="javascript">
-	var vc = ViewController.getInstance();
-	vc.openExternalView({
-	    url: &quot;view1.html&quot;,
-	    transition: &quot;none&quot;
-	}, win.body());
-</pre></div><div class="jsdoc-example"><div><strong>Example 3</strong></div>
-If you want to dynamically create an external view, but do
-not want to perform a view transition to it, you can give
-noTransition:true to transOpts.
-This may be useful when you want to preload external views
-before the user starts using them.
-
-<pre class="brush: js;" lang="javascript">
-	var vc = ViewController.getInstance();
-	vc.openExternalView({
-	    url: &quot;view1.html&quot;,
-	    noTransition: true
-	}, win.body());
-</pre></div><div class="jsdoc-example"><div><strong>Example 4</strong></div>
-To do something when the external view is ready:
-
-<pre class="brush: js;" lang="javascript">
-	var vc = ViewController.getInstance();
-	Deferred.when(vc.openExternalView({...}, win.body()), function(){
-	    doSomething();
-	});
-</pre></div></div></div><h2>Events</h2><div class="jsdoc-field public  odd"><div class="jsdoc-title"><a name="onStartTransition"></a><span class="functionIcon">onStartTransition</span></div><div class="jsdoc-summary">A handler that performs view transition.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">evt</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div></div></div>
+          <div class="jsdoc-permalink" style="display:none;">../../dojox/mobile/OnDemandScrollList.html</div><h1 class="jsdoc-title constructorIcon36">dojox.mobile.OnDemandScrollList</h1><div class="jsdoc-prototype">Object &raquo; dojox.mobile.OnDemandScrollList</div><div class="jsdoc-require">dojo.require("dojox.mobile.OnDemandScrollList");</div><div class="jsdoc-prototype">Defined in dojox.mobile/OnDemandScrollList.js</div><div class="jsdoc-full-summary"><p>OnDemandScrollList enhances a list contained in a ScrollableView
+so that only a minimum set of list items are actually contained in the DOM
+at any given time. It does so by watching the scrolling events of the
+view (i.e. the 'scrollTo' and 'slideTo' methods), and add/remove items
+in the DOM to keep only the visible list items. Note that the parent must
+be a ScrollableView or another scrollable component that inherits from
+the dojox.mobile.scrollable mixin, otherwise the mixin has no effect.</p>
+</div><div class="jsdoc-children"><div class="jsdoc-field-list"><h2 class="jsdoc-summary-heading">Method Summary <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><ul><li class="functionIcon private  even"><a class="inline-link" href="#_addItem">_addItem</a><span class="parameters">(item, atStart)</span> <span>Adds an item to the list's DOM node during loading/unloading.</span></li><li class="functionIcon private  odd"><a class="inline-link" href="#_childrenChanged">_childrenChanged</a><span class="parameters">()</span> <span>Called by addChild/removeChild, updates the loaded items.</span></li><li class="functionIcon private  even"><a class="inline-link" href="#_getItems">_getItems</a><span class="parameters">()</span> <span>Returns the currently loaded items.</span></li><li class="functionIcon private  odd"><a class="inline-link" href="#_getSiblingOfChild">_getSiblingOfChild</a><span class="parameters">(child, dir)</span> <span>Overrides dijit._Container</span></li><li class="functionIcon private  even"><a class="inline-link" href="#_loadItems">_loadItems</a><span class="parameters">(toPos)</span><span class="jsdoc-returns"> returns view is hidden</span> <span>Adds and removes items to/from the DOM when the list is scrolled.</span></li><li class="functionIcon private  odd"><a class="inline-link" href="#_removeItem">_removeItem</a><span class="parameters">(item)</span> <span>Removes an item from the list's DOM node during loading/unloading.</span></li><li class="functionIcon public  even"><a class="inline-link" href="#addChild">addChild</a><span class="parameters">(widget, insertIndex)</span> <span>Overrides dijit._Container</span></li><li class="functionIcon public  odd"><a class="inline-link" href="#getChildren">getChildren</a><span class="parameters">()</span> <span>Overrides dijit._WidgetBase</span></li><li class="functionIcon public  even"><a class="inline-link" href="#removeChild">removeChild</a><span class="parameters">(widget)</span> <span>Overrides dijit._Container</span></li><li class="functionIcon public  odd"><a class="inline-link" href="#resize">resize</a><span class="parameters">()</span> <span>Loads/unloads items to fit the new size</span></li><li class="functionIcon public  even"><a class="inline-link" href="#startup">startup</a><span class="parameters">()</span></li></ul></div><h2 class="jsdoc-summary-heading">Attached Objects <span class="jsdoc-summary-toggle"></span></h2><div class="jsdoc-summary-list"><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="../../dojox/mobile/OnDemandScrollList/_topDiv/style.html">dojox.mobile.OnDemandScrollList._topDiv.style</a></span></div></div><div class="jsdoc-field"><div class="jsdoc-title"><span class="object"><a class="jsdoc-link" href="../../dojox/mobile/OnDemandScrollList/_bottomDiv/style.html">dojox.mobile.OnDemandScrollList._bottomDiv.style</a></span></div></div></div></div></div><div class="jsdoc-children"><div class="jsdoc-fields"><h2>Methods</h2><div class="jsdoc-field private  even"><div class="jsdoc-title"><a name="_addItem"></a><span class="functionIcon">_addItem</span></div><div class="jsdoc-summary">Adds an item to the list's DOM node during loading/unloading.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">item</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">atStart</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private  odd"><div class="jsdoc-title"><a name="_childrenChanged"></a><span class="functionIcon">_childrenChanged</span></div><div class="jsdoc-summary">Called by addChild/removeChild, updates the loaded items.</div></div><div class="jsdoc-field private  even"><div class="jsdoc-title"><a name="_getItems"></a><span class="functionIcon">_getItems</span></div><div class="jsdoc-summary">Returns the currently loaded items.</div></div><div class="jsdoc-field private  odd"><div class="jsdoc-title"><a name="_getSiblingOfChild"></a><span class="functionIcon">_getSiblingOfChild</span></div><div class="jsdoc-summary">Overrides dijit._Container</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">child</td><td class="jsdoc-param-type">dijit._Widget</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">dir</td><td class="jsdoc-param-type">int</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private  even"><div class="jsdoc-title"><a name="_loadItems"></a><span class="functionIcon">_loadItems</span></div><div class="jsdoc-return-type">Returns <strong>view is hidden</strong></div><div class="jsdoc-summary">Adds and removes items to/from the DOM when the list is scrolled.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">toPos</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field private  odd"><div class="jsdoc-title"><a name="_removeItem"></a><span class="functionIcon">_removeItem</span></div><div class="jsdoc-summary">Removes an item from the list's DOM node during loading/unloading.</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">item</td><td class="jsdoc-param-type"></td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="addChild"></a><span class="functionIcon">addChild</span></div><div class="jsdoc-summary">Overrides dijit._Container</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">widget</td><td class="jsdoc-param-type">dijit._Widget</td><td class="jsdoc-param-description"></td></tr><tr><td class="jsdoc-param-name">insertIndex</td><td class="jsdoc-param-type">int</td><td class="jsdoc-param-description"><div><em>Optional.</em></div></td></tr></table></div><div class="jsdoc-field public  odd"><div class="jsdoc-title"><a name="getChildren"></a><span class="functionIcon">getChildren</span></div><div class="jsdoc-summary">Overrides dijit._WidgetBase</div></div><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="removeChild"></a><span class="functionIcon">removeChild</span></div><div class="jsdoc-summary">Overrides dijit._Container</div><table class="jsdoc-parameters"><tr><th>Parameter</th><th>Type</th><th>Description</th></tr><tr><td class="jsdoc-param-name">widget</td><td class="jsdoc-param-type">Widget|int</td><td class="jsdoc-param-description"></td></tr></table></div><div class="jsdoc-field public  odd"><div class="jsdoc-title"><a name="resize"></a><span class="functionIcon">resize</span></div><div class="jsdoc-summary">Loads/unloads items to fit the new size</div></div><div class="jsdoc-field public  even"><div class="jsdoc-title"><a name="startup"></a><span class="functionIcon">startup</span></div></div></div></div>
         </div>
        </div>
       </div>
