@@ -173,7 +173,6 @@ define([
 					});
 					anim.play();
 				}
-				dm.currentView = registry.byNode(toNode);
 			},
 
 			wakeUp: function(/*DomNode*/node){
@@ -284,6 +283,7 @@ define([
 
 
 			RoundRectList._addChild = RoundRectList.prototype.addChild;
+			RoundRectList._postCreate = RoundRectList.prototype.postCreate;
 			lang.extend(RoundRectList, {
 				buildRendering: function(){
 					// summary:
@@ -296,6 +296,7 @@ define([
 				},
 
 				postCreate: function(){
+					RoundRectList._postCreate.apply(this, arguments);
 					this.redrawBorders();
 				},
 

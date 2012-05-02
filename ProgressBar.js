@@ -12,12 +12,15 @@ define([
 	// module:
 	//		dojox/mobile/ProgressBar
 	// summary:
-	//		A progress indication widget that shows the status of a task.
+	//		A widget that shows the progress of a task.
 
 	return declare("dojox.mobile.ProgressBar", WidgetBase, {
 		// summary:
-		//		A progress indication widget that shows the status of a task.
+		//		A widget that shows the progress of a task.
 		// description:
+		//		The current progress can be specified either in percent or by a
+		//		value between 0 and maximum. Setter for value can be used to
+		//		update the progress.
 
 		// value: String
 		//		Number ("0" to maximum) or percentage ("0%" to "100%")
@@ -25,8 +28,12 @@ define([
 		value: "0",
 
 		// maximum: Number
-		//		Max sample number
+		//		Max sample number.
 		maximum: 100,
+
+		// label: String
+		//		A text to be shown at the center of the progress bar.
+		label: "",
 
 		/* internal properties */	
 		baseClass: "mblProgressBar",
@@ -41,7 +48,7 @@ define([
 			}, this.domNode);
 		},
 
-		_setValueAttr: function(value){
+		_setValueAttr: function(/*String*/value){
 			// summary:
 			//		Sets the new value to the progress bar.
 			value += "";
@@ -56,6 +63,8 @@ define([
 		},
 
 		_setLabelAttr: function(label){
+			// summary:
+			//		Sets a label text to be shown at the center of the progress bar.
 			this.msgNode.innerHTML = label;
 		},
 

@@ -19,12 +19,11 @@ define([
 		//		onComplete(/*Array*/items) to handle the retrieved data.
 
 		// store: Object
-		//		Reference to data provider object
+		//		Reference to data provider object used by this widget.
 		store: null,
 
 		// query: Object
-		//		A query that can be passed to 'store' to initially filter the
-		//		items.
+		//		A query that can be passed to 'store' to initially filter the items.
 		query: null,
 
 		// queryOptions: Object
@@ -98,22 +97,22 @@ define([
 		},
 
 		onSet: function(item, attribute, oldValue, newValue){
-			//	summary:
+			// summary:
 			//		See dojo.data.api.Notification.onSet()
 		},
 
 		onNew: function(newItem, parentInfo){
-			//	summary:
+			// summary:
 			//		See dojo.data.api.Notification.onNew()
 		},
 
 		onDelete: function(deletedItem){
-			//	summary:
+			// summary:
 			//		See dojo.data.api.Notification.onDelete()
 		},
 
 		onStoreClose: function(request){
-			//	summary:
+			// summary:
 			//		Refresh list on close.
 		}
 */

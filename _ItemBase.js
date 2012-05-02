@@ -7,13 +7,15 @@ define([
 	"dojo/touch",
 	"dijit/registry",
 	"dijit/_Contained",
+	"dijit/_Container",
 	"dijit/_WidgetBase",
 	"./TransitionEvent",
 	"./iconUtils"
-], function(array, declare, lang, win, domClass, touch, registry, Contained, WidgetBase, TransitionEvent, iconUtils){
+], function(array, declare, lang, win, domClass, touch, registry, Contained, Container, WidgetBase, TransitionEvent, iconUtils){
 
 /*=====
 	var Contained = dijit._Contained;
+	var Container = dijit._Container;
 	var WidgetBase = dijit._WidgetBase;
 	var TransitionEvent = dojox.mobile.TransitionEvent;
 =====*/
@@ -23,7 +25,7 @@ define([
 	// summary:
 	//		A base class for item classes (e.g. ListItem, IconItem, etc.)
 
-	return declare("dojox.mobile._ItemBase", [WidgetBase, Contained],{
+	return declare("dojox.mobile._ItemBase", [WidgetBase, Container, Contained],{
 		// summary:
 		//		A base class for item classes (e.g. ListItem, IconItem, etc.)
 		// description:
@@ -104,8 +106,8 @@ define([
 		//		standard transition types, "slide", "fade", "flip", or from the
 		//		extended transition types, "cover", "coverv", "dissolve",
 		//		"reveal", "revealv", "scaleIn", "scaleOut", "slidev",
-		//		"swirl", "zoomIn", "zoomOut". If "none" is specified, transition
-		//		occurs immediately without animation.
+		//		"swirl", "zoomIn", "zoomOut", "cube", and "swap". If "none" is
+		//		specified, transition occurs immediately without animation.
 		transition: "",
 
 		// transitionDir: Number
@@ -292,8 +294,8 @@ define([
 				// Connect to the entire window. Otherwise, fail to receive
 				// events if operation is performed outside this widget.
 				// Expose both connect handlers in case the user has interest.
-				this._onTouchMoveHandle = this.connect(win.body(), touch.move, "_onTouchMove"),
-				this._onTouchEndHandle = this.connect(win.body(), touch.release, "_onTouchEnd")
+				this._onTouchMoveHandle = this.connect(win.body(), touch.move, "_onTouchMove");
+				this._onTouchEndHandle = this.connect(win.body(), touch.release, "_onTouchEnd");
 			}
 			this.touchStartX = e.touches ? e.touches[0].pageX : e.clientX;
 			this.touchStartY = e.touches ? e.touches[0].pageY : e.clientY;

@@ -14,15 +14,17 @@ define([
 	"dojo/dom-style",
 	"dijit/registry",
 	"dijit/_Contained",
+	"dijit/_Container",
 	"dijit/_WidgetBase",
 	"./ViewController", // to load ViewController for you (no direct references)
 	"./common",
 	"./transition",
 	"./viewRegistry"
-], function(array, config, connect, declare, lang, has, win, Deferred, dom, domClass, domConstruct, domGeometry, domStyle, registry, Contained, WidgetBase, ViewController, common, transitDeferred, viewRegistry){
+], function(array, config, connect, declare, lang, has, win, Deferred, dom, domClass, domConstruct, domGeometry, domStyle, registry, Contained, Container, WidgetBase, ViewController, common, transitDeferred, viewRegistry){
 
 /*=====
 	var Contained = dijit._Contained;
+	var Container = dijit._Container;
 	var WidgetBase = dijit._WidgetBase;
 	var ViewController = dojox.mobile.ViewController;
 =====*/
@@ -34,7 +36,7 @@ define([
 
 	var dm = lang.getObject("dojox.mobile", true);
 
-	return declare("dojox.mobile.View", [WidgetBase, Contained], {
+	return declare("dojox.mobile.View", [WidgetBase, Container, Contained], {
 		// summary:
 		//		A widget that represents a view that occupies the full screen
 		// description:
@@ -48,7 +50,7 @@ define([
 		selected: false,
 
 		// keepScrollPos: Boolean
-		//		If true, the scroll position is kept between views.
+		//		If true, the scroll position is kept when transition occurs between views.
 		keepScrollPos: true,
 
 		// tag: String
@@ -249,14 +251,14 @@ define([
 			//		A type of animated transition effect. You can choose from
 			//		the standard transition types, "slide", "fade", "flip", or
 			//		from the extended transition types, "cover", "coverv",
-			//		"dissolve", "reveal", "revealv", "scaleIn",
-			//		"scaleOut", "slidev", "swirl", "zoomIn", "zoomOut". If
-			//		"none" is specified, transition occurs immediately without
-			//		animation.
+			//		"dissolve", "reveal", "revealv", "scaleIn", "scaleOut",
+			//		"slidev", "swirl", "zoomIn", "zoomOut", "cube", and
+			//		"swap". If "none" is specified, transition occurs
+			//		immediately without animation.
 			// context: Object
 			//		The object that the callback function will receive as "this".
 			// method: String|Function
-			//		A callback function that is called when the transition has been finished.
+			//		A callback function that is called when the transition has finished.
 			//		A function reference, or name of a function in context.
 			// tags:
 			//		public
@@ -339,7 +341,8 @@ define([
 
 				toWidget.movedFrom = fromNode.id;
 			}
-			if(has('mblAndroidWorkaround') && detail.transition && detail.transition != "none"){
+			if(has('mblAndroidWorkaround') && !config['mblCSS3Transition']
+					&& detail.transition && detail.transition != "none"){
 				// workaround for the screen flicker issue on Android 2.2/2.3
 				// apply "-webkit-transform-style:preserve-3d" to both toNode and fromNode
 				// to make them 3d-transition-ready state just before transition animation
@@ -466,9 +469,13 @@ define([
 		},
 
 		onAnimationStart: function(e){
+			// summary:
+			//		A handler that is called when transition animation starts.
 		},
 
 		onAnimationEnd: function(e){
+			// summary:
+			//		A handler that is called after transition animation ends.
 			var name = e.animationName || e.target.className;
 			if(name.indexOf("Out") === -1 &&
 				name.indexOf("In") === -1 &&
@@ -508,6 +515,9 @@ define([
 		},
 
 		invokeCallback: function(){
+			// summary:
+			//		A function to be called after performing a transition to
+			//		call a specified callback.
 			this.onAfterTransitionOut.apply(this, this._arguments);
 			connect.publish("/dojox/mobile/afterTransitionOut", [this].concat(this._arguments));
 			var toWidget = registry.byNode(this.toNode);
@@ -538,9 +548,9 @@ define([
 			}
 			c = c || win.global;
 			if(typeof(m) == "string"){
-				c[m].apply(c, this._args);
+				c[m].apply(c, this._optArgs);
 			}else if(typeof(m) == "function"){
-				m.apply(c, this._args);
+				m.apply(c, this._optArgs);
 			}
 		},
 
@@ -622,6 +632,8 @@ define([
 		},
 
 		hide: function(){
+			// summary:
+			//		Hides this view without a transition animation.
 			this.domNode.style.display = "none";
 		}
 	});

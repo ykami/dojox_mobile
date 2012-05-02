@@ -3,6 +3,7 @@ dojo.provide("dojox.mobile.tests.doh.module");
 try{
 	doh.registerUrl("dojox.mobile.tests.doh.Button", dojo.moduleUrl("dojox.mobile", "tests/doh/Button.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.Button", dojo.moduleUrl("dojox.mobile", "tests/doh/Button_Programmatic.html"),999999);
+	doh.registerUrl("dojox.mobile.tests.doh.DatePickerIso", dojo.moduleUrl("dojox.mobile", "tests/doh/DatePickerIso.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.EdgeToEdgeCategory", dojo.moduleUrl("dojox.mobile", "tests/doh/EdgeToEdgeCategory.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.EdgeToEdgeDataList", dojo.moduleUrl("dojox.mobile", "tests/doh/EdgeToEdgeDataList.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.EdgeToEdgeDataList", dojo.moduleUrl("dojox.mobile", "tests/doh/EdgeToEdgeDataList_Programmatic.html"),999999);
@@ -48,6 +49,7 @@ try{
 
 	doh.registerUrl("dojox.mobile.tests.doh.Button", dojo.moduleUrl("dojox.mobile", "tests/doh/ButtonTests.html"),999999);
 	doh.registerUrl("dojox.mobile.tests.doh.CheckBox", dojo.moduleUrl("dojox.mobile", "tests/doh/CheckBoxTests.html"),999999);
+	doh.registerUrl("dojox.mobile.tests.doh.ComboBoxTests", dojo.moduleUrl("dojox.mobile", "tests/doh/ComboBoxTests.html"),999999);
 	if(!dojo.isIE){
 		doh.registerUrl("dojox.mobile.tests.doh.ContentPane", dojo.moduleUrl("dojox.mobile", "tests/doh/ContentPaneTests.html"),999999);
 		doh.registerUrl("dojox.mobile.tests.doh.EdgeToEdgeDataList", dojo.moduleUrl("dojox.mobile", "tests/doh/EdgeToEdgeDataListTests.html"),999999);

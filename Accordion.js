@@ -152,12 +152,37 @@ define([
 	});
 
 	return declare("dojox.mobile.Accordion", [WidgetBase, Container, Contained], {
+		// summary:
+		//		A layout widget that allows the user to freely navigate between panes.
+		// description:
+		//		Accordion has no specific child widget. Any widgets can be its
+		//		children. Typically dojox.mobile.Pane, dojox.mobile.Container,
+		//		or dojox.mobile.ContentPane are used as children widgets.
+
+		// iconBase: String
+		//		The default icon path for child widgets.
 		iconBase: "",
+
+		// iconPos: String
+		//		The default icon position for child widgets.
 		iconPos: "",
+
+		// fixedHeight: Boolean
+		//		If true, the entire accordion widget has fixed height regardless
+		//		of the height of each pane.
 		fixedHeight: false,
+
+		// singleOpen: Boolean
+		//		If true, only one pane is open at a time. The current open pane
+		//		is collapsed, when another pane is opened.
 		singleOpen: false,
+
+		// animation: Boolean
+		//		If true, animation is used when a pane is opened or
+		//		collapsed. The animation works only on webkit browsers.
 		animation: true,
 
+		/* internal properties */
 		duration: .3, // [seconds]
 
 		baseClass: "mblAccordion",
@@ -270,6 +295,12 @@ define([
 		},
 
 		expand: function(/*Widget*/pane, /*boolean*/noAnimation){
+			// summary:
+			//		Expand the given pane to make it visible.
+			// pane:
+			//		A pane widget to expand.
+			// noAnimation:
+			//		If true, the pane expands immediately without animation effect.
 			if(pane.lazy){
 				lazyLoadUtils.instantiateLazyWidgets(pane.containerNode, pane.requires);
 				pane.lazy = false;
@@ -302,6 +333,12 @@ define([
 		},
 
 		collapse: function(/*Widget*/pane, /*boolean*/noAnimation){
+			// summary:
+			//		Collapse the given pane to close it.
+			// pane:
+			//		A pane widget to collapse.
+			// noAnimation:
+			//		If true, the pane collapses immediately without animation effect.
 			if(pane.domNode.style.display === "none"){ return; } // already collapsed
 			pane.domNode.style.webkitTransition = noAnimation ? "" : "height "+this.duration+"s linear";
 			pane.domNode.style.height = "0px";
@@ -334,10 +371,18 @@ define([
 		},
 
 		select: function(/*Widget*/pane){
+			// summary:
+			//		Highlight the title bar of the given pane.
+			// pane:
+			//		A pane widget to highlight.
 			pane._at.set("selected", true);
 		},
 
 		deselect: function(/*Widget*/pane){
+			// summary:
+			//		Unhighlight the title bar of the given pane.
+			// pane:
+			//		A pane widget to unhighlight.
 			pane._at.set("selected", false);
 		}
 	});
